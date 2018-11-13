@@ -1,1 +1,4 @@
-omegalul
+omegalu
+```chapitre1
+$ php chapitre1
+```
