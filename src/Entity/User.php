@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -85,6 +87,16 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $user_imgUrl;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="user_id")
+     */
+    private $companies;
+
+    public function __construct()
+    {
+        $this->companies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -255,6 +267,37 @@ class User
     public function setUserImgUrl(string $user_imgUrl): self
     {
         $this->user_imgUrl = $user_imgUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Company[]
+     */
+    public function getCompanies(): Collection
+    {
+        return $this->companies;
+    }
+
+    public function addCompany(Company $company): self
+    {
+        if (!$this->companies->contains($company)) {
+            $this->companies[] = $company;
+            $company->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompany(Company $company): self
+    {
+        if ($this->companies->contains($company)) {
+            $this->companies->removeElement($company);
+            // set the owning side to null (unless already changed)
+            if ($company->getUserId() === $this) {
+                $company->setUserId(null);
+            }
+        }
 
         return $this;
     }
