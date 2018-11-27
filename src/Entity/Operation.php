@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -95,6 +97,32 @@ class Operation
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $operation_offresCommerciales;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="operations")
+     */
+    private $user_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeOperation", inversedBy="operations")
+     */
+    private $type_operation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="operation_participate")
+     */
+    private $participates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_operation")
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->participates = new ArrayCollection();
+        $this->parameters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -289,6 +317,92 @@ class Operation
     public function setOperationOffresCommerciales(?bool $operation_offresCommerciales): self
     {
         $this->operation_offresCommerciales = $operation_offresCommerciales;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getTypeOperation(): ?TypeOperation
+    {
+        return $this->type_operation;
+    }
+
+    public function setTypeOperation(?TypeOperation $type_operation): self
+    {
+        $this->type_operation = $type_operation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participate[]
+     */
+    public function getParticipates(): Collection
+    {
+        return $this->participates;
+    }
+
+    public function addParticipate(Participate $participate): self
+    {
+        if (!$this->participates->contains($participate)) {
+            $this->participates[] = $participate;
+            $participate->setOperationParticipate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipate(Participate $participate): self
+    {
+        if ($this->participates->contains($participate)) {
+            $this->participates->removeElement($participate);
+            // set the owning side to null (unless already changed)
+            if ($participate->getOperationParticipate() === $this) {
+                $participate->setOperationParticipate(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parameter[]
+     */
+    public function getParameters(): Collection
+    {
+        return $this->parameters;
+    }
+
+    public function addParameter(Parameter $parameter): self
+    {
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setParamOperation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParameter(Parameter $parameter): self
+    {
+        if ($this->parameters->contains($parameter)) {
+            $this->parameters->removeElement($parameter);
+            // set the owning side to null (unless already changed)
+            if ($parameter->getParamOperation() === $this) {
+                $parameter->setParamOperation(null);
+            }
+        }
 
         return $this;
     }

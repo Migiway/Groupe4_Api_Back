@@ -89,6 +89,21 @@ class User
     private $user_imgUrl;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Operation", mappedBy="user_id")
+     */
+    private $operations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_user")
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->operations = new ArrayCollection();
+        $this->parameters = new ArrayCollection();
+    }
+  /**
      * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="user_id")
      */
     private $companies;
@@ -272,6 +287,20 @@ class User
     }
 
     /**
+     * @return Collection|Operation[]
+     */
+    public function getOperations(): Collection
+    {
+        return $this->operations;
+    }
+
+    public function addOperation(Operation $operation): self
+    {
+        if (!$this->operations->contains($operation)) {
+            $this->operations[] = $operation;
+            $operation->setUserId($this);
+        }
+    /**
      * @return Collection|Company[]
      */
     public function getCompanies(): Collection
@@ -289,6 +318,47 @@ class User
         return $this;
     }
 
+    public function removeOperation(Operation $operation): self
+    {
+        if ($this->operations->contains($operation)) {
+            $this->operations->removeElement($operation);
+            // set the owning side to null (unless already changed)
+            if ($operation->getUserId() === $this) {
+                $operation->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parameter[]
+     */
+    public function getParameters(): Collection
+    {
+        return $this->parameters;
+    }
+
+    public function addParameter(Parameter $parameter): self
+    {
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setParamUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParameter(Parameter $parameter): self
+    {
+        if ($this->parameters->contains($parameter)) {
+            $this->parameters->removeElement($parameter);
+            // set the owning side to null (unless already changed)
+            if ($parameter->getParamUser() === $this) {
+                $parameter->setParamUser(null);
+            }
+        }
+    }
     public function removeCompany(Company $company): self
     {
         if ($this->companies->contains($company)) {

@@ -24,6 +24,16 @@ class ActivityArea
     private $activity_area;
 
     /**
+
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="parameter_activity")
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+    }
+    /**  
      * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="secteur_activite_id")
      */
     private $companies;
@@ -31,6 +41,7 @@ class ActivityArea
     public function __construct()
     {
         $this->companies = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -51,6 +62,21 @@ class ActivityArea
     }
 
     /**
+     * @return Collection|Parameter[]
+     */
+    public function getParameters(): Collection
+    {
+        return $this->parameters;
+    }
+
+    public function addParameter(Parameter $parameter): self
+    {
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setParameterActivity($this);
+        }
+    }
+  /**
      * @return Collection|Company[]
      */
     public function getCompanies(): Collection
@@ -68,6 +94,16 @@ class ActivityArea
         return $this;
     }
 
+    public function removeParameter(Parameter $parameter): self
+    {
+        if ($this->parameters->contains($parameter)) {
+            $this->parameters->removeElement($parameter);
+            // set the owning side to null (unless already changed)
+            if ($parameter->getParameterActivity() === $this) {
+                $parameter->setParameterActivity(null);
+            }
+        }
+    }
     public function removeCompany(Company $company): self
     {
         if ($this->companies->contains($company)) {
@@ -75,6 +111,9 @@ class ActivityArea
             // set the owning side to null (unless already changed)
             if ($company->getSecteurActiviteId() === $this) {
                 $company->setSecteurActiviteId(null);
+            }
+        }
+    }
             }
         }
 

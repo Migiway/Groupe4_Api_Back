@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -106,6 +108,15 @@ class Company
      */
     private $company_updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_company")
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+    }
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="companies")
      */
@@ -357,6 +368,21 @@ class Company
         return $this;
     }
 
+    /**
+     * @return Collection|Parameter[]
+     */
+    public function getParameters(): Collection
+    {
+        return $this->parameters;
+    }
+
+    public function addParameter(Parameter $parameter): self
+    {
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setParamCompany($this);
+        }
+    }
     public function getCountryId(): ?Country
     {
         return $this->country_id;
@@ -365,10 +391,21 @@ class Company
     public function setCountryId(?Country $country_id): self
     {
         $this->country_id = $country_id;
+    }
 
         return $this;
     }
 
+    public function removeParameter(Parameter $parameter): self
+    {
+        if ($this->parameters->contains($parameter)) {
+            $this->parameters->removeElement($parameter);
+            // set the owning side to null (unless already changed)
+            if ($parameter->getParamCompany() === $this) {
+                $parameter->setParamCompany(null);
+            }
+        }
+    }
     public function getStatutJuridiqueId(): ?StatutJuridique
     {
         return $this->statut_juridique_id;

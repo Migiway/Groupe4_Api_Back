@@ -24,6 +24,15 @@ class CategoryEnterprise
     private $category_label;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_cat")
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+    }
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="category_id")
      */
     private $companies;
@@ -51,6 +60,20 @@ class CategoryEnterprise
     }
 
     /**
+     * @return Collection|Parameter[]
+     */
+    public function getParameters(): Collection
+    {
+        return $this->parameters;
+    }
+
+    public function addParameter(Parameter $parameter): self
+    {
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setParamCat($this);
+     }
+     /**
      * @return Collection|Company[]
      */
     public function getCompanies(): Collection
@@ -68,6 +91,16 @@ class CategoryEnterprise
         return $this;
     }
 
+    public function removeParameter(Parameter $parameter): self
+    {
+        if ($this->parameters->contains($parameter)) {
+            $this->parameters->removeElement($parameter);
+            // set the owning side to null (unless already changed)
+            if ($parameter->getParamCat() === $this) {
+                $parameter->setParamCat(null);
+            }
+        }
+    }
     public function removeCompany(Company $company): self
     {
         if ($this->companies->contains($company)) {
@@ -75,6 +108,7 @@ class CategoryEnterprise
             // set the owning side to null (unless already changed)
             if ($company->getCategoryId() === $this) {
                 $company->setCategoryId(null);
+  
             }
         }
 
