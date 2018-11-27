@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -110,6 +112,21 @@ class Contact
      * @ORM\Column(type="text", nullable=true)
      */
     private $contact_commentaire;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="participate_contact")
+     */
+    private $participates;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Job", inversedBy="contacts")
+     */
+    private $contact_job;
+
+    public function __construct()
+    {
+        $this->participates = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -340,6 +357,49 @@ class Contact
     public function setContactCommentaire(?string $contact_commentaire): self
     {
         $this->contact_commentaire = $contact_commentaire;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participate[]
+     */
+    public function getParticipates(): Collection
+    {
+        return $this->participates;
+    }
+
+    public function addParticipate(Participate $participate): self
+    {
+        if (!$this->participates->contains($participate)) {
+            $this->participates[] = $participate;
+            $participate->setParticipateContact($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipate(Participate $participate): self
+    {
+        if ($this->participates->contains($participate)) {
+            $this->participates->removeElement($participate);
+            // set the owning side to null (unless already changed)
+            if ($participate->getParticipateContact() === $this) {
+                $participate->setParticipateContact(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getContactJob(): ?Job
+    {
+        return $this->contact_job;
+    }
+
+    public function setContactJob(?Job $contact_job): self
+    {
+        $this->contact_job = $contact_job;
 
         return $this;
     }

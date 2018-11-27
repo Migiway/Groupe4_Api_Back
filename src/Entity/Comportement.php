@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +23,16 @@ class Comportement
      */
     private $comp_libelle;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_comportement")
+     */
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +46,37 @@ class Comportement
     public function setCompLibelle(string $comp_libelle): self
     {
         $this->comp_libelle = $comp_libelle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parameter[]
+     */
+    public function getParameters(): Collection
+    {
+        return $this->parameters;
+    }
+
+    public function addParameter(Parameter $parameter): self
+    {
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setParamComportement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParameter(Parameter $parameter): self
+    {
+        if ($this->parameters->contains($parameter)) {
+            $this->parameters->removeElement($parameter);
+            // set the owning side to null (unless already changed)
+            if ($parameter->getParamComportement() === $this) {
+                $parameter->setParamComportement(null);
+            }
+        }
 
         return $this;
     }
