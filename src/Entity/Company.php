@@ -106,6 +106,21 @@ class Company
      */
     private $company_updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="companies")
+     */
+    private $country_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\StatutJuridique", inversedBy="companies")
+     */
+    private $statut_juridique_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="companies")
+     */
+    private $user_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -323,6 +338,42 @@ class Company
     public function setCompanyUpdatedAt(\DateTimeInterface $company_updatedAt): self
     {
         $this->company_updatedAt = $company_updatedAt;
+
+        return $this;
+    }
+
+    public function getCountryId(): ?Country
+    {
+        return $this->country_id;
+    }
+
+    public function setCountryId(?Country $country_id): self
+    {
+        $this->country_id = $country_id;
+
+        return $this;
+    }
+
+    public function getStatutJuridiqueId(): ?StatutJuridique
+    {
+        return $this->statut_juridique_id;
+    }
+
+    public function setStatutJuridiqueId(?StatutJuridique $statut_juridique_id): self
+    {
+        $this->statut_juridique_id = $statut_juridique_id;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }
