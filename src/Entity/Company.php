@@ -117,6 +117,35 @@ class Company
     {
         $this->parameters = new ArrayCollection();
     }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="companies")
+     */
+    private $country_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\StatutJuridique", inversedBy="companies")
+     */
+    private $statut_juridique_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="companies")
+     */
+    private $user_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="companies")
+     */
+    private $secteur_activite_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEnterprise", inversedBy="companies")
+     */
+    private $category_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="companies")
+     */
+    private $nb_salarie_id;
 
     public function getId(): ?int
     {
@@ -353,6 +382,16 @@ class Company
             $this->parameters[] = $parameter;
             $parameter->setParamCompany($this);
         }
+    }
+    public function getCountryId(): ?Country
+    {
+        return $this->country_id;
+    }
+
+    public function setCountryId(?Country $country_id): self
+    {
+        $this->country_id = $country_id;
+    }
 
         return $this;
     }
@@ -366,6 +405,63 @@ class Company
                 $parameter->setParamCompany(null);
             }
         }
+    }
+    public function getStatutJuridiqueId(): ?StatutJuridique
+    {
+        return $this->statut_juridique_id;
+    }
+
+    public function setStatutJuridiqueId(?StatutJuridique $statut_juridique_id): self
+    {
+        $this->statut_juridique_id = $statut_juridique_id;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getSecteurActiviteId(): ?ActivityArea
+    {
+        return $this->secteur_activite_id;
+    }
+
+    public function setSecteurActiviteId(?ActivityArea $secteur_activite_id): self
+    {
+        $this->secteur_activite_id = $secteur_activite_id;
+
+        return $this;
+    }
+
+    public function getCategoryId(): ?CategoryEnterprise
+    {
+        return $this->category_id;
+    }
+
+    public function setCategoryId(?CategoryEnterprise $category_id): self
+    {
+        $this->category_id = $category_id;
+
+        return $this;
+    }
+
+    public function getNbSalarieId(): ?NbSalary
+    {
+        return $this->nb_salarie_id;
+    }
+
+    public function setNbSalarieId(?NbSalary $nb_salarie_id): self
+    {
+        $this->nb_salarie_id = $nb_salarie_id;
 
         return $this;
     }

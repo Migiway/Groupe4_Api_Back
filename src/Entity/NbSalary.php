@@ -32,6 +32,15 @@ class NbSalary
     {
         $this->parameters = new ArrayCollection();
     }
+  /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="nb_salarie_id")
+     */
+    private $companies;
+
+    public function __construct()
+    {
+        $this->companies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -64,6 +73,21 @@ class NbSalary
             $this->parameters[] = $parameter;
             $parameter->setParamNbEmployer($this);
         }
+    }
+  /**
+     * @return Collection|Company[]
+     */
+    public function getCompanies(): Collection
+    {
+        return $this->companies;
+    }
+
+    public function addCompany(Company $company): self
+    {
+        if (!$this->companies->contains($company)) {
+            $this->companies[] = $company;
+            $company->setNbSalarieId($this);
+        }
 
         return $this;
     }
@@ -75,6 +99,16 @@ class NbSalary
             // set the owning side to null (unless already changed)
             if ($parameter->getParamNbEmployer() === $this) {
                 $parameter->setParamNbEmployer(null);
+            }
+        }
+    }
+    public function removeCompany(Company $company): self
+    {
+        if ($this->companies->contains($company)) {
+            $this->companies->removeElement($company);
+            // set the owning side to null (unless already changed)
+            if ($company->getNbSalarieId() === $this) {
+                $company->setNbSalarieId(null);
             }
         }
 

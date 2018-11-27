@@ -24,6 +24,7 @@ class ActivityArea
     private $activity_area;
 
     /**
+
      * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="parameter_activity")
      */
     private $parameters;
@@ -31,6 +32,16 @@ class ActivityArea
     public function __construct()
     {
         $this->parameters = new ArrayCollection();
+    }
+    /**  
+     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="secteur_activite_id")
+     */
+    private $companies;
+
+    public function __construct()
+    {
+        $this->companies = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -64,6 +75,21 @@ class ActivityArea
             $this->parameters[] = $parameter;
             $parameter->setParameterActivity($this);
         }
+    }
+  /**
+     * @return Collection|Company[]
+     */
+    public function getCompanies(): Collection
+    {
+        return $this->companies;
+    }
+
+    public function addCompany(Company $company): self
+    {
+        if (!$this->companies->contains($company)) {
+            $this->companies[] = $company;
+            $company->setSecteurActiviteId($this);
+        }
 
         return $this;
     }
@@ -75,6 +101,19 @@ class ActivityArea
             // set the owning side to null (unless already changed)
             if ($parameter->getParameterActivity() === $this) {
                 $parameter->setParameterActivity(null);
+            }
+        }
+    }
+    public function removeCompany(Company $company): self
+    {
+        if ($this->companies->contains($company)) {
+            $this->companies->removeElement($company);
+            // set the owning side to null (unless already changed)
+            if ($company->getSecteurActiviteId() === $this) {
+                $company->setSecteurActiviteId(null);
+            }
+        }
+    }
             }
         }
 
