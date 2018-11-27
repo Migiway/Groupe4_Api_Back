@@ -121,6 +121,21 @@ class Company
      */
     private $user_id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="companies")
+     */
+    private $secteur_activite_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEnterprise", inversedBy="companies")
+     */
+    private $category_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="companies")
+     */
+    private $nb_salarie_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -374,6 +389,42 @@ class Company
     public function setUserId(?User $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getSecteurActiviteId(): ?ActivityArea
+    {
+        return $this->secteur_activite_id;
+    }
+
+    public function setSecteurActiviteId(?ActivityArea $secteur_activite_id): self
+    {
+        $this->secteur_activite_id = $secteur_activite_id;
+
+        return $this;
+    }
+
+    public function getCategoryId(): ?CategoryEnterprise
+    {
+        return $this->category_id;
+    }
+
+    public function setCategoryId(?CategoryEnterprise $category_id): self
+    {
+        $this->category_id = $category_id;
+
+        return $this;
+    }
+
+    public function getNbSalarieId(): ?NbSalary
+    {
+        return $this->nb_salarie_id;
+    }
+
+    public function setNbSalarieId(?NbSalary $nb_salarie_id): self
+    {
+        $this->nb_salarie_id = $nb_salarie_id;
 
         return $this;
     }
