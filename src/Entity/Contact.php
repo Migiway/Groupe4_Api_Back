@@ -111,6 +111,26 @@ class Contact
      */
     private $contact_commentaire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     */
+    private $user_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company")
+     */
+    private $company_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Job")
+     */
+    private $job_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Participate")
+     */
+    private $participation_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -340,6 +360,54 @@ class Contact
     public function setContactCommentaire(?string $contact_commentaire): self
     {
         $this->contact_commentaire = $contact_commentaire;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getCompanyId(): ?Company
+    {
+        return $this->company_id;
+    }
+
+    public function setCompanyId(?Company $company_id): self
+    {
+        $this->company_id = $company_id;
+
+        return $this;
+    }
+
+    public function getJobId(): ?Job
+    {
+        return $this->job_id;
+    }
+
+    public function setJobId(?Job $job_id): self
+    {
+        $this->job_id = $job_id;
+
+        return $this;
+    }
+
+    public function getParticipationId(): ?Participate
+    {
+        return $this->participation_id;
+    }
+
+    public function setParticipationId(?Participate $participation_id): self
+    {
+        $this->participation_id = $participation_id;
 
         return $this;
     }

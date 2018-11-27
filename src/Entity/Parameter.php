@@ -61,6 +61,16 @@ class Parameter
      */
     private $param_emailContact;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="parameter_id")
+     */
+    private $activityArea;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="parameter_id")
+     */
+    private $nbSalary;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -170,6 +180,30 @@ class Parameter
     public function setParamEmailContact(string $param_emailContact): self
     {
         $this->param_emailContact = $param_emailContact;
+
+        return $this;
+    }
+
+    public function getActivityArea(): ?ActivityArea
+    {
+        return $this->activityArea;
+    }
+
+    public function setActivityArea(?ActivityArea $activityArea): self
+    {
+        $this->activityArea = $activityArea;
+
+        return $this;
+    }
+
+    public function getNbSalary(): ?NbSalary
+    {
+        return $this->nbSalary;
+    }
+
+    public function setNbSalary(?NbSalary $nbSalary): self
+    {
+        $this->nbSalary = $nbSalary;
 
         return $this;
     }

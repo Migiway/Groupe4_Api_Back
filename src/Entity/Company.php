@@ -106,6 +106,16 @@ class Company
      */
     private $company_updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="company_id")
+     */
+    private $activityArea;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="company_id")
+     */
+    private $nbSalary;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -323,6 +333,30 @@ class Company
     public function setCompanyUpdatedAt(\DateTimeInterface $company_updatedAt): self
     {
         $this->company_updatedAt = $company_updatedAt;
+
+        return $this;
+    }
+
+    public function getActivityArea(): ?ActivityArea
+    {
+        return $this->activityArea;
+    }
+
+    public function setActivityArea(?ActivityArea $activityArea): self
+    {
+        $this->activityArea = $activityArea;
+
+        return $this;
+    }
+
+    public function getNbSalary(): ?NbSalary
+    {
+        return $this->nbSalary;
+    }
+
+    public function setNbSalary(?NbSalary $nbSalary): self
+    {
+        $this->nbSalary = $nbSalary;
 
         return $this;
     }
