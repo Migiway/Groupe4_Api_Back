@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -107,14 +109,44 @@ class Company
     private $company_updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="company_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_company")
      */
-    private $activityArea;
+    private $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="companies")
+     */
+    private $country_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="company_id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\StatutJuridique", inversedBy="companies")
      */
-    private $nbSalary;
+    private $statut_juridique_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="companies")
+     */
+    private $user_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="companies")
+     */
+    private $secteur_activite_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEnterprise", inversedBy="companies")
+     */
+    private $category_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="companies")
+     */
+    private $nb_salarie_id;
+>>>>>>> develop
 
     public function getId(): ?int
     {
@@ -337,14 +369,88 @@ class Company
         return $this;
     }
 
-    public function getActivityArea(): ?ActivityArea
+    /**
+     * @return Collection|Parameter[]
+     */
+    public function getParameters(): Collection
     {
-        return $this->activityArea;
+        return $this->parameters;
     }
 
-    public function setActivityArea(?ActivityArea $activityArea): self
+    public function addParameter(Parameter $parameter): self
     {
-        $this->activityArea = $activityArea;
+        if (!$this->parameters->contains($parameter)) {
+            $this->parameters[] = $parameter;
+            $parameter->setParamCompany($this);
+        }
+    }
+    public function getCountryId(): ?Country
+    {
+        return $this->country_id;
+    }
+
+    public function setCountryId(?Country $country_id): self
+    {
+        $this->country_id = $country_id;
+    }
+
+        return $this;
+    }
+
+    public function removeParameter(Parameter $parameter): self
+    {
+        if ($this->parameters->contains($parameter)) {
+            $this->parameters->removeElement($parameter);
+            // set the owning side to null (unless already changed)
+            if ($parameter->getParamCompany() === $this) {
+                $parameter->setParamCompany(null);
+            }
+        }
+    }
+    public function getStatutJuridiqueId(): ?StatutJuridique
+    {
+        return $this->statut_juridique_id;
+    }
+
+    public function setStatutJuridiqueId(?StatutJuridique $statut_juridique_id): self
+    {
+        $this->statut_juridique_id = $statut_juridique_id;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getSecteurActiviteId(): ?ActivityArea
+    {
+        return $this->secteur_activite_id;
+    }
+
+    public function setSecteurActiviteId(?ActivityArea $secteur_activite_id): self
+    {
+        $this->secteur_activite_id = $secteur_activite_id;
+
+        return $this;
+    }
+
+    public function getCategoryId(): ?CategoryEnterprise
+    {
+        return $this->category_id;
+    }
+
+    public function setCategoryId(?CategoryEnterprise $category_id): self
+    {
+        $this->category_id = $category_id;
 
         return $this;
     }

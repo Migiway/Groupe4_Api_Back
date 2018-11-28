@@ -62,14 +62,69 @@ class Parameter
     private $param_emailContact;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="parameter_id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="parameters")
      */
-    private $activityArea;
+    private $parameter_activity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="parameter_id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\GraphStyle", inversedBy="parameters")
      */
-    private $nbSalary;
+    private $param_graphstyle;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEnterprise", inversedBy="parameters")
+     */
+    private $param_cat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="parameters")
+     */
+    private $param_nb_employer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CA", inversedBy="parameters")
+     */
+    private $param_CA;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CompanyLastCA", inversedBy="parameters")
+     */
+    private $param_LastCA;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="parameters")
+     */
+    private $param_user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Operation", inversedBy="parameters")
+     */
+    private $param_operation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeSite", inversedBy="parameters")
+     */
+    private $param_TypeSite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ParameterObject", inversedBy="parameters")
+     */
+    private $param_object;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ParameterTarget", inversedBy="parameters")
+     */
+    private $param_cible;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Comportement", inversedBy="parameters")
+     */
+    private $param_comportement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="parameters")
+     */
+    private $param_company;
 
     public function getId(): ?int
     {
@@ -184,26 +239,158 @@ class Parameter
         return $this;
     }
 
-    public function getActivityArea(): ?ActivityArea
+    public function getParameterActivity(): ?ActivityArea
     {
-        return $this->activityArea;
+        return $this->parameter_activity;
     }
 
-    public function setActivityArea(?ActivityArea $activityArea): self
+    public function setParameterActivity(?ActivityArea $parameter_activity): self
     {
-        $this->activityArea = $activityArea;
+        $this->parameter_activity = $parameter_activity;
 
         return $this;
     }
 
-    public function getNbSalary(): ?NbSalary
+    public function getParamGraphstyle(): ?GraphStyle
     {
-        return $this->nbSalary;
+        return $this->param_graphstyle;
     }
 
-    public function setNbSalary(?NbSalary $nbSalary): self
+    public function setParamGraphstyle(?GraphStyle $param_graphstyle): self
     {
-        $this->nbSalary = $nbSalary;
+        $this->param_graphstyle = $param_graphstyle;
+
+        return $this;
+    }
+
+    public function getParamCat(): ?CategoryEnterprise
+    {
+        return $this->param_cat;
+    }
+
+    public function setParamCat(?CategoryEnterprise $param_cat): self
+    {
+        $this->param_cat = $param_cat;
+
+        return $this;
+    }
+
+    public function getParamNbEmployer(): ?NbSalary
+    {
+        return $this->param_nb_employer;
+    }
+
+    public function setParamNbEmployer(?NbSalary $param_nb_employer): self
+    {
+        $this->param_nb_employer = $param_nb_employer;
+
+        return $this;
+    }
+
+    public function getParamCA(): ?CA
+    {
+        return $this->param_CA;
+    }
+
+    public function setParamCA(?CA $param_CA): self
+    {
+        $this->param_CA = $param_CA;
+
+        return $this;
+    }
+
+    public function getParamLastCA(): ?CompanyLastCA
+    {
+        return $this->param_LastCA;
+    }
+
+    public function setParamLastCA(?CompanyLastCA $param_LastCA): self
+    {
+        $this->param_LastCA = $param_LastCA;
+
+        return $this;
+    }
+
+    public function getParamUser(): ?User
+    {
+        return $this->param_user;
+    }
+
+    public function setParamUser(?User $param_user): self
+    {
+        $this->param_user = $param_user;
+
+        return $this;
+    }
+
+    public function getParamOperation(): ?Operation
+    {
+        return $this->param_operation;
+    }
+
+    public function setParamOperation(?Operation $param_operation): self
+    {
+        $this->param_operation = $param_operation;
+
+        return $this;
+    }
+
+    public function getParamTypeSite(): ?TypeSite
+    {
+        return $this->param_TypeSite;
+    }
+
+    public function setParamTypeSite(?TypeSite $param_TypeSite): self
+    {
+        $this->param_TypeSite = $param_TypeSite;
+
+        return $this;
+    }
+
+    public function getParamObject(): ?ParameterObject
+    {
+        return $this->param_object;
+    }
+
+    public function setParamObject(?ParameterObject $param_object): self
+    {
+        $this->param_object = $param_object;
+
+        return $this;
+    }
+
+    public function getParamCible(): ?ParameterTarget
+    {
+        return $this->param_cible;
+    }
+
+    public function setParamCible(?ParameterTarget $param_cible): self
+    {
+        $this->param_cible = $param_cible;
+
+        return $this;
+    }
+
+    public function getParamComportement(): ?Comportement
+    {
+        return $this->param_comportement;
+    }
+
+    public function setParamComportement(?Comportement $param_comportement): self
+    {
+        $this->param_comportement = $param_comportement;
+
+        return $this;
+    }
+
+    public function getParamCompany(): ?Company
+    {
+        return $this->param_company;
+    }
+
+    public function setParamCompany(?Company $param_company): self
+    {
+        $this->param_company = $param_company;
 
         return $this;
     }

@@ -59,6 +59,7 @@ class ActivityArea
     /**
      * @return Collection|Parameter[]
      */
+  
     public function getParameterId(): Collection
     {
         return $this->parameter_id;
@@ -104,7 +105,7 @@ class ActivityArea
 
         return $this;
     }
-
+  
     public function removeCompanyId(Company $companyId): self
     {
         if ($this->company_id->contains($companyId)) {
