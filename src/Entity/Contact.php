@@ -114,19 +114,24 @@ class Contact
     private $contact_commentaire;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="participate_contact")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      */
-    private $participates;
+    private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Job", inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company")
      */
-    private $contact_job;
+    private $company_id;
 
-    public function __construct()
-    {
-        $this->participates = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Job")
+     */
+    private $job_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Participate")
+     */
+    private $participation_id;
 
     public function getId(): ?int
     {
@@ -361,45 +366,51 @@ class Contact
         return $this;
     }
 
-    /**
-     * @return Collection|Participate[]
-     */
-    public function getParticipates(): Collection
+    public function getUserId(): ?User
     {
-        return $this->participates;
+        return $this->user_id;
     }
 
-    public function addParticipate(Participate $participate): self
+    public function setUserId(?User $user_id): self
     {
-        if (!$this->participates->contains($participate)) {
-            $this->participates[] = $participate;
-            $participate->setParticipateContact($this);
-        }
+        $this->user_id = $user_id;
 
         return $this;
     }
 
-    public function removeParticipate(Participate $participate): self
+    public function getCompanyId(): ?Company
     {
-        if ($this->participates->contains($participate)) {
-            $this->participates->removeElement($participate);
-            // set the owning side to null (unless already changed)
-            if ($participate->getParticipateContact() === $this) {
-                $participate->setParticipateContact(null);
-            }
-        }
+        return $this->company_id;
+    }
+
+    public function setCompanyId(?Company $company_id): self
+    {
+        $this->company_id = $company_id;
 
         return $this;
     }
 
-    public function getContactJob(): ?Job
+    public function getJobId(): ?Job
     {
-        return $this->contact_job;
+        return $this->job_id;
     }
 
-    public function setContactJob(?Job $contact_job): self
+    public function setJobId(?Job $job_id): self
     {
-        $this->contact_job = $contact_job;
+        $this->job_id = $job_id;
+
+        return $this;
+    }
+
+
+    public function getParticipationId(): ?Participate
+    {
+        return $this->participation_id;
+    }
+
+    public function setParticipationId(?Participate $participation_id): self
+    {
+        $this->participation_id = $participation_id;
 
         return $this;
     }

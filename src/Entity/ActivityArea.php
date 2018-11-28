@@ -24,24 +24,19 @@ class ActivityArea
     private $activity_area;
 
     /**
-
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="parameter_activity")
+     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="activityArea")
      */
-    private $parameters;
+    private $parameter_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="activityArea")
+     */
+    private $company_id;
 
     public function __construct()
     {
-        $this->parameters = new ArrayCollection();
-    }
-    /**  
-     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="secteur_activite_id")
-     */
-    private $companies;
-
-    public function __construct()
-    {
-        $this->companies = new ArrayCollection();
-
+        $this->parameter_id = new ArrayCollection();
+        $this->company_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,56 +59,60 @@ class ActivityArea
     /**
      * @return Collection|Parameter[]
      */
-    public function getParameters(): Collection
+  
+    public function getParameterId(): Collection
     {
-        return $this->parameters;
+        return $this->parameter_id;
     }
 
-    public function addParameter(Parameter $parameter): self
+    public function addParameterId(Parameter $parameterId): self
     {
-        if (!$this->parameters->contains($parameter)) {
-            $this->parameters[] = $parameter;
-            $parameter->setParameterActivity($this);
-        }
-    }
-  /**
-     * @return Collection|Company[]
-     */
-    public function getCompanies(): Collection
-    {
-        return $this->companies;
-    }
-
-    public function addCompany(Company $company): self
-    {
-        if (!$this->companies->contains($company)) {
-            $this->companies[] = $company;
-            $company->setSecteurActiviteId($this);
+        if (!$this->parameter_id->contains($parameterId)) {
+            $this->parameter_id[] = $parameterId;
+            $parameterId->setActivityArea($this);
         }
 
         return $this;
     }
 
-    public function removeParameter(Parameter $parameter): self
+    public function removeParameterId(Parameter $parameterId): self
     {
-        if ($this->parameters->contains($parameter)) {
-            $this->parameters->removeElement($parameter);
+        if ($this->parameter_id->contains($parameterId)) {
+            $this->parameter_id->removeElement($parameterId);
             // set the owning side to null (unless already changed)
-            if ($parameter->getParameterActivity() === $this) {
-                $parameter->setParameterActivity(null);
+            if ($parameterId->getActivityArea() === $this) {
+                $parameterId->setActivityArea(null);
             }
         }
+
+        return $this;
     }
-    public function removeCompany(Company $company): self
+
+    /**
+     * @return Collection|Company[]
+     */
+    public function getCompanyId(): Collection
     {
-        if ($this->companies->contains($company)) {
-            $this->companies->removeElement($company);
-            // set the owning side to null (unless already changed)
-            if ($company->getSecteurActiviteId() === $this) {
-                $company->setSecteurActiviteId(null);
-            }
-        }
+        return $this->company_id;
     }
+
+    public function addCompanyId(Company $companyId): self
+    {
+        if (!$this->company_id->contains($companyId)) {
+            $this->company_id[] = $companyId;
+            $companyId->setActivityArea($this);
+        }
+
+        return $this;
+    }
+  
+    public function removeCompanyId(Company $companyId): self
+    {
+        if ($this->company_id->contains($companyId)) {
+            $this->company_id->removeElement($companyId);
+            // set the owning side to null (unless already changed)
+            if ($companyId->getActivityArea() === $this) {
+                $companyId->setActivityArea(null);
             }
         }
 

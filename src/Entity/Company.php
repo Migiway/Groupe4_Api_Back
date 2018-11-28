@@ -146,6 +146,7 @@ class Company
      * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="companies")
      */
     private $nb_salarie_id;
+>>>>>>> develop
 
     public function getId(): ?int
     {
@@ -454,14 +455,14 @@ class Company
         return $this;
     }
 
-    public function getNbSalarieId(): ?NbSalary
+    public function getNbSalary(): ?NbSalary
     {
-        return $this->nb_salarie_id;
+        return $this->nbSalary;
     }
 
-    public function setNbSalarieId(?NbSalary $nb_salarie_id): self
+    public function setNbSalary(?NbSalary $nbSalary): self
     {
-        $this->nb_salarie_id = $nb_salarie_id;
+        $this->nbSalary = $nbSalary;
 
         return $this;
     }
