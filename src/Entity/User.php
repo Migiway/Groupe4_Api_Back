@@ -98,18 +98,15 @@ class User
      */
     private $parameters;
 
-    public function __construct()
-    {
-        $this->operations = new ArrayCollection();
-        $this->parameters = new ArrayCollection();
-    }
-  /**
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="user_id")
      */
     private $companies;
 
     public function __construct()
     {
+        $this->operations = new ArrayCollection();
+        $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
     }
 
@@ -300,6 +297,7 @@ class User
             $this->operations[] = $operation;
             $operation->setUserId($this);
         }
+    }
     /**
      * @return Collection|Company[]
      */
