@@ -146,7 +146,6 @@ class Company
      * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="companies")
      */
     private $nb_salarie_id;
->>>>>>> develop
 
     public function getId(): ?int
     {
@@ -392,8 +391,6 @@ class Company
     public function setCountryId(?Country $country_id): self
     {
         $this->country_id = $country_id;
-    }
-
         return $this;
     }
 
@@ -407,6 +404,7 @@ class Company
             }
         }
     }
+
     public function getStatutJuridiqueId(): ?StatutJuridique
     {
         return $this->statut_juridique_id;
@@ -415,7 +413,6 @@ class Company
     public function setStatutJuridiqueId(?StatutJuridique $statut_juridique_id): self
     {
         $this->statut_juridique_id = $statut_juridique_id;
-
         return $this;
     }
 

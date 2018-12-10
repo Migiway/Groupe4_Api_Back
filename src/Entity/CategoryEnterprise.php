@@ -28,17 +28,15 @@ class CategoryEnterprise
      */
     private $parameters;
 
-    public function __construct()
-    {
-        $this->parameters = new ArrayCollection();
-    }
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="category_id")
      */
     private $companies;
 
+
     public function __construct()
     {
+        $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
     }
 
@@ -72,7 +70,9 @@ class CategoryEnterprise
         if (!$this->parameters->contains($parameter)) {
             $this->parameters[] = $parameter;
             $parameter->setParamCat($this);
-     }
+        }
+    }
+
      /**
      * @return Collection|Company[]
      */
