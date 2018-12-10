@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
+     * @Assert\NotBlank
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,36 +21,43 @@ class User
     private $id;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_lastName;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_firstName;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_password;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_email;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="integer")
      */
     private $user_code;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="boolean")
      */
     private $user_gender;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="datetime")
      */
     private $user_createdAt;
@@ -59,11 +68,13 @@ class User
     private $user_updateAt;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="boolean")
      */
     private $user_status;
 
     /**
+     * Assert\DateTime
      * @ORM\Column(type="datetime")
      */
     private $user_dob;
