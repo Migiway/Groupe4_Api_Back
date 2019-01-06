@@ -82,13 +82,12 @@ class Company
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Assert\DateTime
+     * @Assert\Type("\DateTime")
      */
     private $company_creationDate;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\DateTime
      */
     private $company_siret;
 
@@ -104,13 +103,11 @@ class Company
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime
      */
     private $company_createdAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime
      */
     private $company_updatedAt;
 
