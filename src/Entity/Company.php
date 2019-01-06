@@ -82,6 +82,7 @@ class Company
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\Type("\DateTime")
      */
     private $company_creationDate;
 
@@ -102,13 +103,11 @@ class Company
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank
      */
     private $company_createdAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank
      */
     private $company_updatedAt;
 
