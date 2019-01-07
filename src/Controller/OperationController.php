@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Form\CompanyType;
-use App\Entity\Company;
+use App\Form\OperationType;
+use App\Entity\Operation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,27 +14,27 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
-* @Route("/company")
+* @Route("/operation")
 */
-class CompanyController extends AbstractController
+class OperationController extends AbstractController
 {
   /**
   * @Route ("/new")
   * @param Request $request
   */
   public function new(Request $request){
-      $company = new Company();
+      $operation = new Operation();
 
-      $form = $this->createForm(CompanyType::class, $company);
+      $form = $this->createForm(OperationType::class, $operation);
 
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid())
       {
-          return $this->redirectToRoute('company_list');
+          return $this->redirectToRoute('operation_list');
       }
 
-      return $this->render('company/new.html.twig', array('form' => $form->createView()));
+      return $this->render('operation/new.html.twig', array('form' => $form->createView()));
   }
 
   /**
@@ -53,11 +53,4 @@ class CompanyController extends AbstractController
 
   }
 
-  /**
-   * @Route("contact/list", name="company_list")
-   */
-  public function list (Request $request){
-    $test = 'test';
-    return $test;
-  }
 }
