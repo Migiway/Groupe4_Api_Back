@@ -54,10 +54,10 @@ class CompanyController extends AbstractController
   }
 
   /**
-  * @Route ("/imap_listscan")
-  * @param Request $request
-  */
+   * @Route("contact/list", name="company_list")
+   */
   public function list (Request $request){
-
+    $test = 'test';
+    return $test;
   }
 }
