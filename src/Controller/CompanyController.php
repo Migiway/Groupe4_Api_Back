@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
 * @Route("/company")
@@ -26,23 +27,90 @@ class CompanyController extends AbstractController
       $company = new Company();
 
       $form = $this->createForm(CompanyType::class, $company);
+      $form->add('submit', SubmitType::class, [
+        'label' => 'Enregistrer',
+      ]);
 
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid())
       {
-          return $this->redirectToRoute('company_list');
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($company);
+        $em->flush();
+        return $this->redirectToRoute('company_list');
       }
 
       return $this->render('company/new.html.twig', array('form' => $form->createView()));
   }
+  /**
+   * @Route("", methods={"POST"})
+   * @param Request $request
+   */
+  public function newApi(Request $request, SerializerInterface $serializer)
+  {
+      $company = new Company();
+
+      $form = $this->createForm(CompanyType::class, $company);
+      $form->handleRequest($request);
+
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($company);
+      $em->flush();
+
+      $JSON = $serializer->serrialize(
+        $company,
+        'JSON',
+        ['Groups=["light"]']
+      );
+      $response = new Response();
+      $response->setContent($JSON);
+      $response->headers->set('Content-type','application/JSON');
+      return $response;
+
+      // if ($form->isValid()) {
+      //
+      //   return $this->redirectToRoute('company_list');
+      // }
+  }
 
   /**
-  * @Route ("/edit")
+   * @Route("", methods={"PUT"})
+   * @param Request $request
+   */
+   public function editApi(){
+
+   }
+
+  /**
+   * @Route("", methods={"DELETE"})
+   * @param Request $request
+   */
+   public function deleteApi(){
+
+   }
+
+  /**
+  * @Route ("/edit/{company}")
   * @param Request $request
   */
-  public function edit (Request $request){
+  public function edit (Request $request, Company $company){
 
+    $form = $this->createForm(CompanyType::class, $company);
+
+    $form->add('submit', SubmitType::class, [
+      'label' => 'Modifier',
+    ]);
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid())
+    {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($company);
+      $em->flush();
+      return $this->redirectToRoute('company_list');
+    }
+
+    return $this->render('company/new.html.twig', array('form' => $form->createView()));
   }
 
   /**
@@ -54,10 +122,9 @@ class CompanyController extends AbstractController
   }
 
   /**
-   * @Route("contact/list", name="company_list")
+   * @Route("/list", name="company_list")
    */
   public function list (Request $request){
-    $test = 'test';
-    return $test;
+
   }
 }
