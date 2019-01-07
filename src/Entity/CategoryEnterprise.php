@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryEnterpriseRepository")
@@ -20,11 +21,13 @@ class CategoryEnterprise
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $category_label;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_cat")
+     * @Assert\NotBlank
      */
     private $parameters;
 
@@ -108,7 +111,7 @@ class CategoryEnterprise
             // set the owning side to null (unless already changed)
             if ($company->getCategoryId() === $this) {
                 $company->setCategoryId(null);
-  
+
             }
         }
 

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ActivityAreaRepository")
@@ -20,11 +21,13 @@ class ActivityArea
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $activity_area;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="activityArea")
+     * @Assert\NotBlank
      */
     private $parameter_id;
 
@@ -59,7 +62,7 @@ class ActivityArea
     /**
      * @return Collection|Parameter[]
      */
-  
+
     public function getParameterId(): Collection
     {
         return $this->parameter_id;
@@ -105,7 +108,7 @@ class ActivityArea
 
         return $this;
     }
-  
+
     public function removeCompanyId(Company $companyId): self
     {
         if ($this->company_id->contains($companyId)) {

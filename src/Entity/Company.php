@@ -119,6 +119,8 @@ class Company
     public function __construct()
     {
         $this->parameters = new ArrayCollection();
+        $this->company_createdAt = new \DateTime;
+        $this->company_updatedAt = new \DateTime;
     }
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="companies")
