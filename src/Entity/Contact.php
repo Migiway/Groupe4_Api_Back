@@ -423,4 +423,10 @@ class Contact
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->contact_dateCreation = new \DateTime;
+        $this->contact_misAJour = new \DateTime;
+    }
 }
