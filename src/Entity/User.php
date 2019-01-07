@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\DateTime;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -13,7 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User
 {
     /**
-     * @Assert\NotBlank
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -57,7 +58,6 @@ class User
     private $user_gender;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="datetime")
      */
     private $user_createdAt;
@@ -68,8 +68,7 @@ class User
     private $user_updateAt;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default" : 0})
      */
     private $user_status;
 
@@ -119,7 +118,11 @@ class User
         $this->operations = new ArrayCollection();
         $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->user_createdAt = new \DateTime;
+        $this->user_updateAt = new \DateTime;
     }
+
+
 
     public function getId(): ?int
     {
@@ -380,4 +383,5 @@ class User
 
         return $this;
     }
+
 }
