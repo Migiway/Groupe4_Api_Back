@@ -32,15 +32,8 @@ class CompanyType extends AbstractType
         ->add('company_website', TextType::class, array('label' => 'Site web : '))
         ->add('company_siret', TextType::class, array('label' => 'SIRET : '))
         ->add('company_codeNaf', TextType::class, array('label' => 'Code NAF : '))
-        ->add('company_source', TextType::class, array('label' => 'Source : '))
-        ->add('save', SubmitType::class, array('label' => 'Ajouter une entreprise'));
+        ->add('company_source', TextType::class, array('label' => 'Source : '));
 
     }
 
-    // public function configureOptions(OptionsResolver $resolver)
-    // {
-    //     $resolver->setDefaults([
-    //         'data_class' => Post::class,
-    //     ]);
-    // }
 }
