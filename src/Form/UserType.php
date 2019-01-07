@@ -3,7 +3,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-<<<<<<< HEAD
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -13,20 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 
 
-
-class UserType extends AbstractType
-=======
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\AbstractType;
-
-
 class UserType extends  AbstractType
->>>>>>> f82c2e76d1dd7c2282ce840e2960b6f74ef0169f
 {
 
 	 public function buildForm(FormBuilderInterface $builder, array $options)
@@ -46,16 +32,6 @@ class UserType extends  AbstractType
             ->add('user_imgUrl', TextType::class, array('label' => 'Image : '))
             ->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
     }
-
-<<<<<<< HEAD
-=======
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
-    }
->>>>>>> f82c2e76d1dd7c2282ce840e2960b6f74ef0169f
 
 
 }
