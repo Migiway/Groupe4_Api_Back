@@ -1,24 +1,37 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: migiw
+ * Date: 07/01/2019
+ * Time: 19:04
+ */
+
 namespace App\Form;
 
-use App\Entity\Post;
+use App\Entity\Participate;
+use App\Entity\Contact;
+use App\Entity\Operation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class ParticipateType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('parameter_target_nom', TextType::class, array('label' => 'Nom : '));
+            ->add('operation_participate', EntityType::class, array(
+                'class' => Operation::class,
+                'choice_label' => 'operation_name'
+            ))
+            ->add('participate_contact', EntityType::class, array(
+                'class' => Contact::class,
+                'choice_label' => 'contact_nom'
+            ));
     }
 }
