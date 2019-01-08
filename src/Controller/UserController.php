@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;	
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Reponse;
 
 
@@ -36,7 +36,7 @@ class UserController extends AbstractController
 
 		if ($request->isMethod('POST')) {
         	$this->newApi($request);
-        	
+
         }
 
        /* if ($form->isSubmitted() && $form->isValid())
@@ -70,7 +70,7 @@ class UserController extends AbstractController
         	$task = $form->getData();
         	$entityManager = $this->getDoctrine()->getManager();
         	$entityManager->persist($task);
-        	$entityManager->flush();    
+        	$entityManager->flush();
         }
 
         /*$json = $serializer->Serialize(
@@ -78,7 +78,7 @@ class UserController extends AbstractController
     		'JSON',
     		['Groups'=>["light"]]
     	);
-    	
+
     	$response = new response();
     	$response->setContent($json);
     	$response->headers->set('Content-type', 'application/JSON');*/
@@ -88,7 +88,7 @@ class UserController extends AbstractController
    /**
      * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user)	
+    public function edit(Request $request, User $user)
     {
     	$form = $this->createForm(UserType::class, $user);
 
@@ -110,7 +110,6 @@ class UserController extends AbstractController
      */
     public function editApi(Request $request)
     {
-	    
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -124,6 +123,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/edit/{id}", name="user_edit")
      */
+
     public function edit(Request $request)	
     {
 
@@ -132,14 +132,14 @@ class UserController extends AbstractController
     /**
      * @Route("/delete/{id}", name="user_delete", methods={"GET","POST"})
      */
-    public function delete(Request $request)	
+    public function delete(Request $request)
     {
 
     }
     /**
      * @Route("", name="user_delete", methods={"DELETE"})
      */
-    public function deleteApi(Request $request)	
+    public function deleteApi(Request $request)
     {
 
     }
@@ -148,7 +148,7 @@ class UserController extends AbstractController
     /**
      * @Route("/list", name="user_list")
      */
-    public function list()	
+    public function list()
     {
     	 return $this->render('User/list.html.twig');
     }
@@ -156,10 +156,8 @@ class UserController extends AbstractController
     /**
      * @Route("/user/list", name="user_list")
      */
-    public function list()	
+    public function list()
     {
 
     }
-    
-
 }
