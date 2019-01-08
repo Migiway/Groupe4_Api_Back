@@ -110,7 +110,6 @@ class UserController extends AbstractController
      */
     public function editApi(Request $request)
     {
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -119,14 +118,6 @@ class UserController extends AbstractController
         }
 
         return $this->render('User/new.html.twig', array('form' => $form->createView()));
-    }
-
-    /**
-     * @Route("/user/edit/{id}", name="user_edit")
-     */
-    public function edit(Request $request)
-    {
-
     }
 
     /**
@@ -152,14 +143,5 @@ class UserController extends AbstractController
     {
     	 return $this->render('User/list.html.twig');
     }
-
-    /**
-     * @Route("/user/list", name="user_list")
-     */
-    public function list()
-    {
-
-    }
-
 
 }
