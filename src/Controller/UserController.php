@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\User;
-<<<<<<< HEAD
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;	
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Reponse;
 
 
@@ -27,31 +26,17 @@ class UserController extends AbstractController
 	/**
 	* @Route("/new", name="user_new", methods={"GET","POST"})
 	*/
-=======
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-
-
-
-
-class UserController extends AbstractController
-{
-	/**
-	* @Route("/user", name="user")
-	**/
->>>>>>> f82c2e76d1dd7c2282ce840e2960b6f74ef0169f
     public function new(Request $request)
     {
     	$user = new User();
 
         $form = $this->createForm(UserType::class, $user);
 
-<<<<<<< HEAD
 		$form->handleRequest($request);
 
 		if ($request->isMethod('POST')) {
         	$this->newApi($request);
-        	
+
         }
 
        /* if ($form->isSubmitted() && $form->isValid())
@@ -85,7 +70,7 @@ class UserController extends AbstractController
         	$task = $form->getData();
         	$entityManager = $this->getDoctrine()->getManager();
         	$entityManager->persist($task);
-        	$entityManager->flush();    
+        	$entityManager->flush();
         }
 
         /*$json = $serializer->Serialize(
@@ -93,7 +78,7 @@ class UserController extends AbstractController
     		'JSON',
     		['Groups'=>["light"]]
     	);
-    	
+
     	$response = new response();
     	$response->setContent($json);
     	$response->headers->set('Content-type', 'application/JSON');*/
@@ -103,7 +88,7 @@ class UserController extends AbstractController
    /**
      * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user)	
+    public function edit(Request $request, User $user)
     {
     	$form = $this->createForm(UserType::class, $user);
 
@@ -123,8 +108,9 @@ class UserController extends AbstractController
     /**
      * @Route("", name="user_edit", methods={"PUT"})
      */
-    public function editApi(Request $request)	
-=======
+    public function editApi(Request $request)
+    {
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -138,28 +124,22 @@ class UserController extends AbstractController
     /**
      * @Route("/user/edit/{id}", name="user_edit")
      */
-    public function edit(Request $request)	
->>>>>>> f82c2e76d1dd7c2282ce840e2960b6f74ef0169f
+    public function edit(Request $request)
     {
 
     }
 
     /**
-<<<<<<< HEAD
      * @Route("/delete/{id}", name="user_delete", methods={"GET","POST"})
-=======
-     * @Route("/user/delete/{id}", name="user_delete")
->>>>>>> f82c2e76d1dd7c2282ce840e2960b6f74ef0169f
      */
-    public function delete(Request $request)	
+    public function delete(Request $request)
     {
 
     }
-<<<<<<< HEAD
     /**
      * @Route("", name="user_delete", methods={"DELETE"})
      */
-    public function deleteApi(Request $request)	
+    public function deleteApi(Request $request)
     {
 
     }
@@ -168,21 +148,18 @@ class UserController extends AbstractController
     /**
      * @Route("/list", name="user_list")
      */
-    public function list()	
+    public function list()
     {
     	 return $this->render('User/list.html.twig');
     }
 
-=======
-
     /**
      * @Route("/user/list", name="user_list")
      */
-    public function list()	
+    public function list()
     {
 
     }
-    
->>>>>>> f82c2e76d1dd7c2282ce840e2960b6f74ef0169f
+
 
 }
