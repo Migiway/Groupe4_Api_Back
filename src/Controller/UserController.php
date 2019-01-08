@@ -110,7 +110,6 @@ class UserController extends AbstractController
      */
     public function editApi(Request $request)
     {
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -124,7 +123,8 @@ class UserController extends AbstractController
     /**
      * @Route("/user/edit/{id}", name="user_edit")
      */
-    public function edit(Request $request)
+
+    public function edit(Request $request)	
     {
 
     }
@@ -160,6 +160,4 @@ class UserController extends AbstractController
     {
 
     }
-
-
 }
