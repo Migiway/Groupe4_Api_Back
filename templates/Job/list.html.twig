@@ -1,0 +1,9 @@
+<ul>
+		{% for list in lalist %}
+			<li>
+				{{list.JobLibelle}}
+			</li>
+		{% else %}
+			<li>Pas de job</li>
+		{% endfor %}
+	</ul>

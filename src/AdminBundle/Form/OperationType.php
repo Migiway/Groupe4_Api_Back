@@ -33,8 +33,8 @@ class OperationType extends AbstractType
         ->add('operation_photo', TextType::class, array('label' => 'Photo :'))
         ->add('operation_linkedin', TextType::class, array('label' => 'Linkedin :'))
         ->add('operation_newsletter', TextType::class, array('label' => 'Newsletter :'))
-        ->add('operation_offresCommerciales', TextType::class, array('label' => 'Offres Commerciales :'))
-        ->add('save', SubmitType::class, array('label' => 'Ajouter une opération'));
+        ->add('operation_offresCommerciales', TextType::class, array('label' => 'Offres Commerciales :'));
+        /*->add('save', SubmitType::class, array('label' => 'Ajouter une opération'));*/
 
     }
 }

@@ -28,6 +28,7 @@ class Operation
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Groups({"Light"})
      */
     private $operation_url;
 
