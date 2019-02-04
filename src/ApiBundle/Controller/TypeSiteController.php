@@ -16,10 +16,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 class TypeSiteController extends AbstractController
 {
   /**
-  * @Route ("/new")
+  * @Route ("/new", name="typeSite_new", methods={"GET","POST"})
   * @param Request $request
   */
-  public function new(Request $request){
+  public function newApi(Request $request){
       $typeSite = new TypeSite();
 
       $form = $this->createForm(TypeSiteType::class, $typeSite);
@@ -41,10 +41,10 @@ class TypeSiteController extends AbstractController
   }
 
   /**
-  * @Route ("/edit/{typeSite}")
+  * @Route ("/edit/{typeSite}", name="typeSite_edit", methods={"PUT"})
   * @param Request $request
   */
-  public function edit (Request $request, TypeSite $typeSite){
+  public function editApi (Request $request, TypeSite $typeSite){
 
     $form = $this->createForm(TypeSiteType::class, $typeSite);
 
@@ -62,11 +62,20 @@ class TypeSiteController extends AbstractController
 
     return $this->render('typeSite/edit.html.twig', array('form' => $form->createView()));
   }
+    /**
+     * @Route ("/delete", name="typeSite_delete", methods={"DELETE"})
+     * @param Request $request
+     */
+    public function deleteApi(Request $request)
+    {
 
-  /**
-   * @Route("/list", name="typeSite_list")
-   */
-  public function list (Request $request){
+    }
+    /**
+     * @Route ("/list", name="typeSite_list", methods={"GET"})
+     * @param Request $request
+     */
+    public function list (Request $request)
+    {
 
-  }
+    }
 }

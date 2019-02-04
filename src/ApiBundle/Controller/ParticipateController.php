@@ -24,10 +24,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class ParticipateController extends AbstractController
 {
     /**
-     * @Route ("/new")
+     * @Route ("/new", name="participate_new", methods={"GET","POST"})
      * @param Request $request
      */
-    public function new(Request $request){
+    public function newApi(Request $request){
         $participate = new Participate();
 
         $form = $this->createForm(ParticipateType::class, $participate);
@@ -49,10 +49,10 @@ class ParticipateController extends AbstractController
     }
 
     /**
-     * @Route ("/edit/{participate}")
+     * @Route ("/edit/{participate}", name="participate_edit", methods={"PUT"})
      * @param Request $request
      */
-    public function edit (Request $request, Participate $participate){
+    public function editApi (Request $request, Participate $participate){
 
         $form = $this->createForm(ParticipateType::class, $participate);
 
@@ -71,9 +71,17 @@ class ParticipateController extends AbstractController
 
         return $this->render('participate/new.html.twig', array('form' => $form->createView()));
     }
+    /**
+     * @Route ("/delete", name="participate_delete", methods={"DELETE"})
+     * @param Request $request
+     */
+    public function deleteApi(Request $request)
+    {
+
+    }
 
     /**
-     * @Route("/list", name="participate_list")
+     * @Route("/list", name="participate_list", methods={"GET"})
      */
     public function list (Request $request){
 

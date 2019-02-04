@@ -16,10 +16,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 class ParameterTargetController extends AbstractController
 {
   /**
-  * @Route ("/new")
+  * @Route ("/new", name="parameterTarget_new", methods={"GET","POST"})
   * @param Request $request
   */
-  public function new(Request $request){
+  public function newApi(Request $request){
       $parameterTarget = new ParameterTarget();
 
       $form = $this->createForm(ParameterTargetType::class, $parameterTarget);
@@ -41,10 +41,10 @@ class ParameterTargetController extends AbstractController
   }
 
   /**
-  * @Route ("/edit/{parameterTarget}")
+  * @Route ("/edit/{parameterTarget}", name="parameterTarget_edit", methods={"PUT"})
   * @param Request $request
   */
-  public function edit (Request $request, ParameterTarget $parameterTarget){
+  public function editApi (Request $request, ParameterTarget $parameterTarget){
 
     $form = $this->createForm(ParameterTargetType::class, $parameterTarget);
 
@@ -62,9 +62,17 @@ class ParameterTargetController extends AbstractController
 
     return $this->render('parameterTarget/new.html.twig', array('form' => $form->createView()));
   }
+    /**
+     * @Route ("/delete", name="parameterTarget_delete", methods={"DELETE"})
+     * @param Request $request
+     */
+    public function deleteApi(Request $request)
+    {
+
+    }
 
   /**
-   * @Route("/list", name="parameterTarget_list")
+   * @Route("/list", name="parameterTarget_list", methods={"GET"})
    */
   public function list (Request $request){
 

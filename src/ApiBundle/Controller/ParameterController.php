@@ -12,8 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Reponse;
+use Symfony\Component\Serializer\SerializerInterface;   
 
 
 /**
@@ -34,8 +33,6 @@ class ParameterController extends AbstractController
 
         $form->handleRequest($request);
 
-
-
         if ($form->isSubmitted() && $form->isValid())
         {
 
@@ -52,9 +49,10 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="parameter_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="parameter_edit", methods={"PUT"})
      */
-    public function edit(Request $request, Parameter $param)
+    public function edit(Request $request, Parameter $param)    
+
     {
         $form = $this->createForm(ParameterType::class, $param);
 
@@ -73,18 +71,18 @@ class ParameterController extends AbstractController
 
 
     /**
-     * @Route("/delete/{id}", name="parameter_delete", methods={"GET","POST"})
+     * @Route("/delete/{id}", name="parameter_delete", methods={"DELETE"})
      */
-    public function delete(Request $request)
+    public function delete(Request $request)    
     {
 
     }
 
 
     /**
-     * @Route("/list", name="parameter_list")
+     * @Route("/list", name="parameter_list", methods={"GET"})
      */
-    public function list()
+    public function list()  
     {
          return $this->render('parameter/list.html.twig');
     }

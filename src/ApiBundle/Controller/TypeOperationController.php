@@ -16,10 +16,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 class TypeOperationController extends AbstractController
 {
   /**
-  * @Route ("/new")
+  * @Route ("/new", name="typeOperation_new", methods={"GET","POST"})
   * @param Request $request
   */
-  public function new(Request $request){
+  public function newApi(Request $request){
       $typeOperation = new TypeOperation();
 
       $form = $this->createForm(TypeOperationType::class, $typeOperation);
@@ -41,10 +41,10 @@ class TypeOperationController extends AbstractController
   }
 
   /**
-  * @Route ("/edit/{typeOperation}")
+  * @Route ("/edit/{typeOperation}", name="typeOperation_edit", methods={"PUT"})
   * @param Request $request
   */
-  public function edit (Request $request, TypeOperation $typeOperation){
+  public function editApi (Request $request, TypeOperation $typeOperation){
 
     $form = $this->createForm(TypeOperationType::class, $typeOperation);
 
@@ -62,9 +62,17 @@ class TypeOperationController extends AbstractController
 
     return $this->render('typeOperation/edit.html.twig', array('form' => $form->createView()));
   }
+    /**
+     * @Route ("/delete", name="typeOperation_delete", methods={"DELETE"})
+     * @param Request $request
+     */
+    public function deleteApi(Request $request)
+    {
+
+    }
 
   /**
-   * @Route("/list", name="typeOperation_list")
+   * @Route("/list", name="typeOperation_list", methods={"GET"})
    */
   public function list (Request $request){
 

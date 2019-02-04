@@ -20,10 +20,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 class StatutJuridiqueController extends AbstractController
 {
   /**
-  * @Route ("/new")
+  * @Route ("/new", name="statutJuridique_new", methods={"GET","POST"})
   * @param Request $request
   */
-  public function new(Request $request){
+  public function newApi(Request $request){
       $statutJuridique = new StatutJuridique();
 
       $form = $this->createForm(StatutJuridiqueType::class, $statutJuridique);
@@ -45,10 +45,10 @@ class StatutJuridiqueController extends AbstractController
   }
 
   /**
-  * @Route ("/edit/{statutJuridique}")
+  * @Route ("/edit/{statutJuridique}", name="statutJuridique_edit", methods={"PUT"})
   * @param Request $request
   */
-  public function edit (Request $request, StatutJuridique $statutJuridique){
+  public function editApi (Request $request, StatutJuridique $statutJuridique){
 
     $form = $this->createForm(StatutJuridiqueType::class, $statutJuridique);
 
@@ -66,9 +66,17 @@ class StatutJuridiqueController extends AbstractController
 
     return $this->render('statutJuridique/new.html.twig', array('form' => $form->createView()));
   }
+    /**
+     * @Route ("/delete", name="statusJuridique_delete", methods={"DELETE"})
+     * @param Request $request
+     */
+    public function deleteApi(Request $request)
+    {
+
+    }
 
   /**
-   * @Route("/list", name="statutJuridique_list")
+   * @Route("/list", name="statutJuridique_list", methods={"GET"})
    */
   public function list (Request $request){
 
