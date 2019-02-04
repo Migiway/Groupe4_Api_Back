@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class NbSalaryController extends AbstractController
 {
   /**
-  * @Route ("/new")
+  * @Route("/new", name="nbSalary_new", methods={"GET","POST"})
   * @param Request $request
   */
   public function new(Request $request){
@@ -41,7 +41,7 @@ class NbSalaryController extends AbstractController
   }
 
   /**
-  * @Route ("/edit/{nbSalary}")
+  * @Route ("/edit/{nbSalary}", name="nbSalary_edit", methods={"PUT"})
   * @param Request $request
   */
   public function edit (Request $request, NbSalary $nbSalary){
@@ -64,9 +64,17 @@ class NbSalaryController extends AbstractController
   }
 
   /**
-   * @Route("/list", name="nbSalary_list")
-   */
+  * @Route("/list", name="nbSalary_list", methods={"GET"})
+  */
   public function list (Request $request){
+
+  }
+
+  /**
+  * @Route("/delete/{nbSalary}", name="nbSalary_delete", methods={"DELETE"})
+  */
+  public function delete(Request $request)
+  {
 
   }
 }

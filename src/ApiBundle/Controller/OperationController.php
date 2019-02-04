@@ -21,90 +21,40 @@ use Symfony\Component\Serializer\SerializerInterface;
 class OperationController extends AbstractController
 {
   /**
-  * @Route("/new", methods = {"GET","POST"})
+  * @Route("/new", name="operation_new", methods={"GET","POST"})
   * @param Request $request
-  *@return \Symfony\Component\HttpFoundation\Response
+  * @return \Symfony\Component\HttpFoundation\Response
   */
   public function new(Request $request){
-      $operation = new Operation();
-      $form = $this->createForm(OperationType::class, $operation);
-      $form->add('submit', SubmitType::class, [
-     'label' => 'Ajouter',
-     'attr' => ['class' => 'btn btn-default pull-right'],
-   ]);
-
-      $form->handleRequest($request);
-
-      if ($form->isSubmitted() && $form->isValid())
-     {
-       $em = $this->getDoctrine()->getManager();
-       $em->persist($operation);
-       $em->flush();
-       return $this->redirectToRoute('operation_list');
-     }
-
-
-      /*if($request->isMethod('POST')){
-                $this->newPost($request);
-        }*/
-
-        return $this->render('operation/new.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-      }
-
-      /**
-     * @Route("", methods={"POST"})
-     * @param Request $request
-     */
-  public function newPost(Request $request, SerializerInterface $serializer){
-
-    $operation = new operation();
-
+    $operation = new Operation();
     $form = $this->createForm(OperationType::class, $operation);
+    $form->add('submit', SubmitType::class, [
+      'label' => 'Ajouter',
+      'attr' => ['class' => 'btn btn-default pull-right'],
+    ]);
+
     $form->handleRequest($request);
 
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($operation);
-    $em->flush();
-
-    $JSON = $serializer->serrialize(
-       $company,
-       'JSON',
-       ['Groups=["light"]']
-     );
-     $response = new Response();
-     $response->setContent($JSON);
-     $response->headers->set('Content-type','application/JSON');
-     return $response;
-
-
-
-    /*if ($form->isValid()) {
+    if ($form->isSubmitted() && $form->isValid())
+    {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($operation);
+      $em->flush();
       return $this->redirectToRoute('operation_list');
-        }*/
-
-
     }
 
+    /*if($request->isMethod('POST')){
+            $this->newPost($request);
+    }*/
+
+    return $this->render('operation/new.html.twig', array(
+        'form' => $form->createView(),
+    ));
+
+  }
 
     /**
-    * @Route("", methods={"PUT"})
-    * @param Request $request
-    */
-    public function editApi(){
-    }
-
-    /**
-    * @Route("", methods={"DELETE"})
-    * @param Request $request
-    */
-    public function deleteApi(){
-    }
-
-    /**
-    * @Route("/edit/{operation}")
+    * @Route("/edit/{operation}", name="operation_edit", methods={"PUT"})
     * @param Request $request
     */
     public function edit(Request $request, Operation $operation){
@@ -127,14 +77,14 @@ class OperationController extends AbstractController
     }
 
     /**
-    * @Route("/delete/{id}")
+    * @Route("/delete/{operation}", name="operation_edit", methods={"DELETE"})
     * @param Request $request
     */
     public function delete(Request $request){
     }
 
     /**
-     * @Route("/list", name="operation_list")
+     * @Route("/list", name="operation_list", methods={"GET"})
      * @param Request $request
      */
     public function list(Request $request){

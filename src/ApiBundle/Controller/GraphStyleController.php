@@ -23,7 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class GraphStyleController extends AbstractController
 {
     /**
-     * @Route ("/new")
+    * @Route("/new", name="graphStyle_new", methods={"GET","POST"})
      * @param Request $request
      */
     public function new(Request $request){
@@ -48,9 +48,9 @@ class GraphStyleController extends AbstractController
     }
 
     /**
-     * @Route ("/edit/{graphStyle}")
-     * @param Request $request
-     */
+    * @Route ("/edit/{graphStyle}", name="graphStyle_edit", methods={"PUT"})
+    * @param Request $request
+    */
     public function edit (Request $request, GraphStyle $graphStyle){
 
         $form = $this->createForm(GraphStyleType::class, $graphStyle);
@@ -72,12 +72,17 @@ class GraphStyleController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="graphStyle_list")
-     */
+    * @Route("/list", name="graphStyle_list", methods={"GET"})
+    */
     public function list (Request $request){
 
     }
 
+    /**
+    * @Route("/delete/{graphStyle}", name="graphStyle_delete", methods={"DELETE"})
+    */
+    public function delete(Request $request)
+    {
 
-
+    }
 }

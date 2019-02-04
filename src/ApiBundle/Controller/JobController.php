@@ -52,8 +52,8 @@ class JobController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="job_edit", methods={"GET","POST"})
-     */
+    * @Route("/edit/{job}", name="job_edit", methods={"PUT"})
+    */
     public function edit(Request $request, Job $job)
     {
         $form = $this->createForm(JobType::class, $job);
@@ -71,26 +71,23 @@ class JobController extends AbstractController
            return $this->render('job/edit.html.twig', array('form' => $form->createView()));
     }
 
-
     /**
-     * @Route("/delete/{id}", name="job_delete", methods={"GET","POST"})
-     */
+    * @Route("/delete/{job}", name="job_delete", methods={"DELETE"})
+    */
     public function delete(Request $request)
     {
 
     }
 
-
     /**
-     * @Route("/list", name="job_list")
+    * @Route("/list", name="job_list", methods={"GET"})
      */
     public function list()
     {
     	$repository = $this->getDoctrine()->getManager()->getRepository(Job::class);
-        $list = $repository->allJob();
+      $list = $repository->allJob();
 
-
-        return $this->render('job/list.html.twig', array('lalist' => $list)); // On
+      return $this->render('job/list.html.twig', array('lalist' => $list)); // On
     }
 
 

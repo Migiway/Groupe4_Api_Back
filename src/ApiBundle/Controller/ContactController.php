@@ -16,14 +16,14 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
- * @Route("/contact")
- */
+* @Route("/contact")
+*/
 class ContactController extends AbstractController
 {
     /**
-     * @Route ("/new")
-     * @param Request $request
-     */
+    * @Route("/new", name="contact_new", methods={"GET","POST"})
+    * @param Request $request
+    */
     public function new(Request $request){
         $contact = new Contact();
 
@@ -46,7 +46,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route ("/edit/{contact}")
+     * @Route ("/edit/{contact}", name="contact_edit", methods={"PUT"})
      * @param Request $request
      */
     public function edit (Request $request, Contact $contact){
@@ -70,12 +70,18 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="country_list")
-     */
+    * @Route("/list", name="contact_list", methods={"GET"})
+    */
     public function list (Request $request){
 
     }
 
+    /**
+    * @Route("/delete/{contact}", name="contact_delete", methods={"DELETE"})
+    */
+    public function delete(Request $request)
+    {
 
+    }
 
 }
