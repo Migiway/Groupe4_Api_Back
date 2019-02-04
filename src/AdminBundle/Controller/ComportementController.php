@@ -1,9 +1,9 @@
 <?php
-namespace App\ApiBundle\Controller;
+namespace App\AdminBundle\Controller;
 
-use App\AdminBundle\Form\ParameterType;
+use App\AdminBundle\Form\ComportementType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\AdminBundle\Entity\Parameter;
+use App\AdminBundle\Entity\Comportement;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,25 +13,28 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;   
+use Symfony\Component\HttpFoundation\Reponse;
 
 
 /**
-* @Route("/parameter")
-* Class ParameterController
+* @Route("/comportement")
+* Class ComportementController
 * @package App\Controller
 */
-class ParameterController extends AbstractController
+class ComportementController extends AbstractController
 {
     /**
-    * @Route("/new", name="parameter_new", methods={"GET","POST"})
+    * @Route("/new", name="comportement_new", methods={"GET","POST"})
     */
     public function new(Request $request)
     {
-        $param = new Parameter();
+        $comp = new Comportement();
 
-        $form = $this->createForm(ParameterType::class, $param);
+        $form = $this->createForm(ComportementType::class, $comp);
 
         $form->handleRequest($request);
+
+        
 
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -41,37 +44,36 @@ class ParameterController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
             $entityManager->flush();
-            return $this->redirectToRoute('parameter_list');
+            return $this->redirectToRoute('comportement_list');
 
         }
 
-        return $this->render('parameter/new.html.twig', array('form' => $form->createView()));
+        return $this->render('comportement/new.html.twig', array('form' => $form->createView()));
     }
 
     /**
-     * @Route("/edit/{id}", name="parameter_edit", methods={"PUT"})
+     * @Route("/edit/{id}", name="comportement_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Parameter $param)    
-
+    public function edit(Request $request, Comportement $comp)    
     {
-        $form = $this->createForm(ParameterType::class, $param);
+        $form = $this->createForm(ComportementType::class, $comp);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
            {
              $em = $this->getDoctrine()->getManager();
-             $em->persist($param);
+             $em->persist($comp);
              $em->flush();
-             return $this->redirectToRoute('parameter_list');
+             return $this->redirectToRoute('comportement_list');
            }
 
-           return $this->render('parameter/edit.html.twig', array('form' => $form->createView()));
+           return $this->render('comportement/edit.html.twig', array('form' => $form->createView()));
     }
 
 
     /**
-     * @Route("/delete/{id}", name="parameter_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="comportement_delete", methods={"GET","POST"})
      */
     public function delete(Request $request)    
     {
@@ -80,11 +82,11 @@ class ParameterController extends AbstractController
 
 
     /**
-     * @Route("/list", name="parameter_list", methods={"GET"})
+     * @Route("/list", name="comportement_list")
      */
     public function list()  
     {
-         return $this->render('parameter/list.html.twig');
+         return $this->render('comportement/list.html.twig');
     }
 
 

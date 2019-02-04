@@ -1,5 +1,5 @@
 <?php
-namespace App\ApiBundle\Controller;
+namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\ParameterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;   
+use Symfony\Component\HttpFoundation\Reponse;
 
 
 /**
@@ -33,6 +34,8 @@ class ParameterController extends AbstractController
 
         $form->handleRequest($request);
 
+        
+
         if ($form->isSubmitted() && $form->isValid())
         {
 
@@ -49,10 +52,9 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="parameter_edit", methods={"PUT"})
+     * @Route("/edit/{id}", name="parameter_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Parameter $param)    
-
     {
         $form = $this->createForm(ParameterType::class, $param);
 
@@ -71,7 +73,7 @@ class ParameterController extends AbstractController
 
 
     /**
-     * @Route("/delete/{id}", name="parameter_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="parameter_delete", methods={"GET","POST"})
      */
     public function delete(Request $request)    
     {
@@ -80,7 +82,7 @@ class ParameterController extends AbstractController
 
 
     /**
-     * @Route("/list", name="parameter_list", methods={"GET"})
+     * @Route("/list", name="parameter_list")
      */
     public function list()  
     {

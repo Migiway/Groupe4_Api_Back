@@ -1,5 +1,5 @@
 <?php
-namespace App\ApiBundle\Controller;
+namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +23,38 @@ use Symfony\Component\HttpFoundation\Reponse;
 */
 class UserController extends AbstractController
 {
+	/**
+	* @Route("/new", name="user_new", methods={"GET","POST"})
+	*/
+    public function new(Request $request)
+    {
+    	$user = new User();
+
+        $form = $this->createForm(UserType::class, $user);
+
+		$form->handleRequest($request);
+
+		if ($request->isMethod('POST')) {
+        	$this->newApi($request);
+        	
+        }
+
+       /* if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $task = $form->getData();
+
+        	$entityManager = $this->getDoctrine()->getManager();
+        	$entityManager->persist($task);
+        	$entityManager->flush();
+
+        }*/
+
+        return $this->render('user/new.html.twig', array('form' => $form->createView()));
+    }
 
     /**
-	* @Route("/new", name="user_post", methods={"POST"})
+	* @Route("", name="user_post", methods={"POST"})
 	*/
     public function newApi(Request $request)
     {
@@ -56,9 +85,28 @@ class UserController extends AbstractController
 
     }
 
+   /**
+     * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, User $user)	
+    {
+    	$form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+           {
+             $em = $this->getDoctrine()->getManager();
+             $em->persist($user);
+             $em->flush();
+             return $this->redirectToRoute('user_list');
+           }
+
+           return $this->render('User/edit.html.twig', array('form' => $form->createView()));
+    }
 
     /**
-     * @Route("/edit/{id}", name="user_edit", methods={"PUT"})
+     * @Route("", name="user_edit", methods={"PUT"})
      */
     public function editApi(Request $request)	
     {
@@ -73,18 +121,27 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/delete", name="user_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="user_delete", methods={"GET","POST"})
+     */
+    public function delete(Request $request)	
+    {
+
+    }
+    /**
+     * @Route("", name="user_delete", methods={"DELETE"})
      */
     public function deleteApi(Request $request)	
     {
 
     }
+
+
     /**
-     * @Route("/list", name="typeSite_list", methods={"GET"})
+     * @Route("/list", name="user_list")
      */
-    public function list (Request $request){
-
+    public function list()	
+    {
+    	 return $this->render('User/list.html.twig');
     }
-
 
 }
