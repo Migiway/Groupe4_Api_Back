@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AdminBundle\Controller;
+namespace App\ApiBundle\Controller;
 use App\AdminBundle\Form\OperationType;
 use App\AdminBundle\Entity\Operation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
