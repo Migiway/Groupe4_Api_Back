@@ -51,43 +51,42 @@ class ComportementController extends AbstractController
         return $this->render('comportement/new.html.twig', array('form' => $form->createView()));
     }
 
-    /**
-     * @Route("/edit/{id}", name="comportement_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Comportement $comp)
+  /**
+  * @Route("/edit/{comportement}", name="comportement_edit", methods={"PUT"})
+  */
+  public function edit(Request $request, Comportement $comp)
+  {
+    $form = $this->createForm(ComportementType::class, $comp);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid())
     {
-        $form = $this->createForm(ComportementType::class, $comp);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-           {
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($comp);
-             $em->flush();
-             return $this->redirectToRoute('comportement_list');
-           }
-
-           return $this->render('comportement/edit.html.twig', array('form' => $form->createView()));
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($comp);
+      $em->flush();
+      return $this->redirectToRoute('comportement_list');
     }
 
+    return $this->render('comportement/edit.html.twig', array('form' => $form->createView()));
+  }
 
-    /**
-     * @Route("/delete/{id}", name="comportement_delete", methods={"GET","POST"})
-     */
-    public function delete(Request $request)
-    {
+  /**
+   * @Route("/delete/{comportement}", name="comportement_delete", methods={"DELETE"})
+   */
+  public function delete(Request $request)
+  {
 
-    }
+  }
 
 
-    /**
-     * @Route("/list", name="comportement_list")
-     */
-    public function list()
-    {
-         return $this->render('comportement/list.html.twig');
-    }
+  /**
+  * @Route("/list", name="comportement_list", methods={"GET"})
+  */
+  public function list()
+  {
+       return $this->render('comportement/list.html.twig');
+  }
 
 
 }

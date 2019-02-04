@@ -23,9 +23,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class CountryController extends AbstractController
 {
     /**
-     * @Route ("/new")
-     * @param Request $request
-     */
+    * @Route("/new", name="country_new", methods={"GET","POST"})
+    * @param Request $request
+    */
     public function new(Request $request){
         $country = new Country();
 
@@ -48,7 +48,7 @@ class CountryController extends AbstractController
     }
 
     /**
-     * @Route ("/edit/{country}")
+     * @Route ("/edit/{country}", name="country_edit", methods={"PUT"})
      * @param Request $request
      */
     public function edit (Request $request, Country $country){
@@ -72,12 +72,18 @@ class CountryController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="country_list")
-     */
+    * @Route("/list", name="country_list", methods={"GET"})
+    */
     public function list (Request $request){
 
     }
 
+    /**
+    * @Route("/delete/{country}", name="country_delete", methods={"DELETE"})
+    */
+    public function delete(Request $request)
+    {
 
+    }
 
 }

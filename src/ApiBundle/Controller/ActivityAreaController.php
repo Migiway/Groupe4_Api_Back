@@ -25,7 +25,7 @@ class ActivityAreaController extends AbstractController
   }
 
   /**
-   * @Route("/edit", name="activityArea_edit", methods={"PUT"})
+   * @Route("/edit/{activityArea}", name="activityArea_edit", methods={"PUT"})
    * @param Request $request
    */
    public function editApi(){
@@ -33,10 +33,17 @@ class ActivityAreaController extends AbstractController
    }
 
   /**
-   * @Route("/delete", name="activityArea_delete", methods={"DELETE"})
+   * @Route("/delete/{activityArea}", name="activityArea_delete", methods={"DELETE"})
    * @param Request $request
    */
    public function deleteApi(){
+
+   }
+
+   /**
+    * @Route("/list", name="activityArea_list", methods={"GET"})
+    */
+   public function list (Request $request){
 
    }
 }

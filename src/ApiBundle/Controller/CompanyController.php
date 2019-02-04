@@ -21,9 +21,9 @@ class CompanyController extends AbstractController
 {
 
   /**
-   * @Route("", methods={"POST"})
-   * @param Request $request
-   */
+  * @Route("/new", name="company_new", methods={"GET","POST"})
+  * @param Request $request
+  */
   public function newApi(Request $request, SerializerInterface $serializer)
   {
       $company = new Company();
@@ -52,19 +52,26 @@ class CompanyController extends AbstractController
   }
 
   /**
-   * @Route("", methods={"PUT"})
-   * @param Request $request
+  * @Route("/edit/{company}", name="company_edit", methods={"PUT"})
+  * @param Request $request
+  */
+  public function editApi(){
+
+  }
+
+   /**
+   * @Route("/list", name="company_list", methods={"GET"})
    */
-   public function editApi(){
+   public function list (Request $request){
 
    }
 
   /**
-   * @Route("", methods={"DELETE"})
-   * @param Request $request
-   */
-   public function deleteApi(){
+  * @Route("/delete/{company}", name="company_delete", methods={"DELETE"})
+  * @param Request $request
+  */
+  public function deleteApi(){
 
-   }
+  }
 
 }
