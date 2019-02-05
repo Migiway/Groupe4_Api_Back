@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\UserRepository")
  */
 class User
 {
@@ -99,17 +99,17 @@ class User
     private $user_imgUrl;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Operation", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="user_id")
      */
     private $operations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_user")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_user")
      */
     private $parameters;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Company", mappedBy="user_id")
      */
     private $companies;
 

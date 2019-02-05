@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TypeOperationRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\TypeOperationRepository")
  */
 class TypeOperation
 {
@@ -26,7 +26,7 @@ class TypeOperation
     private $type_libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Operation", mappedBy="type_operation")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="type_operation")
      * @Assert\NotBlank
      */
     private $operations;

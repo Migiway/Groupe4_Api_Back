@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CARepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\CARepository")
  */
 class CA
 {
@@ -26,7 +26,7 @@ class CA
     private $Ca_libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_CA")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_CA")
      * @Assert\NotBlank
      */
     private $parameters;

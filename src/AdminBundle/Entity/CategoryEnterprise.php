@@ -26,13 +26,13 @@ class CategoryEnterprise
     private $category_label;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_cat")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_cat")
      * @Assert\NotBlank
      */
     private $parameters;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="category_id")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Company", mappedBy="category_id")
      */
     private $companies;
 

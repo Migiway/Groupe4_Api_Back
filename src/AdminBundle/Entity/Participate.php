@@ -5,7 +5,7 @@ namespace App\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ParticipateRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ParticipateRepository")
  */
 class Participate
 {
@@ -17,12 +17,12 @@ class Participate
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Operation", inversedBy="participates")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Operation", inversedBy="participates")
      */
     private $operation_participate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Contact", inversedBy="participates")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Contact", inversedBy="participates")
      */
     private $participate_contact;
 

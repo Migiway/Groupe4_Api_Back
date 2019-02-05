@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\NbSalaryRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\NbSalaryRepository")
  */
 class NbSalary
 {
@@ -26,13 +26,13 @@ class NbSalary
     private $salary_libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="nbSalary")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="nbSalary")
      * @Assert\NotBlank
      */
     private $parameter_id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Company", mappedBy="nbSalary")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Company", mappedBy="nbSalary")
      */
     private $company_id;
 
