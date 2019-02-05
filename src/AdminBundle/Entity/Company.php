@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CompanyRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\CompanyRepository")
  */
 class Company
 {
@@ -112,7 +112,7 @@ class Company
     private $company_updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_company")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_company")
      */
     private $parameters;
 
@@ -123,32 +123,32 @@ class Company
         $this->company_updatedAt = new \DateTime;
     }
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Country", inversedBy="companies")
      */
     private $country_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\StatutJuridique", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\StatutJuridique", inversedBy="companies")
      */
     private $statut_juridique_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="companies")
      */
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="companies")
      */
     private $secteur_activite_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEnterprise", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\CategoryEnterprise", inversedBy="companies")
      */
     private $category_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\NbSalary", inversedBy="companies")
      */
     private $nb_salarie_id;
 

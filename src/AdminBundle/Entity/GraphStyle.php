@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\GraphStyleRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\GraphStyleRepository")
  */
 class GraphStyle
 {
@@ -24,7 +24,7 @@ class GraphStyle
     private $graphStyle_libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_graphstyle")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_graphstyle")
      */
     private $parameters;
 

@@ -6,9 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\OperationRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\OperationRepository")
  */
 class Operation
 {
@@ -103,22 +104,22 @@ class Operation
     private $operation_offresCommerciales;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="operations")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="operations")
      */
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeOperation", inversedBy="operations")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\TypeOperation", inversedBy="operations")
      */
     private $type_operation;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participate", mappedBy="operation_participate")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Participate", mappedBy="operation_participate")
      */
     private $participates;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_operation")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_operation")
      */
     private $parameters;
 

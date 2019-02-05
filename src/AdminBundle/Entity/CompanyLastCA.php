@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CompanyLastCARepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\CompanyLastCARepository")
  */
 class CompanyLastCA
 {
@@ -19,7 +19,7 @@ class CompanyLastCA
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_LastCA")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_LastCA")
      */
     private $parameters;
 
