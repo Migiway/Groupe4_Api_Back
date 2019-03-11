@@ -3,9 +3,9 @@
 namespace App\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ParameterRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ParameterRepository")
  */
 class Parameter
 {
@@ -71,67 +71,67 @@ class Parameter
     private $param_emailContact;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityArea", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="parameters")
      */
     private $parameter_activity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\GraphStyle", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\GraphStyle", inversedBy="parameters")
      */
     private $param_graphstyle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEnterprise", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\CategoryEnterprise", inversedBy="parameters")
      */
     private $param_cat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\NbSalary", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\NbSalary", inversedBy="parameters")
      */
     private $param_nb_employer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CA", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\CA", inversedBy="parameters")
      */
     private $param_CA;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CompanyLastCA", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\CompanyLastCA", inversedBy="parameters")
      */
     private $param_LastCA;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="parameters")
      */
     private $param_user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Operation", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Operation", inversedBy="parameters")
      */
     private $param_operation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeSite", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\TypeSite", inversedBy="parameters")
      */
     private $param_TypeSite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ParameterObject", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterObject", inversedBy="parameters")
      */
     private $param_object;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ParameterTarget", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterTarget", inversedBy="parameters")
      */
     private $param_cible;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comportement", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Comportement", inversedBy="parameters")
      */
     private $param_comportement;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="parameters")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Company", inversedBy="parameters")
      */
     private $param_company;
 

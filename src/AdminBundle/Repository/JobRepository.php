@@ -2,7 +2,7 @@
 
 namespace App\AdminBundle\Repository;
 
-use App\Entity\Job;
+use App\AdminBundle\Entity\Job;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\QueryBuilder;

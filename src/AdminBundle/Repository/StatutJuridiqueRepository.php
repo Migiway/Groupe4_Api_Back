@@ -2,7 +2,7 @@
 
 namespace App\AdminBundle\Repository;
 
-use App\Entity\StatutJuridique;
+use App\AdminBundle\Entity\StatutJuridique;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 

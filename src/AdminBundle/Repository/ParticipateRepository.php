@@ -2,7 +2,7 @@
 
 namespace App\AdminBundle\Repository;
 
-use App\Entity\Participate;
+use App\AdminBundle\Entity\Participate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 

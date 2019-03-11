@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ParameterTargetRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ParameterTargetRepository")
  */
 class ParameterTarget
 {
@@ -26,7 +26,7 @@ class ParameterTarget
     private $parameterTarget_nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_cible")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_cible")
      * @Assert\NotBlank
      */
     private $parameters;

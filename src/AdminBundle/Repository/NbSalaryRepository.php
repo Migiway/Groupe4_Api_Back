@@ -2,7 +2,7 @@
 
 namespace App\AdminBundle\Repository;
 
-use App\Entity\NbSalary;
+use App\AdminBundle\Entity\NbSalary;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 

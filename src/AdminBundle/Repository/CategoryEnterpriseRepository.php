@@ -2,7 +2,7 @@
 
 namespace App\AdminBundle\Repository;
 
-use App\Entity\CategoryEnterprise;
+use App\AdminBundle\Entity\CategoryEnterprise;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 

@@ -43,7 +43,7 @@ class CompanyController extends AbstractController
 
       return $this->render('company/new.html.twig', array('form' => $form->createView()));
   }
-  
+
   /**
   * @Route ("/edit/{company}")
   * @param Request $request

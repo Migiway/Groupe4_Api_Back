@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ParameterObjectRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ParameterObjectRepository")
  */
 class ParameterObject
 {
@@ -24,7 +24,7 @@ class ParameterObject
     private $object_libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Parameter", mappedBy="param_object")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_object")
      */
     private $parameters;
 
