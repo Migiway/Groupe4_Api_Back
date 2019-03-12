@@ -1,7 +1,7 @@
 <?php
 namespace App\AdminBundle\Form;
 
-use App\Entity\Comportement;
+use App\AdminBundle\Entity\Comportement;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

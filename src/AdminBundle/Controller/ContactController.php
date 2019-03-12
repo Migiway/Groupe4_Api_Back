@@ -75,7 +75,4 @@ class ContactController extends AbstractController
     public function list (Request $request){
 
     }
-
-
-
 }
