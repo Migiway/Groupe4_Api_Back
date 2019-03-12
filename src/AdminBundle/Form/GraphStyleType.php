@@ -7,7 +7,7 @@
  */
 namespace App\AdminBundle\Form;
 
-use App\Entity\GraphStyle;
+use App\AdminBundle\Entity\GraphStyle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
