@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;	
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Reponse;
 
 
@@ -34,7 +34,7 @@ class JobController extends AbstractController
 
 		$form->handleRequest($request);
 
-		
+
 
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -54,7 +54,7 @@ class JobController extends AbstractController
     /**
      * @Route("/edit/{id}", name="job_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Job $job)	
+    public function edit(Request $request, Job $job)
     {
         $form = $this->createForm(JobType::class, $job);
 
@@ -75,7 +75,7 @@ class JobController extends AbstractController
     /**
      * @Route("/delete/{id}", name="job_delete", methods={"GET","POST"})
      */
-    public function delete(Request $request)	
+    public function delete(Request $request)
     {
 
     }
@@ -84,13 +84,13 @@ class JobController extends AbstractController
     /**
      * @Route("/list", name="job_list")
      */
-    public function list()	
+    public function list()
     {
     	$repository = $this->getDoctrine()->getManager()->getRepository(Job::class);
         $list = $repository->allJob();
 
-        
-        return $this->render('job/list.html.twig', array('lalist' => $list)); // On 
+
+        return $this->render('job/list.html.twig', array('lalist' => $list)); // On
     }
 
 

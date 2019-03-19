@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
 * @Route("/contact")
@@ -82,6 +83,18 @@ class ContactController extends AbstractController
     public function delete(Request $request)
     {
 
+    }
+
+    /**
+    * @Route("/contactActif", name="contactActif", methods={"GET"})
+    */
+    public function contactActif()
+    {
+      $repository = $this->getDoctrine()->getRepository(Contact::class);
+      $contactsActif = $repository->findBy(
+          ['contact_statut' => 1]
+      );
+      return new JsonResponse($contactsActif);
     }
 
 }

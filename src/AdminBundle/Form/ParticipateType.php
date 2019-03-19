@@ -8,9 +8,9 @@
 
 namespace App\AdminBundle\Form;
 
-use App\Entity\Participate;
-use App\Entity\Contact;
-use App\Entity\Operation;
+use App\AdminBundle\Entity\Participate;
+use App\AdminBundle\Entity\Contact;
+use App\AdminBundle\Entity\Operation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
