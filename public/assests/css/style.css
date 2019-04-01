@@ -1,0 +1,128 @@
+.col-md-6{
+    margin-left: -15px !important;
+    margin-right: 0;
+}
+.section1 {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.logonfrom2 {}
+
+.logonfrom {
+    padding: 50% 0%;
+}
+
+.emgine img {
+
+    filter: brightness(50%);
+
+}
+
+.leftform p {
+    font-size: 13px;
+    text-align: center;
+    color: #808080b0
+}
+.buttonp {
+    margin-top: 20px;
+}
+.buttonp  p{
+     font-size: 13px;
+    text-align: center;
+    color: #808080b0
+}
+form .form-icons {
+    text-align: center;
+}
+
+form .form-icons h4 {
+    margin-bottom: 1rem;
+}
+
+form .form-icons .input-group-label {
+    background-color: #1779ba;
+    border-color: #1779ba;
+}
+
+form .form-icons .input-group-field {
+    border-color: #1779ba;
+}
+.logo img {
+        padding: 30px 0px;
+    margin-left: 30px;
+}
+form .form-icons .fa {
+    color: white;
+    width: 1rem;
+}
+
+
+
+.input-container {
+    display: -ms-flexbox;
+    /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #D9D9D9;
+}
+
+.icon {
+    padding: 10px;
+    background: transparent;
+    color: #D9D9D9;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    outline: none;
+    border: none;
+}
+
+.input-field:focus {
+/*    border: 2px solid dodgerblue;*/
+}
+
+/* Set a style for the submit button */
+.btn-red {
+    background-color: #CF1740;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    border-radius: 5px;
+}
+
+.btn-red:hover {
+    opacity: 1;
+    color: white;
+    background: gray;
+}
+.copyright{
+    margin-top: 50px;
+}
+.copyright h5{
+    font-size: 12px;
+    text-align: center;
+    color: gray;
+}
+.copyright h5 span{
+    color: #D9D9D9;
+}
+
+@media (max-width: 575.98px) {
+.logonfrom {
+    padding: 25% 0%;
+}
+
+}
