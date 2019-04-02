@@ -42,9 +42,9 @@
                     //initialisation du tableau
                     $('#myTable').DataTable({
                       "lengthMenu": [[10, 25, 50, -1],
-                      ["10", "25", "50", "Toutess"]],
+                      ["10", "25", "50", "Toutes"]],
                       "language": {
-                        "paginate": {"previous": "Précédent","next": "Suivant"},
+                        "paginate": {"previous": '<i class="fa fa-arrow-left"></i>',"next": '<i class="fa fa-arrow-right"></i>'},
                         searchPlaceholder: "Rechercher",
                         search: "",
                         "sSearch": '<a class="btn searchBtn" id="searchBtn"><i class="fa fa-search"></i></a>',
@@ -52,7 +52,7 @@
                         infoEmpty: "Aucunes données trouvées",
                         "info": ""
                       },
-                      "dom": 'lBfrtip',
+                      "dom": '<"top"if>rt<"bottom"lp><"clear">'
                   });
                 });
             </script>
