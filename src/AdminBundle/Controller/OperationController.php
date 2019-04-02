@@ -138,6 +138,12 @@ class OperationController extends AbstractController
      * @param Request $request
      */
     public function list(Request $request){
-    }
+      $operations = $this->getDoctrine()
+      ->getRepository(Operation::class)
+      ->findAll();
 
+      return $this->render('operation/list.html.twig', array(
+        'operations' => $operations
+      ));
+    }
 }
