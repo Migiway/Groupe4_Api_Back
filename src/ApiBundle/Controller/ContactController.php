@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
 * @Route("/contact")
@@ -96,7 +96,9 @@ class ContactController extends AbstractController
       $contactsActif = $repository->findBy(
           ['contact_statut' => 1]
       );
-      return new JsonResponse($contactsActif);
+      $contactsActif = count($contactsActif);
+      $serializer = $this->container->get('serializer');
+      $contactsActif = $serializer->serialize($contactsActif, 'json');
+      return new Response($contactsActif);
     }
-
 }

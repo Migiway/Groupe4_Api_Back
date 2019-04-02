@@ -468,4 +468,16 @@ class Company
 
         return $this;
     }
+
+    public function getNbSalarieId(): ?NbSalary
+    {
+        return $this->nb_salarie_id;
+    }
+
+    public function setNbSalarieId(?NbSalary $nb_salarie_id): self
+    {
+        $this->nb_salarie_id = $nb_salarie_id;
+
+        return $this;
+    }
 }
