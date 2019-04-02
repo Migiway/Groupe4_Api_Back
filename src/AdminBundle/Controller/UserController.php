@@ -144,4 +144,12 @@ class UserController extends AbstractController
     	 return $this->render('User/list.html.twig');
     }
 
+    /**
+     * @Route("/team", name="team_list")
+     */
+    public function teamList()
+    {
+        return $this->render('team/list.html.twig');
+    }
+
 }
