@@ -1,20 +1,28 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Smarts Leads!{% endblock %}</title>
         {% block stylesheets %}
-        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500" rel="stylesheet">
-        <!-- font awesome-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-              integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+            <!--    font-->
+            <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto:300,400,500,700" rel="stylesheet">
+            <!-- font awesome -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+            <!--    datatables-->
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+            <!-- bootstrap.css -->
+            <!-- <link rel="stylesheet" href="css/bootstrap.min.css">  -->
         <link rel="stylesheet" href="{{ asset("assests/css/style.css") }}" type="text/css">
         <link rel="stylesheet" href="{{ asset("assests/css/media.css") }}" type="text/css">
         {#<link rel="stylesheet" href="{{ asset("assests/css/bootstrap.min.css") }}" type="text/css">#}
         {% endblock %}
+
+        {% include 'layout/header.html.twig' %}
+        {% include 'layout/leftbar.html.twig' %}
     </head>
     <body>
         {% block body %}{% endblock %}
@@ -25,6 +33,14 @@
                 integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
                 integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+            <!--  data_tables -->
+            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+            <script>
+                $(document).ready(function() {
+                    $('#myTable').DataTable();
+                });
+            </script>
         {% endblock %}
     </body>
 </html>

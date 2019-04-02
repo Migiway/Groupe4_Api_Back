@@ -22,9 +22,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ContactController extends AbstractController
 {
     /**
-    * @Route("/new", name="contact_new", methods={"GET","POST"})
-    * @param Request $request
-    */
+     * @Route("/new", name="contact_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function new(Request $request){
         $contact = new Contact();
 
@@ -49,6 +50,7 @@ class ContactController extends AbstractController
     /**
      * @Route ("/edit/{contact}", name="contact_edit", methods={"PUT"})
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit (Request $request, Contact $contact){
 
@@ -71,7 +73,7 @@ class ContactController extends AbstractController
     }
 
     /**
-    * @Route("/list", name="contact_list", methods={"GET"})
+    * @Route("/list", name="contact_list_api", methods={"GET"})
     */
     public function list (Request $request){
 

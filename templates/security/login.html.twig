@@ -1,61 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <section class="section1">
+    <section class="login_section1">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="emgine">
+                <div class="col-md-6 p-0">
+                    <div class="engine">
                         <img class="img-fluid" src="{{ asset("assests/img/photo3.png") }}" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="row justify-content-center logonfrom2 ">
+                    <div class="row justify-content-center login_logonfrom2 ">
                         <div class="col-md-5 ">
-                            <div class="logonfrom ">
-                                <div class="logo">
+                            <div class="login_logonfrom">
+                                <div class="login_logo">
                                     <img class="img-fluid w-75" src="{{ asset("assests/img/logo.png") }}" alt="">
 
                                 </div>
 
-                                <div class="leftform">
-
-
-
-                                    <form action="" style="max-width:500px;margin:auto">
+                                <div class="login_rightform">
+                                <form class="login_form" action="" style="max-width:500px;margin:auto">
 
                                         <p>Veuillez vous identifier</p>
 
-                                        <div class="input-container">
-                                            <i class="fas fa-user icon"></i>
-                                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
-                                                   class="input-field" placeholder="E-mail" required autofocus>
-                                            <!--<input class="input-field" type="text" placeholder="E-mail" name="email">-->
+                                        <div class="input-container login_input_container">
+                                            <i class="fas fa-user login_icon"></i>
+                                            <input class="input-field login_input_field" type="email" value="{{ last_username }}" placeholder="E-mail" name="email" required autofocus>
                                         </div>
 
-                                        <div class="input-container">
-                                            <i class="fas fa-lock icon"></i>
-                                            <!--<input class="input-field" type="password" placeholder="Mot de passe" name="psw">-->
-                                            <input type="password" name="password" id="inputPassword" class="input-field" placeholder="Password" required>
+                                        <div class="input-container login_input_container">
+                                            <i class="fas fa-lock login_icon"></i>
+                                            <input class="input-field login_input_field" type="password" placeholder="Mot de passe" name="password" placeholder="Password" required>
                                         </div>
 
-                                        <button type="submit" class="btn-red">CONNEXION</button>
-                                       <div class="buttonp">
+                                        <button type="submit" class="btn login_button">CONNEXION</button>
+                                        <div class="login_buttonp">
                                             <p>Mot de passe oublié ?</p>
-                                       </div>
+                                        </div>
                                     </form>
-                                        
-                                        
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="copyright">
-                                           <h5>
-                                               <span class="spanh5"> Smartleads © tous droits réservés | </span>Contactez le support technique
-                                           </h5>
-                                        </div>
+                    <div class="login_copyright">
+                        <h5>
+                            <span class="spanh5"> Smartleads © tous droits réservés | </span>Contactez le support technique
+                        </h5>
+                    </div>
                 </div>
             </div>
         </div>

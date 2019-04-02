@@ -23,6 +23,7 @@ class ContactController extends AbstractController
     /**
      * @Route ("/new")
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function new(Request $request){
         $contact = new Contact();
@@ -48,6 +49,7 @@ class ContactController extends AbstractController
     /**
      * @Route ("/edit/{contact}")
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit (Request $request, Contact $contact){
 
@@ -70,9 +72,21 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="country_list")
+     * @Route("/list", name="contact_list")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function list (Request $request){
 
+    public function list(Request $request)
+    {
+        $contacts = $this->getDoctrine()
+            ->getRepository(Contact::class)
+            ->findAll();
+
+
+        return $this->render('contact/list.html.twig', array(
+            'contacts' => $contacts
+        ));
     }
+
 }
