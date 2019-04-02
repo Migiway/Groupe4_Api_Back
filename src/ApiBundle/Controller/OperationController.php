@@ -84,7 +84,7 @@ class OperationController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="operation_list", methods={"GET"})
+     * @Route("/list_api", name="operation_list_api", methods={"GET"})
      * @param Request $request
      */
     public function list(Request $request){
