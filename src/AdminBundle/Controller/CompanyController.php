@@ -77,8 +77,18 @@ class CompanyController extends AbstractController
 
   /**
    * @Route("/list", name="company_list")
+   * @param Request $request
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function list (Request $request){
+      $company = $this->getDoctrine()
+          ->getRepository(Company::class)
+          ->findAll();
+
+
+      return $this->render('company/list.html.twig', array(
+          'company' => $company
+      ));
 
   }
 }

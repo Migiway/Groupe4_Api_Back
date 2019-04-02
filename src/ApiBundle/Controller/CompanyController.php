@@ -60,7 +60,7 @@ class CompanyController extends AbstractController
   }
 
    /**
-   * @Route("/list", name="company_list", methods={"GET"})
+   * @Route("/list", name="company_list_api", methods={"GET"})
    */
    public function list (Request $request){
 
