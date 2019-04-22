@@ -6,8 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\CompanyRepository")
+ * @Vich\Uploadable
  */
 class Company
 {
@@ -19,8 +22,16 @@ class Company
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="company_code", type="string", length=10, nullable=false)
+     * @Assert\NotBlank(message = "Ce champ doit être remplit")
+     */
+    private $company_code;
+
+    /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $company_name;
 
@@ -32,13 +43,9 @@ class Company
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Vich\UploadableField(mapping="company_logo", fileNameProperty="company_logo")
      */
     private $company_logo;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $company_commentary;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -63,15 +70,22 @@ class Company
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $company_commentary;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $company_city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(pattern="/^[0-9]*$/", message="Veuiller rentrer un numéro de téléphone valide")
      */
     private $company_phone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(pattern="/^[0-9]*$/", message="Veuiller rentrer un fax valide")
      */
     private $company_fax;
 
@@ -115,6 +129,12 @@ class Company
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_company")
      */
     private $parameters;
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="note", type="text", length=0, nullable=true)
+     */
+    private $note;
 
     public function __construct()
     {
@@ -189,19 +209,9 @@ class Company
     public function setCompanyLogo(?string $company_logo): self
     {
         $this->company_logo = $company_logo;
-
-        return $this;
-    }
-
-    public function getCompanyCommentary(): ?string
-    {
-        return $this->company_commentary;
-    }
-
-    public function setCompanyCommentary(?string $company_commentary): self
-    {
-        $this->company_commentary = $company_commentary;
-
+        if ($this->company_logo instanceof UploadedFile) {
+            $this->company_updatedAt = new \DateTime('now');
+        }
         return $this;
     }
 
@@ -477,6 +487,29 @@ class Company
     public function setNbSalarieId(?NbSalary $nb_salarie_id): self
     {
         $this->nb_salarie_id = $nb_salarie_id;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->company_note;
+    }
+
+    public function setNote(?string $company_note): self
+    {
+        $this->company_note = $company_note;
+
+        return $this;
+    }
+    public function getCompanyCommentary(): ?string
+    {
+        return $this->company_commentary;
+    }
+
+    public function setCompanyCommentary(?string $company_commentary): self
+    {
+        $this->company_commentary = $company_commentary;
 
         return $this;
     }
