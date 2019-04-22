@@ -64,7 +64,7 @@ class CompanyController extends AbstractController
       return $this->redirectToRoute('company_list');
     }
 
-    return $this->render('company/new.html.twig', array('form' => $form->createView()));
+    return $this->render('company/edit.html.twig', array('form' => $form->createView()));
   }
 
   /**
