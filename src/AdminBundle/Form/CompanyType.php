@@ -2,6 +2,7 @@
 namespace App\AdminBundle\Form;
 
 use App\Entity\Post;
+use App\AdminBundle\Entity\Contacts;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,11 +14,26 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Proxies\__CG__\App\AdminBundle\Entity\User;
+
 class CompanyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('user_id', EntityType::class, [
+                'class' => User::class,
+                'query_builder' => function (EntityRepository $requete) {
+                    return $requete->createQueryBuilder('u')
+                        ->orderBy('u.user_lastName', 'ASC');
+                },
+                "label" => "Compte suivi par"
+            ])
+        ->add('company_code', TextType::class, array('label' => 'Code : '))
         ->add('company_name', TextType::class, array('label' => 'Nom : '))
         ->add('company_status', TextType::class, array('label' => 'Status : '))
         ->add('company_logo', TextType::class, array('label' => 'Logo : '))

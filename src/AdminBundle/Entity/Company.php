@@ -71,7 +71,7 @@ class Company
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $company_commentary;
-    
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -510,6 +510,18 @@ class Company
     public function setCompanyCommentary(?string $company_commentary): self
     {
         $this->company_commentary = $company_commentary;
+
+        return $this;
+    }
+
+    public function getCompanyCode(): ?string
+    {
+        return $this->company_code;
+    }
+
+    public function setCompanyCode(?string $company_code): self
+    {
+        $this->company_code = $company_code;
 
         return $this;
     }
