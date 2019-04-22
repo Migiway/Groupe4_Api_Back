@@ -123,7 +123,7 @@ class OperationController extends AbstractController
         return $this->redirectToRoute('operation_list');
       }
 
-      return $this->render('operation/new.html.twig', array('form' => $form->createView()));
+      return $this->render('operation/edit.html.twig', array('form' => $form->createView()));
     }
 
     /**
