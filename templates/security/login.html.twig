@@ -19,7 +19,10 @@
                                 </div>
 
                                 <div class="login_rightform">
-                                <form class="login_form" action="" style="max-width:500px;margin:auto">
+                                <form class="login_form" action="" style="max-width:500px;margin:auto" method="post">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
 
                                         <p>Veuillez vous identifier</p>
 
@@ -32,6 +35,9 @@
                                             <i class="fas fa-lock login_icon"></i>
                                             <input class="input-field login_input_field" type="password" placeholder="Mot de passe" name="password" placeholder="Password" required>
                                         </div>
+                                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
 
                                         <button type="submit" class="btn login_button">CONNEXION</button>
                                         <div class="login_buttonp">
