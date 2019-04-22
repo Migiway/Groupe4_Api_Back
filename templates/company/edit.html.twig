@@ -1,3 +1,594 @@
-{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="col-md-12 left_border contact1_background_col9">
+    <div class="row">
+        <div class="col-md-4 p-0">
+            <div class="contacts1_text">
+                <h3 class="contact1h3">Entreprises</h3>
+            </div>
+        </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-3">
+            <div class="contact3_input_container3">
+                <input class="contact-input-field3" type="text" placeholder="Rechercher..." name="email">
+                <i class="fas fa-search "></i>
+            </div>
+        </div>
+    </div>
+    <div class="contact_form ">
+        <div class="row justify-content-center ml-0 mr-0 mb-5">
+            <div class="col-md-12 ">
+                <div class="row rounded border">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h3 class="contact2_saisieh3 pt-4 ml-5">ALTRAN,<span class="contact3span">  Ingénierie (75008 Paris)</span> </h3>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row form_right_active_text">
+                                    <div class="col-md-3"> </div>
+                                    <div class="col-md-2 text-right mt-3">   <span> à jour </span></div>
+                                    <div class="col-md-5 p-0 mt-3"> <span>Dernière mise à jour le  12/12/2018</span></div>
+                                        <div class="col-md-1 mt-3"><div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitches">
+                                            <label class="custom-control-label" for="customSwitches"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 pt-4 pb-5">
+                            <div class="contact_formnav">
+                                <nav class="nav">
+                                <a class="nav-link active identite" href="#">Identité</a>
+                                <a class="nav-link" href="#">Contacts <span class="enterprise3_form_a">
+                                3
+                                </span></a>
+                                <a class="nav-link note" href="#">Notes</a>
+                                <a class="nav-link " href="#">Historique</a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-12 block-identite">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                    <form id="form1" runat="server">
+                                        <div class="contact_userimg">
+                                            <img  id="blah" src="{{ asset("img/circle.png") }}" alt="your image" />
+                                        </div>
+                                        <div class="userimg_label2">
+                                            <input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
+                                            <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
+                                        </div>
+                                        <!-- <input class="uploadFile" type='file' id="imgInp" placeholder="Photo" /> -->
+                                    </form>
+                                <script>
+
+                                function readURL(input) {
+
+                                if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function(e) {
+                                $('#blah').attr('src', e.target.result);
+                                }
+
+                                reader.readAsDataURL(input.files[0]);
+                                }
+                                }
+
+                                $("#imgInp").change(function() {
+                                readURL(this);
+                                });
+                                </script>             
+                            </div>
+                            <div class="col-md-10">
+                                <form>
+                                    <div class="row form_client">
+                                        <div class="col-md-6">
+                                            <div class="row ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Compte suivi par</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">Franck DUMONT</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Code entreprise</p>
+                                                </div>
+                                                <div class="col-md-7 input_border_left form-group code_client"><input class=" form-control" type="text" placeholder="1254789"></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Nom</p>
+                                                </div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="ALTRAN"></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Statut</p>
+                                                </div>
+                                                <div class="col-md-7 input_border_left input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">Client</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Activité (NAF)</p>
+                                                </div>
+                                                <div class="col-md-7 input_border_left input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                            <select class="custom-select" required>
+                                                            <option value="">Ingénierie (7112B)</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Statut juridique</p>
+                                                </div>
+                                                <div class="col-md-7  input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">SA</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>N° SIRET</p>
+                                                </div>
+                                                <div class="col-md-7  prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="39242018800048"></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Effectifs</p>
+                                                </div>
+                                                <div class="col-md-7  input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">>10000</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Chiffre d'affaires (M€)</p>
+                                                </div>
+                                                <div class="col-md-7  prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="2282"></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Opération source</p>
+                                                </div>
+                                                <div class="col-md-7  input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">Prospection 201</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="row  ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>E-mail</p>
+                                                </div>
+                                                <div class="col-md-7 phone_input input-group ">
+                                                    <input id="" type="email" class="form-control" name="" placeholder="contact@altran.fr">
+                                                    <span class="input-group-addon contact_checkbox_position">
+                                                        <div class="custom-control custom-checkbox ">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" checked>
+                                                        <label class="custom-control-label" for="customCheck"></label>
+                                                    </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Adresse</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="12 avenue du Maréchal Foch">
+                                                    <span class="input-group-addon phone_input_position"><i class="fas fa-map-marker-alt"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Complément</p>
+                                                </div>
+                                                <div class="col-md-7  prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="Centre d'affaires Berlioz"></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Code postal</p>
+                                                </div>
+                                                <div class="col-md-7  input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">75008</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Ville</p>
+                                                </div>
+                                                <div class="col-md-7  input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">PARIS</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Téléphone</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                <input id="" type="text" class="form-control" name="" placeholder="01 52 10 67 27">
+                                                <span class="input-group-addon phone_input_position2"><i class="fas fa-phone"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Fax</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="01 52 10 67 26">
+                                                    <span class="input-group-addon phone_input_position2"><i class="fas fa-print"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Site web</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="http://www.altran.fr/">
+                                                    <span class="input-group-addon phone_input_position2"><i class="fas fa-globe-americas"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Remarques</p>
+                                                </div>
+                                                <div class="col-md-7 contact_form_textarea  form-group ">
+                                                <!--                         <input class="input_size_big form-control" type="text" placeholder=""></div>-->
+                                                <textarea class="form-control" rows="5" id="comment" placeholder="Compte à relancer pour les
+                                                budgets 2019"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pt-5">
+                        <div class="row py-4"> 
+                            <div class="col-md-3">
+                                <div class="retourbutton">
+                                    <button  type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i> RETOUR </button>
+                                </div>
+                            </div>      
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3 pr-0">
+                                <div class="supprimebutton">
+                                    <button  type="button" class="btn btn-primary">SUPPRIMER</button>
+                                </div>
+                            </div>      
+                            <div class="col-md-3">
+                                <div class="demandbutton">
+                                    <button  type="button" class="btn btn-primary">DEMANDE DE MISE À JOUR</button>
+                                </div>
+                            </div>      
+                            <div class="col-md-2">  <div class="enregisterbutton">
+                                <button  type="button" class="btn btn-primary">ENREGISTRER</button>
+                            </div></div>      
+                        </div>
+                    </div>
+                    </div> 
+                    <div class="block-note hide">
+     <div class="col-md-12">
+            <div class="row">
+                   <!-- col1-->
+                   <div class="col-md-4">
+                          <div class="row py-2 contact4col1_border mr-0">
+                                 <div class="col-md-12">
+                                        <div class="contact4col1c1">
+                                               <span class="contact4col1c1span1">12 </span>
+                                               <span class="contact4col1c1span2">notes</span>
+                                               <span class="contact4col1c1span2 float-right">Par date de création</span>
+                                        </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                        <div class="contact_overflow_scroll">
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">DEVIS</span> | TRÈS IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                                      <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                               <div class="contact4comment">
+                                                      <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
+                                                      <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
+                                                      trois lignes maximum et après on coupe
+                                                      avec trois petits points...</p>
+                                               </div>
+                                        </div>
+                                 </div>
+                          </div>
+                   </div>
+                   <div class="col-md-8 contact4col1_border">
+                          <div class="row">
+                                 <div class="col-md-12">
+                                        <div class="contact4col2h1">
+                                               <h1>Ajouter une note</h1>
+                                        </div>
+                                 </div>
+                          </div>
+                          <div class="row form_client">
+                                 <div class="col-md-12">
+                                        <form action="">
+                                               <div class="row pt-3">
+                                                      <div class="col-md-12  prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="Nom Devis la note"></div>
+                                               </div>
+                                               <div class="row pt-3">
+                                                      <div class="col-md-3">
+                                                             <div class="form-group contact4date_client">
+                                                             <p>Date de création</p>
+                                                             <input id="today" class=" form-control" type="date" placeholder="">
+                                                             </div>
+                                                      </div>
+                                                      <div class="col-md-3">
+                                                             <div class="form-group contact4date_client">
+                                                                    <p>Date d'échéance </p>
+                                                                    <input id="today" class=" form-control" type="date" placeholder="">
+                                                             </div>
+                                                      </div>
+                                                      <div class="col-md-3">
+                                                             <br>
+                                                             <div class="contact4_custom_control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                                                    <label class="custom-control-label" for="customCheck1"></label> <span class="contact4checkboxSapn">Rappel par email:</span>
+                                                             </div>
+                                                      </div>
+                                                      <div class="col-md-3">
+                                                             <div class="form-group avant_select">
+                                                                    <p>Echéance</p>
+                                                                    <select class="custom-select" required>
+                                                                           <option value="">1h avant</option>
+                                                                           <option value="1">One</option>
+                                                                           <option value="2">Two</option>
+                                                                           <option value="3">Three</option>
+                                                                    </select>
+                                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                             </div>
+                                                      </div>
+                                               </div>
+                                               <div class="row pt-3">
+                                                      <div class="col-md-4">
+                                                             <div class="form-group avant_select">
+                                                                    <p>Affecté à </p>
+                                                                           <select class="custom-select" required>
+                                                                                  <option value="">Olivier SALESSE</option>
+                                                                                  <option value="1">One</option>
+                                                                                  <option value="2">Two</option>
+                                                                                  <option value="3">Three</option>
+                                                                           </select>
+                                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                             </div>
+                                                      </div>
+                                                      <div class="col-md-4">
+                                                             <div class="form-group avant_select">
+                                                                    <p>Catégorie</p>
+                                                                    <select class="custom-select" required>
+                                                                           <option value="">Devis</option>
+                                                                           <option value="1">One</option>
+                                                                           <option value="2">Two</option>
+                                                                           <option value="3">Three</option>
+                                                                    </select>
+                                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                             </div>
+                                                      </div>
+                                                      <div class="col-md-4">
+                                                             <div class="form-group avant_select">
+                                                                    <p>Priorité</p>
+                                                                    <select class="custom-select" required>
+                                                                           <option value="">Important</option>
+                                                                           <option value="1">One</option>
+                                                                           <option value="2">Two</option>
+                                                                           <option value="3">Three</option>
+                                                                    </select>
+                                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                             </div>
+                                                      </div>
+                                               </div>
+                                               <div class="row py-5">
+                                                      <div class="col-md-12">
+                                                             <textarea>Your Message Will Be Here</textarea>
+                                                             <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+                                                             <script>
+                                                             tinymce.init({
+                                                             selector: 'textarea'
+                                                             });
+                                                             </script>
+                                                      </div>
+                                               </div>
+                                               <div class="row">
+                                                      <div class="col-md-12 pb-5">
+                                                             <div class="row ">
+                                                                    <div class="col-lg-6"></div>
+                                                                    <div class="col-lg-6">
+                                                                           <div class="row">
+                                                                                  <div class="col-lg-5 col-md-5">
+                                                                                         <div class="annulerbutton3">
+                                                                                                <button type="button" class="btn btn-primary">ANNULER</button>
+                                                                                         </div>
+                                                                                  </div>
+                                                                                  <div class="col-lg-6 col-md-4">
+                                                                                         <div class="enregisterbutton">
+                                                                                                <button type="button" class="btn btn-primary">ENREGISTRER</button>
+                                                                                         </div>
+                                                                                  </div>
+                                                                                  <div class="col-md-1"></div>
+                                                                           </div>
+                                                                    </div>
+                                                                    <div class="col-md-2"> </div>
+                                                                    <div class="col-md-2"> </div>
+                                                                    <div class="col-md-4"> </div>
+                                                                    <div class="col-md-4"> </div>
+                                                                    <div class="col-md-1"> </div>
+                                                             </div>
+                                                      </div>
+                                               </div>
+                                        </form>
+                                 </div>
+                          </div>
+                   </div>
+            </div>
+     </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+    $(function() {
+        $('.note').click(function() {
+           $('.block-identite').addClass('hide');
+           $('.block-note').removeClass('hide');
+           $('.contact_formnav nav a').removeClass('active')
+           $('.note').addClass('active')
+        });
+        $('.identite').click(function() {
+           $('.block-identite').removeClass('hide');
+           $('.block-note').addClass('hide');
+           $('.contact_formnav nav a').removeClass('active')
+           $('.identite').addClass('active')
+        });
+    });
+    </script> 
+  {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+  {{ form_widget(form) }}
+  {{ form_end(form) }}
+{% endblock %}

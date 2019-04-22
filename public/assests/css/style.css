@@ -6,6 +6,9 @@ body {
 /*font-family: 'Quicksand', sans-serif;*/
     
 }
+.hide {
+    display: none;
+}
 /*
 .col-md-3{
    padding-right: 0px; 

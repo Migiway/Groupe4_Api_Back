@@ -86,8 +86,9 @@ class UserController extends AbstractController
     }
 
    /**
-     * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
-     */
+    * @Route ("/edit/{user}")
+    * @param Request $request
+    */
     public function edit(Request $request, User $user)	
     {
     	$form = $this->createForm(UserType::class, $user);
@@ -149,7 +150,7 @@ class UserController extends AbstractController
      */
     public function teamList()
     {
-        return $this->render('team/list.html.twig');
+        return $this->render('user/list.html.twig');
     }
 
 }

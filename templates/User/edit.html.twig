@@ -1,3 +1,310 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col-md-12 left_border contact1_background_col9">
+    <div class="row">
+        <div class="col-md-4 p-0">
+            <div class="contacts1_text">
+                <h3 class="contact1h3">Équipe commerciale</h3>
+            </div>
+        </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-3">
+            <div class="contact3_input_container3">
+                <input class="contact-input-field3" type="text" placeholder="Rechercher..." name="email">
+                <i class="fas fa-search "></i>
+            </div>
+        </div>
+    </div>
+    <div class="contact_form ">
+        <div class="row justify-content-center ml-0 mr-0 mb-5">
+            <div class="col-md-12 ">
+                <div class="row rounded border">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="contact2_saisieh3 pt-4 ml-5">ALTRAN,<span class="contact3span">  Ingénierie (75008 Paris)</span> </h3>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row form_right_active_text">
+                                    <div class="col-md-3"> </div>
+                                    <div class="col-md-2 text-right mt-3">   <span> à jour </span></div>
+                                    <div class="col-md-4 p-0 mt-3"> <span>Dernière mise à jour le  12/12/2018</span></div>
+                                    <div class="col-md-3 mt-3">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitches">
+                                            <label class="custom-control-label" for="customSwitches"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 pt-4 pb-5">
+                        <div class="contact_formnav">
+                            <nav class="nav">
+                                <a class="nav-link active" href="#">Identité</a>
+                                <a class="nav-link" href="#">Contacts <span class="enterprise3_form_a">
+                                3
+                                </span></a>
+                                <a class="nav-link" href="#">Notes</a>
+                                <a class="nav-link " href="#">Historique</a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                <form id="form1" runat="server">
+                                    <div class="contact_userimg">
+                                        <img  id="blah" src="{{ asset("img/circle.png") }}" alt="your image" />
+                                    </div>
+                                    <div class="userimg_label2">
+                                        <input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
+                                        <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
+                                    </div>
+                                    <!-- <input class="uploadFile" type='file' id="imgInp" placeholder="Photo" /> -->
+                                </form>
+                                <script>
+
+                                function readURL(input) {
+
+                                if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function(e) {
+                                $('#blah').attr('src', e.target.result);
+                                }
+
+                                reader.readAsDataURL(input.files[0]);
+                                }
+                                }
+
+                                $("#imgInp").change(function() {
+                                readURL(this);
+                                });
+                                </script>             
+                            </div>
+                            <div class="col-md-10">
+                                <form>
+                                    <div class="row form_client">
+                                        <div class="col-md-6">
+                                            <div class="row  from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Code collaborateur</p>
+                                                </div>
+                                                <div class="col-md-7 input_border_left form-group code_client"><input class=" form-control" type="text" placeholder="1254789
+                                                "></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Genre</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main input_border_left">
+                                                    <div class="form-group genre_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">Homme</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Prénom</p>
+                                                </div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="Christophe"></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Nom</p>
+                                                </div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="DUCHEMIN"></div>
+                                            </div>
+                                            <div class="row pt-3 from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Date de naissance</p>
+                                                </div>
+                                                <div class="col-md-7  form-group code_client"><input class=" form-control"  id="today" type="date" placeholder=""></div>
+                                            </div>
+                                            <div class="row pt-3 from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Date de naissance</p>
+                                                </div>
+                                                <div class="col-md-7  form-group commercial_date_input"><input class=" form-control" type="date" id="today"><input class=" form-control" type="date" id=""></div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Tél. mobile</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="06 70 61 95 99">
+                                                    <span class="input-group-addon phone_input_position"><i class="fas fa-mobile"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil Linkedin</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="/frederic-duchemin">
+                                                    <span class="input-group-addon phone_input_position"><i class="fab fa-linkedin"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil Facebook</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="/frederic.duchemin">
+                                                    <span class="input-group-addon phone_input_position"><i class="fab fa-facebook-square"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil Twitter</p>
+                                                </div>
+                                                <div class="col-md-7 phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="/fredericduchemin">
+                                                    <span class="input-group-addon phone_input_position"><i class="fab fa-twitter-square"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="row  ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>E-mail</p>
+                                                </div>
+                                                <div class="col-md-7 phone_input input-group ">
+                                                    <input id="" type="email" class="form-control" name="" placeholder="c.duchemin@scantech.fr">
+                                                    <span class="input-group-addon contact_checkbox_position">
+                                                    <div class="custom-control custom-checkbox ">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" checked>
+                                                        <label class="custom-control-label" for="customCheck"></label>
+                                                    </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Mot de passe</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="password" class="form-control" name="" placeholder="••••••••">
+                                                    <span class="input-group-addon phone_input_position2"><i class="fas fa-lock "></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-5">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Zone affectée</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">Picardie</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Fonction/poste</p>
+                                                </div>
+                                                <div class="col-md-7  prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="Directeur commercial"></div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil/droits</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">Directeur</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Responsable N+1</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        <select class="custom-select" required>
+                                                            <option value="">Jean-Christophe MARCHAND</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Tél. fixe direct</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    <input id="" type="text" class="form-control" name="" placeholder="03 44 86 75 04">
+                                                    <span class="input-group-addon phone_input_position2"><i class="fas fa-phone"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Remarques</p>
+                                                </div>
+                                                <div class="col-md-7 contact_form_textarea  form-group ">
+                                                <!--                         <input class="input_size_big form-control" type="text" placeholder=""></div>-->
+                                                    <textarea class="form-control" rows="5" id="comment" placeholder="Signer la charte informatique 2019" ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 pt-5">
+                        <div class="row py-4"> 
+                            <div class="col-md-3">
+                                <div class="retourbutton">
+                                    <button  type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i> RETOUR </button>
+                                </div>
+                            </div>      
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3 pr-0">
+                                <div class="supprimebutton">
+                                    <button  type="button" class="btn btn-primary">SUPPRIMER</button>
+                                </div>
+                            </div>      
+                            <div class="col-md-3">
+                                <div class="demandbutton">
+                                    <button  type="button" class="btn btn-primary">DEMANDE DE MISE À JOUR</button>
+                                </div>
+                            </div>      
+                            <div class="col-md-2">  <div class="enregisterbutton">
+                                <button  type="button" class="btn btn-primary">ENREGISTRER</button>
+                            </div></div>      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 {{ form_widget(form) }}
 {{ form_end(form) }}
+{% endblock %}
