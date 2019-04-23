@@ -29,9 +29,6 @@ class ContactController extends AbstractController
         $contact = new Contact();
 
         $form = $this->createForm(ContactType::class, $contact);
-        $form->add('submit', SubmitType::class, [
-            'label' => 'Enregistrer',
-        ]);
 
         $form->handleRequest($request);
 
@@ -40,7 +37,7 @@ class ContactController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
-            return $this->render('contact/success.html.twig', array('message' => 'all clear'));
+            return $this->render('contact/list.html.twig', array('message' => 'all clear'));
         }
 
         return $this->render('contact/new.html.twig', array('form' => $form->createView()));
@@ -55,10 +52,6 @@ class ContactController extends AbstractController
 
         $form = $this->createForm(ContactType::class, $contact);
 
-        $form->add('submit', SubmitType::class, [
-            'label' => 'Modifier',
-            'attr' => ['class' => 'btn btn-default pull-right'],
-        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -67,8 +60,12 @@ class ContactController extends AbstractController
             $em->flush();
             return $this->render('contact/success.html.twig', array('message' => 'all clear'));
         }
+        $personne = $this->getDoctrine()
+            ->getRepository(Contact::class)
+            ->find($contact);
 
-        return $this->render('contact/edit.html.twig', array('form' => $form->createView()));
+
+        return $this->render('contact/edit.html.twig', array('form' => $form->createView(), 'personne' => $personne));
     }
 
     /**
@@ -82,7 +79,6 @@ class ContactController extends AbstractController
         $contacts = $this->getDoctrine()
             ->getRepository(Contact::class)
             ->findAll();
-
 
         return $this->render('contact/list.html.twig', array(
             'contacts' => $contacts
