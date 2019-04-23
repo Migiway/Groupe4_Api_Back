@@ -24,6 +24,11 @@ class Role
     private $libelle;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private  $code;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role")
      */
     private $users;
@@ -77,6 +82,18 @@ class Role
                 $user->setRole(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
 
         return $this;
     }
