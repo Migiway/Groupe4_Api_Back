@@ -138,10 +138,6 @@ class User
         return $this->id;
     }
 
-    public function __toString()
-    {
-        return $this->user_lastName;
-    }
     
     public function getUserLastName(): ?string
     {
