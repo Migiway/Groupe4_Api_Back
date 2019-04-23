@@ -51,7 +51,10 @@ class ActivityArea
     {
         return $this->activity_area;
     }
-
+    public function __toString()
+    {
+        return $this->activity_area;
+    }
     public function setActivityArea(string $activity_area): self
     {
         $this->activity_area = $activity_area;

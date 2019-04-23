@@ -46,7 +46,10 @@ class NbSalary
     {
         return $this->id;
     }
-
+    public function __toString()
+    {
+        return $this->salary_libelle;
+    }
     public function getSalaryLibelle(): ?string
     {
         return $this->salary_libelle;
