@@ -181,6 +181,10 @@ class Company
     {
         return $this->company_name;
     }
+    public function __toString()
+    {
+        return $this->company_name;
+    }
 
     public function setCompanyName(string $company_name): self
     {

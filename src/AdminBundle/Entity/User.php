@@ -133,6 +133,10 @@ class User
     {
         return $this->user_lastName;
     }
+    public function __toString()
+    {
+        return $this->user_lastName;
+    }
 
     public function setUserLastName(string $user_lastName): self
     {
