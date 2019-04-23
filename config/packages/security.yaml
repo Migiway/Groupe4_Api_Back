@@ -1,9 +1,7 @@
 security:
     encoders:
-        App\Entity\UserAdmin:
-            algorithm: argon2i
-        App\Entity\User:
-            algorithm: argon2i
+        App\AdminBundle\Entity\User:
+            algorithm: bcrypt
 
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -11,7 +9,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\AdminBundle\Entity\User
                 property: email
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:

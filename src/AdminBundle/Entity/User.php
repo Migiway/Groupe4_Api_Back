@@ -391,7 +391,15 @@ class User
 
     public function getRole(): ?Role
     {
-        return $this->role;
+        //return $this->role;
+        if (!is_null($this->role))
+        {
+            $roles[] = $this->role->getCode();
+            // guarantee every user at least has ROLE_USER
+
+        }
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
     public function setRole(?Role $role): self
