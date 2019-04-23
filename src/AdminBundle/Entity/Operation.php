@@ -5,6 +5,7 @@ namespace App\AdminBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -25,6 +26,23 @@ class Operation
      * @Assert\NotBlank
      */
     private $operation_name;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $operation_relance;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     */
+    private $operation_code;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     */
+    private $operation_object;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -119,6 +137,37 @@ class Operation
     private $participates;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $operation_envoiDate;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $operation_dateCloture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="author")
+     * @Assert\NotBlank(message = "Ce champ doit être remplit")
+     */
+    private $operation_author;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $operation_note;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $operation_info;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $operation_offre;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_operation")
      */
     private $parameters;
@@ -127,6 +176,7 @@ class Operation
     {
         $this->participates = new ArrayCollection();
         $this->parameters = new ArrayCollection();
+        $this->companies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +195,114 @@ class Operation
 
         return $this;
     }
+
+    public function getOperationObject(): ?string
+    {
+        return $this->operation_object;
+    }
+
+    public function setOperationObject(string $operation_object): self
+    {
+        $this->operation_object = $operation_object;
+
+        return $this;
+    }
+
+    public function getOperationCode(): ?string
+    {
+        return $this->operation_code;
+    }
+
+    public function setOperationCode(string $operation_code): self
+    {
+        $this->operation_code = $operation_code;
+
+        return $this;
+    }
+
+    public function getOperationRelance(): ?int
+    {
+        return $this->operation_relance;
+    }
+
+    public function setOperationRelance(?int $operation_relance): self
+    {
+        $this->operation_relance = $operation_relance;
+
+        return $this;
+    }
+    public function getOperationEnvoiDate(): ?\DateTimeInterface
+    {
+        return $this->operation_envoiDate;
+    }
+
+    public function setOperationEnvoiDate(\DateTimeInterface $operation_envoiDate): self
+    {
+        $this->operation_envoiDate = $operation_envoiDate;
+
+        return $this;
+    }
+
+    public function getOperationDateCloture(): ?\DateTimeInterface
+    {
+        return $this->operation_dateCloture;
+    }
+
+    public function setOperationDateCloture(?\DateTimeInterface $operation_dateCloture): self
+    {
+        $this->operation_dateCloture = $operation_dateCloture;
+
+        return $this;
+    }
+
+    public function getOperationAuthor(): ?string
+    {
+        return $this->operation_author;
+    }
+
+    public function setOperationAuthor(?string $operation_author): self
+    {
+        $this->operation_author = $operation_author;
+
+        return $this;
+    }
+
+    public function getOperationNote(): ?string
+    {
+        return $this->operation_note;
+    }
+
+    public function setOperationNote(?string $operation_note): self
+    {
+        $this->operation_note = $operation_note;
+
+        return $this;
+    }
+
+    public function getOperationInfo(): ?bool
+    {
+        return $this->operation_info;
+    }
+
+    public function setOperationInfo(?bool $operation_info): self
+    {
+        $this->operation_info = $operation_info;
+
+        return $this;
+    }
+
+    public function getOperationOffre(): ?bool
+    {
+        return $this->operation_offre;
+    }
+
+    public function setOperationOffre(?bool $operation_offre): self
+    {
+        $this->operation_offre = $operation_offre;
+
+        return $this;
+    }
+
 
     public function getOperationUrl(): ?string
     {
@@ -349,6 +507,8 @@ class Operation
 
         return $this;
     }
+
+
 
     /**
      * @return Collection|Participate[]

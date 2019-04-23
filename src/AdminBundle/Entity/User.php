@@ -118,11 +118,17 @@ class User
      */
     private $role;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="operation_author")
+     */
+    private $author;
+
     public function __construct()
     {
         $this->operations = new ArrayCollection();
         $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->author = new ArrayCollection();
         $this->user_createdAt = new \DateTime;
         $this->user_updateAt = new \DateTime;
     }
@@ -384,6 +390,24 @@ class User
             if ($company->getUserId() === $this) {
                 $company->setUserId(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Company[]
+     */
+    public function getAuthor(): Collection
+    {
+        return $this->author;
+    }
+
+    public function addAuthor(Author $author): self
+    {
+        if (!$this->author->contains($author)) {
+            $this->author[] = $author;
+            $author->setUserId($this);
         }
 
         return $this;
