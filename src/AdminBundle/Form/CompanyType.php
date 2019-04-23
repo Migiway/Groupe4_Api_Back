@@ -3,6 +3,7 @@ namespace App\AdminBundle\Form;
 
 use App\Entity\Post;
 use App\AdminBundle\Entity\Contacts;
+use App\AdminBundle\Entity\Company;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,10 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Proxies\__CG__\App\AdminBundle\Entity\User;
+use App\AdminBundle\Entity\User;
+use App\AdminBundle\Entity\StatutJuridique;
+use App\AdminBundle\Entity\ActivityArea;
+use App\AdminBundle\Entity\NbSalary;
 
 class CompanyType extends AbstractType
 {
@@ -27,29 +31,112 @@ class CompanyType extends AbstractType
         $builder
             ->add('user_id', EntityType::class, [
                 'class' => User::class,
-                'query_builder' => function (EntityRepository $requete) {
-                    return $requete->createQueryBuilder('u')
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
                         ->orderBy('u.user_lastName', 'ASC');
                 },
-                "label" => "Compte suivi par"
+                "label" => "Compte suivi par",
+                'required' => false
             ])
-        ->add('company_code', TextType::class, array('label' => 'Code : '))
-        ->add('company_name', TextType::class, array('label' => 'Nom : '))
-        ->add('company_status', TextType::class, array('label' => 'Status : '))
-        ->add('company_logo', TextType::class, array('label' => 'Logo : '))
-        ->add('company_commentary', TextType::class, array('label' => 'Commentaire : '))
-        ->add('company_category', TextType::class, array('label' => 'Catégories : '))
-        ->add('company_address', TextType::class, array('label' => 'Adresse : '))
-        ->add('company_comp_address', TextType::class, array('label' => 'Complémentaire adresse : '))
-        ->add('company_postcode', TextType::class, array('label' => 'Code postal : '))
-        ->add('company_city', TextType::class, array('label' => 'Ville : '))
-        ->add('company_phone', TextType::class, array('label' => 'Téléphone : '))
-        ->add('company_fax', TextType::class, array('label' => 'Fax : '))
-        ->add('company_website', TextType::class, array('label' => 'Site web : '))
-        ->add('company_siret', TextType::class, array('label' => 'SIRET : '))
-        ->add('company_codeNaf', TextType::class, array('label' => 'Code NAF : '))
-        ->add('company_source', TextType::class, array('label' => 'Source : '));
-
+            ->add('statut_juridique_id', EntityType::class, [
+                'class' => StatutJuridique::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('l')
+                        ->orderBy('l.label', 'ASC');
+                },
+                "label" => "Statut juridique",
+                'required' => false
+            ])
+            ->add('secteur_activite_id', EntityType::class, [
+                'class' => ActivityArea::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.activity_area', 'ASC');
+                },
+                "label" => "Activité (NAF)",
+                'required' => false
+            ])
+            ->add('companyStatus', ChoiceType::class, [
+                   'choices'  => [
+                       'Piste' => 'Piste',
+                       'Prospect' => 'Prospect',
+                       'Client' => 'Client',
+                       'Inactif' => 'Inactif',
+                   ],
+                   'label' => 'Statut',
+                   'required' => false
+               ])
+            ->add('nb_salarie_id', EntityType::class, [
+                'class' => NbSalary::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('n')
+                        ->orderBy('n.salary_libelle', 'ASC');
+                },
+                "label" => "Effectifs",
+                'required' => false
+            ])
+            ->add('companyCode', TextType::class, array(
+                'label' => 'Code entreprise',
+                'required' => false
+            ))
+            ->add('companyEmail', TextType::class, array(
+                'label' => 'Email',
+                'required' => false
+            ))
+            ->add('companyCa', TextType::class, array(
+                'label' => 'Chiffre d\'affaire',
+                'required' => false
+            ))
+            ->add('companyName', TextType::class, array(
+                'label' => 'Nom',
+                'required' => false
+            ))
+            ->add('companyCommentary', TextareaType::class, array(
+                'label' => 'Commentaire',
+                'required' => false
+            ))
+            ->add('companyAddress', TextType::class, array(
+                'label' => 'Adresse',
+                'required' => false
+            ))
+            ->add('companyCompAddress', TextType::class, array(
+                'label' => 'Complémentaire adresse',
+                'required' => false
+            ))
+            ->add('companyPostcode', TextType::class, array(
+                'label' => 'Code postal',
+                'required' => false
+            ))
+            ->add('companyCity', TextType::class, array(
+                'label' => 'Ville',
+                'required' => false
+            ))
+            ->add('companyPhone', TextType::class, array(
+                'label' => 'Téléphone',
+                'required' => false
+            ))
+            ->add('companyFax', TextType::class, array(
+                'label' => 'Fax',
+                'required' => false
+            ))
+            ->add('companyWebsite', TextType::class, array(
+                'label' => 'Site web',
+                'required' => false
+            ))
+            ->add('companySiret', TextType::class, array(
+                'label' => 'N° SIRET',
+                'required' => false
+            ))
+            ->add('save', SubmitType::class, [
+               'attr' => ['class' => 'btn btn-primary'],
+               'label' => 'Enregistrer',
+                ]);
     }
 
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Company::class,
+        ]);
+    }
 }

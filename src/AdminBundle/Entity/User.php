@@ -133,13 +133,16 @@ class User
         $this->user_updateAt = new \DateTime;
     }
 
-
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    public function __toString()
+    {
+        return $this->user_lastName;
+    }
+    
     public function getUserLastName(): ?string
     {
         return $this->user_lastName;
