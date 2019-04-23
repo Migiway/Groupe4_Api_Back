@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: migiw
- * Date: 23/04/2019
- * Time: 09:31
- */
 
-namespace App\AdminBundle\Repository;
+namespace App\Repository;
 
 use App\AdminBundle\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-
 
 /**
  * @method Role|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,4 +18,33 @@ class RoleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Role::class);
     }
+
+    // /**
+    //  * @return Role[] Returns an array of Role objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Role
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }

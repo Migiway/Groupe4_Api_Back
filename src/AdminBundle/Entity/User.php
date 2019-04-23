@@ -116,7 +116,7 @@ class User
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Role", inversedBy="users")
      */
-    private $role_id;
+    private $role;
 
     public function __construct()
     {
@@ -389,9 +389,16 @@ class User
         return $this;
     }
 
-    public function getRole()
+    public function getRole(): ?Role
     {
-        return $this->role_id;
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): self
+    {
+        $this->role = $role;
+
+        return $this;
     }
 
 }
