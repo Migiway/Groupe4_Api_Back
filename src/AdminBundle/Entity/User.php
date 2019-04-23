@@ -113,6 +113,11 @@ class User
      */
     private $companies;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Role", inversedBy="users")
+     */
+    private $role_id;
+
     public function __construct()
     {
         $this->operations = new ArrayCollection();
@@ -382,6 +387,11 @@ class User
         }
 
         return $this;
+    }
+
+    public function getRole()
+    {
+        return $this->role_id;
     }
 
 }
