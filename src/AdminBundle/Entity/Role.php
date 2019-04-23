@@ -1,22 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: migiw
- * Date: 23/04/2019
- * Time: 09:30
- */
 
 namespace App\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\DateTime;
-
 
 /**
- * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\RoleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\RoleRepository")
  */
 class Role
 {
@@ -28,31 +19,18 @@ class Role
     private $id;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $role_createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $role_updateAt;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role")
      */
     private $users;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->role_createdAt = new \DateTime;
-        $this->role_updateAt = new \DateTime;
     }
 
     public function getId(): ?int
@@ -68,6 +46,37 @@ class Role
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setRole($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getRole() === $this) {
+                $user->setRole(null);
+            }
+        }
 
         return $this;
     }
