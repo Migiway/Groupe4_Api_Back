@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="col-md-3 p-0">
-      <div class="contacts1_text">
-    <h3 class="contact1h3">Équipe commerciale<span class="contact1span"> (22)</span></h3>
-    </div>
+    <div class="col-md-3 p-0">
+        <div class="contacts1_text">
+            <h3 class="contact1h3">Équipe commerciale<span class="contact1span"> (22)</span></h3>
+        </div>
     </div>
     <div class="col-md-6">
 
@@ -21,27 +21,51 @@
             <!--       data tables-->
 
 
-
             <div class="hero-callout">
                 <div id="example_wrapper" class="dataTables_wrapper">
 
-                    <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3" style="width: 100%;" role="grid" aria-describedby="example_info">
+                    <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3"
+                           style="width: 100%;" role="grid" aria-describedby="example_info">
                         <thead>
                         <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 20px;" aria-sort="ascending"
+                                aria-label="Name: activate to sort column descending">
                                 <div class="custom-control custom-checkbox ">
                                     <input type="checkbox" class="custom-control-input" id="customCheck" checked>
                                     <label class="custom-control-label" for="customCheck"></label>
                                 </div>
                             </th>
-                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Prénom</th>
-                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Position: activate to sort column ascending">Nom</th>
-                            <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Age: activate to sort column ascending">Fonction</th>
-                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Zone affectée</th>
-                            <th class="sorting commerciale_enterprise_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Office: activate to sort column ascending">Entreprise</th>
-                            <th class="sorting commerciale_contact_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Contacts</th>
-                            <th class="sorting commerciale_score_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Score</th>
-                            <th class="sorting phone_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 50px;" aria-label="Start date: activate to sort column ascending"><i class="fas fa-ellipsis-h"></i></th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 150px;" aria-sort="ascending"
+                                aria-label="Name: activate to sort column descending">Prénom
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 100px;" aria-label="Position: activate to sort column ascending">Nom
+                            </th>
+                            <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1"
+                                colspan="1" style="width: 100px;" aria-label="Age: activate to sort column ascending">
+                                Fonction
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 100px;" aria-label="Start date: activate to sort column ascending">Zone
+                                affectée
+                            </th>
+                            <th class="sorting commerciale_enterprise_th" tabindex="0" aria-controls="example"
+                                rowspan="1" colspan="1" style="width: 100px;"
+                                aria-label="Office: activate to sort column ascending">Entreprise
+                            </th>
+                            <th class="sorting commerciale_contact_th" tabindex="0" aria-controls="example" rowspan="1"
+                                colspan="1" style="width: 100px;"
+                                aria-label="Start date: activate to sort column ascending">Contacts
+                            </th>
+                            <th class="sorting commerciale_score_th" tabindex="0" aria-controls="example" rowspan="1"
+                                colspan="1" style="width: 100px;"
+                                aria-label="Start date: activate to sort column ascending">Score
+                            </th>
+                            <th class="sorting phone_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 50px;" aria-label="Start date: activate to sort column ascending"><i
+                                        class="fas fa-ellipsis-h"></i></th>
 
                         </tr>
                         </thead>
@@ -53,11 +77,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -81,16 +106,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -106,17 +135,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -132,17 +164,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -158,11 +193,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -186,16 +222,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -211,17 +251,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -237,17 +280,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -264,11 +310,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -292,16 +339,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -317,17 +368,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -343,17 +397,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -370,11 +427,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -398,16 +456,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -423,17 +485,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -449,17 +514,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -476,11 +544,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -504,16 +573,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -529,17 +602,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -555,17 +631,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -582,11 +661,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -610,16 +690,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -635,17 +719,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -661,17 +748,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -688,11 +778,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -716,16 +807,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -741,17 +836,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -767,17 +865,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -794,11 +895,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -822,16 +924,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -847,17 +953,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -873,17 +982,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -899,11 +1011,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -927,16 +1040,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -952,17 +1069,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -978,17 +1098,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1005,11 +1128,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1033,16 +1157,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1058,17 +1186,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1084,17 +1215,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1110,11 +1244,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1138,16 +1273,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1163,17 +1302,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1189,17 +1331,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1215,11 +1360,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1243,16 +1389,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1268,17 +1418,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1294,17 +1447,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1320,11 +1476,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1348,16 +1505,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1373,17 +1534,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1399,17 +1563,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1425,11 +1592,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1453,16 +1621,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1478,17 +1650,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1504,17 +1679,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1530,11 +1708,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1558,16 +1737,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1583,17 +1766,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1609,17 +1795,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1635,11 +1824,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1663,16 +1853,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1688,17 +1882,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1714,17 +1911,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1740,11 +1940,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1768,16 +1969,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1793,17 +1998,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1819,17 +2027,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1845,11 +2056,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1873,16 +2085,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1898,17 +2114,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1924,17 +2143,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -1950,11 +2172,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -1978,16 +2201,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2003,17 +2230,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2029,17 +2259,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2055,11 +2288,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2083,16 +2317,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2108,17 +2346,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2134,17 +2375,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2160,11 +2404,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2188,16 +2433,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2213,17 +2462,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2239,17 +2491,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2265,11 +2520,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2293,16 +2549,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2318,17 +2578,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2344,17 +2607,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2370,11 +2636,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2398,16 +2665,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2423,17 +2694,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2449,17 +2723,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2475,11 +2752,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2503,16 +2781,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2528,17 +2810,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2554,17 +2839,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2580,11 +2868,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2608,16 +2897,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2633,17 +2926,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2659,17 +2955,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2685,11 +2984,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2713,16 +3013,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2738,17 +3042,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2764,17 +3071,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2790,11 +3100,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2818,16 +3129,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2843,17 +3158,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2869,17 +3187,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2895,11 +3216,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -2923,16 +3245,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2948,17 +3274,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -2974,17 +3303,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3000,11 +3332,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -3028,16 +3361,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3053,17 +3390,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3079,17 +3419,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3105,11 +3448,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -3133,16 +3477,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3158,17 +3506,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3184,17 +3535,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3210,11 +3564,12 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
                             <td>BOULANGER</td>
                             <td>Directeur commercial</td>
                             <td>Picardie</td>
-                            <td>  <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
                                 </div>
                             </td>
@@ -3238,16 +3593,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Juliette</td>
                             <td>GRANDJEAN</td>
                             <td>Directeur commercial</td>
                             <td>Ile-de-France</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     48
-                                </div></td>
-                            <td><div class="enterprise_contact_td">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="enterprise_contact_td">
                                     60
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3263,17 +3622,20 @@
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Guillaume</td>
                             <td>DUCHEMIN</td>
                             <td>Directeur commercial</td>
                             <td>Nord-Pas-de-Calais</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     47
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     50
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3289,17 +3651,20 @@
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu </td>
+                            <td><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Mathieu</td>
                             <td>DEPASQUIER</td>
                             <td>Directeur commercial</td>
                             <td>Bretagne</td>
-                            <td> <div class="commerciale_enterprise_td">
+                            <td>
+                                <div class="commerciale_enterprise_td">
                                     64
                                 </div>
                             </td>
-                            <td><div class="enterprise_contact_td">
+                            <td>
+                                <div class="enterprise_contact_td">
                                     70
-                                </div></td>
+                                </div>
+                            </td>
                             <td>
                                 <div class="commerciale_score_td">
                                     60
@@ -3307,8 +3672,6 @@
                             </td>
                             <td class="table_phone"><a href="#">@</a> <a href="#"><i class="fas fa-phone"></i></a></td>
                         </tr>
-
-
 
 
                         <!--
@@ -3399,7 +3762,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="pagibutton">
-                        <button href="/admin/user/new" type="button" class="btn btn-primary">AJOUTER</button>
+                        <a href="/admin/user/new">
+                            <button type="button" class="btn btn-primary">AJOUTER</button>
+                        </a>
                     </div>
                 </div>
             </div>

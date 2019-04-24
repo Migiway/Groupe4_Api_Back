@@ -27,13 +27,12 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
-                                <h3 class="contact2_saisieh3 pt-4 ml-5">Jeu concours HAFA 2019,<span class="contact3span">   568 destinataires</span> </h3>
+                                <h3 class="contact2_saisieh3 pt-4 ml-5">Jeu concours HAFA 2019,<span
+                                            class="contact3span">   568 destinataires</span></h3>
                             </div>
                             <div class="col-md-6">
 
                             </div>
-
-
 
 
                         </div>
@@ -58,10 +57,12 @@
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                                 <form id="form1" runat="server">
                                     <div class="contact_userimg">
-                                        <img  id="blah" src="img/circle.png" alt="your image" />
+                                        <img id="blah" src="img/circle.png" alt="your image"/>
                                     </div>
                                     <div class="userimg_label2">
-                                        <input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
+                                        <input type="file" name="file-1[]" id="imgInp"
+                                               class="uploadFile custom-file-input inputfile inputfile-1 "
+                                               data-multiple-caption="{count} files selected" multiple="">
                                         <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
                                     </div>
                                     <!-- <input class="uploadFile" type='file' id="imgInp" placeholder="Photo" /> -->
@@ -73,7 +74,7 @@
                                         if (input.files && input.files[0]) {
                                             var reader = new FileReader();
 
-                                            reader.onload = function(e) {
+                                            reader.onload = function (e) {
                                                 $('#blah').attr('src', e.target.result);
                                             }
 
@@ -81,7 +82,7 @@
                                         }
                                     }
 
-                                    $("#imgInp").change(function() {
+                                    $("#imgInp").change(function () {
                                         readURL(this);
                                     });
                                 </script>
@@ -95,13 +96,17 @@
                                                 <div class="col-md-5 form_text">
                                                     <p>Code entreprise</p>
                                                 </div>
-                                                <div class="col-md-7 input_border_left form-group code_client"><input class=" form-control" type="text" placeholder="1254789"></div>
+                                                <div class="col-md-7 input_border_left form-group code_client"><input
+                                                            class=" form-control" type="text" placeholder="1254789">
+                                                </div>
                                             </div>
                                             <div class="row pt-3">
                                                 <div class="col-md-5 form_text">
                                                     <p>Nom de l'opération </p>
                                                 </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder=""></div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group "><input
+                                                            class="input_size_big form-control" type="text"
+                                                            placeholder=""></div>
                                             </div>
                                             <div class="row pt-3">
                                                 <div class="col-md-5 form_text">
@@ -115,7 +120,9 @@
                                                             <option value="2">Two</option>
                                                             <option value="3">Three</option>
                                                         </select>
-                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                        <div class="invalid-feedback">Example invalid custom select
+                                                            feedback
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,7 +130,9 @@
                                                 <div class="col-md-5 form_text">
                                                     <p>Objet du e-mail</p>
                                                 </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder=""></div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group "><input
+                                                            class="input_size_big form-control" type="text"
+                                                            placeholder=""></div>
                                             </div>
                                             <div class="row pt-3">
                                                 <div class="col-md-5 form_text">
@@ -137,7 +146,9 @@
                                                             <option value="2">Two</option>
                                                             <option value="3">Three</option>
                                                         </select>
-                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                        <div class="invalid-feedback">Example invalid custom select
+                                                            feedback
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -145,7 +156,8 @@
                                                 <div class="col-md-5 form_text">
                                                     <p>Date d'envoi</p>
                                                 </div>
-                                                <div class="col-md-7  form-group code_client"><input class=" form-control" type="date" id="today"></div>
+                                                <div class="col-md-7  form-group code_client"><input
+                                                            class=" form-control" type="date" id="today"></div>
                                                 <script>
                                                     let today = new Date().toISOString().substr(0, 10);
                                                     document.querySelector("#today").value = today;
@@ -158,16 +170,13 @@
                                                 <div class="col-md-5 form_text">
                                                     <p>Date de clotûre</p>
                                                 </div>
-                                                <div class="col-md-7  form-group code_client"><input class=" form-control" type="date" id="today"></div>
+                                                <div class="col-md-7  form-group code_client"><input
+                                                            class=" form-control" type="date" id="today"></div>
 
                                             </div>
 
 
-
-
                                         </div>
-
-
 
 
                                         <div class="col-md-6 ">
@@ -185,7 +194,9 @@
                                                             <option value="2">Two</option>
                                                             <option value="3">Three</option>
                                                         </select>
-                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                        <div class="invalid-feedback">Example invalid custom select
+                                                            feedback
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,21 +223,24 @@
                     </div>
                     <div class="col-md-12 pt-5 pt200">
                         <div class="row py-4">
-                            <div class="col-md-3">  <div class="retourbutton">
-                                    <button  type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i> RETOUR </button>
-                                </div> </div>
-                            <div class="col-md-1"> </div>
-                            <div class="col-md-3"> </div>
+                            <div class="col-md-3">
+                                <div class="retourbutton">
+                                    <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
+                                        RETOUR
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3"></div>
                             <div class="col-md-3">
                                 <div class="annulerbutton">
-                                    <button  type="button" class="btn btn-primary">ANNULER</button>
+                                    <button type="button" class="btn btn-primary">ANNULER</button>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="enregisterbutton">
-                                    <button  type="button" class="btn btn-primary">ENREGISTRER</button>
+                                    <button type="button" class="btn btn-primary">ENREGISTRER</button>
                                 </div>
-
 
 
                             </div>

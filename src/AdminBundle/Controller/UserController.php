@@ -1,6 +1,8 @@
 <?php
+
 namespace App\AdminBundle\Controller;
 
+use App\AdminBundle\Form\LoginType;
 use App\AdminBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\User;
@@ -12,65 +14,96 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;	
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Reponse;
 
 
 /**
-* @Route("/user")
-* Class UserController
-* @package App\Controller
-*/
+ * @Route("/user")
+ * Class UserController
+ * @package App\Controller
+ */
 class UserController extends AbstractController
 {
-	/**
-	* @Route("/new", name="user_new", methods={"GET","POST"})
-	*/
-    public function new(Request $request)
+    /**
+     * @Route("/login", methods = {"GET"}, name ="user_authentication")
+     * @param Request $request
+     * @param AuthenticationUtils $authenticationUtils
+     * @param TokenStorageInterface $storage
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function login(Request $request, AuthenticationUtils $authenticationUtils, TokenStorageInterface $storage)
     {
-    	$user = new User();
-
-        $form = $this->createForm(UserType::class, $user);
-
-		$form->handleRequest($request);
-
-		if ($request->isMethod('POST')) {
-        	$this->newApi($request);
-        	
+        $user = $storage->getToken()->getUser();
+        if ($user instanceof UserInterface) {
+            return $this->redirectToRoute('user_new');
         }
-
-       /* if ($form->isSubmitted() && $form->isValid())
-        {
-
-            $task = $form->getData();
-
-        	$entityManager = $this->getDoctrine()->getManager();
-        	$entityManager->persist($task);
-        	$entityManager->flush();
-
-        }*/
-
-        return $this->render('user/new.html.twig', array('form' => $form->createView()));
+        $form = $this->createForm(LoginType::class, null, ['action' => $this->generateUrl('user_login_check')]);
+        $form->handleRequest($request);
+        return $this->render('user/login.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-	* @Route("", name="user_post", methods={"POST"})
-	*/
-    public function newApi(Request $request)
+     * @Route("/check", methods = {"POST"}, name="user_login_check")
+     * @throws AuthenticationErrorException
+     */
+    public function checkLogin()
     {
-    	/*SerializeInterface $serializer  -^ */
-    	$user = new User();
+        throw new AuthenticationErrorException('Connection failed.');
+    }
+
+    /**
+     * @Route("/new", name="user_new", methods={"GET","POST"})
+     */
+    public function new(Request $request)
+    {
+        $user = new User();
 
         $form = $this->createForm(UserType::class, $user);
 
-    	$form->handleRequest($request);
+        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
-        	$task = $form->getData();
-        	$entityManager = $this->getDoctrine()->getManager();
-        	$entityManager->persist($task);
-        	$entityManager->flush();    
+        if ($request->isMethod('POST')) {
+            $this->newApi($request);
+
+        }
+
+        /* if ($form->isSubmitted() && $form->isValid())
+         {
+
+             $task = $form->getData();
+
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($task);
+             $entityManager->flush();
+
+         }*/
+
+        return $this->render('team/new.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("", name="user_post", methods={"POST"})
+     */
+    public function newApi(Request $request)
+    {
+        /*SerializeInterface $serializer  -^ */
+        $user = new User();
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($task);
+            $entityManager->flush();
         }
 
         /*$json = $serializer->Serialize(
@@ -85,36 +118,35 @@ class UserController extends AbstractController
 
     }
 
-   /**
-    * @Route ("/edit/{user}", name="user_edit")
-    * @param Request $request
-    */
-    public function edit(Request $request, User $user)	
+
+    /**
+     * @Route ("/edit/{user}")
+     * @param Request $request
+     */
+    public function edit(Request $request, User $user)
     {
-    	$form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-           {
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($user);
-             $em->flush();
-             return $this->redirectToRoute('user_list');
-           }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('user_list');
+        }
 
-           return $this->render('User/edit.html.twig', array('form' => $form->createView()));
+        return $this->render('team/edit.html.twig', array('form' => $form->createView()));
     }
 
     /**
      * @Route("", name="user_edit", methods={"PUT"})
      */
-    public function editApi(Request $request)	
+    public function editApi(Request $request)
     {
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             return $this->redirectToRoute('list.html.twig');
         }
 
@@ -124,14 +156,15 @@ class UserController extends AbstractController
     /**
      * @Route("/delete/{id}", name="user_delete", methods={"GET","POST"})
      */
-    public function delete(Request $request)	
+    public function delete(Request $request)
     {
 
     }
+
     /**
      * @Route("", name="user_delete", methods={"DELETE"})
      */
-    public function deleteApi(Request $request)	
+    public function deleteApi(Request $request)
     {
 
     }
@@ -140,9 +173,9 @@ class UserController extends AbstractController
     /**
      * @Route("/list", name="user_list")
      */
-    public function list()	
+    public function list()
     {
-    	 return $this->render('User/list.html.twig');
+        return $this->render('User/list.html.twig');
     }
 
     /**
@@ -150,7 +183,7 @@ class UserController extends AbstractController
      */
     public function teamList()
     {
-        return $this->render('user/list.html.twig');
+        return $this->render('team/list.html.twig');
     }
 
 }
