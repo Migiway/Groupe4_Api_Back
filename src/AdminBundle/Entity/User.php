@@ -401,7 +401,7 @@ class User
     /**
      * @return Collection|Company[]
      */
-    public function getAuthor(): Collection
+    /*public function getAuthor(): Collection
     {
         return $this->author;
     }
@@ -414,7 +414,7 @@ class User
         }
 
         return $this;
-    }
+    }*/
 
     public function getRole(): ?Role
     {

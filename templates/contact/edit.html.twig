@@ -32,7 +32,7 @@
                                         <div class="col-md-2 ajour_right mt-3">   <span> à jour </span></div>
                                         <div class="col-md-5 p-0 mt-3"> <span>Dernière mise à jour le  {{ personne.contactMisAJour|date('Y-m-d') }}</span></div>
                                         <div class="col-md-3 mt-3"><div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitches">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitches" {% if personne.contactStatut == true %} checked {% endif %}>
                                             <label class="custom-control-label" for="customSwitches"></label>
                                             </div>
                                         </div>
@@ -296,13 +296,18 @@
                         <div class="row py-4"> 
                             <div class="col-md-3">
                                 <div class="retourbutton">
+                                    <a href="/admin/contact/list">
                                     <button  type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i> RETOUR </button>
+                                    </a>
                                 </div>
                             </div>      
                             <div class="col-md-1"></div>
                             <div class="col-md-3 pr-0">
                                 <div class="supprimebutton">
-                                    <button  type="button" class="btn btn-primary">SUPPRIMER</button>
+                                    <a href="/admin/contact/delete/{{ personne.id }}">
+                                        <button  type="button" class="btn btn-primary">SUPPRIMER</button>
+                                    </a>
+
                                 </div>
                             </div>      
                             <div class="col-md-3">
@@ -504,12 +509,6 @@
                                                  <div class="row py-5">
                                                         <div class="col-md-12">
                                                                <textarea>Your Message Will Be Here</textarea>
-                                                               <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
-                                                               <script>
-                                                               tinymce.init({
-                                                               selector: 'textarea'
-                                                               });
-                                                               </script>
                                                         </div>
                                                  </div>
                                                  <div class="row">

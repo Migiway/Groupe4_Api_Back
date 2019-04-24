@@ -60,7 +60,7 @@ class Contact
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $contact_statut;
+    private $contact_statut = 1;
 
     /**
      * @ORM\Column(type="integer", nullable=true)

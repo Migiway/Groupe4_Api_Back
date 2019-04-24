@@ -37,7 +37,7 @@ class ContactController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
-            return $this->render('contact/list.html.twig', array('message' => 'all clear'));
+            return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
         }
 
         return $this->render('contact/new.html.twig', array('form' => $form->createView()));
@@ -66,6 +66,22 @@ class ContactController extends AbstractController
 
 
         return $this->render('contact/edit.html.twig', array('form' => $form->createView(), 'personne' => $personne));
+    }
+
+    /**
+     * @Route("/delete/{contact}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delete(Request $request, Contact $contact)
+    {
+        $unContact = $this->getDoctrine()->getRepository(Contact::class)->find($contact);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($unContact);
+        $em->flush();
+
+        return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
+
     }
 
     /**
