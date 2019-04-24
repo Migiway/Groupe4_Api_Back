@@ -27,103 +27,113 @@ class Company
      * @ORM\Column(name="company_code", type="string", length=10, nullable=false)
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
-    private $company_code;
+    private $companyCode;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, name="company_name")
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
-    private $company_name;
+    private $companyName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    private $company_status;
+    private $companyStatus;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Vich\UploadableField(mapping="company_logo", fileNameProperty="company_logo")
      */
-    private $company_logo;
+    private $companyLogo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_category;
+    private $companyCategory;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_address;
+    private $companyAddress;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_comp_address;
+    private $companyCompAddress;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_postcode;
+    private $companyPostcode;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_commentary;
+    private $companyCommentary;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_city;
+    private $companyCity;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Regex(pattern="/^[0-9]*$/", message="Veuiller rentrer un numéro de téléphone valide")
      */
-    private $company_phone;
+    private $companyPhone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Regex(pattern="/^[0-9]*$/", message="Veuiller rentrer un fax valide")
      */
-    private $company_fax;
+    private $companyFax;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_website;
+    private $companyWebsite;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @Assert\Type("\DateTime")
      */
-    private $company_creationDate;
+    private $companyCreationDate;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_siret;
+    private $companySiret;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)     
+     */
+    private $companyCodeNaf;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_codeNaf;
+    private $companySource;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_source;
+    private $companyCa;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company_createdAt;
+    private $companyEmail;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $company_updatedAt;
+    private $companyCreatedAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $companyUpdatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_company")
@@ -154,11 +164,13 @@ class Company
 
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="companies")
+     * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $user_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="companies")
+     * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $secteur_activite_id;
 
@@ -179,206 +191,210 @@ class Company
 
     public function getCompanyName(): ?string
     {
-        return $this->company_name;
+        return $this->companyName;
+    }
+    public function __toString()
+    {
+        return $this->companyName;
     }
 
-    public function setCompanyName(string $company_name): self
+    public function setCompanyName(string $companyName): self
     {
-        $this->company_name = $company_name;
+        $this->companyName = $companyName;
 
         return $this;
     }
 
     public function getCompanyStatus(): ?string
     {
-        return $this->company_status;
+        return $this->companyStatus;
     }
 
-    public function setCompanyStatus(?string $company_status): self
+    public function setCompanyStatus(?string $companyStatus): self
     {
-        $this->company_status = $company_status;
+        $this->companyStatus = $companyStatus;
 
         return $this;
     }
 
     public function getCompanyLogo(): ?string
     {
-        return $this->company_logo;
+        return $this->companyLogo;
     }
 
-    public function setCompanyLogo(?string $company_logo): self
+    public function setCompanyLogo(?string $companyLogo): self
     {
-        $this->company_logo = $company_logo;
-        if ($this->company_logo instanceof UploadedFile) {
-            $this->company_updatedAt = new \DateTime('now');
+        $this->companyLogo = $companyLogo;
+        if ($this->companyLogo instanceof UploadedFile) {
+            $this->companyUpdatedAt = new \DateTime('now');
         }
         return $this;
     }
 
     public function getCompanyCategory(): ?string
     {
-        return $this->company_category;
+        return $this->companyCategory;
     }
 
-    public function setCompanyCategory(?string $company_category): self
+    public function setCompanyCategory(?string $companyCategory): self
     {
-        $this->company_category = $company_category;
+        $this->companyCategory = $companyCategory;
 
         return $this;
     }
 
     public function getCompanyAddress(): ?string
     {
-        return $this->company_address;
+        return $this->companyAddress;
     }
 
-    public function setCompanyAddress(?string $company_address): self
+    public function setCompanyAddress(?string $companyAddress): self
     {
-        $this->company_address = $company_address;
+        $this->companyAddress = $companyAddress;
 
         return $this;
     }
 
     public function getCompanyCompAddress(): ?string
     {
-        return $this->company_comp_address;
+        return $this->companyCompAddress;
     }
 
-    public function setCompanyCompAddress(?string $company_comp_address): self
+    public function setCompanyCompAddress(?string $companyCompAddress): self
     {
-        $this->company_comp_address = $company_comp_address;
+        $this->companyCompAddress = $companyCompAddress;
 
         return $this;
     }
 
     public function getCompanyPostcode(): ?string
     {
-        return $this->company_postcode;
+        return $this->companyPostcode;
     }
 
-    public function setCompanyPostcode(?string $company_postcode): self
+    public function setCompanyPostcode(?string $companyPostcode): self
     {
-        $this->company_postcode = $company_postcode;
+        $this->companyPostcode = $companyPostcode;
 
         return $this;
     }
 
     public function getCompanyCity(): ?string
     {
-        return $this->company_city;
+        return $this->companyCity;
     }
 
-    public function setCompanyCity(?string $company_city): self
+    public function setCompanyCity(?string $companyCity): self
     {
-        $this->company_city = $company_city;
+        $this->companyCity = $companyCity;
 
         return $this;
     }
 
     public function getCompanyPhone(): ?string
     {
-        return $this->company_phone;
+        return $this->companyPhone;
     }
 
-    public function setCompanyPhone(?string $company_phone): self
+    public function setCompanyPhone(?string $companyPhone): self
     {
-        $this->company_phone = $company_phone;
+        $this->companyPhone = $companyPhone;
 
         return $this;
     }
 
     public function getCompanyFax(): ?string
     {
-        return $this->company_fax;
+        return $this->companyFax;
     }
 
-    public function setCompanyFax(?string $company_fax): self
+    public function setCompanyFax(?string $companyFax): self
     {
-        $this->company_fax = $company_fax;
+        $this->companyFax = $companyFax;
 
         return $this;
     }
 
     public function getCompanyWebsite(): ?string
     {
-        return $this->company_website;
+        return $this->companyWebsite;
     }
 
-    public function setCompanyWebsite(?string $company_website): self
+    public function setCompanyWebsite(?string $companyWebsite): self
     {
-        $this->company_website = $company_website;
+        $this->companyWebsite = $companyWebsite;
 
         return $this;
     }
 
     public function getCompanyCreationDate(): ?\DateTimeInterface
     {
-        return $this->company_creationDate;
+        return $this->companyCreationDate;
     }
 
-    public function setCompanyCreationDate(?\DateTimeInterface $company_creationDate): self
+    public function setCompanyCreationDate(?\DateTimeInterface $companyCreationDate): self
     {
-        $this->company_creationDate = $company_creationDate;
+        $this->companyCreationDate = $companyCreationDate;
 
         return $this;
     }
 
     public function getCompanySiret(): ?string
     {
-        return $this->company_siret;
+        return $this->companySiret;
     }
 
-    public function setCompanySiret(?string $company_siret): self
+    public function setCompanySiret(?string $companySiret): self
     {
-        $this->company_siret = $company_siret;
+        $this->companySiret = $companySiret;
 
         return $this;
     }
 
     public function getCompanyCodeNaf(): ?string
     {
-        return $this->company_codeNaf;
+        return $this->companyCodeNaf;
     }
 
-    public function setCompanyCodeNaf(?string $company_codeNaf): self
+    public function setCompanyCodeNaf(?string $companyCodeNaf): self
     {
-        $this->company_codeNaf = $company_codeNaf;
+        $this->companyCodeNaf = $companyCodeNaf;
 
         return $this;
     }
 
     public function getCompanySource(): ?string
     {
-        return $this->company_source;
+        return $this->companySource;
     }
 
-    public function setCompanySource(?string $company_source): self
+    public function setCompanySource(?string $companySource): self
     {
-        $this->company_source = $company_source;
+        $this->companySource = $companySource;
 
         return $this;
     }
 
     public function getCompanyCreatedAt(): ?\DateTimeInterface
     {
-        return $this->company_createdAt;
+        return $this->companyCreatedAt;
     }
 
-    public function setCompanyCreatedAt(?\DateTimeInterface $company_createdAt): self
+    public function setCompanyCreatedAt(?\DateTimeInterface $companyCreatedAt): self
     {
-        $this->company_createdAt = $company_createdAt;
+        $this->companyCreatedAt = $companyCreatedAt;
 
         return $this;
     }
 
     public function getCompanyUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->company_updatedAt;
+        return $this->companyUpdatedAt;
     }
 
-    public function setCompanyUpdatedAt(\DateTimeInterface $company_updatedAt): self
+    public function setCompanyUpdatedAt(\DateTimeInterface $companyUpdatedAt): self
     {
-        $this->company_updatedAt = $company_updatedAt;
+        $this->companyUpdatedAt = $companyUpdatedAt;
 
         return $this;
     }
@@ -504,24 +520,49 @@ class Company
     }
     public function getCompanyCommentary(): ?string
     {
-        return $this->company_commentary;
+        return $this->companyCommentary;
     }
 
-    public function setCompanyCommentary(?string $company_commentary): self
+    public function setCompanyCommentary(?string $companyCommentary): self
     {
-        $this->company_commentary = $company_commentary;
+        $this->companyCommentary = $companyCommentary;
 
         return $this;
     }
 
     public function getCompanyCode(): ?string
     {
-        return $this->company_code;
+        return $this->companyCode;
     }
 
-    public function setCompanyCode(?string $company_code): self
+    public function setCompanyCode(?string $companyCode): self
     {
-        $this->company_code = $company_code;
+        $this->companyCode = $companyCode;
+
+        return $this;
+    }
+
+    public function getCompanyCa(): ?string
+    {
+        return $this->companyCa;
+    }
+
+    public function setCompanyCa(?string $companyCa): self
+    {
+        $this->companyCa = $companyCa;
+
+        return $this;
+    }
+
+
+    public function getCompanyEmail(): ?string
+    {
+        return $this->companyEmail;
+    }
+
+    public function setCompanyEmail(?string $companyEmail): self
+    {
+        $this->companyEmail = $companyEmail;
 
         return $this;
     }

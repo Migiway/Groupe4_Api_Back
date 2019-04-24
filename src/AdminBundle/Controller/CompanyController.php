@@ -7,6 +7,7 @@ use App\AdminBundle\Entity\Company;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -27,10 +28,7 @@ class CompanyController extends AbstractController
       $company = new Company();
 
       $form = $this->createForm(CompanyType::class, $company);
-      $form->add('submit', SubmitType::class, [
-        'label' => 'Enregistrer',
-      ]);
-
+      
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid())
@@ -45,17 +43,25 @@ class CompanyController extends AbstractController
   }
 
   /**
-  * @Route ("/edit/{company}")
-  * @param Request $request
+  * @Route ("/edit/{id}", methods={"GET", "POST"})
   */
-  public function edit (Request $request, Company $company){
+  public function edit (Request $request, string $id){
+    //dump($company);
 
+    $company = $this->getDoctrine()
+          ->getRepository(Company::class)
+          ->find($id);
+
+   // dump($request->get('company')); die;
     $form = $this->createForm(CompanyType::class, $company);
 
-    $form->add('submit', SubmitType::class, [
-      'label' => 'Modifier',
-    ]);
+    //dump($company);
+    //dump($company->getCompanyName());die;
+
     $form->handleRequest($request);
+
+   // dump($company); die;
+
     if ($form->isSubmitted() && $form->isValid())
     {
       $em = $this->getDoctrine()->getManager();

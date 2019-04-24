@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     <div class="col-md-12 left_border contact1_background_col9">
         <div class="row">
             <div class="col-md-4 p-0">
@@ -24,13 +24,13 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3 class="contact2_saisieh3 pt-4 ml-5">M. Christophe DUCHEMIN,<span class="contact3span">  Directeur commercial, 31 ans</span> </h3>
+                                    <h3 class="contact2_saisieh3 pt-4 ml-5">M. {{ personne.contactNom }} {{ personne.contactPrenom }},<span class="contact3span">  {{ personne.contactMetier }}, 31 ans</span> </h3>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row form_right_active_text">
                                         <div class="col-md-2 d-sm-none "> </div>
                                         <div class="col-md-2 ajour_right mt-3">   <span> à jour </span></div>
-                                        <div class="col-md-5 p-0 mt-3"> <span>Dernière mise à jour le  12/12/2018</span></div>
+                                        <div class="col-md-5 p-0 mt-3"> <span>Dernière mise à jour le  {{ personne.contactMisAJour|date('Y-m-d') }}</span></div>
                                         <div class="col-md-3 mt-3"><div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="customSwitches">
                                             <label class="custom-control-label" for="customSwitches"></label>
@@ -56,15 +56,15 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                    <form id="form1" runat="server">
                                         <div class="contact_userimg">
                                             <img  id="blah" src="{{ asset("img/circle.png") }}" alt="your image" />
                                         </div>
                                         <div class="userimg_label2">
-                                            <input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
-                                            <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
+                                            {{ form_widget(form.contact_photo) }}
+                                            {{ form_errors(form.contact_photo) }}
+                                            <!--<input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
+                                            <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label> -->
                                         </div>
-                                    </form>
                                 <script>
 
                                 function readURL(input) {
@@ -94,7 +94,8 @@
                                                     <p>Code client</p>
                                                 </div>
                                                 <div class="col-md-7 input_border_left form-group code_client">
-                                                    <input class=" form-control" type="text" placeholder="1254789">
+                                                    {{ form_widget(form.contact_codeClient) }}
+                                                    {{ form_errors(form.contact_codeClient) }}
                                                 </div>
                                             </div>
                                             <div class="row pt-3">
@@ -103,12 +104,8 @@
                                                 </div>
                                                 <div class="col-md-7 input_select_main input_border_left">
                                                     <div class="form-group genre_select">
-                                                        <select class="custom-select" required>
-                                                            <option value="">Homme</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
+                                                        {{ form_widget(form.contact_genre) }}
+                                                        {{ form_errors(form.contact_genre) }}
                                                         <div class="invalid-feedback">Example invalid custom select feedback</div>
                                                     </div>
                                                 </div>
@@ -117,21 +114,28 @@
                                                 <div class="col-md-5 form_text">
                                                     <p>Prénom</p>
                                                 </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="Christophe"></div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group ">
+                                                    {{ form_widget(form.contact_prenom) }}
+                                                    {{ form_errors(form.contact_prenom) }}
+                                                </div>
                                             </div>
                                             <div class="row pt-3">
                                                 <div class="col-md-5 form_text">
                                                     <p>Nom</p>
                                                 </div>
                                                 <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                    <input class="input_size_big form-control" type="text" placeholder="DUCHEMIN">
+                                                    {{ form_widget(form.contact_nom) }}
+                                                    {{ form_errors(form.contact_nom) }}
                                                 </div>
                                             </div>
                                             <div class="row pt-3 from_single_input">
                                                 <div class="col-md-5 form_text">
                                                     <p>Date de naissance</p>
                                                 </div>
-                                                <div class="col-md-7  form-group code_client"><input class=" form-control" type="date" id="today"></div>
+                                                <div class="col-md-7  form-group code_client">
+                                                    {{ form_widget(form.contact_date_naissance) }}
+                                                    {{ form_errors(form.contact_date_naissance) }}
+                                                </div>
                                                 <script>
                                                 let today = new Date().toISOString().substr(0, 10);
                                                 document.querySelector("#today").value = today;
@@ -146,12 +150,8 @@
                                                 </div>
                                                 <div class="col-md-7 input_select_main ">
                                                     <div class="form-group matier_select">
-                                                        <select class="custom-select" required>
-                                                            <option value="">Non précisé</option>
-                                                            <option value="1" selected>Commercial</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
+                                                        {{ form_widget(form.job_id) }}
+                                                        {{ form_errors(form.job_id) }}
                                                     <div class="invalid-feedback">Example invalid custom select feedback</div>
                                                     </div>
                                                 </div>
@@ -161,7 +161,8 @@
                                                     <p>Tél. mobile</p>
                                                 </div>
                                                 <div class="col-md-7  phone_input input-group ">
-                                                    <input id="" type="text" class="form-control" name="" placeholder="06 70 61 95 99">
+                                                    {{ form_widget(form.contact_tel_mobile) }}
+                                                    {{ form_errors(form.contact_tel_mobile) }}
                                                     <span class="input-group-addon phone_input_position"><i class="fas fa-mobile"></i></span>
                                                 </div>
                                             </div>
@@ -170,7 +171,8 @@
                                                     <p>Profil Linkedin</p>
                                                 </div>
                                                 <div class="col-md-7  phone_input input-group ">
-                                                    <input id="" type="text" class="form-control" name="" placeholder="/frederic-duchemin">
+                                                    {{ form_widget(form.contact_adresse_linkedin) }}
+                                                    {{ form_errors(form.contact_adresse_linkedin) }}
                                                     <span class="input-group-addon phone_input_position"><i class="fab fa-linkedin"></i></span>
                                                 </div>
                                             </div>
@@ -179,7 +181,8 @@
                                                     <p>Profil Facebook</p>
                                                 </div>
                                                 <div class="col-md-7  phone_input input-group ">
-                                                    <input id="" type="text" class="form-control" name="" placeholder="/frederic-duchemin">
+                                                    {{ form_widget(form.contact_adresse_facebook) }}
+                                                    {{ form_errors(form.contact_adresse_facebook) }}
                                                     <span class="input-group-addon phone_input_position"><i class="fab fa-facebook-square"></i></span>
                                                 </div>
                                             </div>
@@ -188,7 +191,8 @@
                                                     <p>Profil Twitter</p>
                                                 </div>
                                                 <div class="col-md-7 phone_input input-group ">
-                                                    <input id="" type="text" class="form-control" name="" placeholder="/frederic-duchemin">
+                                                    {{ form_widget(form.contact_adresse_twitter) }}
+                                                    {{ form_errors(form.contact_adresse_twitter) }}
                                                     <span class="input-group-addon phone_input_position"><i class="fab fa-twitter-square"></i></span>
                                                 </div>
                                             </div>
@@ -199,7 +203,8 @@
                                                     <p>E-mail</p>
                                                 </div>
                                                 <div class="col-md-7 phone_input input-group ">
-                                                    <input id="" type="email" class="form-control" name="" placeholder="c.duchemin@scantech.fr">
+                                                    {{ form_widget(form.contact_email) }}
+                                                    {{ form_errors(form.contact_email) }}
                                                     <span class="input-group-addon contact_checkbox_position">
                                                         <div class="custom-control custom-checkbox ">
                                                             <input type="checkbox" class="custom-control-input" id="customCheck" checked>
@@ -214,12 +219,8 @@
                                                 </div>
                                                 <div class="col-md-7 input_select_main ">
                                                     <div class="form-group matier_select">
-                                                        <select class="custom-select" required>
-                                                            <option value=""></option>
-                                                            <option value="1" selected>SCAN Technologies</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
+                                                        {{ form_widget(form.company_id) }}
+                                                        {{ form_errors(form.company_id) }}
                                                         <div class="invalid-feedback">Example invalid custom select feedback</div>
                                                     </div>
                                                 </div>
@@ -229,7 +230,8 @@
                                                     <p>Nom du poste</p>
                                                 </div>
                                                 <div class="col-md-7  prenom_input form-group ">
-                                                    <input class="input_size_big form-control" type="text" placeholder="Directeur commercial">
+                                                    {{ form_widget(form.contact_metier) }}
+                                                    {{ form_errors(form.contact_metier) }}
                                                 </div>
                                             </div>
                                             <div class="row pt-3">
@@ -238,12 +240,8 @@
                                                 </div>
                                                 <div class="col-md-7 input_select_main ">
                                                     <div class="form-group matier_select">
-                                                        <select class="custom-select" required>
-                                                            <option value=""></option>
-                                                            <option value="1" selected>Cadre supérieur</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
+                                                        {{ form_widget(form.contact_niv_decision) }}
+                                                        {{ form_errors(form.contact_niv_decision) }}
                                                     <div class="invalid-feedback">Example invalid custom select feedback</div>
                                                     </div>
                                                 </div>
@@ -254,12 +252,8 @@
                                                 </div>
                                                 <div class="col-md-7 input_select_main ">
                                                     <div class="form-group matier_select">
-                                                        <select class="custom-select" required>
-                                                            <option value=""></option>
-                                                            <option value="1" selected>Jean-Christophe MARCHAND</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
+                                                        {{ form_widget(form.user_id) }}
+                                                        {{ form_errors(form.user_id) }}
                                                     <div class="invalid-feedback">Example invalid custom select feedback</div>
                                                     </div>
                                                 </div>
@@ -269,7 +263,8 @@
                                                     <p>Tél. fixe direct</p>
                                                 </div>
                                                 <div class="col-md-7  phone_input input-group ">
-                                                    <input id="" type="text" class="form-control" name="" placeholder="03 44 86 75 04">
+                                                    {{ form_widget(form.contact_tel_fixe) }}
+                                                    {{ form_errors(form.contact_tel_fixe) }}
                                                     <span class="input-group-addon phone_input_position2"><i class="fas fa-phone"></i></span>
                                                 </div>
                                             </div>
@@ -278,7 +273,8 @@
                                                     <p>Tél. du standard</p>
                                                 </div>
                                                 <div class="col-md-7  phone_input input-group ">
-                                                    <input id="" type="text" class="form-control" name="" placeholder="03 44 86 22 55">
+                                                    {{ form_widget(form.contact_tel_standard) }}
+                                                    {{ form_errors(form.contact_tel_standard) }}
                                                     <span class="input-group-addon phone_input_position2"><i class="fas fa-phone"></i></span>
                                                 </div>
                                             </div>
@@ -287,8 +283,8 @@
                                                     <p>Remarques</p>
                                                 </div>
                                                 <div class="col-md-7 contact_form_textarea  form-group ">
-                                                <textarea class="form-control" rows="7" id="comment" placeholder="Décisionnaire pour les achats
-                                                des logiciels"></textarea>
+                                                    {{ form_widget(form.contact_commentaire) }}
+                                                    {{ form_errors(form.contact_commentaire) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -316,7 +312,7 @@
                             </div>      
                             <div class="col-md-2">
                                 <div class="enregisterbutton">
-                                    <button  type="button" class="btn btn-primary">ENREGISTRER</button>
+                                    {{ form_widget(form.save) }}
                                 </div>
                             </div>      
                         </div>
@@ -575,8 +571,7 @@
         });
     });
     </script> 
-  {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-  {{ form_widget(form) }}
+
   {{ form_end(form) }}
 
 {% endblock %}

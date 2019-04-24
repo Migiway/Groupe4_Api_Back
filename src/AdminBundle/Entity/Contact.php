@@ -26,7 +26,7 @@ class Contact
     private $contact_codeClient;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank
      */
     private $contact_genre;
@@ -73,7 +73,7 @@ class Contact
     private $contact_dateNaissance;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $contact_metier;
 
@@ -86,6 +86,11 @@ class Contact
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $contact_telFixe;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $contact_telStandard;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -103,9 +108,19 @@ class Contact
     private $contact_verifie;
 
     /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+    private $contact_adresseLinkedin;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $contact_adresseLinkedin;
+    private $contact_adresseFacebook;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contact_adresseTwitter;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -255,12 +270,12 @@ class Contact
         return $this;
     }
 
-    public function getContactMetier(): ?int
+    public function getContactMetier(): ?string
     {
         return $this->contact_metier;
     }
 
-    public function setContactMetier(?int $contact_metier): self
+    public function setContactMetier(?string $contact_metier): self
     {
         $this->contact_metier = $contact_metier;
 
@@ -287,6 +302,17 @@ class Contact
     public function setContactTelFixe(?string $contact_telFixe): self
     {
         $this->contact_telFixe = $contact_telFixe;
+
+        return $this;
+    }
+    public function getContactTelStandard(): ?string
+    {
+        return $this->contact_telStandard;
+    }
+
+    public function setContactTelStandard(?string $contact_telStandard): self
+    {
+        $this->contact_telFixe = $contact_telStandard;
 
         return $this;
     }
@@ -335,6 +361,29 @@ class Contact
     public function setContactAdresseLinkedin(?string $contact_adresseLinkedin): self
     {
         $this->contact_adresseLinkedin = $contact_adresseLinkedin;
+
+        return $this;
+    }
+    public function getContactAdresseFacebook(): ?string
+{
+    return $this->contact_adresseFacebook;
+}
+
+    public function setContactAdresseFacebook(?string $contact_adresseFacebook): self
+    {
+        $this->contact_adresseFacebook = $contact_adresseFacebook;
+
+        return $this;
+    }
+
+    public function getContactAdresseTwitter(): ?string
+    {
+        return $this->contact_adresseTwitter;
+    }
+
+    public function setContactAdresseTwitter(?string $contact_adresseTwitter): self
+    {
+        $this->contact_adresseTwitter = $contact_adresseTwitter;
 
         return $this;
     }

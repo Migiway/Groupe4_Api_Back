@@ -39,6 +39,10 @@ class Job
     {
         return $this->id;
     }
+    public function __toString()
+    {
+        return $this->job_libelle;
+    }
 
     public function getJobLibelle(): ?string
     {
