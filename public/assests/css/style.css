@@ -9,6 +9,10 @@ body {
 .hide {
     display: none;
 }
+.block-identite {
+    width: 165% !important;
+    max-width: 165% !important;
+}
 /*
 .col-md-3{
    padding-right: 0px; 

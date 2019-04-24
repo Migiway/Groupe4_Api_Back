@@ -91,9 +91,8 @@ class CompanyController extends AbstractController
           ->getRepository(Company::class)
           ->findAll();
 
-
       return $this->render('company/list.html.twig', array(
-          'company' => $company
+          'companys' => $company
       ));
 
   }
