@@ -195,7 +195,7 @@ class Company
     }
     public function __toString()
     {
-        return $this->company_name;
+        return $this->companyName;
     }
 
     public function setCompanyName(string $companyName): self
