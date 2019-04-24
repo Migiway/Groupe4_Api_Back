@@ -13,19 +13,23 @@ class LoginType extends AbstractType
             ->add('_username', EmailType::class, [
                 'attr' => [
                     'placeholder' => 'E-mail',
-                    'icon' => 'user'
-                ]
+                    'icon' => 'user',
+                    'class' => 'input-field login_input_field'
+                ],
+                'required' => true
             ])
             ->add('_password', PasswordType::class, [
                 'attr' => [
                     'placeholder' => 'Mot de passe',
-                    'icon' => 'lock'
+                    'icon' => 'lock',
+                    'class' => 'input-field login_input_field'
                 ],
+                'required' => true
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'CONNEXION',
                 'attr' => [
-                    'class' => 'submitBtn'
+                    'class' => 'submitBtn btn login_button'
                 ]
             ]);
     }

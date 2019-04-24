@@ -1,4 +1,5 @@
 <?php
+
 namespace App\AdminBundle\Form;
 
 use App\AdminBundle\Entity\User;
@@ -12,12 +13,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 
 
-class UserType extends  AbstractType
+class UserType extends AbstractType
 {
 
-	 public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-         $builder
+        $builder
             ->add('user_lastName', TextType::class, array('label' => 'Nom : '))
             ->add('user_firstName', TextType::class, array('label' => 'Prénom : '))
             ->add('user_password', TextType::class, array('label' => 'Mot de passe : '))
