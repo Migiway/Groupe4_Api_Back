@@ -402,7 +402,7 @@ class User implements UserInterface
     /**
      * @return Collection|Company[]
      */
-    public function getAuthor(): Collection
+    /*public function getAuthor(): Collection
     {
         return $this->author;
     }
@@ -415,7 +415,7 @@ class User implements UserInterface
         }
 
         return $this;
-    }
+    }*/
 
     public function getRole(): ?Role
     {
