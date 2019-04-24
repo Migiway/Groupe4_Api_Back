@@ -5,6 +5,7 @@ namespace App\AdminBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\AdminBundle\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\RoleRepository")
@@ -29,7 +30,7 @@ class Role
     private  $code;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\User", mappedBy="role")
      */
     private $users;
 

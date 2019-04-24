@@ -2,6 +2,7 @@
 namespace App\AdminBundle\Form;
 
 use App\Entity\Post;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,15 +12,34 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\AdminBundle\Entity\User;
 class OperationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('user_id', EntityType::class, [
+                'class' => User::class,
+                'query_builder' => function (EntityRepository $requete) {
+                    return $requete->createQueryBuilder('u')
+                        ->orderBy('u.user_lastName', 'ASC');
+                },
+                "label" => "Auteur"
+            ])
+        ->add('operation_code', TextType::class, array('label' => 'Code opération :'))
         ->add('operation_name', TextType::class, array('label' => 'Nom :'))
         ->add('operation_prenom', TextType::class, array('label' => 'Prenom :'))
+        ->add('operation_object', TextType::class, array('label' => 'Objet du mail :'))
+        ->add('operation_relance', IntegerType::class, array('label' => 'Nb relance auto :'))
+        ->add('operation_envoi_date', DateType::class, array('label' => 'Date d envoi:'))
+        ->add('operation_date_cloture', DateType::class, array('label' => 'Date cloture:'))
+//        ->add('operation_author_id', TextType::class, array('label' => 'Auteur:'))
+        ->add('operation_note', TextType::class, array('label' => 'Note:'))
         ->add('operation_url', TextType::class, array('label' => 'Url :'))
         ->add('operation_type', TextType::class, array('label' => 'Type :'))
         ->add('operation_img_haut', TextType::class, array('label' => 'Image Haut :'))
