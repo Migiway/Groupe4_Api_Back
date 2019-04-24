@@ -19,25 +19,37 @@
                                 </div>
 
                                 <div class="login_rightform">
-                                    {{ form_start(form) }}                                    
-                                    {% if error %}
-                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                    {% endif %}
-                                    <p>Veuillez vous identifier</p>
-                                    <div class="input-container login_input_container">
-                                        <i class="fas fa-user login_icon"></i>
-                                        {{ form_widget(form._username) }}   
-                                    </div>
-                                    <div class="input-container login_input_container">
-                                        <i class="fas fa-lock login_icon"></i>
-                                        {{ form_widget(form._password) }}   
-                                    </div>
-                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                                    {{ form_widget(form.save) }}                                    
-                                    <div class="login_buttonp">
-                                        <p>Mot de passe oublié ?</p>
-                                    </div>
-                                    
+                                    <form class="login_form" action="" style="max-width:500px;margin:auto"
+                                          method="post">
+                                        {% if error %}
+                                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                        {% endif %}
+
+                                        <p>Veuillez vous identifier</p>
+
+                                        <div class="input-container login_input_container">
+                                            <i class="fas fa-user login_icon"></i>
+                                            <input class="input-field login_input_field" type="email"
+                                                   value="{{ last_username }}" placeholder="E-mail" name="email"
+                                                   required autofocus>
+                                        </div>
+
+                                        <div class="input-container login_input_container">
+                                            <i class="fas fa-lock login_icon"></i>
+                                            <input class="input-field login_input_field" type="password"
+                                                   placeholder="Mot de passe" name="password" placeholder="Password"
+                                                   required>
+                                        </div>
+                                        <input type="hidden" name="_csrf_token"
+                                               value="{{ csrf_token('authenticate') }}">
+
+
+                                        <button type="submit" class="btn login_button">CONNEXION</button>
+                                        <div class="login_buttonp">
+                                            <p>Mot de passe oublié ?</p>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
@@ -52,4 +64,8 @@
             </div>
         </div>
     </section>
+    {{ form_start(form) }}
+    {{ form_widget(form._username) }}
+    {{ form_widget(form._password) }}
+    {{ form_end(form) }}
 {% endblock %}
