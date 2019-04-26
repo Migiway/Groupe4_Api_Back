@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 
 /**
@@ -124,6 +125,15 @@ class User implements UserInterface
      */
     private $author;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $resetPasswordToken;
+
+    protected $plainPassword;
+
     public function __construct()
     {
         $this->operations = new ArrayCollection();
@@ -139,7 +149,7 @@ class User implements UserInterface
         return $this->id;
     }
 
-    
+
     public function getUserLastName(): ?string
     {
         return $this->user_lastName;
@@ -402,20 +412,20 @@ class User implements UserInterface
     /**
      * @return Collection|Company[]
      */
-    /*public function getAuthor(): Collection
+    public function getAuthor(): Collection
     {
         return $this->author;
     }
 
-    public function addAuthor(Author $author): self
-    {
-        if (!$this->author->contains($author)) {
-            $this->author[] = $author;
-            $author->setUserId($this);
-        }
+    // public function addAuthor(Author $author): self
+    // {
+    //     if (!$this->authors->contains($author)) {
+    //         $this->authors[] = $author;
+    //         $author->setUserId($this);
+    //     }
 
-        return $this;
-    }*/
+    //     return $this;
+    // }
 
     public function getRole(): ?Role
     {
@@ -453,7 +463,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return ['admin'];
+        return ['ROLE_USER'];
     }
 
     /**
@@ -500,5 +510,63 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         return null;
+    }
+
+    public function getResetPasswordToken(): ?string
+    {
+        return $this->resetPasswordToken;
+    }
+
+    public function setResetPasswordToken(?string $resetPasswordToken): self
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
+
+        return $this;
+    }
+
+    public function removeAuthor(Operation $author): self
+    {
+        if ($this->author->contains($author)) {
+            $this->author->removeElement($author);
+            // set the owning side to null (unless already changed)
+            if ($author->getOperationAuthor() === $this) {
+                $author->setOperationAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        if (strlen(trim($plainPassword)) > 0) {
+            $encodedPassword = $this->encodePassword($plainPassword, $this->getSalt());
+            $this->setUserPassword($encodedPassword);
+        }
+
+        return $this;
+    }
+
+    public function encodePassword(?string $plainPassword, ?string $salt): ?string
+    {
+        if (strlen($salt) < 1) {
+            $salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        }
+
+        $encoder = new MessageDigestPasswordEncoder('sha512', true, 10);
+        $password = $encoder->encodePassword(
+            $plainPassword,
+            $this->getSalt()
+        );
+
+        $this->eraseCredentials();
+
+        return $password;
     }
 }

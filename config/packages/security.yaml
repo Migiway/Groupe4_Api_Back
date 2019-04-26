@@ -1,7 +1,9 @@
 security:
     encoders:
         App\AdminBundle\Entity\User:
-            algorithm: bcrypt
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
     providers:
         user:
             id: App\AdminBundle\Security\User\UserProvider
@@ -10,13 +12,16 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            pattern: ^/admin
+            provider: user
             form_login:
-                login_path: user_authentication
-                check_path: user_login_check
+                login_path: app_login
+                check_path: app_login
                 default_target_path: /admin/contact/list
-                username_parameter: "login[_username]"
-                password_parameter: "login[_password]"
+            logout:
+                path: app_logout
+                target: /admin/login
+            anonymous: ~
 
             # activate different ways to authenticate
 
@@ -29,6 +34,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin/user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/forgot-password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/reset-password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
