@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/forgot-password", name="app_forgot_password")
      */
-    public function forgotPasswordAction(Request $request)
+    public function forgotPasswordAction(Request $request, \Swift_Mailer $mailer)
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('contact_list'));
@@ -60,7 +60,7 @@ class SecurityController extends AbstractController
             if (!$user) {
                 $this->get('session')->getFlashBag()->add(
                     'ALERT_ERROR',
-                    'Aucun mail associé'
+                    'User is not registed with this email. Please check your email ID.'
                 );
 
                 return $this->redirectToRoute('app_forgot_password');
@@ -68,11 +68,11 @@ class SecurityController extends AbstractController
                 $token = uniqid(rand(100, 999));
                 $resetPasswordLink = $this->generateUrl('app_reset_password', array('id' => $user->getId(), 'key' => $token), \Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL);
 
-                //$this->sendEmailToForgotPasswordUser($user, $resetPasswordLink);
+                $this->sendEmailToForgotPasswordUser($mailer, $user, $resetPasswordLink);
 
                 $this->get('session')->getFlashBag()->add(
                     'ALERT_SUCCESS',
-                    'E-Mail envoyé, merci de verifier vos E-Mail.'
+                    'Please check your registered email with us, click on the link in email to reset your password.'
                 );
 
                 $user->setResetPasswordToken($token);
@@ -100,11 +100,11 @@ class SecurityController extends AbstractController
 
         $user = $this->getDoctrine()->getRepository('AdminBundle:User')->find($id);
         if (!$user) {
-            $this->get('session')->getFlashBag()->add('ALERT_ERROR', 'Requête invalide!');
+            $this->get('session')->getFlashBag()->add('ALERT_ERROR', 'Invalid request!');
             return $this->redirectToRoute('app_login');
         }
         if ($key != $user->getResetPasswordToken()) {
-            $this->get('session')->getFlashBag()->add('ALERT_ERROR', 'Requête invalide!');
+            $this->get('session')->getFlashBag()->add('ALERT_ERROR', 'Invalid request!');
             return $this->redirectToRoute('app_login');
         }
 
@@ -120,7 +120,7 @@ class SecurityController extends AbstractController
 
             $this->get('session')->getFlashBag()->add(
                 'ALERT_SUCCESS',
-                'Votre mot de passe est modifié'
+                'Your password is reset successfully.'
             );
 
             return $this->redirectToRoute('app_login');
@@ -132,7 +132,7 @@ class SecurityController extends AbstractController
         return $this->render('security/reset_password.html.twig', $arr);
     }
 
-    private function sendEmailToForgotPasswordUser($obj, $resetPasswordLink, $mailer)
+    private function sendEmailToForgotPasswordUser($mailer, $obj, $resetPasswordLink)
     {
         $message = new \Swift_Message();
         $message->setSubject('Reset Password')
@@ -147,6 +147,6 @@ class SecurityController extends AbstractController
                 'text/html'
             );
 
-        return $this->get('swiftmailer.mailer')->send($message);
+        return $mailer->send($message);
     }
 }
