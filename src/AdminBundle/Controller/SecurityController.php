@@ -60,7 +60,7 @@ class SecurityController extends AbstractController
             if (!$user) {
                 $this->get('session')->getFlashBag()->add(
                     'ALERT_ERROR',
-                    'User is not registed with this email. Please check your email ID.'
+                    'Aucun email associé'
                 );
 
                 return $this->redirectToRoute('app_forgot_password');
@@ -72,7 +72,7 @@ class SecurityController extends AbstractController
 
                 $this->get('session')->getFlashBag()->add(
                     'ALERT_SUCCESS',
-                    'Please check your registered email with us, click on the link in email to reset your password.'
+                    'Cliquez sur le lien reçu dans votre boite mail'
                 );
 
                 $user->setResetPasswordToken($token);
@@ -120,7 +120,7 @@ class SecurityController extends AbstractController
 
             $this->get('session')->getFlashBag()->add(
                 'ALERT_SUCCESS',
-                'Your password is reset successfully.'
+                'Votre mot de passe a bien été changé.'
             );
 
             return $this->redirectToRoute('app_login');
@@ -135,7 +135,7 @@ class SecurityController extends AbstractController
     private function sendEmailToForgotPasswordUser($mailer, $obj, $resetPasswordLink)
     {
         $message = new \Swift_Message();
-        $message->setSubject('Reset Password')
+        $message->setSubject('Nouveau mot de passe')
             ->setFrom('yoursite@email.com')
             ->setTo($obj->getUserEmail())
             ->setContentType('text/html')
