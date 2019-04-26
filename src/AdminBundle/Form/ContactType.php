@@ -61,7 +61,7 @@ class ContactType extends AbstractType
                 'class' => Company::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->orderBy('u.company_name', 'ASC');
+                        ->orderBy('u.companyName', 'ASC');
                 },
                 "label" => "Entreprise"
             ])

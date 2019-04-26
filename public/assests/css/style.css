@@ -9,7 +9,7 @@ body {
 .hide {
     display: none;
 }
-.block-identite {
+.block-identite.block-company {
     width: 165% !important;
     max-width: 165% !important;
 }
