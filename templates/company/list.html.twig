@@ -45,7 +45,7 @@
                             <tr role="row" class="odd">
                                 <td>
                                     <div class="custom-control custom-checkbox ml8">
-                                        <input type="checkbox" class="custom-control-input" id="company-check-{{ company.id }}" name="company[]">
+                                        <input type="checkbox" class="custom-control-input" id="company-check-{{ company.id }}" value="{{ company.id }}" name="company-check[]">
                                         <label class="custom-control-label" for="company-check-{{ company.id }}"></label>
                                     </div>
                                 </td>
@@ -82,7 +82,10 @@
                             <div class="col-md-8">
                                 <div class="listline">
                                     <ul id="menu">
-                                        <li><a href="#"><i class="fas fa-trash"></i></a></li>
+                                        <form id="form-delete-company" name="delete-company" method="post" action="/admin/company/delete-select">
+                                            <input id="companys" type="hidden" name="companys">
+                                        </form>
+                                        <li><a id="delete-select-company" href="#"><i class="fas fa-trash"></i></a></li>
                                         <li><a href="#"><i class="fas fa-download"></i></a></li>
                                         <li><a href="/admin/company/new"><i class="fas fa-building"></i></a></li>
                                     </ul>

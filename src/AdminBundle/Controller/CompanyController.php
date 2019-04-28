@@ -117,4 +117,23 @@ class CompanyController extends AbstractController
         ));
 
     }
+
+    /**
+     * @Route("/delete-select", name="delete_select")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delete_select(Request $request)
+    {
+        $idCompanys = $_POST['companys'];
+        $arr = explode(',', $idCompanys);
+        $totalId    = count($arr);
+        for ($i=0; $i < $totalId ; $i++) { 
+            $uneEntreprise = $this->getDoctrine()->getRepository(Company::class)->findBy(['id' => $arr[$i]]);
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($uneEntreprise[0]);
+            $em->flush();
+        }
+        return $this->redirectToRoute('company_list', array('message' => 'all clear'));
+    }
 }
