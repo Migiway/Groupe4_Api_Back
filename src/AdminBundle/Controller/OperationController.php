@@ -33,8 +33,11 @@ class OperationController extends AbstractController
             ->getRepository(Operation::class)
             ->findAll();
 
+        $totalOperations = count($operations);
+
         return $this->render('operation/list.html.twig', array(
-            'operations' => $operations
+            'operations' => $operations,
+            'totalOperations' => $totalOperations
         ));
     }
 

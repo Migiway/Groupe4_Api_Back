@@ -1206,19 +1206,39 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+div.dataTables_paginate {
+    text-align: center !important;
+    float: none !important;
+}
+/*a.paginate_button.current {
+  color: #CECECE !important;
+}*/
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #B3B3B3 !important;
+    border: 1px solid #F5F5F5!important;
+    border-radius: 10px;
+    background-color: #fff!important;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #2980B9))!important;
+    background: -webkit-linear-gradient(top, #fff 0%, #fff 100%)!important;
+    background: -moz-linear-gradient(top, #fff 0%, #fff 100%)!important;
+    background: -ms-linear-gradient(top, #fff 0%, #fff 100%)!important;
+    background: -o-linear-gradient(top, #fff 0%, #fff 100%)!important;
+    background: linear-gradient(to bottom, #fff 0%, #fff 100%)!important;
+}
+ .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: black!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: none;
+  color: black!important;
+  /*change the hover text color*/
+}
+.div-btn-add {
+    margin-left: -11%;
+    margin-top: -7%;
+}
+.div-options-list {
+    margin-left: 9%;
+    margin-top: -7%;
+}

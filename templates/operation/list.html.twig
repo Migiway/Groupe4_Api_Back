@@ -3,7 +3,7 @@
 {% block body %}
     <div class="col-md-3 p-0">
         <div class="contacts1_text">
-            <h3 class="contact1h3">Opérations <span class="contact1span"> (18)</span></h3>
+            <h3 class="contact1h3">Opérations <span class="contact1span"> ({{totalOperations}})</span></h3>
         </div>
     </div>
     <div class="col-md-6"></div>
@@ -77,7 +77,19 @@
                             <td>12</td>
                             <td>52</td>
                             <td>{{ row.operationAuthor }}</td>
-                            <td>test</td>
+                            <td>
+                                <div class="
+                                    {% if company.companyStatus == 'Client' %}
+                                       enterprise_table_status
+                                    {% elseif company.companyStatus == 'Prospect' %}
+                                       enterprise_table_status2
+                                    {% else %}
+                                       enterprise_table_status3
+                                    {% endif %}
+                                    ">
+                                    {{ company.companyStatus }}
+                                </div>
+                            </td>
                             <td>1</td>
                             <td class="table_phone">
                                 <a href="{{ row.operationEmail }}">@</a>
@@ -98,7 +110,7 @@
                 </div>
             </div>
             <div class="row py-4">
-                <div class="col-md-4">
+                <div class="col-md-4 div-options-list">
                     <div class="row mb-5">
 
                         <div class="col-md-8">
@@ -116,7 +128,7 @@
                     </div>
                 </div>
                 <div class="col-md-4"></div>
-                <div class="col-md-4">
+                <div class="col-md-4 div-btn-add">
                     <div class="pagibutton">
                         <a href="{{ path('app_admin_operation_new') }}">
                             <button type="button" class="btn btn-primary">AJOUTER</button>
