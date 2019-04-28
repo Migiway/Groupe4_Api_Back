@@ -69,8 +69,11 @@ class CompanyController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('company_list');
         }
+        $entreprise = $this->getDoctrine()
+            ->getRepository(Company::class)
+            ->find($company);
 
-        return $this->render('company/edit.html.twig', array('form' => $form->createView()));
+        return $this->render('company/edit.html.twig', array('form' => $form->createView(),'entreprise' => $entreprise));
     }
 
     /**
