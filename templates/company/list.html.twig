@@ -4,7 +4,7 @@
 
     <div class="col-md-3 p-0">
         <div class="contacts1_text">
-            <h3 class="contact1h3">Entreprises <span class="contact1span"> (1879)</span></h3>
+            <h3 class="contact1h3">Entreprises <span class="contact1span"> ({{totalCompany}})</span></h3>
         </div>
     </div>
     <div class="col-md-6"></div>
@@ -54,7 +54,19 @@
                                 <td>{{ company.companyPostcode }}</td>
                                 <td>{{ company.companyCity }}</td>
                                 <td>{{ company.UserId }}</td>
-                                <td>{{ company.companyStatus }}</td>                                        
+                                <td>                                    
+                                    <div class="
+                                    {% if company.companyStatus == 'Client' %}
+                                       enterprise_table_status
+                                    {% elseif company.companyStatus == 'Prospect' %}
+                                       enterprise_table_status2
+                                    {% else %}
+                                       enterprise_table_status3
+                                    {% endif %}
+                                    ">
+                                        {{ company.companyStatus }}
+                                    </div>
+                                </td>                                        
                                 <td>2</td>
                                 <td class="table_phone"><a href="#">@</a> <a href="#"><i class="fas fa-phone"></i></a></td>
                             </tr>

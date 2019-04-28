@@ -96,8 +96,10 @@ class CompanyController extends AbstractController
             ->getRepository(Company::class)
             ->findAll();
 
+        $totalCompany = count($company);
         return $this->render('company/list.html.twig', array(
-            'companys' => $company
+            'companys' => $company,
+            'totalCompany' => $totalCompany
         ));
 
     }

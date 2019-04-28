@@ -96,8 +96,11 @@ class ContactController extends AbstractController
             ->getRepository(Contact::class)
             ->findAll();
 
+        $totalContacts = count($contacts);
+
         return $this->render('contact/list.html.twig', array(
-            'contacts' => $contacts
+            'contacts' => $contacts,
+            'totalContacts' => $totalContacts
         ));
     }
 
