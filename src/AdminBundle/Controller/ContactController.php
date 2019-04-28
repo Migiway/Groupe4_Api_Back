@@ -58,21 +58,27 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route ("/edit/{contact}")
+     * @Route ("/edit/{contact}", methods={"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit (Request $request, Contact $contact){
+    public function edit (Request $request, contact $contact){
 
-        $form = $this->createForm(ContactType::class, $contact);
+
+        $contact_form = $this->getDoctrine()
+            ->getRepository(contact::class)
+            ->find($contact);
+
+        $form = $this->createForm(ContactType::class, $contact_form);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contact_form->setContactMisAJour(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
+            $em->persist($contact_form);
             $em->flush();
-            return $this->render('contact/success.html.twig', array('message' => 'all clear'));
+
         }
         $personne = $this->getDoctrine()
             ->getRepository(Contact::class)
