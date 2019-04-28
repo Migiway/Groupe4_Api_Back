@@ -41,7 +41,6 @@ class OperationController extends AbstractController
 
     /**
      * @Route("/new", methods = {"GET","POST"}, name="app_admin_operation_new")
-     * @Route("/edit/{id}", name="app_admin_operation_edit")
      * @ParamConverter("obj", class="AdminBundle:Operation")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -72,28 +71,24 @@ class OperationController extends AbstractController
         return $this->render('operation/new.html.twig', $arr);
     }
 
-//    /**
-//     * @Route("/edit/{operation}")
-//     * @param Request $request
-//     */
-//    public function edit(Request $request, Operation $operation)
-//    {
-//        $form = $this->createForm(OperationType::class, $operation);
-//        $form->add('submit', SubmitType::class, [
-//            'label' => 'Modifier',
-//            'attr' => ['class' => 'btn btn-default pull-right'],
-//        ]);
-//
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($operation);
-//            $em->flush();
-//            return $this->redirectToRoute('operation_list');
-//        }
-//
-//        return $this->render('operation/edit.html.twig', array('form' => $form->createView()));
-//    }
+   /**
+    * @Route("/edit/{id}", name="app_admin_operation_edit")
+    * @param Request $request
+    */
+   public function edit(Request $request, Operation $operation)
+   {
+       $form = $this->createForm(OperationType::class, $operation);
+       
+       $form->handleRequest($request);
+       if ($form->isSubmitted() && $form->isValid()) {
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($operation);
+           $em->flush();
+           return $this->redirectToRoute('app_admin_operation_list');
+       }
+
+       return $this->render('operation/edit.html.twig', array('form' => $form->createView()));
+   }
 
     /**
      * @Route("/delete/{id}", name="app_admin_operation_delete")

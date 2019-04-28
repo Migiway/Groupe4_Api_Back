@@ -45,14 +45,13 @@ class Operation
     private $operation_object;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"Light"})
      */
     private $operation_url;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $operation_type;
 

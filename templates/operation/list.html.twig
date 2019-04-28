@@ -6,21 +6,10 @@
             <h3 class="contact1h3">Opérations <span class="contact1span"> (18)</span></h3>
         </div>
     </div>
-    <div class="col-md-6">
-
+    <div class="col-md-6"></div>
     </div>
-
-    </div>
-
-
-    <!--    table-->
-    <!--   ..............-->
-    <!--   ....   -->
     <div class="row">
         <div class="col-12">
-            <!--       data tables-->
-
-
             <div class="hero-callout">
                 <div id="example_wrapper" class="dataTables_wrapper">
 
@@ -90,27 +79,22 @@
                             <td>{{ row.operationAuthor }}</td>
                             <td>test</td>
                             <td>1</td>
-                            <td class="table_phone"><a href="{{ row.operationEmail }}">@</a> <a
-                                        href="{{ row.operationFixe }}"><i class="fas fa-phone"></i></a></td>
+                            <td class="table_phone">
+                                <a href="{{ row.operationEmail }}">@</a>
+                                <a href="{{ row.operationFixe }}"><i class="fas fa-phone"></i></a>
+                            </td>
                             {#<td>#}
                             {#<a href="{{ path('app_admin_operation_edit', {'id': row.id}) }}"#}
                             {#class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>#}
                             {#<a href="{{ path('app_admin_operation_delete', {'id': row.id}) }}"#}
                             {#class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>#}
                             {#</td>#}
-                        <tr>
+                        </tr>
                             {% endfor %}
 
                         </tbody>
 
-                    </table>
-                    <!--
-                                </div>
-                            </div>
-
-
-                            <!-- tables-->
-
+                    </table>    
                 </div>
             </div>
             <div class="row py-4">
@@ -126,39 +110,12 @@
                                     <li><a href=""><i class="fas fa-trash"></i></a></li>
                                     <li><a href="#"><i class="fas fa-download"></i></a></li>
                                     <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
-
                                 </ul>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <!--
-                            <nav style="    padding: 0px 30px;" aria-label="Page navigation example pagi">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
--->
-                </div>
+                <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <div class="pagibutton">
                         <a href="{{ path('app_admin_operation_new') }}">
