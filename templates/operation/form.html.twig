@@ -1,0 +1,27 @@
+{#{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
+{#{{ form_widget(form) }}#}
+{#{{ form_end(form) }}#}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-4 p-0">
+        <div class="contacts1_text">
+            <h3 class="contact1h3">Opérations </h3>
+        </div>
+    </div>
+    <div class="col-md-5"></div>
+    <div class="col-md-3">
+        <div class="contact3_input_container3">
+
+            <input class="contact-input-field3" type="text" placeholder="Rechercher..." name="email">
+            <i class="fas fa-search "></i>
+        </div>
+    </div>
+    </div>
+
+    {{ form_start(form) }}
+    {{ form(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}

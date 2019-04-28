@@ -122,7 +122,7 @@ class Operation
     private $operation_offresCommerciales;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="operations")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="author")
      */
     private $user_id;
 
@@ -147,30 +147,19 @@ class Operation
     private $operation_dateCloture;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="author")
-     * @Assert\NotBlank(message = "Ce champ doit être remplit")
-     */
-    private $operation_author;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $operation_note;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $operation_info;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $operation_offre;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_operation")
      */
     private $parameters;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="author")
+     */
+    private $operation_author;
 
     public function __construct()
     {
@@ -231,6 +220,7 @@ class Operation
 
         return $this;
     }
+
     public function getOperationEnvoiDate(): ?\DateTimeInterface
     {
         return $this->operation_envoiDate;
@@ -255,18 +245,6 @@ class Operation
         return $this;
     }
 
-    public function getOperationAuthor(): ?string
-    {
-        return $this->operation_author;
-    }
-
-    public function setOperationAuthor(?string $operation_author): self
-    {
-        $this->operation_author = $operation_author;
-
-        return $this;
-    }
-
     public function getOperationNote(): ?string
     {
         return $this->operation_note;
@@ -278,31 +256,6 @@ class Operation
 
         return $this;
     }
-
-    public function getOperationInfo(): ?bool
-    {
-        return $this->operation_info;
-    }
-
-    public function setOperationInfo(?bool $operation_info): self
-    {
-        $this->operation_info = $operation_info;
-
-        return $this;
-    }
-
-    public function getOperationOffre(): ?bool
-    {
-        return $this->operation_offre;
-    }
-
-    public function setOperationOffre(?bool $operation_offre): self
-    {
-        $this->operation_offre = $operation_offre;
-
-        return $this;
-    }
-
 
     public function getOperationUrl(): ?string
     {
@@ -496,6 +449,18 @@ class Operation
         return $this;
     }
 
+    public function getOperationAuthor(): ?User
+    {
+        return $this->operation_author;
+    }
+
+    public function setOperationAuthor(?User $operation_author): self
+    {
+        $this->operation_author = $operation_author;
+
+        return $this;
+    }
+
     public function getTypeOperation(): ?TypeOperation
     {
         return $this->type_operation;
@@ -507,7 +472,6 @@ class Operation
 
         return $this;
     }
-
 
 
     /**

@@ -47,4 +47,13 @@ class OperationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getList()
+    {
+        return $this->createQueryBuilder('x')
+            ->select('x')
+            ->leftJoin('x.', $alias)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

@@ -48,14 +48,14 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/check", methods = {"POST"}, name="user_login_check")
-     * @throws AuthenticationErrorException
-     */
-    public function checkLogin()
-    {
-        throw new AuthenticationErrorException('Connection failed.');
-    }
+//    /**
+//     * @Route("/check", methods = {"POST"}, name="user_login_check")
+//     * @throws AuthenticationErrorException
+//     */
+//    public function checkLogin()
+//    {
+//        throw new AuthenticationErrorException('Connection failed.');
+//    }
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
@@ -139,19 +139,19 @@ class UserController extends AbstractController
         return $this->render('team/edit.html.twig', array('form' => $form->createView()));
     }
 
-    /**
-     * @Route("", name="user_edit", methods={"PUT"})
-     */
-    public function editApi(Request $request)
-    {
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('list.html.twig');
-        }
-
-        return $this->render('User/new.html.twig', array('form' => $form->createView()));
-    }
+//    /**
+//     * @Route("", name="user_edit", methods={"PUT"})
+//     */
+//    public function editApi(Request $request)
+//    {
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            return $this->redirectToRoute('list.html.twig');
+//        }
+//
+//        return $this->render('User/new.html.twig', array('form' => $form->createView()));
+//    }
 
     /**
      * @Route("/delete/{id}", name="user_delete", methods={"GET","POST"})
@@ -170,13 +170,13 @@ class UserController extends AbstractController
     }
 
 
-    /**
-     * @Route("/list", name="user_list")
-     */
-    public function list()
-    {
-        return $this->render('User/list.html.twig');
-    }
+//    /**
+//     * @Route("/list", name="user_list")
+//     */
+//    public function list()
+//    {
+//        return $this->render('User/list.html.twig');
+//    }
 
     /**
      * @Route("/team", name="team_list")
