@@ -43,8 +43,8 @@
                                 <div class="contact_formnav">
                                     <nav class="nav">
                                     <a class="nav-link active identite" href="#">Identité</a>
-                                    <a class="nav-link" href="#">Contacts <span class="enterprise3_form_a">
-                                    3
+                                    <a class="nav-link contact" href="#">Contacts <span class="enterprise3_form_a">
+                                    {{totalContact}}
                                     </span></a>
                                     <a class="nav-link note" href="#">Notes</a>
                                     <a class="nav-link " href="#">Historique</a>
@@ -283,7 +283,9 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-3 pr-0">
                                     <div class="supprimebutton">
+                                        <a href="/admin/company/delete/{{ entreprise.id }}">
                                         <button  type="button" class="btn btn-primary">SUPPRIMER</button>
+                                    </a>
                                     </div>
                                 </div>      
                                 <div class="col-md-3">
@@ -523,27 +525,53 @@
                                 </div>
                          </div>
                     </div>
-
+                    {{ include('company/_contact.html.twig') }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-        <script>
-        $(function() {
-            $('.note').click(function() {
-               $('.block-identite').addClass('hide');
-               $('.block-note').removeClass('hide');
-               $('.contact_formnav nav a').removeClass('active')
-               $('.note').addClass('active')
-            });
-            $('.identite').click(function() {
-               $('.block-identite').removeClass('hide');
-               $('.block-note').addClass('hide');
-               $('.contact_formnav nav a').removeClass('active')
-               $('.identite').addClass('active')
-            });
+    <script>
+    $(function() {
+        $('.note').click(function() {
+            $('.block-identite').addClass('hide');
+            $('.block-note').removeClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active')
+            $('.note').addClass('active')
         });
-        </script> 
-    {% endblock %}
+        $('.identite').click(function() {
+            $('.block-identite').removeClass('hide');
+            $('.block-note').addClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active')
+            $('.identite').addClass('active')
+        });
+        $('.contact').click(function() {
+            $('.block-contact').removeClass('hide');
+            $('.block-note').addClass('hide');
+            $('.block-identite').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active')
+            $('.contact').addClass('active')
+        });
+        $('#company-contact').DataTable({
+            "lengthMenu": [[10, 25, 50, -1],
+                ["10", "25", "50", "Toutes"]],
+            "language": {
+                "paginate": {
+                    "previous": '<i class="fa fa-arrow-left"></i>',
+                    "next": '<i class="fa fa-arrow-right"></i>'
+                },
+                searchPlaceholder: "Rechercher",
+                search: "",
+                "sSearch": '<a class="btn searchBtn" id="searchBtn"><i class="fa fa-search"></i></a>',
+                sLengthMenu: "_MENU_",
+                infoEmpty: "Aucunes données trouvées",
+                "info": "",
+            },
+            "dom": '<"top"if>rt<"bottom"lp><"clear">'
+        });
+        
+    });
+    </script> 
+{% endblock %}

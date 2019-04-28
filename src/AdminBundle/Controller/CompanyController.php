@@ -4,6 +4,7 @@ namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\CompanyType;
 use App\AdminBundle\Entity\Company;
+use App\AdminBundle\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,21 +48,14 @@ class CompanyController extends AbstractController
      */
     public function edit(Request $request, string $id)
     {
-        //dump($company);
-
         $company = $this->getDoctrine()
             ->getRepository(Company::class)
             ->find($id);
 
-        // dump($request->get('company')); die;
         $form = $this->createForm(CompanyType::class, $company);
-
-        //dump($company);
-        //dump($company->getCompanyName());die;
 
         $form->handleRequest($request);
 
-        // dump($company); die;
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -69,20 +63,40 @@ class CompanyController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('company_list');
         }
+        //les infos de l'entreprise
         $entreprise = $this->getDoctrine()
             ->getRepository(Company::class)
             ->find($company);
+        //la liste des contacts lié à l'entreprise
+        $companyContacts = $this->getDoctrine()
+            ->getRepository(Contact::class)
+            ->findBy(
+            ['company_id' => $id]
+        );
+        //le nombre de contact de lié à l'entreprise
+        $totalContact = count($companyContacts);
 
-        return $this->render('company/edit.html.twig', array('form' => $form->createView(),'entreprise' => $entreprise));
+        return $this->render('company/edit.html.twig', array(
+            'form' => $form->createView(),
+            'entreprise' => $entreprise,
+            'contacts' => $companyContacts,
+            'totalContact' => $totalContact          
+        ));
     }
 
     /**
-     * @Route ("/delete")
+     * @Route("/delete/{id}")
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete(Request $request)
+    public function delete(Request $request, Company $company)
     {
+        $uneEntreprise = $this->getDoctrine()->getRepository(Company::class)->find($company);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($uneEntreprise);
+        $em->flush();
 
+        return $this->redirectToRoute('company_list', array('message' => 'all clear'));
     }
 
     /**
