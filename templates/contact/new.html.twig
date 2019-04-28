@@ -70,7 +70,7 @@
                                 $("#imgInp").change(function() {
                                 readURL(this);
                                 });
-                                </script>             
+                                </script>
                             </div>
 
                             <div class="col-md-10">
@@ -276,14 +276,16 @@
                         </div>
                     </div>
                     <div class="col-md-12 pt-5">
-                        <div class="row py-4"> 
-                            <div class="col-md-3"> </div>         
-                            <div class="col-md-3"> </div>         
+                        <div class="row py-4">
+                            <div class="col-md-3"> </div>
+                            <div class="col-md-3"> </div>
                             <div class="col-md-3 col-sm-6 ">
                                 <div class="annulerbutton">
-                                    <button  type="button" class="btn btn-primary">ANNULER</button>
+                                    <a href="/admin/contact/list">
+                                        <button  type="button" class="btn btn-primary">ANNULER</button>
+                                    </a>
                                 </div>
-                            </div>         
+                            </div>
                             <div class="col-md-3 col-sm-6">
                                 <div class="enregisterbutton">
                                     {{ form_widget(form.save) }}
@@ -296,6 +298,9 @@
         </div>
     </div>
 </div>
+    <div class="hidden-row">
+        {{ form_widget(form.contact_statut) }}
+    </div>
 
   {{ form_end(form) }}
 {% endblock %}

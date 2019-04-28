@@ -7,7 +7,7 @@
                     <a href="#" class="list-group-item list-group-item-action ">
                         <i class="fas fa-chart-line"></i> Tableau de bord
                     </a>
-                    <a href="/admin/contact/list" class="list-group-item list-group-item-action {% if app.request.attributes.get('_route') == 'contact_list' %}active{% endif %}"><i class="fas fa-user-friends"></i> Contacts</a>
+                    <a href="/admin/contact/list" class="list-group-item list-group-item-action {% if (app.request.attributes.get('_route') == 'contact_list') or (app.request.attributes.get('_route') == 'app_admin_contact_new') or (app.request.attributes.get('_route') == 'app_admin_contact_edit') %}active{% endif %}"><i class="fas fa-user-friends"></i> Contacts</a>
                     <a href="/admin/company/list" class="list-group-item list-group-item-action {% if app.request.attributes.get('_route') == 'company_list' %}active{% endif %}"><i class="fas fa-th"></i> Entreprises</a>
                     <a href="/admin/user/team" class="list-group-item list-group-item-action {% if app.request.attributes.get('_route') == 'team_list' %}active{% endif %}"><i class="fas fa-user"></i> Équipe commerciale</a>
 

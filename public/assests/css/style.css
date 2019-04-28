@@ -165,6 +165,9 @@ body {
     /* border-color: #007bff; */
     background-color: red;
 }
+.hidden-row {
+    display: none;
+}
 .contact1_background_col9{
         background-color: #80808012;
 }
