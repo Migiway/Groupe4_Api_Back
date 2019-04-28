@@ -201,16 +201,18 @@ ul#menu li a:hover{
 }
 */
 .pagibutton button{
-        float: right;
+    float: right;
     margin-right: 25px;
     background-color: #CF1740;
-        font-size: 13px;
+    font-size: 13px;
     font-weight: 500;
-        transition: 1s ease-in;
+    transition: 1s ease-in;
     padding: 13px 25px;
+    border-color: #CF1740;
 }
 .pagibutton button:hover{
     background: #9E9898;
+    border-color: #9E9898;
 }
 
 .form-control{

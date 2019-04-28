@@ -1,0 +1,34 @@
+<div class="block-contact col-md-12 hide">
+  <div class="col-md-12">
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="hero-callout">
+          <div id="example_wrapper" class="dataTables_wrapper">
+            <table id="company-contact" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" role="grid" aria-describedby="example_info">
+              <thead>
+                <tr role="row">                                
+                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 190px;" aria-label="Position: activate to sort column ascending">Prénom</th>
+                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Nom</th>
+                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Start date: activate to sort column ascending">Email</th>
+                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Téléphone</th>
+                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for contact in contacts %}
+                <tr role="row" class="odd">
+                  <td> <a href="/admin/contact/edit/{{ contact.id }}">{{ contact.contactPrenom }}</a></td>
+                  <td>{{ contact.contactNom }}</td>
+                  <td>{{ contact.contactEmail }}</td>
+                  <td>{{ contact.contactTelMobile }}</td>
+                  <td>{{ contact.contactTelMobile }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
