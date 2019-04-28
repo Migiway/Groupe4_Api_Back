@@ -57,20 +57,20 @@ class UserController extends AbstractController
     }
 
 
-    /**
-     * @Route("/edit/{id}", name="user_edit", methods={"PUT"})
-     */
-    public function editApi(Request $request)	
-    {
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            return $this->redirectToRoute('list.html.twig');
-        }
-
-        return $this->render('User/new.html.twig', array('form' => $form->createView()));
-    }
+//    /**
+//     * @Route("/edit/{id}", name="user_edit", methods={"PUT"})
+//     */
+//    public function editApi(Request $request)
+//    {
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid())
+//        {
+//            return $this->redirectToRoute('list.html.twig');
+//        }
+//
+//        return $this->render('User/new.html.twig', array('form' => $form->createView()));
+//    }
 
     /**
      * @Route("/delete", name="user_delete", methods={"DELETE"})

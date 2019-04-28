@@ -40,7 +40,7 @@ class UserProvider implements UserProviderInterface
             return $user;
         }
 
-        throw new UsernameNotFoundException('This username doesn\'t exist in the database.');
+        throw new UsernameNotFoundException('Utilisateur inexistant.');
     }
 
     /**
