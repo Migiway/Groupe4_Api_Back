@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     <div class="col-md-12 left_border contact1_background_col9">
         <div class="row">
             <div class="col-md-4 p-0">
@@ -30,7 +31,7 @@
                                     <div class="row form_right_active_text">
                                         <div class="col-md-3"></div>
                                         <div class="col-md-2 text-right mt-3"><span> à jour </span></div>
-                                        <div class="col-md-4 p-0 mt-3"><span>Dernière mise à jour le  12/12/2018</span>
+                                        <div class="col-md-4 p-0 mt-3"><span>Dernière mise à jour le {{ user.user_update_at }}</span>
                                         </div>
                                         <div class="col-md-3 mt-3">
                                             <div class="custom-control custom-switch">
@@ -58,7 +59,6 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                    <form id="form1" runat="server">
                                         <div class="contact_userimg">
                                             <img id="blah" src="{{ asset("img/circle.png") }}" alt="your image"/>
                                         </div>
@@ -69,7 +69,6 @@
                                             <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
                                         </div>
                                         <!-- <input class="uploadFile" type='file' id="imgInp" placeholder="Photo" /> -->
-                                    </form>
                                     <script>
 
                                         function readURL(input) {
@@ -91,7 +90,6 @@
                                     </script>
                                 </div>
                                 <div class="col-md-10">
-                                    <form>
                                         <div class="row form_client">
                                             <div class="col-md-6">
                                                 <div class="row  from_single_input">
@@ -99,8 +97,9 @@
                                                         <p>Code collaborateur</p>
                                                     </div>
                                                     <div class="col-md-7 input_border_left form-group code_client">
-                                                        <input class=" form-control" type="text" placeholder="1254789
-                                                "></div>
+                                                        {{ form_widget(form.user_code) }}
+                                                        {{ form_errors(form.user_code) }}
+                                                    </div>
                                                 </div>
                                                 <div class="row pt-3">
                                                     <div class="col-md-5 form_text">
@@ -108,12 +107,8 @@
                                                     </div>
                                                     <div class="col-md-7 input_select_main input_border_left">
                                                         <div class="form-group genre_select">
-                                                            <select class="custom-select" required>
-                                                                <option value="">Homme</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
-                                                            </select>
+                                                            {{ form_widget(form.user_gender) }}
+                                                            {{ form_errors(form.user_gender) }}
                                                             <div class="invalid-feedback">Example invalid custom select
                                                                 feedback
                                                             </div>
@@ -125,28 +120,31 @@
                                                         <p>Prénom</p>
                                                     </div>
                                                     <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                        <input class="input_size_big form-control" type="text"
-                                                               placeholder="Christophe"></div>
+                                                        {{ form_widget(form.user_firstName) }}
+                                                        {{ form_errors(form.user_firstName) }}
+                                                    </div>
                                                 </div>
                                                 <div class="row pt-3">
                                                     <div class="col-md-5 form_text">
                                                         <p>Nom</p>
                                                     </div>
                                                     <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                        <input class="input_size_big form-control" type="text"
-                                                               placeholder="DUCHEMIN"></div>
+                                                        {{ form_widget(form.user_lastName) }}
+                                                        {{ form_errors(form.user_lastName) }}
+                                                    </div>
                                                 </div>
                                                 <div class="row pt-3 from_single_input">
                                                     <div class="col-md-5 form_text">
                                                         <p>Date de naissance</p>
                                                     </div>
-                                                    <div class="col-md-7  form-group code_client"><input
-                                                                class=" form-control" id="today" type="date"
-                                                                placeholder=""></div>
+                                                    <div class="col-md-7  form-group code_client">
+                                                        {{ form_widget(form.user_dob) }}
+                                                        {{ form_errors(form.user_dob) }}
+                                                    </div>
                                                 </div>
                                                 <div class="row pt-3 from_single_input">
                                                     <div class="col-md-5 form_text">
-                                                        <p>Date de naissance</p>
+                                                        <p>Date d'arrivé/départ</p>
                                                     </div>
                                                     <div class="col-md-7  form-group commercial_date_input"><input
                                                                 class=" form-control" type="date" id="today"><input
@@ -157,8 +155,8 @@
                                                         <p>Tél. mobile</p>
                                                     </div>
                                                     <div class="col-md-7  phone_input input-group ">
-                                                        <input id="" type="text" class="form-control" name=""
-                                                               placeholder="06 70 61 95 99">
+                                                        {{ form_widget(form.user_phone) }}
+                                                        {{ form_errors(form.user_phone) }}
                                                         <span class="input-group-addon phone_input_position"><i
                                                                     class="fas fa-mobile"></i></span>
                                                     </div>
@@ -168,8 +166,8 @@
                                                         <p>Profil Linkedin</p>
                                                     </div>
                                                     <div class="col-md-7  phone_input input-group ">
-                                                        <input id="" type="text" class="form-control" name=""
-                                                               placeholder="/frederic-duchemin">
+                                                        {{ form_widget(form.user_lkd) }}
+                                                        {{ form_errors(form.user_lkd) }}
                                                         <span class="input-group-addon phone_input_position"><i
                                                                     class="fab fa-linkedin"></i></span>
                                                     </div>
@@ -179,8 +177,8 @@
                                                         <p>Profil Facebook</p>
                                                     </div>
                                                     <div class="col-md-7  phone_input input-group ">
-                                                        <input id="" type="text" class="form-control" name=""
-                                                               placeholder="/frederic.duchemin">
+                                                        {{ form_widget(form.user_facebook) }}
+                                                        {{ form_errors(form.user_facebook) }}
                                                         <span class="input-group-addon phone_input_position"><i
                                                                     class="fab fa-facebook-square"></i></span>
                                                     </div>
@@ -190,8 +188,8 @@
                                                         <p>Profil Twitter</p>
                                                     </div>
                                                     <div class="col-md-7 phone_input input-group ">
-                                                        <input id="" type="text" class="form-control" name=""
-                                                               placeholder="/fredericduchemin">
+                                                        {{ form_widget(form.user_twitter) }}
+                                                        {{ form_errors(form.user_twitter) }}
                                                         <span class="input-group-addon phone_input_position"><i
                                                                     class="fab fa-twitter-square"></i></span>
                                                     </div>
@@ -203,12 +201,12 @@
                                                         <p>E-mail</p>
                                                     </div>
                                                     <div class="col-md-7 phone_input input-group ">
-                                                        <input id="" type="email" class="form-control" name=""
-                                                               placeholder="c.duchemin@scantech.fr">
+                                                        {{ form_widget(form.user_email) }}
+                                                        {{ form_errors(form.user_email) }}
                                                         <span class="input-group-addon contact_checkbox_position">
                                                     <div class="custom-control custom-checkbox ">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                               id="customCheck" checked>
+                                                        {{ form_widget(form.user_status) }}
+                                                        {{ form_errors(form.user_status) }}
                                                         <label class="custom-control-label" for="customCheck"></label>
                                                     </div>
                                                     </span>
@@ -219,8 +217,8 @@
                                                         <p>Mot de passe</p>
                                                     </div>
                                                     <div class="col-md-7  phone_input input-group ">
-                                                        <input id="" type="password" class="form-control" name=""
-                                                               placeholder="••••••••">
+                                                        {{ form_widget(form.user_password) }}
+                                                        {{ form_errors(form.user_password) }}
                                                         <span class="input-group-addon phone_input_position2"><i
                                                                     class="fas fa-lock "></i></span>
                                                     </div>
@@ -231,12 +229,8 @@
                                                     </div>
                                                     <div class="col-md-7 input_select_main ">
                                                         <div class="form-group matier_select">
-                                                            <select class="custom-select" required>
-                                                                <option value="">Picardie</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
-                                                            </select>
+                                                            {{ form_widget(form.area) }}
+                                                            {{ form_errors(form.area) }}
                                                             <div class="invalid-feedback">Example invalid custom select
                                                                 feedback
                                                             </div>
@@ -247,9 +241,10 @@
                                                     <div class="col-md-5 form_text">
                                                         <p>Fonction/poste</p>
                                                     </div>
-                                                    <div class="col-md-7  prenom_input form-group "><input
-                                                                class="input_size_big form-control" type="text"
-                                                                placeholder="Directeur commercial"></div>
+                                                    <div class="col-md-7  prenom_input form-group ">
+                                                        {{ form_widget(form.user_function) }}
+                                                        {{ form_errors(form.user_function) }}
+                                                    </div>
                                                 </div>
                                                 <div class="row pt-3">
                                                     <div class="col-md-5 form_text">
@@ -257,12 +252,8 @@
                                                     </div>
                                                     <div class="col-md-7 input_select_main ">
                                                         <div class="form-group matier_select">
-                                                            <select class="custom-select" required>
-                                                                <option value="">Directeur</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
-                                                            </select>
+                                                            {{ form_widget(form.role) }}
+                                                            {{ form_errors(form.role) }}
                                                             <div class="invalid-feedback">Example invalid custom select
                                                                 feedback
                                                             </div>
@@ -292,8 +283,8 @@
                                                         <p>Tél. fixe direct</p>
                                                     </div>
                                                     <div class="col-md-7  phone_input input-group ">
-                                                        <input id="" type="text" class="form-control" name=""
-                                                               placeholder="03 44 86 75 04">
+                                                        {{ form_widget(form.user_fixe) }}
+                                                        {{ form_errors(form.user_fixe) }}
                                                         <span class="input-group-addon phone_input_position2"><i
                                                                     class="fas fa-phone"></i></span>
                                                     </div>
@@ -304,13 +295,12 @@
                                                     </div>
                                                     <div class="col-md-7 contact_form_textarea  form-group ">
                                                         <!--                         <input class="input_size_big form-control" type="text" placeholder=""></div>-->
-                                                        <textarea class="form-control" rows="5" id="comment"
-                                                                  placeholder="Signer la charte informatique 2019"></textarea>
+                                                        {{ form_widget(form.user_annotation) }}
+                                                        {{ form_errors(form.user_annotation) }}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -336,7 +326,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="enregisterbutton">
-                                        <button type="button" class="btn btn-primary">ENREGISTRER</button>
+                                        {{ form_widget(form.submit) }}
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +336,5 @@
             </div>
         </div>
     </div>
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(form) }}
     {{ form_end(form) }}
 {% endblock %}

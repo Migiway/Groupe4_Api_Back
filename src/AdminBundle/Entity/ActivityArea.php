@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\AdminBundle\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ActivityAreaRepository")
@@ -35,6 +36,11 @@ class ActivityArea
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Company", mappedBy="activityArea")
      */
     private $company_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\User", mappedBy="area")
+     */
+    private $users;
 
     public function __construct()
     {
@@ -119,6 +125,37 @@ class ActivityArea
             // set the owning side to null (unless already changed)
             if ($companyId->getActivityArea() === $this) {
                 $companyId->setActivityArea(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setArea($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getArea() === $this) {
+                $user->setArea(null);
             }
         }
 

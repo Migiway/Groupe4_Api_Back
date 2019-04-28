@@ -24,25 +24,21 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_lastName;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_firstName;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_password;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_email;
@@ -75,8 +71,7 @@ class User implements UserInterface
     private $user_status;
 
     /**
-     * Assert\DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $user_dob;
 
@@ -101,6 +96,36 @@ class User implements UserInterface
     private $user_imgUrl;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $user_lkd;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $user_facebook;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $user_twitter;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $user_annotation;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private  $user_arrival_date;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private  $user_quit_date;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="user_id")
      */
     private $operations;
@@ -119,6 +144,11 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Role", inversedBy="users")
      */
     private $role;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="users")
+     */
+    private $area;
 
     /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="operation_author")
@@ -154,6 +184,7 @@ class User implements UserInterface
     {
         return $this->user_lastName;
     }
+
     public function __toString()
     {
         return $this->user_lastName;
@@ -262,12 +293,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getUserDob(): ?\DateTimeInterface
+    public function getUserDob()
     {
         return $this->user_dob;
     }
 
-    public function setUserDob(\DateTimeInterface $user_dob): self
+    public function setUserDob($user_dob): self
     {
         $this->user_dob = $user_dob;
 
@@ -320,6 +351,46 @@ class User implements UserInterface
         $this->user_imgUrl = $user_imgUrl;
 
         return $this;
+    }
+
+    public function getUserLkd(): ?string
+    {
+        return $this->user_lkd;
+    }
+
+    public function setUserLkd(string  $user_lkd)
+    {
+        return $this->user_lkd = $user_lkd;
+    }
+
+    public function getUserFacebook(): ?string
+    {
+        return $this->user_facebook;
+    }
+
+    public function setUserFacebook(string $user_facebook)
+    {
+        return $this->user_facebook = $user_facebook;
+    }
+
+    public function getUserTwitter(): ?string
+    {
+        return $this->user_twitter;
+    }
+
+    public function setUserTwitter(string $user_twitter)
+    {
+        return $this->user_twitter = $user_twitter;
+    }
+
+    public function getUserAnnotation(): ?string
+    {
+        return $this->user_annotation;
+    }
+
+    public function setUserAnnotation(string $user_annotation)
+    {
+        return $this->user_annotation = $user_annotation;
     }
 
     /**
@@ -427,7 +498,7 @@ class User implements UserInterface
     //     return $this;
     // }
 
-    public function getRole(): ?Role
+    /*public function getRoles(): ?Role
     {
         //return $this->role;
         if (!is_null($this->role))
@@ -438,11 +509,28 @@ class User implements UserInterface
         }
         $roles[] = 'ROLE_USER';
         return array_unique($roles);
+    }*/
+
+    public function getRole()
+    {
+        return $this->role;
     }
 
     public function setRole(?Role $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getArea(): ?ActivityArea
+    {
+        return $this->area;
+    }
+
+    public function setArea(?ActivityArea $area): self
+    {
+        $this->area = $area;
 
         return $this;
     }
@@ -568,5 +656,25 @@ class User implements UserInterface
         $this->eraseCredentials();
 
         return $password;
+    }
+
+    public function getUserArrivalDate()
+    {
+        return $this->user_arrival_date;
+    }
+
+    public function setUserArrivalDate($user_arrival_date)
+    {
+        return $this->user_arrival_date = $user_arrival_date;
+    }
+
+    public function getUserQuitDate()
+    {
+        return $this->user_quit_date;
+    }
+
+    public function setUserQuitDate($user_quit_date)
+    {
+        return $this->user_quit_date = $user_quit_date;
     }
 }
