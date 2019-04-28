@@ -5,7 +5,8 @@
 <div class="col-md-3 p-0">
       <div class="contacts1_text">
 
-                            <h3 class="contact1h3">Contacts <span class="contact1span"> ({{totalContacts}})</span></h3>
+                            <h3 class="contact1h3">Contacts <span class="contact1span"> ({{ nb_contact }})</span></h3>
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -61,7 +62,7 @@
                                         <td>{{ contact.contactMetier }}</td>
                                         <td>{{ contact.contactEmail }}</td>
                                         <td>à jour</td>
-                                        <td class="table_phone"><a href="#">@</a> <a href="#">{{ contact.contactTelMobile }}<i class="fas fa-phone"></i></a></td>
+                                        <td class="table_phone">{{ contact.contactTelMobile }}<i class="fas fa-phone"></i></td>
                                     </tr>
                                     {% endfor %}
 

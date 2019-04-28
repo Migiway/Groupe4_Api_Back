@@ -23,7 +23,9 @@ use Proxies\__CG__\App\AdminBundle\Entity\Job;
 use Proxies\__CG__\App\AdminBundle\Entity\Company;
 use Proxies\__CG__\App\AdminBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 
 class ContactType extends AbstractType
@@ -31,7 +33,7 @@ class ContactType extends AbstractType
     function buildForm( FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contact_codeClient', TextType::class )
+            ->add('contact_codeClient', IntegerType::class )
             ->add('contact_genre', ChoiceType::class, [
                 'choices'  => [
                     'Homme' => '1',
@@ -84,6 +86,15 @@ class ContactType extends AbstractType
             ->add('contact_tel_standard', TextType::class, array('label' => 'Tel. du standard'))
             ->add('contact_commentaire', TextareaType::class, array('label' => 'Remarques'))
             ->add('contact_photo', FileType::class)
+            ->add('contact_statut', CheckboxType::class, [
+                'label' => false,
+                'label_attr' => array(
+                    'class' => 'custom-control-label'
+                ),
+                'attr' => array(
+                    'class' => 'custom-control-input'
+                )
+            ])
             ->add('save', SubmitType::class, [
             'attr' => ['class' => 'btn btn-primary'],
                 'label' => 'Enregistrer',
