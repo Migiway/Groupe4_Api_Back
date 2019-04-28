@@ -65,6 +65,29 @@
                 },
                 "dom": '<"top"if>rt<"bottom"lp><"clear">'
             });
+
+            $('#check-all').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#myTable tbody .custom-checkbox input').prop('checked', true);
+                }
+                else {
+                    $('#myTable tbody .custom-checkbox input').prop('checked', false);
+                }
+            });
+            $('#delete-select-company').click(function() {
+                var company = [];
+                $( "#myTable tbody .custom-checkbox input" ).each(function( index ) {
+                    if ($(this).prop('checked') == true ) {
+                        company.push($(this).val());
+                    }
+                });
+                if (company.length > 0) {
+                   $('#companys').val(company);
+                   $( "#form-delete-company" ).submit();
+                }
+                else {
+                }
+            });
         });
     </script>
 {% endblock %}
