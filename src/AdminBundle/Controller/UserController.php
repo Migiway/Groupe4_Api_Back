@@ -4,6 +4,7 @@ namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\LoginType;
 use App\AdminBundle\Form\UserType;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -18,7 +19,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Reponse;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -68,21 +69,16 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($request->isMethod('POST')) {
-            $this->newApi($request);
-
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $date = new DateTime("2019-04-28 00:00");
+            $user->setUserImgUrl("qsdqsd");
+            $user->setUserArrivalDate($date);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
         }
-
-        /* if ($form->isSubmitted() && $form->isValid())
-         {
-
-             $task = $form->getData();
-
-             $entityManager = $this->getDoctrine()->getManager();
-             $entityManager->persist($task);
-             $entityManager->flush();
-
-         }*/
 
         return $this->render('team/new.html.twig', array('form' => $form->createView()));
     }
@@ -133,7 +129,7 @@ class UserController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $this->redirectToRoute('user_list');
+            return $this->redirectToRoute('team_list');
         }
 
         return $this->render('team/edit.html.twig', array('form' => $form->createView()));
@@ -183,7 +179,14 @@ class UserController extends AbstractController
      */
     public function teamList()
     {
-        return $this->render('team/list.html.twig');
+
+        $users = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findAll();
+
+        return $this->render('team/list.html.twig', array(
+            'users' => $users
+        ));
     }
 
 }
