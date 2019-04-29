@@ -58,6 +58,7 @@ class CompanyController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $company->setCompanyUpdatedAt(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
