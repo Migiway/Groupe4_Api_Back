@@ -43,8 +43,8 @@ class ProfileType extends AbstractType
             ->add('user_function', null, array('label' => 'Function'))
             ->add('user_phone', null, array('label' => 'Phone'))
             ->add('user_fixe', null, array('label' => 'Fax'))
-            ->add('userFile', FileType::class, array('label' => 'Image', 'required' => false))
-            ->add('submit', SubmitType::class, array('label' => 'Save'))
+            ->add('userFile', FileType::class, array('label' => 'Image', 'required' => false,'attr' => ['class' => 'uploadFile custom-file-input inputfile'],))
+            ->add('submit', SubmitType::class, array('label' => 'Enregistrer'))
         ;
     }
 
