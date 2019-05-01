@@ -9,12 +9,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\UserRepository")
+ * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -24,21 +26,25 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_lastName;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_firstName;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_password;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $user_email;
@@ -71,7 +77,8 @@ class User implements UserInterface
     private $user_status;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * Assert\DateTime
+     * @ORM\Column(type="datetime")
      */
     private $user_dob;
 
@@ -91,9 +98,9 @@ class User implements UserInterface
     private $user_fixe;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $user_imgUrl;
+    private $imgUrl;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -116,14 +123,14 @@ class User implements UserInterface
     private $user_annotation;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private  $user_arrival_date;
+    private $user_arrival_date;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private  $user_quit_date;
+    private $user_quit_date;
 
     /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="user_id")
@@ -158,11 +165,18 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $resetPasswordToken;
 
     protected $plainPassword;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="user_img", fileNameProperty="imgUrl")
+     */
+    protected $userFile;
 
     public function __construct()
     {
@@ -187,7 +201,7 @@ class User implements UserInterface
 
     public function __toString()
     {
-        return $this->user_lastName;
+        return $this->user_firstName . ' ' . $this->user_lastName;
     }
 
     public function setUserLastName(string $user_lastName): self
@@ -293,12 +307,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getUserDob()
+    public function getUserDob(): ?\DateTimeInterface
     {
         return $this->user_dob;
     }
 
-    public function setUserDob($user_dob): self
+    public function setUserDob(\DateTimeInterface $user_dob): self
     {
         $this->user_dob = $user_dob;
 
@@ -341,14 +355,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getUserImgUrl(): ?string
+    public function getImgUrl()
     {
-        return $this->user_imgUrl;
+        return $this->imgUrl;
     }
 
-    public function setUserImgUrl(string $user_imgUrl): self
+    public function setImgUrl($imgUrl)
     {
-        $this->user_imgUrl = $user_imgUrl;
+        $this->imgUrl = $imgUrl;
 
         return $this;
     }
@@ -358,7 +372,7 @@ class User implements UserInterface
         return $this->user_lkd;
     }
 
-    public function setUserLkd(string  $user_lkd)
+    public function setUserLkd(string $user_lkd)
     {
         return $this->user_lkd = $user_lkd;
     }
@@ -408,6 +422,7 @@ class User implements UserInterface
             $operation->setUserId($this);
         }
     }
+
     /**
      * @return Collection|Company[]
      */
@@ -467,6 +482,7 @@ class User implements UserInterface
             }
         }
     }
+
     public function removeCompany(Company $company): self
     {
         if ($this->companies->contains($company)) {
@@ -488,15 +504,15 @@ class User implements UserInterface
         return $this->author;
     }
 
-    // public function addAuthor(Author $author): self
-    // {
-    //     if (!$this->authors->contains($author)) {
-    //         $this->authors[] = $author;
-    //         $author->setUserId($this);
-    //     }
-
-    //     return $this;
-    // }
+//     public function addAuthor(Author $author): self
+//     {
+//         if (!$this->authors->contains($author)) {
+//             $this->authors[] = $author;
+//             $author->setUserId($this);
+//         }
+//
+//         return $this;
+//     }
 
     /*public function getRoles(): ?Role
     {
@@ -511,9 +527,16 @@ class User implements UserInterface
         return array_unique($roles);
     }*/
 
-    public function getRole()
+    public function getRole(): ?Role
     {
-        return $this->role;
+        //return $this->role;
+        if (!is_null($this->role)) {
+            $roles[] = $this->role->getCode();
+            // guarantee every user at least has ROLE_USER
+
+        }
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
     public function setRole(?Role $role): self
@@ -676,5 +699,51 @@ class User implements UserInterface
     public function setUserQuitDate($user_quit_date)
     {
         return $this->user_quit_date = $user_quit_date;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return User
+     */
+    public function setUserFile(File $file = null)
+    {
+        $this->userFile = $file;
+        if ($file) {
+            $this->user_updateAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getUserFile()
+    {
+        return $this->userFile;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->user_password,
+            $this->user_email,
+            $this->id
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        //$data = unserialize($serialized);
+        // add a few extra elements in the array to ensure that we have enough keys when unserializing
+        // older data which does not include all properties.
+        //$data = array_merge($data, array_fill(0, 4, null));
+
+        list(
+            $this->user_password,
+            $this->user_email,
+            $this->id
+            ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

@@ -4,55 +4,80 @@
 
     <div class="col-md-3 p-0">
         <div class="contacts1_text">
-            <h3 class="contact1h3">Entreprises <span class="contact1span"> ({{totalCompany}})</span></h3>
+            <h3 class="contact1h3">Entreprises <span class="contact1span"> ({{ totalCompany }})</span></h3>
         </div>
     </div>
     <div class="col-md-6"></div>
-</div>
+    </div>
 
-        <div class="row">
-            <div class="col-12">
-                <!--       data tables-->
+    <div class="row">
+        <div class="col-12">
+            <!--       data tables-->
 
-                <div class="hero-callout">
-                    <div id="example_wrapper" class="dataTables_wrapper">
+            <div class="hero-callout">
+                <div id="example_wrapper" class="dataTables_wrapper">
 
-                        <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3" style="width: 100%;" role="grid" aria-describedby="example_info">
-                            <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
-                                    <div class="custom-control custom-checkbox ">
-                                        <input type="checkbox" class="custom-control-input" id="check-all">
-                                        <label class="custom-control-label" for="check-all"></label>
-                                    </div>
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 190px;" aria-label="Position: activate to sort column ascending">Nom</th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Activité</th>
+                    <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3"
+                           style="width: 100%;" role="grid" aria-describedby="example_info">
+                        <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 20px;" aria-sort="ascending"
+                                aria-label="Name: activate to sort column descending">
+                                <div class="custom-control custom-checkbox ">
+                                    <input type="checkbox" class="custom-control-input" id="check-all">
+                                    <label class="custom-control-label" for="check-all"></label>
+                                </div>
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 190px;" aria-label="Position: activate to sort column ascending">Nom
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 80px;" aria-label="Office: activate to sort column ascending">Activité
+                            </th>
 
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Start date: activate to sort column ascending">CP</th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Ville</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Responsable de compte</th>
-                                <th class="sorting enterprise_status_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Start date: activate to sort column ascending">Statut</th>
-                                <th class="dt-body-right sorting enterprise_contact_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Age: activate to sort column ascending">Contacts</th>
-                                <th class="sorting phone_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 50px;" aria-label="Start date: activate to sort column ascending"><i class="fas fa-ellipsis-h"></i></th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 80px;" aria-label="Start date: activate to sort column ascending">CP
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 100px;" aria-label="Start date: activate to sort column ascending">Ville
+                            </th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 120px;" aria-sort="ascending"
+                                aria-label="Name: activate to sort column descending">Responsable de compte
+                            </th>
+                            <th class="sorting enterprise_status_th" tabindex="0" aria-controls="example" rowspan="1"
+                                colspan="1" style="width: 80px;"
+                                aria-label="Start date: activate to sort column ascending">Statut
+                            </th>
+                            <th class="dt-body-right sorting enterprise_contact_th" tabindex="0" aria-controls="example"
+                                rowspan="1" colspan="1" style="width: 100px;"
+                                aria-label="Age: activate to sort column ascending">Contacts
+                            </th>
+                            <th class="sorting phone_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                style="width: 50px;" aria-label="Start date: activate to sort column ascending"><i
+                                        class="fas fa-ellipsis-h"></i></th>
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for company in companys %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for company in companys %}
                             <tr role="row" class="odd">
                                 <td>
                                     <div class="custom-control custom-checkbox ml8">
-                                        <input type="checkbox" class="custom-control-input" id="company-check-{{ company.id }}" value="{{ company.id }}" name="company-check[]">
-                                        <label class="custom-control-label" for="company-check-{{ company.id }}"></label>
+                                        <input type="checkbox" class="custom-control-input"
+                                               id="company-check-{{ company.id }}" value="{{ company.id }}"
+                                               name="company-check[]">
+                                        <label class="custom-control-label"
+                                               for="company-check-{{ company.id }}"></label>
                                     </div>
                                 </td>
-                                <td> <a href="/admin/company/edit/{{ company.id }}">{{ company.companyName }}</a></td>
+                                <td><a href="/admin/company/edit/{{ company.id }}">{{ company.companyName }}</a></td>
                                 <td>{{ company.SecteurActiviteId }}</td>
                                 <td>{{ company.companyPostcode }}</td>
                                 <td>{{ company.companyCity }}</td>
                                 <td>{{ company.UserId }}</td>
-                                <td>                                    
+                                <td>
                                     <div class="
                                     {% if company.companyStatus == 'Client' %}
                                        enterprise_table_status
@@ -64,42 +89,46 @@
                                     ">
                                         {{ company.companyStatus }}
                                     </div>
-                                </td>                                        
+                                </td>
                                 <td>2</td>
-                                <td class="table_phone"><a href="#">@</a> <a href="#"><i class="fas fa-phone"></i></a></td>
+                                <td class="table_phone"><a href="#">@</a> <a href="#"><i class="fas fa-phone"></i></a>
+                                </td>
                             </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                     <!-- tables-->
-                    </div>
                 </div>
-                <div class="row py-4">
-                    <div class="col-md-4 div-options-list">
-                        <div class="row mb-5">
-                            <div class="col-md-8">
-                                <div class="listline">
-                                    <ul id="menu">
-                                        <form id="form-delete-company" name="delete-company" method="post" action="/admin/company/delete-select">
-                                            <input id="companys" type="hidden" name="companys">
-                                        </form>
-                                        <li><a id="delete-select-company" href="#"><i class="fas fa-trash"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-download"></i></a></li>
-                                        <li><a href="/admin/company/new"><i class="fas fa-building"></i></a></li>
-                                    </ul>
-                                </div>
+            </div>
+            <div class="row py-4">
+                <div class="col-md-4 div-options-list">
+                    <div class="row mb-5">
+                        <div class="col-md-8">
+                            <div class="listline">
+                                <ul id="menu">
+                                    <form id="form-delete-company" name="delete-company" method="post"
+                                          action="/admin/company/delete-select">
+                                        <input id="companys" type="hidden" name="companys">
+                                    </form>
+                                    <li><a id="delete-select-company" href="#"><i class="fas fa-trash"></i></a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i></a></li>
+                                    <li><a href="/admin/company/new"><i class="fas fa-building"></i></a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4 div-btn-add">
-                        <div class="pagibutton">
-                            <a href="/admin/company/new"><button type="button" class="btn btn-primary">AJOUTER</button></a>
-                        </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4 div-btn-add">
+                    <div class="pagibutton">
+                        <a href="/admin/company/new">
+                            <button type="button" class="btn btn-primary">AJOUTER</button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
+    </div>
 {% endblock %}

@@ -136,7 +136,7 @@ class SecurityController extends AbstractController
     {
         $message = new \Swift_Message();
         $message->setSubject('Nouveau mot de passe')
-            ->setFrom('yoursite@email.com')
+            ->setFrom('smartleads@email.com')
             ->setTo($obj->getUserEmail())
             ->setContentType('text/html')
             ->setBody(
