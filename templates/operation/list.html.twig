@@ -3,7 +3,7 @@
 {% block body %}
     <div class="col-md-3 p-0">
         <div class="contacts1_text">
-            <h3 class="contact1h3">Opérations <span class="contact1span"> ({{totalOperations}})</span></h3>
+            <h3 class="contact1h3">Opérations <span class="contact1span"> ({{ totalOperations }})</span></h3>
         </div>
     </div>
     <div class="col-md-6"></div>
@@ -63,22 +63,26 @@
                         </thead>
                         <tbody>
                         {% for row in operations %}
-                        <tr>
-                            <td>
-                                <div class="custom-control custom-checkbox ml8">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                    <label class="custom-control-label" for="customCheck1"></label>
-                                </div>
-                            </td>
-                            <td><a href="{{ path('app_admin_operation_edit', {'id': row.id}) }}">{{ row.operationName }}
-                                </a></td>
-                            {#<td>{{ row.operationCode }}</td>#}
-                            <td>{{ row.operationEnvoiDate|date('d/m/Y') }}</td>
-                            <td>12</td>
-                            <td>52</td>
-                            <td>{{ row.operationAuthor }}</td>
-                            <td>
-                                <div class="
+                            <tr role="row" class="odd">
+                                <td>
+                                    <div class="custom-control custom-checkbox ml8">
+                                        <input type="checkbox" class="custom-control-input"
+                                               id="company-check-{{ row.id }}" value="{{ row.id }}"
+                                               name="company-check[]">
+                                        <label class="custom-control-label"
+                                               for="company-check-{{ row.id }}"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_admin_operation_edit', {'id': row.id}) }}">{{ row.operationName }}
+                                    </a></td>
+                                {#<td>{{ row.operationCode }}</td>#}
+                                <td>{{ row.operationEnvoiDate|date('d/m/Y') }}</td>
+                                <td>12</td>
+                                <td>52</td>
+                                <td>{{ row.operationAuthor }}</td>
+                                <td>
+                                    <div class="
                                     {% if company.companyStatus == 'Client' %}
                                        enterprise_table_status
                                     {% elseif company.companyStatus == 'Prospect' %}
@@ -87,39 +91,41 @@
                                        enterprise_table_status3
                                     {% endif %}
                                     ">
-                                    {{ company.companyStatus }}
-                                </div>
-                            </td>
-                            <td>1</td>
-                            <td class="table_phone">
-                                <a href="{{ row.operationEmail }}">@</a>
-                                <a href="{{ row.operationFixe }}"><i class="fas fa-phone"></i></a>
-                            </td>
-                            {#<td>#}
-                            {#<a href="{{ path('app_admin_operation_edit', {'id': row.id}) }}"#}
-                            {#class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>#}
-                            {#<a href="{{ path('app_admin_operation_delete', {'id': row.id}) }}"#}
-                            {#class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>#}
-                            {#</td>#}
-                        </tr>
-                            {% endfor %}
+                                        {{ company.companyStatus }}
+                                    </div>
+                                </td>
+                                <td>1</td>
+                                <td class="table_phone">
+                                    <a href="{{ row.operationEmail }}">@</a>
+                                    <a href="{{ row.operationFixe }}"><i class="fas fa-phone"></i></a>
+                                </td>
+                                {#<td>#}
+                                {#<a href="{{ path('app_admin_operation_edit', {'id': row.id}) }}"#}
+                                {#class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>#}
+                                {#<a href="{{ path('app_admin_operation_delete', {'id': row.id}) }}"#}
+                                {#class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>#}
+                                {#</td>#}
+                            </>
+                        {% endfor %}
 
                         </tbody>
 
-                    </table>    
+                    </table>
                 </div>
             </div>
             <div class="row py-4">
                 <div class="col-md-4 div-options-list">
                     <div class="row mb-5">
-
                         <div class="col-md-8">
-
                             <div class="listline">
                                 <ul id="menu">
                                     {#<a href="{{ path('app_admin_operation_delete', {'id': row.id}) }}"#}
                                     {#class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>#}
-                                    <li><a href=""><i class="fas fa-trash"></i></a></li>
+                                    <form id="form-delete-operation" name="delete-operation" method="post"
+                                          action="/admin/operation/delete-select">
+                                        <input id="operations" type="hidden" name="operations">
+                                    </form>
+                                    <li><a id="delete-select-operation" href="#"><i class="fas fa-trash"></i></a></li>
                                     <li><a href="#"><i class="fas fa-download"></i></a></li>
                                     <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
                                 </ul>
