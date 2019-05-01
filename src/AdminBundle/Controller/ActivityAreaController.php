@@ -26,9 +26,6 @@ class ActivityAreaController extends AbstractController
       $activityArea = new ActivityArea();
 
       $form = $this->createForm(ActivityAreaType::class, $activityArea);
-      $form->add('submit', SubmitType::class, [
-        'label' => 'Enregistrer',
-      ]);
 
       $form->handleRequest($request);
 
@@ -51,9 +48,6 @@ class ActivityAreaController extends AbstractController
 
     $form = $this->createForm(ActivityAreaType::class, $activityArea);
 
-    $form->add('submit', SubmitType::class, [
-      'label' => 'Modifier',
-    ]);
     $form->handleRequest($request);
     if ($form->isSubmitted() && $form->isValid())
     {
