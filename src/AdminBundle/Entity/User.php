@@ -152,7 +152,7 @@ class User implements UserInterface, \Serializable
      */
     private $role;
 
-    /**
+     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="users")
      */
     private $area;
@@ -170,7 +170,7 @@ class User implements UserInterface, \Serializable
     protected $resetPasswordToken;
 
     protected $plainPassword;
-
+    
     /**
      * @var File
      *
@@ -367,7 +367,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getUserLkd(): ?string
+     public function getUserLkd(): ?string
     {
         return $this->user_lkd;
     }
@@ -504,33 +504,21 @@ class User implements UserInterface, \Serializable
         return $this->author;
     }
 
-//     public function addAuthor(Author $author): self
-//     {
-//         if (!$this->authors->contains($author)) {
-//             $this->authors[] = $author;
-//             $author->setUserId($this);
-//         }
-//
-//         return $this;
-//     }
+    // public function addAuthor(Author $author): self
+    // {
+    //     if (!$this->authors->contains($author)) {
+    //         $this->authors[] = $author;
+    //         $author->setUserId($this);
+    //     }
 
-    /*public function getRoles(): ?Role
-    {
-        //return $this->role;
-        if (!is_null($this->role))
-        {
-            $roles[] = $this->role->getCode();
-            // guarantee every user at least has ROLE_USER
-
-        }
-        $roles[] = 'ROLE_USER';
-        return array_unique($roles);
-    }*/
+    //     return $this;
+    // }
 
     public function getRole(): ?Role
     {
         //return $this->role;
-        if (!is_null($this->role)) {
+        if (!is_null($this->role))
+        {
             $roles[] = $this->role->getCode();
             // guarantee every user at least has ROLE_USER
 
@@ -680,7 +668,7 @@ class User implements UserInterface, \Serializable
 
         return $password;
     }
-
+    
     public function getUserArrivalDate()
     {
         return $this->user_arrival_date;
@@ -712,7 +700,7 @@ class User implements UserInterface, \Serializable
         if ($file) {
             $this->user_updateAt = new \DateTime('now');
         }
-
+        
         return $this;
     }
 
@@ -723,7 +711,7 @@ class User implements UserInterface, \Serializable
     {
         return $this->userFile;
     }
-
+    
     public function serialize()
     {
         return serialize(array(
@@ -732,7 +720,7 @@ class User implements UserInterface, \Serializable
             $this->id
         ));
     }
-
+    
     public function unserialize($serialized)
     {
         //$data = unserialize($serialized);
@@ -744,6 +732,6 @@ class User implements UserInterface, \Serializable
             $this->user_password,
             $this->user_email,
             $this->id
-            ) = unserialize($serialized, ['allowed_classes' => false]);
+        ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

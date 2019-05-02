@@ -65,6 +65,7 @@ class UserType extends AbstractType
 
             ->add('user_fixe', TextType::class, array('label' => 'Tel fixe : '))
             ->add('user_annotation', TextareaType::class, array('label' => 'Remarques : '))
+            ->add('imgUrl', TextType::class, array('label' => 'Image : '))
             ->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
     }
 
