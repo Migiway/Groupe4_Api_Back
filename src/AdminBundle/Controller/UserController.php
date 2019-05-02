@@ -4,7 +4,6 @@ namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\LoginType;
 use App\AdminBundle\Form\UserType;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,7 +18,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Reponse;
 
 
 /**
@@ -49,14 +48,14 @@ class UserController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/check", methods = {"POST"}, name="user_login_check")
-//     * @throws AuthenticationErrorException
-//     */
-//    public function checkLogin()
-//    {
-//        throw new AuthenticationErrorException('Connection failed.');
-//    }
+    /**
+     * @Route("/check", methods = {"POST"}, name="user_login_check")
+     * @throws AuthenticationErrorException
+     */
+    public function checkLogin()
+    {
+        throw new AuthenticationErrorException('Connection failed.');
+    }
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
@@ -69,16 +68,21 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $date = new DateTime("2019-04-28 00:00");
-            $user->setUserImgUrl("qsdqsd");
-            $user->setUserArrivalDate($date);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
+        if ($request->isMethod('POST')) {
+            $this->newApi($request);
+
         }
+
+        /* if ($form->isSubmitted() && $form->isValid())
+         {
+
+             $task = $form->getData();
+
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($task);
+             $entityManager->flush();
+
+         }*/
 
         return $this->render('team/new.html.twig', array('form' => $form->createView()));
     }
@@ -107,7 +111,7 @@ class UserController extends AbstractController
     		'JSON',
     		['Groups'=>["light"]]
     	);
-    	
+
     	$response = new response();
     	$response->setContent($json);
     	$response->headers->set('Content-type', 'application/JSON');*/
@@ -129,25 +133,25 @@ class UserController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $this->redirectToRoute('team_list');
+            return $this->redirectToRoute('user_list');
         }
 
         return $this->render('team/edit.html.twig', array('form' => $form->createView()));
     }
 
-//    /**
-//     * @Route("", name="user_edit", methods={"PUT"})
-//     */
-//    public function editApi(Request $request)
-//    {
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            return $this->redirectToRoute('list.html.twig');
-//        }
-//
-//        return $this->render('User/new.html.twig', array('form' => $form->createView()));
-//    }
+    /**
+     * @Route("", name="user_edit", methods={"PUT"})
+     */
+    public function editApi(Request $request)
+    {
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('list.html.twig');
+        }
+
+        return $this->render('User/new.html.twig', array('form' => $form->createView()));
+    }
 
     /**
      * @Route("/delete/{id}", name="user_delete", methods={"GET","POST"})
@@ -166,27 +170,20 @@ class UserController extends AbstractController
     }
 
 
-//    /**
-//     * @Route("/list", name="user_list")
-//     */
-//    public function list()
-//    {
-//        return $this->render('User/list.html.twig');
-//    }
+    /**
+     * @Route("/list", name="user_list")
+     */
+    public function list()
+    {
+        return $this->render('User/list.html.twig');
+    }
 
     /**
      * @Route("/team", name="team_list")
      */
     public function teamList()
     {
-
-        $users = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findAll();
-
-        return $this->render('team/list.html.twig', array(
-            'users' => $users
-        ));
+        return $this->render('team/list.html.twig');
     }
 
 }

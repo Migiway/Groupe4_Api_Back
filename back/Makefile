@@ -1,0 +1,2 @@
+intall:
+	echo "install"
