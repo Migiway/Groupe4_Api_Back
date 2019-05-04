@@ -30,6 +30,7 @@ class ProfileController extends AbstractController
     public function index(Request $request)
     {
         $user = $this->getUser();
+
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
