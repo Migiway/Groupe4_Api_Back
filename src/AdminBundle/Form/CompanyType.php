@@ -127,6 +127,10 @@ class CompanyType extends AbstractType
                 'label' => 'N° SIRET',
                 'required' => false
             ))
+            ->add('companyFile', FileType::class, array(
+                'label' => 'Image',
+                 'required' => false
+             ))
             ->add('save', SubmitType::class, [
                'attr' => ['class' => 'btn btn-primary'],
                'label' => 'Enregistrer',

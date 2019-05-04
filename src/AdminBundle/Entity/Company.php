@@ -6,8 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\CompanyRepository")
  * @Vich\Uploadable
@@ -43,7 +44,6 @@ class Company
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Vich\UploadableField(mapping="company_logo", fileNameProperty="company_logo")
      */
     private $companyLogo;
 
@@ -185,6 +185,13 @@ class Company
      */
     private $nb_salarie_id;
 
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="company_img", fileNameProperty="companyLogo")
+     */
+    protected $companyFile;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -226,9 +233,7 @@ class Company
     public function setCompanyLogo(?string $companyLogo): self
     {
         $this->companyLogo = $companyLogo;
-        if ($this->companyLogo instanceof UploadedFile) {
-            $this->companyUpdatedAt = new \DateTime('now');
-        }
+
         return $this;
     }
 
@@ -566,5 +571,28 @@ class Company
         $this->companyEmail = $companyEmail;
 
         return $this;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return Company
+     */
+    public function setCompanyFile(File $file = null)
+    {
+        $this->companyFile = $file;
+        if ($file) {
+            $this->companyUpdatedAt = new \DateTime('now');
+        }
+        
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getCompanyFile()
+    {
+        return $this->companyFile;
     }
 }
