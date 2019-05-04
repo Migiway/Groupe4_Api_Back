@@ -6,8 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\CompanyRepository")
  * @Vich\Uploadable
@@ -43,7 +45,6 @@ class Company
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Vich\UploadableField(mapping="company_logo", fileNameProperty="company_logo")
      */
     private $companyLogo;
 
@@ -106,7 +107,7 @@ class Company
     private $companySiret;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)     
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $companyCodeNaf;
 
@@ -153,6 +154,7 @@ class Company
         $this->companyCreatedAt = new \DateTime;
         $this->companyUpdatedAt = new \DateTime;
     }
+
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Country", inversedBy="companies")
      */
@@ -185,6 +187,30 @@ class Company
      */
     private $nb_salarie_id;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imgCompany;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="company_img", fileNameProperty="imgCompany")
+     */
+    protected $companyFile;
+
+    public function getImgCompany()
+    {
+        return $this->imgCompany;
+    }
+
+    public function setImgCompany($imgCompany)
+    {
+        $this->imgCompany = $imgCompany;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -194,6 +220,7 @@ class Company
     {
         return $this->companyName;
     }
+
     public function __toString()
     {
         return $this->companyName;
@@ -226,9 +253,7 @@ class Company
     public function setCompanyLogo(?string $companyLogo): self
     {
         $this->companyLogo = $companyLogo;
-        if ($this->companyLogo instanceof UploadedFile) {
-            $this->companyUpdatedAt = new \DateTime('now');
-        }
+
         return $this;
     }
 
@@ -415,6 +440,7 @@ class Company
             $parameter->setParamCompany($this);
         }
     }
+
     public function getCountryId(): ?Country
     {
         return $this->country_id;
@@ -519,6 +545,7 @@ class Company
 
         return $this;
     }
+
     public function getCompanyCommentary(): ?string
     {
         return $this->companyCommentary;
@@ -564,6 +591,29 @@ class Company
     public function setCompanyEmail(?string $companyEmail): self
     {
         $this->companyEmail = $companyEmail;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getCompanyFile()
+    {
+        return $this->companyFile;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return User
+     */
+    public function setCompanyFile(File $file = null)
+    {
+        $this->companyFile = $file;
+        if ($file) {
+            $this->user_updateAt = new \DateTime('now');
+        }
 
         return $this;
     }

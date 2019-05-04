@@ -75,28 +75,28 @@ class OperationController extends AbstractController
         return $this->render('operation/new.html.twig', $arr);
     }
 
-   /**
-    * @Route("/edit/{id}", name="app_admin_operation_edit")
-    * @param Request $request
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
-   public function edit(Request $request, Operation $operation)
-   {
-       $form = $this->createForm(OperationType::class, $operation);
-       
-       $form->handleRequest($request);
-       if ($form->isSubmitted() && $form->isValid()) {
-           $obj = $form->getData();
-           $obj->setOperationAuthor($this->getUser());
+    /**
+     * @Route("/edit/{id}", name="app_admin_operation_edit")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Request $request, Operation $operation)
+    {
+        $form = $this->createForm(OperationType::class, $operation);
 
-           $em = $this->getDoctrine()->getManager();
-           $em->persist($operation, $obj);
-           $em->flush();
-           return $this->redirectToRoute('app_admin_operation_list');
-       }
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $obj = $form->getData();
+            $obj->setOperationAuthor($this->getUser());
 
-       return $this->render('operation/edit.html.twig', array('form' => $form->createView()));
-   }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($operation, $obj);
+            $em->flush();
+            return $this->redirectToRoute('app_admin_operation_list');
+        }
+
+        return $this->render('operation/edit.html.twig', array('form' => $form->createView()));
+    }
 
     /**
      * @Route("/delete/{id}", name="app_admin_operation_delete")
@@ -118,8 +118,8 @@ class OperationController extends AbstractController
     {
         $idOperations = $_POST['operations'];
         $arr = explode(',', $idOperations);
-        $totalId    = count($arr);
-        for ($i=0; $i < $totalId ; $i++) {
+        $totalId = count($arr);
+        for ($i = 0; $i < $totalId; $i++) {
             $uneOperation = $this->getDoctrine()->getRepository(Operation::class)->findBy(['id' => $arr[$i]]);
             $em = $this->getDoctrine()->getManager();
             $em->remove($uneOperation[0]);

@@ -6,8 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type as FT;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class UserChangePasswordType extends AbstractType
+class ProfileChangePasswordType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -18,12 +19,13 @@ class UserChangePasswordType extends AbstractType
 
         $builder
             ->add('plainPassword', FT\RepeatedType::class, array(
+                'label' => 'Mot de passe : ',
                 'type' => FT\PasswordType::class,
-                'required' => true,
                 'invalid_message' => 'Les mots de passe sont différent.',
                 'first_options' => array('label' => 'Nouveau Mot de passe'),
                 'second_options' => array('label' => 'Confirmez le Nouveau Mot de passe'),
-            ));
+            ))
+            ->add('submit', SubmitType::class, array('label' => 'Save'));
     }
 
     /**

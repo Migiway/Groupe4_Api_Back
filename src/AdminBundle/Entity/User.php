@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\UserRepository")
  * @Vich\Uploadable
@@ -100,11 +101,6 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $imgUrl;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $user_lkd;
 
     /**
@@ -152,7 +148,7 @@ class User implements UserInterface, \Serializable
      */
     private $role;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="users")
      */
     private $area;
@@ -170,13 +166,31 @@ class User implements UserInterface, \Serializable
     protected $resetPasswordToken;
 
     protected $plainPassword;
-    
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imgUrl;
+
     /**
      * @var File
      *
      * @Vich\UploadableField(mapping="user_img", fileNameProperty="imgUrl")
      */
     protected $userFile;
+
+    public function getImgUrl()
+    {
+        return $this->imgUrl;
+    }
+
+    public function setImgUrl($imgUrl)
+    {
+        $this->imgUrl = $imgUrl;
+
+        return $this;
+    }
+
 
     public function __construct()
     {
@@ -355,19 +369,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getImgUrl()
-    {
-        return $this->imgUrl;
-    }
-
-    public function setImgUrl($imgUrl)
-    {
-        $this->imgUrl = $imgUrl;
-
-        return $this;
-    }
-
-     public function getUserLkd(): ?string
+    public function getUserLkd(): ?string
     {
         return $this->user_lkd;
     }
@@ -517,8 +519,7 @@ class User implements UserInterface, \Serializable
     public function getRole(): ?Role
     {
         //return $this->role;
-        if (!is_null($this->role))
-        {
+        if (!is_null($this->role)) {
             $roles[] = $this->role->getCode();
             // guarantee every user at least has ROLE_USER
 
@@ -668,7 +669,7 @@ class User implements UserInterface, \Serializable
 
         return $password;
     }
-    
+
     public function getUserArrivalDate()
     {
         return $this->user_arrival_date;
@@ -700,7 +701,7 @@ class User implements UserInterface, \Serializable
         if ($file) {
             $this->user_updateAt = new \DateTime('now');
         }
-        
+
         return $this;
     }
 
@@ -711,7 +712,7 @@ class User implements UserInterface, \Serializable
     {
         return $this->userFile;
     }
-    
+
     public function serialize()
     {
         return serialize(array(
@@ -720,18 +721,13 @@ class User implements UserInterface, \Serializable
             $this->id
         ));
     }
-    
+
     public function unserialize($serialized)
     {
-        //$data = unserialize($serialized);
-        // add a few extra elements in the array to ensure that we have enough keys when unserializing
-        // older data which does not include all properties.
-        //$data = array_merge($data, array_fill(0, 4, null));
-
         list(
             $this->user_password,
             $this->user_email,
             $this->id
-        ) = unserialize($serialized, ['allowed_classes' => false]);
+            ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

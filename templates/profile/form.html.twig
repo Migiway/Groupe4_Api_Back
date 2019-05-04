@@ -6,150 +6,158 @@
             <h3 class="contact1h3">Profile</h3>
         </div>
     </div>
-</div>
-{{ form_start(form) }}
-<div class="contact_form ">
-    <div class="row justify-content-center ml-0 mr-0 mb-5">
-        <div class="col-md-12 ">
-            <div class="row rounded border">
-                <div class="col-md-12">
-                    <h3 class="contact2_saisieh3 pt-4 ml-5">Informations de votre profile</h3>
-                </div>
-                <div class="col-md-12 pt-4 pb-5">
-                    <div class="contact_formnav">
-                        <nav class="nav">
-                            <a class="nav-link active" href="#">Identité</a>
-                        </nav>
+    </div>
+    {{ form_start(form) }}
+    <div class="contact_form ">
+        <div class="row justify-content-center ml-0 mr-0 mb-5">
+            <div class="col-md-12 ">
+                <div class="row rounded border">
+                    <div class="col-md-12">
+                        <h3 class="contact2_saisieh3 pt-4 ml-5">Informations de votre profile</h3>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                            <div class="contact_userimg">
-                                <img  id="blah" src="{{ asset("img/circle.png") }}" alt="your image" />
-                            </div>
-                            <div class="userimg_label2">
-                                {{ form_widget(form.userFile) }}
-                                {{ form_errors(form.userFile) }}
-                            </div>
+                    <div class="col-md-12 pt-4 pb-5">
+                        <div class="contact_formnav">
+                            <nav class="nav">
+                                <a class="nav-link active" href="#">Identité</a>
+                            </nav>
                         </div>
-                        <div class="col-md-10">
-                            <div class="row form_client">
-                                <div class="col-md-6">
-                                    <div class="row ">
-                                        <div class="col-md-5 form_text">
-                                            <p>Prénom</p>
-                                        </div>
-                                        <div class="col-md-7 input_select_main input_border_left">
-                                            <div class="form-group matier_select">
-                                            	{{ form_widget(form.user_firstName) }}
-                                               	{{ form_errors(form.user_firstName) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3 from_single_input">
-                                        <div class="col-md-5 form_text">
-                                            <p>Nom</p>
-                                        </div>
-                                        <div class="col-md-7 input_border_left form-group code_client">
-                                        	{{ form_widget(form.user_lastName) }}
-                                            {{ form_errors(form.user_lastName) }}
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <div class="col-md-5 form_text">
-                                            <p>Genre</p>
-                                        </div>
-                                        <div class="col-md-7 input_border_left prenom_input form-group ">
-                                        	{{ form_widget(form.user_gender) }}
-                                            {{ form_errors(form.user_gender) }}
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <div class="col-md-5 form_text">
-                                            <p>Code</p>
-                                        </div>
-                                        <div class="col-md-7 input_border_left input_select_main ">
-                                            <div class="form-group matier_select">
-                                            	{{ form_widget(form.user_code) }}
-                                            	{{ form_errors(form.user_code) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <div class="col-md-5 form_text">
-                                            <p>Statut</p>
-                                        </div>
-                                        <div class="col-md-7 input_border_left input_select_main ">
-                                            <div class="form-group matier_select">
-                                            	{{ form_widget(form.user_status) }}
-                                            	{{ form_errors(form.user_status) }}
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                <div class="contact_userimg">
+                                    <img id="blah" src="{{ asset("img/circle.png") }}" alt="your image"/>
                                 </div>
-                                <div class="col-md-6 ">
-                                    <div class="row  ">
-                                        <div class="col-md-5 form_text">
-                                            <p>Date de naissance</p>
+                                <div class="userimg_label2">
+                                    {{ form_widget(form.userFile) }}
+                                    {{ form_errors(form.userFile) }}
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="row form_client">
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Prénom</p>
+                                            </div>
+                                            <div class="col-md-7 input_select_main input_border_left">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.user_firstName) }}
+                                                    {{ form_errors(form.user_firstName) }}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-7 phone_input input-group ">
-                                        	{{ form_widget(form.user_dob) }}
-                                            {{ form_errors(form.user_dob) }}
+                                        <div class="row pt-3 from_single_input">
+                                            <div class="col-md-5 form_text">
+                                                <p>Nom</p>
+                                            </div>
+                                            <div class="col-md-7 input_border_left form-group code_client">
+                                                {{ form_widget(form.user_lastName) }}
+                                                {{ form_errors(form.user_lastName) }}
+                                            </div>
+                                        </div>
+                                        {#<div class="row pt-3">#}
+                                        {#<div class="col-md-5 form_text">#}
+                                        {#<p>Genre</p>#}
+                                        {#</div>#}
+                                        {#<div class="col-md-7 input_border_left prenom_input form-group ">#}
+                                        {#{{ form_widget(form.user_gender) }}#}
+                                        {#{{ form_errors(form.user_gender) }}#}
+                                        {#</div>#}
+                                        {#</div>#}
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Code</p>
+                                            </div>
+                                            <div class="col-md-7 input_border_left input_select_main ">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.user_code) }}
+                                                    {{ form_errors(form.user_code) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Statut</p>
+                                            </div>
+                                            <div class="col-md-7 input_border_left input_select_main ">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.user_status) }}
+                                                    {{ form_errors(form.user_status) }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row pt-3 ">
-                                        <div class="col-md-5 form_text">
-                                            <p>Fonction</p>
+                                    <div class="col-md-6 ">
+                                        <div class="row  ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Date de naissance</p>
+                                            </div>
+                                            <div class="col-md-7 phone_input input-group ">
+                                                {{ form_widget(form.user_dob) }}
+                                                {{ form_errors(form.user_dob) }}
+                                            </div>
                                         </div>
-                                        <div class="col-md-7  phone_input input-group ">
+                                        <div class="row pt-3 ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Fonction</p>
+                                            </div>
+                                            <div class="col-md-7  phone_input input-group ">
 
-                                        	{{ form_widget(form.user_function) }}
-                                            {{ form_errors(form.user_function) }}
-                                            <span class="input-group-addon phone_input_position"><i class="fas fa-map-marker-alt"></i></span>
+                                                {{ form_widget(form.user_function) }}
+                                                {{ form_errors(form.user_function) }}
+                                                <span class="input-group-addon phone_input_position"><i
+                                                            class="fas fa-map-marker-alt"></i></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <div class="col-md-5 form_text">
-                                            <p>Téléphone portable</p>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Téléphone portable</p>
+                                            </div>
+                                            <div class="col-md-7  input_select_main ">
+                                                {{ form_widget(form.user_phone) }}
+                                                {{ form_errors(form.user_phone) }}
+                                            </div>
                                         </div>
-                                        <div class="col-md-7  input_select_main ">
-                                        	{{ form_widget(form.user_phone) }}
-                                            {{ form_errors(form.user_phone) }}
-                                        </div>
-                                    </div>
-                                    <div class="row pt-3">
-                                        <div class="col-md-5 form_text">
-                                            <p>Téléphone Fixe</p>
-                                        </div>
-                                        <div class="col-md-7  input_select_main ">
-                                        	{{ form_widget(form.user_fixe) }}
-                                            {{ form_errors(form.user_fixe) }}
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Téléphone Fixe</p>
+                                            </div>
+                                            <div class="col-md-7  input_select_main ">
+                                                {{ form_widget(form.user_fixe) }}
+                                                {{ form_errors(form.user_fixe) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12 pt-5">
-                    <div class="row py-4">
-                        <div class="col-md-3">
-                            <div class="retourbutton">
-                                <a href="/admin/company/list"><button  type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i> RETOUR </button></a>
+                    <div class="col-md-12 pt-5">
+                        <div class="row py-4">
+                            <div class="col-md-3">
+                                <div class="retourbutton">
+                                    <a href="/admin/company/list">
+                                        <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
+                                            RETOUR
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-1"> </div>
-                        <div class="col-md-3"> </div>
-                        <div class="col-md-3">
-                            <div class="annulerbutton">
-                                <a href="/admin/company/list"><button  type="button" class="btn btn-primary">ANNULER</button></a>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <div class="annulerbutton">
+                                    <a href="/admin/company/list">
+                                        <button type="button" class="btn btn-primary">ANNULER</button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="enregisterbutton">
-                            	{{ form_widget(form.submit) }}
+                            <div class="col-md-2">
+                                <div class="enregisterbutton">
+                                    {{ form_widget(form.submit) }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -157,6 +165,5 @@
             </div>
         </div>
     </div>
-</div>
-{{ form_end(form) }}
+    {{ form_end(form) }}
 {% endblock %}
