@@ -1,4 +1,5 @@
 <?php
+
 namespace App\AdminBundle\Form;
 
 use App\Entity\Post;
@@ -57,15 +58,15 @@ class CompanyType extends AbstractType
                 'required' => false
             ])
             ->add('companyStatus', ChoiceType::class, [
-                   'choices'  => [
-                       'Piste' => 'Piste',
-                       'Prospect' => 'Prospect',
-                       'Client' => 'Client',
-                       'Inactif' => 'Inactif',
-                   ],
-                   'label' => 'Statut',
-                   'required' => false
-               ])
+                'choices' => [
+                    'Piste' => 'Piste',
+                    'Prospect' => 'Prospect',
+                    'Client' => 'Client',
+                    'Inactif' => 'Inactif',
+                ],
+                'label' => 'Statut',
+                'required' => false
+            ])
             ->add('nb_salarie_id', EntityType::class, [
                 'class' => NbSalary::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -127,14 +128,15 @@ class CompanyType extends AbstractType
                 'label' => 'N° SIRET',
                 'required' => false
             ))
+//            ->add('imgCompany', TextType::class, array('label' => 'Image : ', 'required' => false))
             ->add('companyFile', FileType::class, array(
                 'label' => 'Image',
-                 'required' => false
-             ))
+                'required' => false
+            ))
             ->add('save', SubmitType::class, [
-               'attr' => ['class' => 'btn btn-primary'],
-               'label' => 'Enregistrer',
-                ]);
+                'attr' => ['class' => 'btn btn-primary'],
+                'label' => 'Enregistrer',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

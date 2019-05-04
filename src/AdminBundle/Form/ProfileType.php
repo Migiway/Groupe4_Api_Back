@@ -4,6 +4,7 @@ namespace App\AdminBundle\Form;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\AdminBundle\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,11 +20,21 @@ use Symfony\Component\Form\AbstractType;
 class ProfileType extends AbstractType
 {
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('user_firstName', null, array('label' => 'First Name'))
             ->add('user_lastName', null, array('label' => 'Last Name'))
+//            ->add('plainPassword', FT\RepeatedType::class, array(
+//                'label' => 'Mot de passe : ',
+//                'type' => FT\PasswordType::class,
+//                'invalid_message' => 'Les mots de passe sont différent.',
+//                'first_options'  => array('label' => 'Nouveau Mot de passe'),
+//                'second_options' => array('label' => 'Confirmez le Nouveau Mot de passe'),
+//            ))
             ->add('user_code', NumberType::class, array('label' => 'Code'))
             ->add(
                 'user_gender',
@@ -44,8 +55,7 @@ class ProfileType extends AbstractType
             ->add('user_phone', null, array('label' => 'Phone'))
             ->add('user_fixe', null, array('label' => 'Fax'))
             ->add('userFile', FileType::class, array('label' => 'Image', 'required' => false))
-            ->add('submit', SubmitType::class, array('label' => 'Enregistrer'))
-        ;
+            ->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
     }
 
     /**

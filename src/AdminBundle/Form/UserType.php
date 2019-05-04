@@ -62,7 +62,6 @@ class UserType extends AbstractType
                 "label" => "Profil/droits : "
             ])
             ->add('user_status', CheckboxType::class, array('label' => 'Status : '))
-
             ->add('user_fixe', TextType::class, array('label' => 'Tel fixe : '))
             ->add('user_annotation', TextareaType::class, array('label' => 'Remarques : '))
             ->add('imgUrl', TextType::class, array('label' => 'Image : '))

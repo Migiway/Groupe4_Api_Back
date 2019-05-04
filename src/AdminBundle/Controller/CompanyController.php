@@ -24,6 +24,7 @@ class CompanyController extends AbstractController
     /**
      * @Route ("/new")
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function new(Request $request)
     {
@@ -73,8 +74,8 @@ class CompanyController extends AbstractController
         $companyContacts = $this->getDoctrine()
             ->getRepository(Contact::class)
             ->findBy(
-            ['company_id' => $id]
-        );
+                ['company_id' => $id]
+            );
         //le nombre de contact de lié à l'entreprise
         $totalContact = count($companyContacts);
 
@@ -82,7 +83,7 @@ class CompanyController extends AbstractController
             'form' => $form->createView(),
             'entreprise' => $entreprise,
             'contacts' => $companyContacts,
-            'totalContact' => $totalContact          
+            'totalContact' => $totalContact
         ));
     }
 
@@ -130,7 +131,7 @@ class CompanyController extends AbstractController
         $idCompanys = $_POST['companys'];
         $arr = explode(',', $idCompanys);
         $totalId    = count($arr);
-        for ($i=0; $i < $totalId ; $i++) { 
+        for ($i=0; $i < $totalId ; $i++) {
             $uneEntreprise = $this->getDoctrine()->getRepository(Company::class)->findBy(['id' => $arr[$i]]);
             $em = $this->getDoctrine()->getManager();
             $em->remove($uneEntreprise[0]);

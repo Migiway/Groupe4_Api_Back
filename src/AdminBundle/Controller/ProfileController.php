@@ -2,11 +2,11 @@
 
 namespace App\AdminBundle\Controller;
 
-use App\AdminBundle\Form\OperationType;
-use App\AdminBundle\Entity\Operation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\AdminBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -25,6 +25,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/", name="app_admin_profile_index")
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request)
     {
@@ -51,5 +52,36 @@ class ProfileController extends AbstractController
         );
 
         return $this->render('profile/form.html.twig', $arr);
+    }
+
+    /**
+     * @Route("/password", name="app_admin_password_edit")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Request $request)
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $form = $this->createForm(\App\AdminBundle\Form\ProfileChangePasswordType::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $obj = $form->getData();
+
+            $this->getDoctrine()->getManager()->persist($obj);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('app_admin_password_edit');
+        }
+
+        $arr = array(
+            'form' => $form->createView()
+        );
+
+        return $this->render('profile/pass.html.twig', $arr);
     }
 }
