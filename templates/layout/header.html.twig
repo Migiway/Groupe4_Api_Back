@@ -19,8 +19,16 @@
 
                     </div>
                     <div class="col-md-2">
-                        <div class="contact1_logo2">
-                            <img class="img-fluid" src="{{ asset("assests/img/profil.png") }}" alt=""><a href="#"><i class="fas fa-angle-down"></i></a>
+                        <div class="contact1_logo2 dropdown">
+                            {% if app.user.imgUrl != null %}
+                                <img  class="img-fluid" src="../../uploads/user-img/{{app.user.imgUrl}}" alt="your image" />
+                            {% else %}
+                                <img  class="img-fluid" src="{{ asset("img/circle.png") }}" alt="your image" />
+                            {% endif %}
+                            <a href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-angle-down"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="/admin/profile">Profil</a>
+                            </div>
                         </div>
                     </div>
                 </div>
