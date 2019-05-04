@@ -72,7 +72,18 @@
                                                for="company-check-{{ company.id }}"></label>
                                     </div>
                                 </td>
-                                <td><a href="/admin/company/edit/{{ company.id }}">{{ company.companyName }}</a></td>
+                                <td>
+                                    <div class="logo-name">                                        
+                                        <div class="company_img">
+                                            {% if company.imgCompany != null %}
+                                                <img src="../../../uploads/company-img/{{company.imgCompany}}" alt="Logo {{ company.companyName }}"/>
+                                            {% else %}
+                                                <img src="{{ asset("img/circle.png") }}" alt="Logo {{ company.companyName }}"/>
+                                            {% endif %}
+                                        </div>
+                                        <a href="/admin/company/edit/{{ company.id }}">{{ company.companyName }}</a>
+                                    </div>
+                                </td>
                                 <td>{{ company.SecteurActiviteId }}</td>
                                 <td>{{ company.companyPostcode }}</td>
                                 <td>{{ company.companyCity }}</td>

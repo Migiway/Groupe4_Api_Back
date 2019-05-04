@@ -34,10 +34,18 @@ class ProfileController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-
+        //formulaire Identite
         $form = $this->createForm(\App\AdminBundle\Form\ProfileType::class, $user);
-
         $form->handleRequest($request);
+        //formulaire password
+        $formPassword = $this->createForm(\App\AdminBundle\Form\ProfileChangePasswordType::class, $user);
+        $formPassword->handleRequest($request);
+
+        $arr = array(
+            'form' => $form->createView(),
+            'formPassword' => $formPassword->createView()
+        );
+        //save profil data
         if ($form->isSubmitted() && $form->isValid()) {
             $obj = $form->getData();
 
@@ -47,9 +55,23 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('app_admin_profile_index');
         }
 
-        $arr = array(
-            'form' => $form->createView()
-        );
+        //save password data
+        if ($formPassword->isSubmitted() && $formPassword->isValid()) {
+            $password = $formPassword->getData();
+
+            $this->getDoctrine()->getManager()->persist($password);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('app_admin_profile_index');
+        }
+        elseif ($formPassword->isSubmitted() && $formPassword->isValid() ==  false) {
+            $arr = array(
+            'form' => $form->createView(),
+            'formPassword' => $formPassword->createView(),
+            'onglet_password'=> true
+            );
+            return $this->render('profile/form.html.twig', $arr);
+        }
 
         return $this->render('profile/form.html.twig', $arr);
     }

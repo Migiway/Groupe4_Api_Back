@@ -57,8 +57,7 @@ class User implements UserInterface, \Serializable
     private $user_code;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $user_gender;
 
@@ -78,8 +77,7 @@ class User implements UserInterface, \Serializable
     private $user_status;
 
     /**
-     * Assert\DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $user_dob;
 
