@@ -1243,3 +1243,20 @@ div.dataTables_paginate {
 .img-fluid {
     border-radius: 75px;
 }
+.logo-name {
+    display: flex;
+}
+.company_img img{
+    border-radius: 75px;
+    width: 30px;
+    height: 30px;
+}
+.company_img{
+    width: 35%;
+}
+.logo-name a {
+    margin-top: 5px;
+}
+.form_password {
+    margin-left: -6% !important;
+}

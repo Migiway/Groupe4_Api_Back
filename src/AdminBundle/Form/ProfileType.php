@@ -36,7 +36,7 @@ class ProfileType extends AbstractType
 //                'second_options' => array('label' => 'Confirmez le Nouveau Mot de passe'),
 //            ))
             ->add('user_code', NumberType::class, array('label' => 'Code'))
-            ->add(
+            /*->add(
                 'user_gender',
                 ChoiceType::class,
                 array(
@@ -48,7 +48,7 @@ class ProfileType extends AbstractType
                     'expanded' => true,
                     'multiple' => false
                 )
-            )
+            )*/
             ->add('user_status', null, array('label' => 'Status'))
             ->add('user_dob', null, array('label' => 'Date of Birth'))
             ->add('user_function', null, array('label' => 'Function'))
