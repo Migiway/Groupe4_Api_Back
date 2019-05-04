@@ -56,33 +56,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                            <div class="contact_userimg">
-                                                <img  id="blah" src="{{ asset("img/circle.png") }}" alt="your image" />
-                                            </div>
-                                            <div class="userimg_label2">
-                                                <input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
-                                                <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
-                                            </div>
-                                            <!-- <input class="uploadFile" type='file' id="imgInp" placeholder="Photo" /> -->
-                                    <script>
-
-                                    function readURL(input) {
-
-                                    if (input.files && input.files[0]) {
-                                    var reader = new FileReader();
-
-                                    reader.onload = function(e) {
-                                    $('#blah').attr('src', e.target.result);
-                                    }
-
-                                    reader.readAsDataURL(input.files[0]);
-                                    }
-                                    }
-
-                                    $("#imgInp").change(function() {
-                                    readURL(this);
-                                    });
-                                    </script>             
+                                    <div class="contact_userimg">
+                                        {% if entreprise.companyLogo != null %}
+                                            <img  id="blah" src="../../uploads/company-img/{{entreprise.companyLogo}}" alt="your image" />
+                                        {% else %}
+                                            <img  id="blah" src="{{ asset("img/circle.png") }}" alt="your image" />
+                                        {% endif %}
+                                    </div>
+                                    <div class="userimg_label2">
+                                        {{ form_widget(form.companyFile) }}
+                                        {{ form_errors(form.companyFile) }}
+                                    </div>
                                 </div>
                                 <div class="col-md-10">
                                         <div class="row form_client">

@@ -64,6 +64,7 @@ class CompanyController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('company_list');
         }
+
         //les infos de l'entreprise
         $entreprise = $this->getDoctrine()
             ->getRepository(Company::class)
