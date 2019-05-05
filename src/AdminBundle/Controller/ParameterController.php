@@ -13,6 +13,9 @@ use App\AdminBundle\Entity\ParameterCompanySecteur;
 use App\AdminBundle\Entity\ParameterCompanyStatutJuridique;
 use App\AdminBundle\Entity\ParameterCompanyStatut;
 use App\AdminBundle\Entity\ParameterOperation;
+use App\AdminBundle\Entity\ParameterNoteEcheance;
+use App\AdminBundle\Entity\ParameterNoteCategorie;
+use App\AdminBundle\Entity\ParameterNotePriorite;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -27,6 +30,9 @@ use App\AdminBundle\Form\ParameterCompanySecteurType;
 use App\AdminBundle\Form\ParameterCompanyStatutType;
 use App\AdminBundle\Form\ParameterCompanyStatutJuridiqueType;
 use App\AdminBundle\Form\ParameterOperationType;
+use App\AdminBundle\Form\ParameterNoteEcheanceType;
+use App\AdminBundle\Form\ParameterNoteCategorieType;
+use App\AdminBundle\Form\ParameterNotePrioriteType;
 
 /**
  * @Route("/parameter")
@@ -76,6 +82,11 @@ class ParameterController extends AbstractController
             return $this->redirectToRoute('identite_index');
         }
 
+        //Paramètre partie note
+        $noteEcheance        = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->findAll();
+        $noteCategorie       = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->findAll();
+        $notePriorite        = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->findAll();
+
         //Paramètre partie entreprise /company
         $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findAll();
         $companyEffectifs       = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->findAll();
@@ -92,6 +103,9 @@ class ParameterController extends AbstractController
             'companySecteur'            => $companySecteur,
             'companyStatutJuridique'    => $companyStatutJuridique,
             'companyStatut'             => $companyStatut,
+            'noteEcheance'              => $noteEcheance,
+            'noteCategorie'             => $noteCategorie,
+            'notePriorite'              => $notePriorite,
         );
         return $this->render('parameter/form.html.twig', $arr);
         
@@ -124,7 +138,7 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route ("/newCompanyCA")
+     * @Route ("/new-company-CA")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -149,7 +163,7 @@ class ParameterController extends AbstractController
 
     
     /**
-     * @Route ("/editCompanyCA/{id}")
+     * @Route ("/edit-company-CA/{id}")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -173,7 +187,7 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route ("/newCompanyEffectif")
+     * @Route ("/new-company-effectif")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -198,7 +212,7 @@ class ParameterController extends AbstractController
 
     
     /**
-     * @Route ("/editCompanyEffectif/{id}")
+     * @Route ("/edit-company-effectif/{id}")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -222,7 +236,7 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route ("/newCompanySecteur")
+     * @Route ("/new-company-secteur")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -247,7 +261,7 @@ class ParameterController extends AbstractController
 
     
     /**
-     * @Route ("/editCompanySecteur/{id}")
+     * @Route ("/edit-company-secteur/{id}")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -271,7 +285,7 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route ("/newCompanyStatut")
+     * @Route ("/new-company-statut")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -296,7 +310,7 @@ class ParameterController extends AbstractController
 
     
     /**
-     * @Route ("/editCompanyStatut/{id}")
+     * @Route ("/edit-company-statut/{id}")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -320,7 +334,7 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route ("/newCompanyStatutJuridique")
+     * @Route ("/new-company-statut-juridique")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -345,7 +359,7 @@ class ParameterController extends AbstractController
 
     
     /**
-     * @Route ("/editCompanyStatutJuridique/{id}")
+     * @Route ("/edit-company-statut-juridique/{id}")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -368,5 +382,152 @@ class ParameterController extends AbstractController
         return $this->render('companyParameter/form_statutJuridique.html.twig', array('form' => $form->createView()));
     }
 
+
+    /**
+     * @Route ("/new-note-echeance")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newNoteEcheance(Request $request)
+    {
+        $noteEcheance = new ParameterNoteEcheance();
+
+        $form = $this->createForm(ParameterNoteEcheanceType::class, $noteEcheance);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noteEcheance);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('noteParameter/form_echeance.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/edit-note-echeance/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editNoteEcheance(Request $request, string $id)
+    {
+        $noteEcheance = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->find($id);
+
+        $form = $this->createForm(ParameterNoteEcheanceType::class, $noteEcheance);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noteEcheance);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('noteParameter/form_echeance.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route ("/new-note-categorie")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newNoteCategorie(Request $request)
+    {
+        $noteCategorie = new ParameterNoteCategorie();
+
+        $form = $this->createForm(ParameterNoteCategorieType::class, $noteCategorie);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noteCategorie);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('noteParameter/form_categorie.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/edit-note-categorie/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editNoteCategorie(Request $request, string $id)
+    {
+        $noteCategorie = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->find($id);
+
+        $form = $this->createForm(ParameterNoteCategorieType::class, $noteCategorie);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noteCategorie);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('noteParameter/form_categorie.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route ("/new-note-priorite")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newNotePriorite(Request $request)
+    {
+        $notePriorite = new ParameterNotePriorite();
+
+        $form = $this->createForm(ParameterNotePrioriteType::class, $notePriorite);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($notePriorite);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('noteParameter/form_priorite.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/edit-note-priorite/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editNotePriorite(Request $request, string $id)
+    {
+        $notePriorite = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->find($id);
+
+        $form = $this->createForm(ParameterNotePrioriteType::class, $notePriorite);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($notePriorite);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('noteParameter/form_priorite.html.twig', array('form' => $form->createView()));
+    }
 
 }
