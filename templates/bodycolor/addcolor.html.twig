@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="post">
+                <label for="code">Code couleur</label>
+                <input type="text" autocomplete="off" value="{{ Color.colorsCode }}" name="code" class="form-control">
+                <input type="submit" style="margin-top: 10px;" value="Enregistrer" class="btn btn-default">
+            </form>
+        </div>
+    </div>
+{% endblock %}

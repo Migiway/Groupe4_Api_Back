@@ -27,8 +27,39 @@
 
 </head>
 <body>
+
+{#{{ render(controller(#}
+{#'AdminBundle:Parameter:colorpart'#}
+{#)) }}#}
+
+{#{{ render(controller('AdminBundle:Parameter:colorpart')) }}#}
+
+
+{#{% include 'bodycolor/colorpart.html.twig' %}#}
 {% include 'layout/header.html.twig' %}
 {% include 'layout/leftbar.html.twig' %}
+
+{#<p>{{ col }}</p>#}
+
+{% set mycol = render(controller(
+    'App\\AdminBundle\\Controller\\ParameterController::colorpart'
+    )) %}
+{#{{ mycol }}#}
+
+<style>
+    .list-group a:hover{
+        border-left: 5px solid {{ mycol }};
+        color: {{ mycol }};
+    }
+    .list-group-item.active {
+        z-index: 2;
+        color: #9e9898;
+        background-color: transparent;
+        border-color: transparent;
+        border-left: 5px solid {{ mycol }};
+    }
+</style>
+
 {% block body %}{% endblock %}
 {% block javascripts %}
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -82,8 +113,8 @@
                     }
                 });
                 if (company.length > 0) {
-                   $('#companys').val(company);
-                   $( "#form-delete-company" ).submit();
+                    $('#companys').val(company);
+                    $( "#form-delete-company" ).submit();
                 }
                 else {
                 }
