@@ -1,0 +1,14 @@
+<script>
+    $(function () {
+        $('#change-team-parameter').change(function() {
+            if ($(this).val() == 'departement') {
+                $('.block-team-departement').removeClass('hide');
+                $('.block-team-zone').addClass('hide');
+            }
+            if ($(this).val() == 'zone') {
+                $('.block-team-departement').addClass('hide');
+                $('.block-team-zone').removeClass('hide');
+            }
+        });
+    });
+</script>
