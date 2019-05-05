@@ -109,10 +109,7 @@ class CompanyController extends AbstractController
         $company = $this->getDoctrine()->getRepository(Company::class)->findAll();
 
         $totalCompany = count($company);
-        /*foreach ($company as $key => $value) {
-            $colorStatut = $this->getDoctrine()->getRepository(ParameterCompanyStatut::class)->findBy(['id' => $value->companyStatus]);
-        }*/
-        dump($company);die;
+        
         return $this->render('company/list.html.twig', array(
             'companys' => $company,
             'totalCompany' => $totalCompany
