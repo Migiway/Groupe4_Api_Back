@@ -7,6 +7,11 @@ use App\AdminBundle\Form\ColorType;
 use App\AdminBundle\Form\ParameterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\Parameter;
+use App\AdminBundle\Entity\ParameterCompanyCA;
+use App\AdminBundle\Entity\ParameterCompanyEffectifs;
+use App\AdminBundle\Entity\ParameterCompanySecteur;
+use App\AdminBundle\Entity\ParameterCompanyStatutJuridique;
+use App\AdminBundle\Entity\ParameterCompanyStatut;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -15,7 +20,11 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Reponse;
-
+use App\AdminBundle\Form\ParameterCompanyCAType;
+use App\AdminBundle\Form\ParameterCompanyEffectifsType;
+use App\AdminBundle\Form\ParameterCompanySecteurType;
+use App\AdminBundle\Form\ParameterCompanyStatutType;
+use App\AdminBundle\Form\ParameterCompanyStatutJuridiqueType;
 
 /**
  * @Route("/parameter")
@@ -25,68 +34,51 @@ use Symfony\Component\HttpFoundation\Reponse;
 class ParameterController extends AbstractController
 {
     /**
-     * @Route("/new", name="parameter_new", methods={"GET","POST"})
+     * @Route("/", name="identite_index")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function new(Request $request)
+    public function index(Request $request)
     {
-        $param = new Parameter();
+        $user = $this->getUser();
 
-        $form = $this->createForm(ParameterType::class, $param);
-
-        $form->handleRequest($request);
-
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $task = $form->getData();
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($task);
-            $entityManager->flush();
-            return $this->redirectToRoute('parameter_list');
-
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('parameter/new.html.twig', array('form' => $form->createView()));
-    }
+        //Paramètre partie idendité
+        $parameterIdentite = $this->getDoctrine()->getRepository(Parameter::class)->find("1");
 
-    /**
-     * @Route("/edit/{id}", name="parameter_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Parameter $param)
-    {
-        $form = $this->createForm(ParameterType::class, $param);
+        $formParameterIdentite = $this->createForm(ParameterType::class, $parameterIdentite);
 
-        $form->handleRequest($request);
+        $formParameterIdentite->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formParameterIdentite->isSubmitted() && $formParameterIdentite->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($param);
+            $em->persist($parameterIdentite);
             $em->flush();
-            return $this->redirectToRoute('parameter_list');
+            return $this->redirectToRoute('identite_index');
         }
 
-        return $this->render('parameter/edit.html.twig', array('form' => $form->createView()));
+        //Paramètre partie entreprise /company
+        $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findAll();
+        $companyEffectifs       = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->findAll();
+        $companySecteur         = $this->getDoctrine()->getRepository(ParameterCompanySecteur::class)->findAll();
+        $companyStatutJuridique = $this->getDoctrine()->getRepository(ParameterCompanyStatutJuridique::class)->findAll();
+        $companyStatut          = $this->getDoctrine()->getRepository(ParameterCompanyStatut::class)->findAll();
+
+        //Fin Paramètre partie entreprise /company
+        $arr = array(
+            'formParameterIdentite'  => $formParameterIdentite->createView(),
+            'companyCA'              => $companyCA,
+            'companyEffectifs'       => $companyEffectifs,
+            'companySecteur'         => $companySecteur,
+            'companyStatutJuridique' => $companyStatutJuridique,
+            'companyStatut'          => $companyStatut,
+        );
+        return $this->render('parameter/form.html.twig', $arr);
+        
     }
-
-
-    /**
-     * @Route("/delete/{id}", name="parameter_delete", methods={"GET","POST"})
-     */
-    public function delete(Request $request)
-    {
-
-    }
-
-
-    /**
-     * @Route("/list", name="parameter_list")
-     */
-    public function list()
-    {
-        return $this->render('parameter/list.html.twig');
-    }
-
 
     /**
      * @Route("/color/part", name="body_color_part")
@@ -107,13 +99,256 @@ class ParameterController extends AbstractController
         if ($request->getMethod() == "POST") {
             $em = $this->getDoctrine()->getManager();
             $color = $em->getRepository(Colors::class)->find(1);
-//            $color = new Colors();
             $color->setColorsCode($request->get('code'));
             $em->flush();
-//            return $this->redirectToRoute('body_color');
         }
         return $this->render('bodycolor/addcolor.html.twig',
             ['Color' => $col]);
+    }
+
+    /**
+     * @Route ("/newCompanyCA")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newCompanyCA(Request $request)
+    {
+        $companyCA = new ParameterCompanyCA();
+
+        $form = $this->createForm(ParameterCompanyCAType::class, $companyCA);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyCA);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_ca.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/editCompanyCA/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editCompanyCA(Request $request, string $id)
+    {
+        $companyCA = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->find($id);
+
+        $form = $this->createForm(ParameterCompanyCAType::class, $companyCA);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyCA);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_ca.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route ("/newCompanyEffectif")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newCompanyEffectif(Request $request)
+    {
+        $companyEffectif = new ParameterCompanyEffectifs();
+
+        $form = $this->createForm(ParameterCompanyEffectifsType::class, $companyEffectif);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyEffectif);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_effectifs.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/editCompanyEffectif/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editCompanyEffectif(Request $request, string $id)
+    {
+        $companyEffectif = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->find($id);
+
+        $form = $this->createForm(ParameterCompanyEffectifsType::class, $companyEffectif);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyEffectif);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_effectifs.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route ("/newCompanySecteur")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newCompanySecteur(Request $request)
+    {
+        $companySecteur = new ParameterCompanySecteur();
+
+        $form = $this->createForm(ParameterCompanySecteurType::class, $companySecteur);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companySecteur);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_secteur.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/editCompanySecteur/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editCompanySecteur(Request $request, string $id)
+    {
+        $companySecteur = $this->getDoctrine()->getRepository(ParameterCompanySecteur::class)->find($id);
+
+        $form = $this->createForm(ParameterCompanySecteurType::class, $companySecteur);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companySecteur);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_secteur.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route ("/newCompanyStatut")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newCompanyStatut(Request $request)
+    {
+        $companyStatut = new ParameterCompanyStatut();
+
+        $form = $this->createForm(ParameterCompanyStatutType::class, $companyStatut);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyStatut);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_statut.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/editCompanyStatut/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editCompanyStatut(Request $request, string $id)
+    {
+        $companyStatut = $this->getDoctrine()->getRepository(ParameterCompanyStatut::class)->find($id);
+
+        $form = $this->createForm(ParameterCompanyStatutType::class, $companyStatut);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyStatut);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_statut.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route ("/newCompanyStatutJuridique")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newCompanyStatutJuridique(Request $request)
+    {
+        $companyJuridique = new ParameterCompanyStatutJuridique();
+
+        $form = $this->createForm(ParameterCompanyStatutJuridiqueType::class, $companyJuridique);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyJuridique);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_statutJuridique.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/editCompanyStatutJuridique/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editCompanyStatutJuridique(Request $request, string $id)
+    {
+        $companyJuridique = $this->getDoctrine()->getRepository(ParameterCompanyStatutJuridique::class)->find($id);
+
+        $form = $this->createForm(ParameterCompanyStatutJuridiqueType::class, $companyJuridique);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($companyJuridique);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('companyParameter/form_statutJuridique.html.twig', array('form' => $form->createView()));
     }
 
 

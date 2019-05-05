@@ -2,25 +2,25 @@
 
 namespace App\AdminBundle\Repository;
 
-use App\AdminBundle\Entity\ParameterCompany;
+use App\AdminBundle\Entity\ParameterCompanyStatutJuridique;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method ParameterCompany|null find($id, $lockMode = null, $lockVersion = null)
- * @method ParameterCompany|null findOneBy(array $criteria, array $orderBy = null)
- * @method ParameterCompany[]    findAll()
- * @method ParameterCompany[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ParameterCompanyStatutJuridique|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ParameterCompanyStatutJuridique|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ParameterCompanyStatutJuridique[]    findAll()
+ * @method ParameterCompanyStatutJuridique[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ParameterCompanyRepository extends ServiceEntityRepository
+class ParameterCompanyStatutJuridiqueRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, ParameterCompany::class);
+        parent::__construct($registry, ParameterCompanyStatutJuridique::class);
     }
 
     // /**
-    //  * @return ParameterCompany[] Returns an array of ParameterCompany objects
+    //  * @return ParameterCompanyStatutJuridique[] Returns an array of ParameterCompanyStatutJuridique objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ParameterCompanyRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ParameterCompany
+    public function findOneBySomeField($value): ?ParameterCompanyStatutJuridique
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

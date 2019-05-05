@@ -38,12 +38,6 @@ class Company
     private $companyName;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
-    private $companyStatus;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $companyLogo;
@@ -119,11 +113,6 @@ class Company
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $companyCa;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $companyEmail;
 
     /**
@@ -156,34 +145,45 @@ class Company
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Country", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Country", inversedBy="company")
      */
     private $country_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\StatutJuridique", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanyStatut", inversedBy="company")
+     */
+    private $companyStatus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanyStatutJuridique", inversedBy="company")
      */
     private $statut_juridique_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanyCA", inversedBy="company")
+     */
+    private $companyCa;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="company")
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanySecteur", inversedBy="company")
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $secteur_activite_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\CategoryEnterprise", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\CategoryEnterprise", inversedBy="company")
      */
     private $category_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\NbSalary", inversedBy="companies")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanyEffectifs", inversedBy="company")
      */
     private $nb_salarie_id;
 
@@ -233,12 +233,12 @@ class Company
         return $this;
     }
 
-    public function getCompanyStatus(): ?string
+    public function getCompanyStatus(): ?ParameterCompanyStatut
     {
         return $this->companyStatus;
     }
 
-    public function setCompanyStatus(?string $companyStatus): self
+    public function setCompanyStatus(?ParameterCompanyStatut $companyStatus): self
     {
         $this->companyStatus = $companyStatus;
 
@@ -463,12 +463,12 @@ class Company
         }
     }
 
-    public function getStatutJuridiqueId(): ?StatutJuridique
+    public function getStatutJuridiqueId(): ?ParameterCompanyStatutJuridique
     {
         return $this->statut_juridique_id;
     }
 
-    public function setStatutJuridiqueId(?StatutJuridique $statut_juridique_id): self
+    public function setStatutJuridiqueId(?ParameterCompanyStatutJuridique $statut_juridique_id): self
     {
         $this->statut_juridique_id = $statut_juridique_id;
         return $this;
@@ -486,12 +486,12 @@ class Company
         return $this;
     }
 
-    public function getSecteurActiviteId(): ?ActivityArea
+    public function getSecteurActiviteId(): ?ParameterCompanySecteur
     {
         return $this->secteur_activite_id;
     }
 
-    public function setSecteurActiviteId(?ActivityArea $secteur_activite_id): self
+    public function setSecteurActiviteId(?ParameterCompanySecteur $secteur_activite_id): self
     {
         $this->secteur_activite_id = $secteur_activite_id;
 
@@ -522,12 +522,12 @@ class Company
         return $this;
     }
 
-    public function getNbSalarieId(): ?NbSalary
+    public function getNbSalarieId(): ?ParameterCompanyEffectifs
     {
         return $this->nb_salarie_id;
     }
 
-    public function setNbSalarieId(?NbSalary $nb_salarie_id): self
+    public function setNbSalarieId(?ParameterCompanyEffectifs $nb_salarie_id): self
     {
         $this->nb_salarie_id = $nb_salarie_id;
 
@@ -570,12 +570,12 @@ class Company
         return $this;
     }
 
-    public function getCompanyCa(): ?string
+    public function getCompanyCa(): ?ParameterCompanyCA
     {
         return $this->companyCa;
     }
 
-    public function setCompanyCa(?string $companyCa): self
+    public function setCompanyCa(?ParameterCompanyCA $companyCa): self
     {
         $this->companyCa = $companyCa;
 

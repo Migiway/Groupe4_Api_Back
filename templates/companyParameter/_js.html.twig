@@ -1,0 +1,41 @@
+<script>
+    $(function () {
+        $('#change-company-parameter').change(function() {
+            if ($(this).val() == 'ca') {
+                $('.block-company-ca').removeClass('hide');
+                $('.block-company-effectif').addClass('hide');
+                $('.block-company-secteur').addClass('hide');
+                $('.block-company-statut').addClass('hide');
+                $('.block-company-statut-juridique').addClass('hide');
+            }
+            if ($(this).val() == 'effectif') {
+                $('.block-company-ca').addClass('hide');
+                $('.block-company-effectif').removeClass('hide');
+                $('.block-company-secteur').addClass('hide');
+                $('.block-company-statut').addClass('hide');
+                $('.block-company-statut-juridique').addClass('hide');
+            }
+            if ($(this).val() == 'sa') {
+                $('.block-company-ca').addClass('hide');
+                $('.block-company-effectif').addClass('hide');
+                $('.block-company-secteur').removeClass('hide');
+                $('.block-company-statut').addClass('hide');
+                $('.block-company-statut-juridique').addClass('hide');
+            }
+            if ($(this).val() == 'statut') {
+                $('.block-company-ca').addClass('hide');
+                $('.block-company-effectif').addClass('hide');
+                $('.block-company-secteur').addClass('hide');
+                $('.block-company-statut').removeClass('hide');
+                $('.block-company-statut-juridique').addClass('hide');
+            }
+            if ($(this).val() == 'statut-juridique') {
+                $('.block-company-ca').addClass('hide');
+                $('.block-company-effectif').addClass('hide');
+                $('.block-company-secteur').addClass('hide');
+                $('.block-company-statut').addClass('hide');
+                $('.block-company-statut-juridique').removeClass('hide');
+            }
+        });
+    });
+</script>
