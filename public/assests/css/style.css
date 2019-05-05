@@ -11,8 +11,8 @@ body {
 }
 /*
 .col-md-3{
-   padding-right: 0px; 
-     padding-left: 0px; 
+   padding-right: 0px;
+     padding-left: 0px;
 }
 */
 /*important*/
@@ -95,17 +95,7 @@ body {
     border-top: 1px solid #808080a6;
     border-bottom: 1px solid #ddd;
 }
-.list-group a:hover{
-    border-left: 5px solid  #CF1742;
-    color: #CF1742;
-}
-.list-group-item.active {
-    z-index: 2;
-    color: #9e9898;
-    background-color: transparent;
-    border-color: transparent;
-    border-left: 5px solid #CF1742;
-}
+
 .contacts1_text {
     margin-left: 35px;
     padding: 20px 0px;
@@ -116,11 +106,7 @@ body {
 .contact1h3{color: #676667;
     font-size: 35px;
     font-weight: 300;}
-.contact1span{
-    font-size: 16px;
-    color: red;
 
-}
 .input-container2 {
     display: -ms-flexbox;
     display: flex;
@@ -155,12 +141,7 @@ body {
     color: gray;
 }
 .th_margin{}
-.custom-control-input:checked~.custom-control-label::before {
-    color: #fff;
-    border: none;
-    /* border-color: #007bff; */
-    background-color: red;
-}
+
 .hidden-row {
     display: none;
 }
@@ -178,34 +159,12 @@ body {
 }
 */
 
-ul#menu{
-    margin-top: 7px;
-}
-ul#menu li {
-    display:inline;
-}
-ul#menu li a{
-    color: #9E9898;
-    padding: 0px 15px;
-}
-ul#menu li a:hover{
-    color: red;
-}
 /*
 .page-link{
     color: #9E9898;
 }
 */
-.pagibutton button{
-    float: right;
-    margin-right: 25px;
-    background-color: #CF1740;
-    font-size: 13px;
-    font-weight: 500;
-    transition: 1s ease-in;
-    padding: 13px 25px;
-    border-color: #CF1740;
-}
+
 .pagibutton button:hover{
     background: #9E9898;
     border-color: #9E9898;
@@ -361,16 +320,7 @@ body {
 }
 
 /* Set a style for the submit button */
-.login_button {
-    background-color: #CF1740;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-    transition: 1s ease-in;
-}
+
 
 .login_button:hover {
     opacity: 1;
@@ -408,16 +358,7 @@ body {
 .enterprise_status_th{
     text-align: center;
 }
-.enterprise_contact_td{
-    width: 40px;
-    background: #CF1740;
-    color: white;
-    font-size: 15px;
-    text-align: center;
-    margin: 0 auto;
-    border-radius: 12px;
-    padding: 1px 0px;
-}
+
 .enterprise_contact_td2{
     width: 40px;
     background: #CECECE;
@@ -508,16 +449,7 @@ body {
     font-weight: 500;
     color: #9999A1;
 }
-.contact_formnav nav a:hover {
-    border-bottom: 3px solid #CF1742;
 
-    color: #CF1742;
-}
-.contact_formnav nav .active {
-    border-bottom: 3px solid #CF1742;
-
-    color:#CF1742;
-}
 .contact_userimg{
     text-align: center;
 }
@@ -540,13 +472,7 @@ body {
     font-size: 14px;
     text-decoration: none;
 }
-.contact_userimg_button a:hover{
-    color: #CF1742;
-}
-.contact_userimg_button a i{}
-.contact_userimg_button a i:hover{
-    color: #CF1742;
-}
+
 
 /*common*/
 .form_client{}
@@ -573,9 +499,7 @@ body {
 
 }
 .from_single_input{}
-.input_border_left{
-    border-left: 4px solid #CF1742;
-}
+
 .genre_select .custom-select{
     width: 70%;
     height: 45px;
@@ -638,80 +562,7 @@ body {
 .enregisterbutton{
     text-align: center;
 }
-.enregisterbutton button {
-    /*    float: right;*/
-    /*    margin-right: 25px;*/
-    background-color: #CF1740;
-    font-size: 13px;
-    font-weight: bold;
-    transition: 1s ease-in;
-    padding: 13px 25px;
-    border: 2px solid white;
-}
-.enregisterbutton button:hover {
-    background-color: white;
-    color: #CF1740;
-    border: 2px solid #CF1740;
-}
-.annulerbutton {
-    text-align: right;
-}
-.annulerbutton button {
-    /*    float: right;*/
-    /*    margin-right: 25px;*/
-    background-color: white;
-    font-size: 13px;
-    font-weight: bold;
-    transition: 1s ease-in;
-    padding: 13px 50px;
-    color: #CF1740;
-    border: 2px solid #CF1740;
-}
-.annulerbutton button:hover {
-    background-color: #CF1740;
-    border: 2px solid white;
 
-}
-.demandbutton{
-    text-align: right;
-}
-.demandbutton button {
-    /*    float: right;*/
-    /*    margin-right: 25px;*/
-    background-color: white;
-    font-size: 13px;
-    font-weight: bold;
-    transition: 1s ease-in;
-    padding: 13px 15px;
-    color: #CF1740;
-    border: 2px solid #CF1740;
-}
-.demandbutton button:hover {
-    background-color: #CF1740;
-    border: 2px solid white;
-
-}
-
-
-.supprimebutton{
-    text-align: right;
-}
-.supprimebutton button {
-    /*    float: right;*/
-    /*    margin-right: 25px;*/
-    background-color: white;
-    font-size: 13px;
-    font-weight: bold;
-    transition: 1s ease-in;
-    padding: 13px 45px;
-    color: #CF1740;
-    border: 2px solid #CF1740;
-}
-.supprimebutton button:hover {
-    background-color: #CF1740;
-    border: 2px solid white;
-
-}
 .retourbutton button {
     /*    float: right;*/
     /*    margin-right: 25px;*/
@@ -722,13 +573,6 @@ body {
     padding: 15px 35px;
     color: #999999;
     border:none;
-}
-.retourbutton button:hover {
-    background-color: white;
-    /*    border: 2px solid white;*/
-    color: #CF1740;
-    border: 2px solid #CF1740;
-    padding: 13px 35px;
 }
 
 /*contact3*/
@@ -777,16 +621,7 @@ body {
 
 
 /*enterprise */
-.enterprise3_form_a{
-    /*       width: 40px;*/
-    background: #CF1740;
-    color: white;
-    font-size: 15px;
-    text-align: center;
-    margin: 0 auto;
-    border-radius: 12px;
-    padding: 1px 10px;
-}
+
 
 /*commercial page 2*/
 .commercial_date_input .form-control{
@@ -810,11 +645,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 */
 /*contact4*/
 .contact4col1c1{}
-.contact4col1c1span1{
-    color: #CF1740;
-    font-size: 16px;
-    font-weight: 500;
-}
+
 .contact4col1c1span2{
     color: #888888;
     font-size: 12px;
@@ -936,22 +767,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .annulerbutton3 {
     text-align: center;
 }
-.annulerbutton3 button {
-    /*    float: right;*/
-    /*    margin-right: 25px;*/
-    background-color: white;
-    font-size: 13px;
-    font-weight: bold;
-    transition: 1s ease-in;
-    padding: 13px 15px;
-    color: #CF1740;
-    border: 2px solid #CF1740;
-}
-.annulerbutton3 button:hover {
-    background-color: #CF1740;
-    border: 2px solid white;
 
-}
 .ajour_right span{
     text-align: right;
 }
@@ -1169,22 +985,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .annulerbutton3 {
         text-align: right;
     }
-    .annulerbutton3 button {
-        /*    float: right;*/
-        /*    margin-right: 25px;*/
-        background-color: white;
-        font-size: 13px;
-        font-weight: bold;
-        transition: 1s ease-in;
-        padding: 13px 15px;
-        color: #CF1740;
-        border: 2px solid #CF1740;
-    }
-    .annulerbutton3 button:hover {
-        background-color: #CF1740;
-        border: 2px solid white;
 
-    }
 }
 div.dataTables_paginate {
     text-align: center !important;
@@ -1222,7 +1023,8 @@ div.dataTables_paginate {
     margin-left: 9%;
     margin-top: -7%;
 }
-.img-fluid {
+/*en commentaire pr editer dans le code*/
+/* .img-fluid {
     border-radius: 75px;
 }
 
@@ -1265,4 +1067,4 @@ div.dataTables_paginate {
 }
 .tab-parametre td a {
     color: #9999A1; 
-}
+} */
