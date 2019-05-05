@@ -1,0 +1,36 @@
+<div class="col-md-12 block-company-statut hide">
+	<div class="row">
+        <div class="col-md-12">
+            <div class="row form_client">
+                <div class="col-md-12">
+                    <table class="col-md-12 tab-parametre">
+		     			<tbody>
+		     				<tr role="row" class="odd tab-parametre">
+		     					<td><span class="title-parameter-select">Statut</span></td>
+		     				</tr>
+				     		{% for statut in companyStatut %}
+		     				<tr role="row" class="odd tab-parametre">
+		     					<td>
+		     						<a href="/admin/parameter/editCompanyStatut/{{ statut.id }}">{{ statut.libelle }}</a>
+		     					</td>
+		     				</tr>
+							{% endfor %}
+		     			</tbody>
+		     		</table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 pt-5">
+        <div class="row py-4">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <div class="enregisterbutton">
+                    <a href="/admin/parameter/newCompanyStatut">
+                        <button type="button" class="btn btn-primary">AJOUTER</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

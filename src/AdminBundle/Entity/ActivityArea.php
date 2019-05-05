@@ -33,11 +33,6 @@ class ActivityArea
     private $parameter_id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Company", mappedBy="activityArea")
-     */
-    private $company_id;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\User", mappedBy="area")
      */
     private $users;
@@ -45,7 +40,6 @@ class ActivityArea
     public function __construct()
     {
         $this->parameter_id = new ArrayCollection();
-        $this->company_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,37 +88,6 @@ class ActivityArea
             // set the owning side to null (unless already changed)
             if ($parameterId->getActivityArea() === $this) {
                 $parameterId->setActivityArea(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Company[]
-     */
-    public function getCompanyId(): Collection
-    {
-        return $this->company_id;
-    }
-
-    public function addCompanyId(Company $companyId): self
-    {
-        if (!$this->company_id->contains($companyId)) {
-            $this->company_id[] = $companyId;
-            $companyId->setActivityArea($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCompanyId(Company $companyId): self
-    {
-        if ($this->company_id->contains($companyId)) {
-            $this->company_id->removeElement($companyId);
-            // set the owning side to null (unless already changed)
-            if ($companyId->getActivityArea() === $this) {
-                $companyId->setActivityArea(null);
             }
         }
 

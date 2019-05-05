@@ -1,0 +1,147 @@
+<div class="block-identite col-md-12">
+  {{ form_start(formParameterIdentite) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row form_client">
+                <div class="col-md-6">
+                    <div class="row ">
+                        <div class="col-md-5 form_text">
+                            <p>Nom de l'application</p>
+                        </div>
+                        <div class="col-md-7 input_select_main input_border_left">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterIdentite.param_nomAppli) }}
+                                {{ form_errors(formParameterIdentite.param_nomAppli) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3 from_single_input">
+                        <div class="col-md-5 form_text">
+                            <p>Adresse</p>
+                        </div>
+                        <div class="col-md-7 form-group code_client">
+                            {{ form_widget(formParameterIdentite.param_adr) }}
+                            {{ form_errors(formParameterIdentite.param_adr) }}
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Complément</p>
+                        </div>
+                        <div class="col-md-7 prenom_input form-group ">
+                            {{ form_widget(formParameterIdentite.param_compl) }}
+                            {{ form_errors(formParameterIdentite.param_compl) }}
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Code postal</p>
+                        </div>
+                        <div class="col-md-7 input_select_main ">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterIdentite.param_zip) }}
+                                {{ form_errors(formParameterIdentite.param_zip) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Ville</p>
+                        </div>
+                        <div class="col-md-7 input_select_main ">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterIdentite.param_ville) }}
+                                {{ form_errors(formParameterIdentite.param_ville) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Pays</p>
+                        </div>
+                        <div class="col-md-7  input_select_main ">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterIdentite.param_pays) }}
+                                {{ form_errors(formParameterIdentite.param_pays) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Téléphone</p>
+                        </div>
+                        <div class="col-md-7  prenom_input form-group ">
+                            {{ form_widget(formParameterIdentite.param_tel) }}
+                            {{ form_errors(formParameterIdentite.param_tel) }}
+                            <span class="input-group-addon phone_input_position2"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Fax</p>
+                        </div>
+                        <div class="col-md-7  input_select_main ">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterIdentite.param_fax) }}
+                                {{ form_errors(formParameterIdentite.param_fax) }}
+                                <span class="input-group-addon phone_input_position2"><i class="fas fa-print"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>E-mail général</p>
+                        </div>
+                        <div class="col-md-7  prenom_input form-group ">
+                            {{ form_widget(formParameterIdentite.param_email) }}
+                            {{ form_errors(formParameterIdentite.param_email) }}
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>E-mail des alertes</p>
+                        </div>
+                        <div class="col-md-7  prenom_input form-group ">
+                            {{ form_widget(formParameterIdentite.param_emailAlert) }}
+                            {{ form_errors(formParameterIdentite.param_emailAlert) }}
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>E-mail des demandes</p>
+                        </div>
+                        <div class="col-md-7  prenom_input form-group ">
+                            {{ form_widget(formParameterIdentite.param_emailContact) }}
+                            {{ form_errors(formParameterIdentite.param_emailContact) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="row pt-3 ">
+                        <div class="col-md-5 form_text">
+                            <p>Logo</p>
+                        </div>
+                        <div class="col-md-7  phone_input input-group ">
+                            {{ form_widget(formParameterIdentite.param_logo) }}
+                            {{ form_errors(formParameterIdentite.param_logo) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 pt-5">
+        <div class="row py-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3 pr-0"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+                <div class="enregisterbutton">
+                    {{ form_widget(formParameterIdentite.save) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(formParameterIdentite) }}
+</div>

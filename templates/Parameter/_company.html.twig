@@ -1,0 +1,22 @@
+<div class="block-company col-md-12 hide">
+	<div class="col-md-12">
+		<div class="row ">
+		  <div class="col-md-12">
+		    <div class="hero-callout">
+		    	<select class="select-parametre" id="change-company-parameter">
+		    		<option value="ca" selected="selected">Chiffre d'affaires</option>
+		    		<option value="effectif">Effectifs</option>
+		    		<option value="sa">Secteur d'activité</option>
+		    		<option value="statut">Statut</option>
+		    		<option value="statut-juridique">Statut juridique</option>
+		    	</select>
+		    </div>
+		  </div>
+		</div>
+	</div>
+  {{ include('companyParameter/_ca.html.twig') }}
+  {{ include('companyParameter/_effectifs.html.twig') }}
+  {{ include('companyParameter/_secteur.html.twig') }}
+  {{ include('companyParameter/_statut.html.twig') }}
+  {{ include('companyParameter/_statutJuridique.html.twig') }}
+</div>
