@@ -1,0 +1,14 @@
+<script>
+    $(function () {
+        $('#change-contact-parameter').change(function() {
+            if ($(this).val() == 'metier') {
+                $('.block-contact-metier').removeClass('hide');
+                $('.block-contact-pouvoir').addClass('hide');
+            }
+            if ($(this).val() == 'pouvoir') {
+                $('.block-contact-metier').addClass('hide');
+                $('.block-contact-pouvoir').removeClass('hide');
+            }
+        });
+    });
+</script>
