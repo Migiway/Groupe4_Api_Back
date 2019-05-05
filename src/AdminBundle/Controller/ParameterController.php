@@ -12,6 +12,7 @@ use App\AdminBundle\Entity\ParameterCompanyEffectifs;
 use App\AdminBundle\Entity\ParameterCompanySecteur;
 use App\AdminBundle\Entity\ParameterCompanyStatutJuridique;
 use App\AdminBundle\Entity\ParameterCompanyStatut;
+use App\AdminBundle\Entity\ParameterOperation;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -25,6 +26,7 @@ use App\AdminBundle\Form\ParameterCompanyEffectifsType;
 use App\AdminBundle\Form\ParameterCompanySecteurType;
 use App\AdminBundle\Form\ParameterCompanyStatutType;
 use App\AdminBundle\Form\ParameterCompanyStatutJuridiqueType;
+use App\AdminBundle\Form\ParameterOperationType;
 
 /**
  * @Route("/parameter")
@@ -60,6 +62,20 @@ class ParameterController extends AbstractController
             return $this->redirectToRoute('identite_index');
         }
 
+        //Paramètre partie opération
+        $parameterOperation = $this->getDoctrine()->getRepository(ParameterOperation::class)->find("1");
+
+        $formParameterOperation = $this->createForm(ParameterOperationType::class, $parameterOperation);
+
+        $formParameterOperation->handleRequest($request);
+
+        if ($formParameterOperation->isSubmitted() && $formParameterOperation->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($parameterOperation);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
         //Paramètre partie entreprise /company
         $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findAll();
         $companyEffectifs       = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->findAll();
@@ -69,12 +85,13 @@ class ParameterController extends AbstractController
 
         //Fin Paramètre partie entreprise /company
         $arr = array(
-            'formParameterIdentite'  => $formParameterIdentite->createView(),
-            'companyCA'              => $companyCA,
-            'companyEffectifs'       => $companyEffectifs,
-            'companySecteur'         => $companySecteur,
-            'companyStatutJuridique' => $companyStatutJuridique,
-            'companyStatut'          => $companyStatut,
+            'formParameterIdentite'     => $formParameterIdentite->createView(),
+            'formParameterOperation'    => $formParameterOperation->createView(),
+            'companyCA'                 => $companyCA,
+            'companyEffectifs'          => $companyEffectifs,
+            'companySecteur'            => $companySecteur,
+            'companyStatutJuridique'    => $companyStatutJuridique,
+            'companyStatut'             => $companyStatut,
         );
         return $this->render('parameter/form.html.twig', $arr);
         
