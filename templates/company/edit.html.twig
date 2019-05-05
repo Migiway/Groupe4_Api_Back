@@ -63,17 +63,13 @@
                                     <div class="col-md-2">
                                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                                         <div class="contact_userimg">
-                                            {% if entreprise.companyLogo != null %}
-                                                <img id="blah"
-                                                     src="../../uploads/company-img/{{ entreprise.companyLogo }}"
-                                                     alt="your image"/>
+                                            {% if entreprise.imgCompany != null %}
+                                                <img id="blah" src="../../../uploads/company-img/{{entreprise.imgCompany}}" alt="your image"/>
                                             {% else %}
                                                 <img id="blah" src="{{ asset("img/circle.png") }}" alt="your image"/>
                                             {% endif %}
                                         </div>
                                         <div class="userimg_label2">
-                                            {#{{ form_widget(form.imgCompany) }}#}
-                                            {#{{ form_errors(form.imgCompany) }}#}
                                             {{ form_widget(form.companyFile) }}
                                             {{ form_errors(form.companyFile) }}
                                         </div>

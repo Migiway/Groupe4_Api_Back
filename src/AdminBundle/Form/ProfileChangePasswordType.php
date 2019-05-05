@@ -25,7 +25,7 @@ class ProfileChangePasswordType extends AbstractType
                 'first_options' => array('label' => 'Nouveau Mot de passe'),
                 'second_options' => array('label' => 'Confirmez le Nouveau Mot de passe'),
             ))
-            ->add('submit', SubmitType::class, array('label' => 'Save'));
+            ->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
     }
 
     /**
