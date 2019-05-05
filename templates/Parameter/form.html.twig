@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col-md-12 left_border contact1_background_col9">
+    <div class="row">
+        <div class="col-md-4 p-0">
+            <div class="contacts1_text">
+                <h3 class="contact1h3">Paramètres</h3>
+            </div>
+        </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-3">
+            <div class="contact3_input_container3">
+                <input class="contact-input-field3" type="text" placeholder="Rechercher..." name="email">
+                <i class="fas fa-search "></i>
+            </div>
+        </div>
+    </div>
+    <div class="contact_form ">
+        <div class="row justify-content-center ml-0 mr-0 mb-5">
+            <div class="col-md-12 ">
+                <div class="row rounded border">
+                    <div class="col-md-12 pt-4 pb-5">
+                        <div class="contact_formnav">
+                            <nav class="nav">
+                                <a class="nav-link active identite" href="#">Identité</a>
+                                <a class="nav-link charte" href="#">Charte graphique</a>
+                                <a class="nav-link contact" href="#">Contacts</a>
+                                <a class="nav-link company" href="#">Entreprises</a>
+                                <a class="nav-link team" href="#">Équipe commerciale</a>
+                                <a class="nav-link operation" href="#">Opérations</a>
+                                <a class="nav-link note" href="#">Note</a>
+                            </nav>
+                        </div>
+                    </div>
+                    {{ include('parameter/_identite.html.twig') }}
+                    {{ include('parameter/_charte.html.twig') }}
+                    {{ include('parameter/_contact.html.twig') }}
+                    {{ include('parameter/_company.html.twig') }}
+                    {{ include('parameter/_team.html.twig') }}
+                    {{ include('parameter/_operation.html.twig') }}
+                    {{ include('parameter/_note.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        $('.identite').click(function () {
+        	console.log('click identité');
+            $('.block-identite').removeClass('hide');
+            $('.block-charte').addClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.block-company').addClass('hide');
+            $('.block-team').addClass('hide');
+            $('.block-operation').addClass('hide');
+            $('.block-note').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.identite').addClass('active');
+        });
+        $('.charte').click(function () {
+            $('.block-identite').addClass('hide');
+            $('.block-charte').removeClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.block-company').addClass('hide');
+            $('.block-team').addClass('hide');
+            $('.block-operation').addClass('hide');
+            $('.block-note').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.charte').addClass('active');
+        });
+        $('.contact').click(function () {
+            $('.block-identite').addClass('hide');
+            $('.block-charte').addClass('hide');
+            $('.block-contact').removeClass('hide');
+            $('.block-company').addClass('hide');
+            $('.block-team').addClass('hide');
+            $('.block-operation').addClass('hide');
+            $('.block-note').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.contact').addClass('active');
+        });
+        $('.company').click(function () {
+            $('.block-identite').addClass('hide');
+            $('.block-charte').addClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.block-company').removeClass('hide');
+            $('.block-team').addClass('hide');
+            $('.block-operation').addClass('hide');
+            $('.block-note').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.company').addClass('active');
+        });
+        $('.team').click(function () {
+            $('.block-identite').addClass('hide');
+            $('.block-charte').addClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.block-company').addClass('hide');
+            $('.block-team').removeClass('hide');
+            $('.block-operation').addClass('hide');
+            $('.block-note').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.team').addClass('active');
+        });
+        $('.operation').click(function () {
+            $('.block-identite').addClass('hide');
+            $('.block-charte').addClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.block-company').addClass('hide');
+            $('.block-team').addClass('hide');
+            $('.block-operation').removeClass('hide');
+            $('.block-note').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.operation').addClass('active');
+        });
+        $('.note').click(function () {
+            $('.block-identite').addClass('hide');
+            $('.block-charte').addClass('hide');
+            $('.block-contact').addClass('hide');
+            $('.block-company').addClass('hide');
+            $('.block-team').addClass('hide');
+            $('.block-operation').addClass('hide');
+            $('.block-note').removeClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.note').addClass('active');
+        });        
+    });
+</script>
+{{ include('companyParameter/_js.html.twig') }}
+{{ include('noteParameter/_js.html.twig') }}
+{{ include('contactParameter/_js.html.twig') }}
+{{ include('teamParameter/_js.html.twig') }}
+{% endblock %}

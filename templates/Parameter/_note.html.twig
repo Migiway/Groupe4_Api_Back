@@ -1,0 +1,19 @@
+<div class="block-note col-md-12 hide">
+	<div class="col-md-12">
+		<div class="row ">
+		  <div class="col-md-12">
+		    <div class="hero-callout">
+		    	<select class="select-parametre" id="change-note-parameter">
+		    		<option value="echeance" selected="selected">Echéances</option>
+		    		<option value="categorie">Catégories</option>
+		    		<option value="priorite">Priorités</option>
+		    	</select>
+		    </div>
+		  </div>
+		</div>
+	</div>
+  {{ include('noteParameter/_echeance.html.twig') }}
+  {{ include('noteParameter/_categorie.html.twig') }}
+  {{ include('noteParameter/_priorite.html.twig') }}
+</div>
+

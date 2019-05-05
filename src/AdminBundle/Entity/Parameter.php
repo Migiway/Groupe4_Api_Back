@@ -18,56 +18,63 @@ class Parameter
     private $id;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $param_nomAppli;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_logo;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_adr;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_compl;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $param_ville;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $param_zip;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $param_pays;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_tel;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_fax;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_email;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_emailAlert;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_emailContact;
 
@@ -146,7 +153,7 @@ class Parameter
         return $this->param_nomAppli;
     }
 
-    public function setParamNomAppli(string $param_nomAppli): self
+    public function setParamNomAppli(?string $param_nomAppli): self
     {
         $this->param_nomAppli = $param_nomAppli;
 
@@ -158,7 +165,7 @@ class Parameter
         return $this->param_logo;
     }
 
-    public function setParamLogo(string $param_logo): self
+    public function setParamLogo(?string $param_logo): self
     {
         $this->param_logo = $param_logo;
 
@@ -170,7 +177,7 @@ class Parameter
         return $this->param_adr;
     }
 
-    public function setParamAdr(string $param_adr): self
+    public function setParamAdr(?string $param_adr): self
     {
         $this->param_adr = $param_adr;
 
@@ -182,9 +189,45 @@ class Parameter
         return $this->param_compl;
     }
 
-    public function setParamCompl(string $param_compl): self
+    public function setParamCompl(?string $param_compl): self
     {
         $this->param_compl = $param_compl;
+
+        return $this;
+    }
+
+    public function getParamVille(): ?string
+    {
+        return $this->param_ville;
+    }
+
+    public function setParamVille(?string $param_ville): self
+    {
+        $this->param_ville = $param_ville;
+
+        return $this;
+    }
+
+    public function getParamZip(): ?string
+    {
+        return $this->param_zip;
+    }
+
+    public function setParamZip(?string $param_zip): self
+    {
+        $this->param_zip = $param_zip;
+
+        return $this;
+    }
+
+    public function getParamPays(): ?string
+    {
+        return $this->param_pays;
+    }
+
+    public function setParamPays(?string $param_pays): self
+    {
+        $this->param_pays = $param_pays;
 
         return $this;
     }
@@ -194,7 +237,7 @@ class Parameter
         return $this->param_tel;
     }
 
-    public function setParamTel(string $param_tel): self
+    public function setParamTel(?string $param_tel): self
     {
         $this->param_tel = $param_tel;
 
@@ -206,7 +249,7 @@ class Parameter
         return $this->param_fax;
     }
 
-    public function setParamFax(string $param_fax): self
+    public function setParamFax(?string $param_fax): self
     {
         $this->param_fax = $param_fax;
 
@@ -218,7 +261,7 @@ class Parameter
         return $this->param_email;
     }
 
-    public function setParamEmail(string $param_email): self
+    public function setParamEmail(?string $param_email): self
     {
         $this->param_email = $param_email;
 
@@ -230,7 +273,7 @@ class Parameter
         return $this->param_emailAlert;
     }
 
-    public function setParamEmailAlert(string $param_emailAlert): self
+    public function setParamEmailAlert(?string $param_emailAlert): self
     {
         $this->param_emailAlert = $param_emailAlert;
 
@@ -242,7 +285,7 @@ class Parameter
         return $this->param_emailContact;
     }
 
-    public function setParamEmailContact(string $param_emailContact): self
+    public function setParamEmailContact(?string $param_emailContact): self
     {
         $this->param_emailContact = $param_emailContact;
 

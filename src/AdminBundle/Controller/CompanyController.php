@@ -4,6 +4,7 @@ namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\CompanyType;
 use App\AdminBundle\Entity\Company;
+use App\AdminBundle\Entity\ParameterCompanyStatut;
 use App\AdminBundle\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,9 +50,7 @@ class CompanyController extends AbstractController
      */
     public function edit(Request $request, string $id)
     {
-        $company = $this->getDoctrine()
-            ->getRepository(Company::class)
-            ->find($id);
+        $company = $this->getDoctrine()->getRepository(Company::class)->find($id);
 
         $form = $this->createForm(CompanyType::class, $company);
 
@@ -67,14 +66,12 @@ class CompanyController extends AbstractController
         }
 
         //les infos de l'entreprise
-        $entreprise = $this->getDoctrine()
-            ->getRepository(Company::class)
-            ->find($company);
+        $entreprise = $this->getDoctrine()->getRepository(Company::class)->find($company);
         //la liste des contacts lié à l'entreprise
-        $companyContacts = $this->getDoctrine()
-            ->getRepository(Contact::class)
-            ->findBy(
-                ['company_id' => $id]
+        $companyContacts = $this->getDoctrine()->getRepository(Contact::class)->findBy(
+                [
+                    'company_id' => $id
+                ]
             );
         //le nombre de contact de lié à l'entreprise
         $totalContact = count($companyContacts);
@@ -109,11 +106,10 @@ class CompanyController extends AbstractController
      */
     public function list(Request $request)
     {
-        $company = $this->getDoctrine()
-            ->getRepository(Company::class)
-            ->findAll();
+        $company = $this->getDoctrine()->getRepository(Company::class)->findAll();
 
         $totalCompany = count($company);
+        
         return $this->render('company/list.html.twig', array(
             'companys' => $company,
             'totalCompany' => $totalCompany

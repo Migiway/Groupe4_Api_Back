@@ -6,10 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
+
 /**
- * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ParameterOperationRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ParameterContactPouvoirRepository")
  */
-class ParameterOperation
+class ParameterContactPouvoir
 {
     /**
      * @ORM\Id()
@@ -18,25 +20,30 @@ class ParameterOperation
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, name="btn_interesse")
+     /**
+     * @ORM\Column(type="string", length=255, name="libelle")
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
-    private $btnInteresse;
+    private $libelle;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getBtnInteresse(): ?string
+     public function getLibelle(): ?string
     {
-        return $this->btnInteresse;
+        return $this->libelle;
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
     }
     
-    public function setBtnInteresse(?string $btnInteresse): self
+    public function setLibelle(?string $libelle): self
     {
-        $this->btnInteresse = $btnInteresse;
+        $this->libelle = $libelle;
 
         return $this;
     }

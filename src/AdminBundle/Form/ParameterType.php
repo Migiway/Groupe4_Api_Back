@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 
@@ -19,18 +20,19 @@ class ParameterType extends AbstractType
 	 public function buildForm(FormBuilderInterface $builder, array $options)
     {
          $builder
-            ->add('param_nomAppli', TextType::class, array('label' => 'Nom de l\'application : '))
-            ->add('param_logo', TextType::class, array('label' => 'Logo : '))
-            ->add('param_adr', TextType::class, array('label' => 'Adresse : '))
-            ->add('param_compl', TextType::class, array('label' => 'Compl : '))
-            ->add('param_tel', TextType::class, array('label' => 'Telephone : '))
-            ->add('param_fax', TextType::class, array('label' => 'Fax : '))
-            ->add('param_email', TextType::class, array('label' => 'Email : '))
-            ->add('param_emailAlert', TextType::class, array('label' => 'Email Alert : '))
-            ->add('param_emailContact', TextType::class, array('label' => 'Email Contact : '))
-            ->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
+            ->add('param_nomAppli', TextType::class, array('label' => 'Nom de l\'application : ', 'required' => false))
+            ->add('param_logo', FileType::class, array('label' => 'Logo : ', 'required' => false))
+            ->add('param_adr', TextType::class, array('label' => 'Adresse : ', 'required' => false))
+            ->add('param_compl', TextType::class, array('label' => 'Compl : ', 'required' => false))
+            ->add('param_ville', TextType::class, array('label' => 'Ville : ', 'required' => false))
+            ->add('param_zip', TextType::class, array('label' => 'Code postal : ', 'required' => false))
+            ->add('param_pays', TextType::class, array('label' => 'Pays : ', 'required' => false))
+            ->add('param_tel', TextType::class, array('label' => 'Telephone : ', 'required' => false))
+            ->add('param_fax', TextType::class, array('label' => 'Fax : ', 'required' => false))
+            ->add('param_email', TextType::class, array('label' => 'Email : ', 'required' => false))
+            ->add('param_emailAlert', TextType::class, array('label' => 'Email Alert : ', 'required' => false))
+            ->add('param_emailContact', TextType::class, array('label' => 'Email Contact : ', 'required' => false))
+            ->add('save', SubmitType::class, array('label' => 'Enregistrer'));
     }
-
-
 
 }

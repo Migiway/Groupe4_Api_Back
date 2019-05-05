@@ -1,0 +1,20 @@
+
+<div class="block-team col-md-12 hide">
+	<div class="col-md-12">
+		<div class="row ">
+		  <div class="col-md-12">
+		    <div class="hero-callout">
+		    	<select class="select-parametre" id="change-team-parameter">
+		    		<option value="departement" selected="selected">Départements</option>
+		    		<option value="zone">Zones</option>
+		    	</select>
+		    </div>
+		  </div>
+		</div>
+	</div>
+  {{ include('teamParameter/_departement.html.twig') }}
+  {{ include('teamParameter/_zone.html.twig') }}
+</div>
+
+
+

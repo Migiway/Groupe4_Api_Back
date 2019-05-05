@@ -2,25 +2,25 @@
 
 namespace App\AdminBundle\Repository;
 
-use App\AdminBundle\Entity\ParameterCompany;
+use App\AdminBundle\Entity\ParameterTeamZone;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method ParameterCompany|null find($id, $lockMode = null, $lockVersion = null)
- * @method ParameterCompany|null findOneBy(array $criteria, array $orderBy = null)
- * @method ParameterCompany[]    findAll()
- * @method ParameterCompany[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ParameterTeamZone|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ParameterTeamZone|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ParameterTeamZone[]    findAll()
+ * @method ParameterTeamZone[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ParameterCompanyRepository extends ServiceEntityRepository
+class ParameterTeamZoneRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, ParameterCompany::class);
+        parent::__construct($registry, ParameterTeamZone::class);
     }
 
     // /**
-    //  * @return ParameterCompany[] Returns an array of ParameterCompany objects
+    //  * @return ParameterTeamZone[] Returns an array of ParameterTeamZone objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ParameterCompanyRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ParameterCompany
+    public function findOneBySomeField($value): ?ParameterTeamZone
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

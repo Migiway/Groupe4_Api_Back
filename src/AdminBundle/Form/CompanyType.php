@@ -22,7 +22,11 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\AdminBundle\Entity\User;
 use App\AdminBundle\Entity\StatutJuridique;
-use App\AdminBundle\Entity\ActivityArea;
+use App\AdminBundle\Entity\ParameterCompanyCA;
+use App\AdminBundle\Entity\ParameterCompanySecteur;
+use App\AdminBundle\Entity\ParameterCompanyStatutJuridique;
+use App\AdminBundle\Entity\ParameterCompanyStatut;
+use App\AdminBundle\Entity\ParameterCompanyEffectifs;
 use App\AdminBundle\Entity\NbSalary;
 
 class CompanyType extends AbstractType
@@ -40,38 +44,37 @@ class CompanyType extends AbstractType
                 'required' => false
             ])
             ->add('statut_juridique_id', EntityType::class, [
-                'class' => StatutJuridique::class,
+                'class' => ParameterCompanyStatutJuridique::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('l')
-                        ->orderBy('l.label', 'ASC');
+                        ->orderBy('l.ordre', 'ASC');
                 },
                 "label" => "Statut juridique",
                 'required' => false
             ])
             ->add('secteur_activite_id', EntityType::class, [
-                'class' => ActivityArea::class,
+                'class' => ParameterCompanySecteur::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('a')
-                        ->orderBy('a.activity_area', 'ASC');
+                        ->orderBy('a.libelle', 'ASC');
                 },
                 "label" => "Activité (NAF)",
                 'required' => false
             ])
-            ->add('companyStatus', ChoiceType::class, [
-                'choices' => [
-                    'Piste' => 'Piste',
-                    'Prospect' => 'Prospect',
-                    'Client' => 'Client',
-                    'Inactif' => 'Inactif',
-                ],
-                'label' => 'Statut',
-                'required' => false
-            ])
-            ->add('nb_salarie_id', EntityType::class, [
-                'class' => NbSalary::class,
+            ->add('companyStatus', EntityType::class, [
+                'class' => ParameterCompanyStatut::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('n')
-                        ->orderBy('n.salary_libelle', 'ASC');
+                        ->orderBy('n.libelle', 'ASC');
+                },
+                "label" => "Status",
+                'required' => false
+            ])            
+            ->add('nb_salarie_id', EntityType::class, [
+                'class' => ParameterCompanyEffectifs::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('n')
+                        ->orderBy('n.ordre', 'ASC');
                 },
                 "label" => "Effectifs",
                 'required' => false
@@ -84,10 +87,15 @@ class CompanyType extends AbstractType
                 'label' => 'Email',
                 'required' => false
             ))
-            ->add('companyCa', TextType::class, array(
-                'label' => 'Chiffre d\'affaire',
+            ->add('companyCa', EntityType::class, [
+                'class' => ParameterCompanyCA::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.ordre', 'ASC');
+                },
+                "label" => "Chiffre d'affaire",
                 'required' => false
-            ))
+            ])
             ->add('companyName', TextType::class, array(
                 'label' => 'Nom',
                 'required' => false
@@ -128,7 +136,6 @@ class CompanyType extends AbstractType
                 'label' => 'N° SIRET',
                 'required' => false
             ))
-//            ->add('imgCompany', TextType::class, array('label' => 'Image : ', 'required' => false))
             ->add('companyFile', FileType::class, array(
                 'label' => 'Image',
                 'required' => false

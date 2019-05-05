@@ -1,0 +1,36 @@
+<div class="col-md-12 block-note-categorie hide">
+	<div class="row">
+        <div class="col-md-12">
+            <div class="row form_client">
+                <div class="col-md-12">
+                    <table class="col-md-12 tab-parametre">
+	     			<tbody>
+	     				<tr role="row" class="odd tab-parametre">
+	     					<td><span class="title-parameter-select">Catégories</span></td>
+	     				</tr>
+			     		{% for ca in noteCategorie %}
+	     				<tr role="row" class="odd tab-parametre">
+	     					<td>
+	     						<a href="/admin/parameter/edit-note-categorie/{{ ca.id }}">{{ ca.libelle }}</a>
+	     					</td>
+	     				</tr>
+						{% endfor %}
+	     			</tbody>
+	     		</table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 pt-5">
+        <div class="row py-4">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <div class="enregisterbutton">
+                    <a href="/admin/parameter/new-note-categorie">
+                        <button type="button" class="btn btn-primary">AJOUTER</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -355,24 +355,6 @@ body {
     margin: 0 auto;
     border-radius: 12px;
 }
-.enterprise_table_status2{
-    text-align: center;
-    background: #FFA200;
-    color: white;
-    padding: 2px 0px;
-    width: 100px;
-    margin: 0 auto;
-    border-radius: 12px;
-}
-.enterprise_table_status3{
-    text-align: center;
-    background: #CECECE;
-    color: white;
-    padding: 2px 0px;
-    width: 100px;
-    margin: 0 auto;
-    border-radius: 12px;
-}
 .enterprise_status_th{
     text-align: center;
 }
@@ -1041,3 +1023,48 @@ div.dataTables_paginate {
     margin-left: 9%;
     margin-top: -7%;
 }
+/*en commentaire pr editer dans le code*/
+/* .img-fluid {
+    border-radius: 75px;
+}
+
+/*edition de la couleur dans le body donc en commentaire */
+ .logo-name {
+    display: flex;
+}
+.company_img img{
+    border-radius: 75px;
+    width: 30px;
+    height: 30px;
+}
+.company_img{
+    width: 35%;
+}
+.logo-name a {
+    margin-top: 5px;
+}
+.form_password {
+    margin-left: -6% !important;
+} 
+
+.select-parametre {
+    width: 17%;
+    padding: 5px;
+    border-radius: 3px;
+    color: #dee2e6;
+    border-color: #dee2e6;
+}
+.title-parameter-select {
+   font-weight: 500;
+   color: #9999A1; 
+   margin-top: 2%;
+}
+.tab-parametre td {
+    padding: 10px;
+}
+.tab-parametre tr {
+    border-bottom: 1px solid #9999A1; ;
+}
+.tab-parametre td a {
+    color: #9999A1; 
+} */

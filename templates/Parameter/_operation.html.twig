@@ -1,0 +1,36 @@
+<div class="block-operation col-md-12 hide">
+  {{ form_start(formParameterOperation) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row form_client">
+                <div class="col-md-6">
+                    <div class="row ">
+                        <div class="col-md-5 form_text">
+                            <p>Bouton "non intéressé"</p>
+                        </div>
+                        <div class="col-md-7 input_select_main input_border_left">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterOperation.btnInteresse) }}
+                                {{ form_errors(formParameterOperation.btnInteresse) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 pt-5">
+        <div class="row py-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3 pr-0"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+                <div class="enregisterbutton">
+                    {{ form_widget(formParameterOperation.save) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(formParameterOperation) }}
+</div>
