@@ -18,6 +18,8 @@ use App\AdminBundle\Entity\ParameterNoteCategorie;
 use App\AdminBundle\Entity\ParameterNotePriorite;
 use App\AdminBundle\Entity\ParameterContactPouvoir;
 use App\AdminBundle\Entity\ParameterContactMetier;
+use App\AdminBundle\Entity\ParameterTeamZone;
+use App\AdminBundle\Entity\ParameterTeamDepartement;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -37,6 +39,8 @@ use App\AdminBundle\Form\ParameterNoteCategorieType;
 use App\AdminBundle\Form\ParameterNotePrioriteType;
 use App\AdminBundle\Form\ParameterContactPouvoirType;
 use App\AdminBundle\Form\ParameterContactMetierType;
+use App\AdminBundle\Form\ParameterTeamZoneType;
+use App\AdminBundle\Form\ParameterTeamDepartementType;
 
 /**
  * @Route("/parameter")
@@ -87,20 +91,24 @@ class ParameterController extends AbstractController
         }
 
         //Paramètre partie note
-        $noteEcheance           = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->findAll();
-        $noteCategorie          = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->findAll();
-        $notePriorite           = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->findAll();
+        $noteEcheance           = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->findBy(array(), array('libelle' => 'ASC'));
+        $noteCategorie          = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->findBy(array(), array('libelle' => 'ASC'));
+        $notePriorite           = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->findBy(array(), array('libelle' => 'ASC'));
 
         //Paramètre partie contact
-        $contactPouvoir         = $this->getDoctrine()->getRepository(ParameterContactPouvoir::class)->findAll();
-        $contactMetier          = $this->getDoctrine()->getRepository(ParameterContactMetier::class)->findAll();
+        $contactPouvoir         = $this->getDoctrine()->getRepository(ParameterContactPouvoir::class)->findBy(array(), array('libelle' => 'ASC'));
+        $contactMetier          = $this->getDoctrine()->getRepository(ParameterContactMetier::class)->findBy(array(), array('libelle' => 'ASC'));
+
+        //Paramètre partie team commerciale
+        $teamZone               = $this->getDoctrine()->getRepository(ParameterTeamZone::class)->findBy(array(), array('libelle' => 'ASC'));
+        $teamDepartement        = $this->getDoctrine()->getRepository(ParameterTeamDepartement::class)->findBy(array(), array('libelle' => 'ASC'));
 
         //Paramètre partie entreprise /company
-        $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findAll();
-        $companyEffectifs       = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->findAll();
-        $companySecteur         = $this->getDoctrine()->getRepository(ParameterCompanySecteur::class)->findAll();
-        $companyStatutJuridique = $this->getDoctrine()->getRepository(ParameterCompanyStatutJuridique::class)->findAll();
-        $companyStatut          = $this->getDoctrine()->getRepository(ParameterCompanyStatut::class)->findAll();
+        $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findBy(array(), array('libelle' => 'ASC'));
+        $companyEffectifs       = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->findBy(array(), array('libelle' => 'ASC'));
+        $companySecteur         = $this->getDoctrine()->getRepository(ParameterCompanySecteur::class)->findBy(array(), array('libelle' => 'ASC'));
+        $companyStatutJuridique = $this->getDoctrine()->getRepository(ParameterCompanyStatutJuridique::class)->findBy(array(), array('libelle' => 'ASC'));
+        $companyStatut          = $this->getDoctrine()->getRepository(ParameterCompanyStatut::class)->findBy(array(), array('libelle' => 'ASC'));
 
         //Fin Paramètre partie entreprise /company
         $arr = array(
@@ -116,8 +124,8 @@ class ParameterController extends AbstractController
             'notePriorite'              => $notePriorite,
             'contactPouvoir'            => $contactPouvoir,
             'contactMetier'             => $contactMetier,
-
-
+            'teamZone'                  => $teamZone,
+            'teamDepartement'           => $teamDepartement,
         );
         return $this->render('parameter/form.html.twig', $arr);
         
@@ -639,4 +647,107 @@ class ParameterController extends AbstractController
 
         return $this->render('contactParameter/form_metier.html.twig', array('form' => $form->createView()));
     }
+
+
+    /**
+     * @Route ("/new-team-zone")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newTeamZone(Request $request)
+    {
+        $teamZone = new ParameterTeamZone();
+
+        $form = $this->createForm(ParameterTeamZoneType::class, $teamZone);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($teamZone);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('teamParameter/form_zone.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/edit-team-zone/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editTeamZone(Request $request, string $id)
+    {
+        $teamZone = $this->getDoctrine()->getRepository(ParameterTeamZone::class)->find($id);
+
+        $form = $this->createForm(ParameterTeamZoneType::class, $teamZone);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($teamZone);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('teamParameter/form_zone.html.twig', array('form' => $form->createView()));
+    }
+
+
+    /**
+     * @Route ("/new-team-departement")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newTeamDepartement(Request $request)
+    {
+        $teamDepartement = new ParameterTeamDepartement();
+
+        $form = $this->createForm(ParameterTeamDepartementType::class, $teamDepartement);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($teamDepartement);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('teamParameter/form_departement.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/edit-team-departement/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editTeamDepartement(Request $request, string $id)
+    {
+        $teamDepartement = $this->getDoctrine()->getRepository(ParameterTeamDepartement::class)->find($id);
+
+        $form = $this->createForm(ParameterTeamDepartementType::class, $teamDepartement);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($teamDepartement);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('teamParameter/form_departement.html.twig', array('form' => $form->createView()));
+    }
+
+
+
 }
