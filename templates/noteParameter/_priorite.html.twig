@@ -1,22 +1,22 @@
-<div class="col-md-12 block-company-statut hide">
+<div class="col-md-12 block-note-priorite hide">
 	<div class="row">
         <div class="col-md-12">
             <div class="row form_client">
                 <div class="col-md-12">
                     <table class="col-md-12 tab-parametre">
-		     			<tbody>
-		     				<tr role="row" class="odd tab-parametre">
-		     					<td><span class="title-parameter-select">Statut</span></td>
-		     				</tr>
-				     		{% for statut in companyStatut %}
-		     				<tr role="row" class="odd tab-parametre">
-		     					<td>
-		     						<a href="/admin/parameter/edit-company-statut/{{ statut.id }}">{{ statut.libelle }}</a>
-		     					</td>
-		     				</tr>
-							{% endfor %}
-		     			</tbody>
-		     		</table>
+	     			<tbody>
+	     				<tr role="row" class="odd tab-parametre">
+	     					<td><span class="title-parameter-select">Priorités</span></td>
+	     				</tr>
+			     		{% for priorite in notePriorite %}
+	     				<tr role="row" class="odd tab-parametre">
+	     					<td>
+	     						<a href="/admin/parameter/edit-note-priorite/{{ priorite.id }}">{{ priorite.libelle }}</a>
+	     					</td>
+	     				</tr>
+						{% endfor %}
+	     			</tbody>
+	     		</table>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="col-md-10"></div>
             <div class="col-md-2">
                 <div class="enregisterbutton">
-                    <a href="/admin/parameter/new-company-statut">
+                    <a href="/admin/parameter/new-note-priorite">
                         <button type="button" class="btn btn-primary">AJOUTER</button>
                     </a>
                 </div>

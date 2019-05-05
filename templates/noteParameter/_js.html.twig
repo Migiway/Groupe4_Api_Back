@@ -1,0 +1,21 @@
+<script>
+    $(function () {
+        $('#change-note-parameter').change(function() {
+            if ($(this).val() == 'echeance') {
+                $('.block-note-echeance').removeClass('hide');
+                $('.block-note-categorie').addClass('hide');
+                $('.block-note-priorite').addClass('hide');
+            }
+            if ($(this).val() == 'categorie') {
+                $('.block-note-echeance').addClass('hide');
+                $('.block-note-categorie').removeClass('hide');
+                $('.block-note-priorite').addClass('hide');
+            }
+            if ($(this).val() == 'priorite') {
+                $('.block-note-echeance').addClass('hide');
+                $('.block-note-categorie').addClass('hide');
+                $('.block-note-priorite').removeClass('hide');
+            }
+        });
+    });
+</script>
