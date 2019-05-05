@@ -16,6 +16,8 @@ use App\AdminBundle\Entity\ParameterOperation;
 use App\AdminBundle\Entity\ParameterNoteEcheance;
 use App\AdminBundle\Entity\ParameterNoteCategorie;
 use App\AdminBundle\Entity\ParameterNotePriorite;
+use App\AdminBundle\Entity\ParameterContactPouvoir;
+use App\AdminBundle\Entity\ParameterContactMetier;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -33,6 +35,8 @@ use App\AdminBundle\Form\ParameterOperationType;
 use App\AdminBundle\Form\ParameterNoteEcheanceType;
 use App\AdminBundle\Form\ParameterNoteCategorieType;
 use App\AdminBundle\Form\ParameterNotePrioriteType;
+use App\AdminBundle\Form\ParameterContactPouvoirType;
+use App\AdminBundle\Form\ParameterContactMetierType;
 
 /**
  * @Route("/parameter")
@@ -83,9 +87,13 @@ class ParameterController extends AbstractController
         }
 
         //Paramètre partie note
-        $noteEcheance        = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->findAll();
-        $noteCategorie       = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->findAll();
-        $notePriorite        = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->findAll();
+        $noteEcheance           = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->findAll();
+        $noteCategorie          = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->findAll();
+        $notePriorite           = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->findAll();
+
+        //Paramètre partie contact
+        $contactPouvoir         = $this->getDoctrine()->getRepository(ParameterContactPouvoir::class)->findAll();
+        $contactMetier          = $this->getDoctrine()->getRepository(ParameterContactMetier::class)->findAll();
 
         //Paramètre partie entreprise /company
         $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findAll();
@@ -106,6 +114,10 @@ class ParameterController extends AbstractController
             'noteEcheance'              => $noteEcheance,
             'noteCategorie'             => $noteCategorie,
             'notePriorite'              => $notePriorite,
+            'contactPouvoir'            => $contactPouvoir,
+            'contactMetier'             => $contactMetier,
+
+
         );
         return $this->render('parameter/form.html.twig', $arr);
         
@@ -530,4 +542,101 @@ class ParameterController extends AbstractController
         return $this->render('noteParameter/form_priorite.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * @Route ("/new-contact-pouvoir")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newContactPouvoir(Request $request)
+    {
+        $notePouvoir = new ParameterContactPouvoir();
+
+        $form = $this->createForm(ParameterContactPouvoirType::class, $notePouvoir);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($notePouvoir);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('contactParameter/form_pouvoir.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/edit-contact-pouvoir/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editContactPouvoir(Request $request, string $id)
+    {
+        $notePouvoir = $this->getDoctrine()->getRepository(ParameterContactPouvoir::class)->find($id);
+
+        $form = $this->createForm(ParameterContactPouvoirType::class, $notePouvoir);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($notePouvoir);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('contactParameter/form_pouvoir.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route ("/new-contact-metier")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newContactMetier(Request $request)
+    {
+        $noteMetier = new ParameterContactMetier();
+
+        $form = $this->createForm(ParameterContactMetierType::class, $noteMetier);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noteMetier);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('contactParameter/form_metier.html.twig', array('form' => $form->createView()));
+    }
+
+
+    
+    /**
+     * @Route ("/edit-contact-metier/{id}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editContactMetier(Request $request, string $id)
+    {
+        $noteMetier = $this->getDoctrine()->getRepository(ParameterContactMetier::class)->find($id);
+
+        $form = $this->createForm(ParameterContactMetierType::class, $noteMetier);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noteMetier);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
+        return $this->render('contactParameter/form_metier.html.twig', array('form' => $form->createView()));
+    }
 }

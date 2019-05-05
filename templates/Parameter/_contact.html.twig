@@ -1,11 +1,18 @@
 <div class="block-contact col-md-12 hide">
-  <div class="col-md-12">
-    <div class="row ">
-      <div class="col-md-12">
-        <div class="hero-callout">
-          Block contact
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="col-md-12">
+		<div class="row ">
+		  <div class="col-md-12">
+		    <div class="hero-callout">
+		    	<select class="select-parametre" id="change-contact-parameter">
+		    		<option value="metier" selected="selected">Métiers</option>
+		    		<option value="pouvoir">Pouvoirs</option>
+		    	</select>
+		    </div>
+		  </div>
+		</div>
+	</div>
+  {{ include('contactParameter/_metier.html.twig') }}
+  {{ include('contactParameter/_pouvoir.html.twig') }}
 </div>
+
+
