@@ -5,7 +5,7 @@ namespace App\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ColorsRepository")
+ * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ColorsRepository")
  */
 class Colors
 {
