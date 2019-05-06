@@ -514,7 +514,7 @@ class User implements UserInterface, \Serializable
     //     return $this;
     // }
 
-    public function getRole(): ?Role
+    /*public function getRole(): ?Role
     {
         //return $this->role;
         if (!is_null($this->role)) {
@@ -524,6 +524,11 @@ class User implements UserInterface, \Serializable
         }
         $roles[] = 'ROLE_USER';
         return array_unique($roles);
+    }*/
+
+    public function getRole()
+    {
+        return $this->role;
     }
 
     public function setRole(?Role $role): self

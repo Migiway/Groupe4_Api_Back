@@ -125,9 +125,29 @@
                                                     <div class="col-md-5 form_text">
                                                         <p>Date d'arrivé/départ</p>
                                                     </div>
-                                                    <div class="col-md-7  form-group commercial_date_input"><input
-                                                                class=" form-control" type="date" id="today"><input
-                                                                class=" form-control" type="date" id=""></div>
+                                                    <div class="col-md-7  form-group code_client">
+                                                        {{ form_widget(form.user_arrival_date) }}
+                                                        {{ form_errors(form.user_arrival_date) }}
+                                                    </div>
+
+
+                                                    <script>
+                                                        let today = new Date().toISOString().substr(0, 10);
+                                                        document.querySelector("#today").value = today;
+
+                                                        // or...
+
+                                                        document.querySelector("#today").valueAsDate = new Date();</script>
+                                                </div>
+                                                <div class="row pt-3 from_single_input">
+                                                    <div class="col-md-5 form_text">
+                                                        <p></p>
+                                                    </div>
+
+                                                    <div class="col-md-7  form-group code_client">
+                                                        {{ form_widget(form.user_quit_date) }}
+                                                        {{ form_errors(form.user_quit_date) }}
+                                                    </div>
 
                                                     <script>
                                                         let today = new Date().toISOString().substr(0, 10);
@@ -190,13 +210,6 @@
                                                     <div class="col-md-7 phone_input input-group ">
                                                         {{ form_widget(form.user_email) }}
                                                         {{ form_errors(form.user_email) }}
-                                                        <span class="input-group-addon contact_checkbox_position">
-                                                    <div class="custom-control custom-checkbox ">
-                                                        {{ form_widget(form.user_status) }}
-                                                        {{ form_errors(form.user_status) }}
-                                                        <label class="custom-control-label" for="customCheck"></label>
-                                                    </div>
-                                                    </span>
                                                     </div>
                                                 </div>
                                                 <div class="row pt-3 ">
@@ -295,16 +308,20 @@
                             <div class="row py-4">
                                 <div class="col-md-3">
                                     <div class="retourbutton">
-                                        <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
-                                            RETOUR
-                                        </button>
+                                        <a href="/admin/user/team">
+                                            <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
+                                                RETOUR
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-1"></div>
                                 <div class="col-md-3"></div>
                                 <div class="col-md-3">
                                     <div class="annulerbutton">
-                                        <button type="button" class="btn btn-primary">ANNULER</button>
+                                        <a href="/admin/user/team">
+                                            <button  type="button" class="btn btn-primary">ANNULER</button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-2">

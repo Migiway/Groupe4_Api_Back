@@ -36,14 +36,17 @@ class UserType extends AbstractType
             ))
             ->add('user_firstName', TextType::class, array('label' => 'Prénom : '))
             ->add('user_lastName', TextType::class, array('label' => 'Nom : '))
-            ->add('user_dob', DateTimeType::class, array(
+            ->add('user_dob', DateType::class, array(
                 'label' => 'Date de naissance : ',
                 'widget' => 'single_text',
             ))
-            /*->add('user_arrival_date', DateType::class, array(
-                'label' => 'Date : ',
+            ->add('user_arrival_date', DateType::class, array(
+                'label' => 'Date d\'arrivé/départ : ',
                 'widget' => 'single_text',
-            ))*/
+            ))
+            ->add('user_quit_date', DateType::class, array(
+                'widget' => 'single_text',
+            ))
             ->add('user_phone', TextType::class, array('label' => 'Tél. mobile : '))
             ->add('user_lkd', TextType::class, array('label' => 'Profile Linkedin : '))
             ->add('user_facebook', TextType::class, array('label' => 'Profile Facebook : '))
@@ -61,10 +64,9 @@ class UserType extends AbstractType
                 'choice_label' => 'libelle',
                 "label" => "Profil/droits : "
             ])
-            ->add('user_status', CheckboxType::class, array('label' => 'Status : '))
             ->add('user_fixe', TextType::class, array('label' => 'Tel fixe : '))
             ->add('user_annotation', TextareaType::class, array('label' => 'Remarques : '))
-            ->add('imgUrl', TextType::class, array('label' => 'Image : '))
+            //->add('imgUrl', TextType::class, array('label' => 'Image : '))
             ->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
     }
 
