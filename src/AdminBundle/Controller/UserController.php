@@ -63,9 +63,26 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
+            $task->setUserStatus(true);
+            $pass = $task->getUserPassword();
+            $task->setUserPassword($task->encodePassword($pass, 'salt'));
+            //$task->img_url
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
             $entityManager->flush();
+
+            //Retour à la liste des users (equipe commerciale)
+            $users = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->findAll();
+
+            $nbUsers = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->countall();
+
+            return $this->render('team/list.html.twig', array(
+                'users' => $users, 'nb_users' => $nbUsers
+            ));
         }
     }
 
@@ -85,11 +102,40 @@ class UserController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $this->redirectToRoute('user_list');
+
+            //Retour à la liste des users (equipe commerciale)
+            $users = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->findAll();
+
+            $nbUsers = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->countall();
+
+            return $this->render('team/list.html.twig', array(
+                'users' => $users, 'nb_users' => $nbUsers
+            ));
         }
 
-        return $this->render('team/edit.html.twig', array('form' => $form->createView()));
+        return $this->render('team/edit.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
 
+    /**
+     * @Route ("/team")
+     */
+    public function list(Request $request)
+    {
+        $users = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findAll();
+
+        $nbUsers = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->countall();
+
+        return $this->render('team/list.html.twig', array(
+            'users' => $users, 'nb_users' => $nbUsers
+        ));
+    }
 
 }

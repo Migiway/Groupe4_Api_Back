@@ -3,7 +3,7 @@
 {% block body %}
     <div class="col-md-3 p-0">
         <div class="contacts1_text">
-            <h3 class="contact1h3">Équipe commerciale<span class="contact1span"> (22)</span></h3>
+            <h3 class="contact1h3">Équipe commerciale<span class="contact1span"> {{ nb_users }}</span></h3>
         </div>
     </div>
     <div class="col-md-6">
@@ -48,7 +48,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr role="row" class="odd">
+                        <!-- <tr role="row" class="odd">
                             <td>
                                 <div class="custom-control custom-checkbox ml8">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
@@ -75,7 +75,7 @@
                                 </div>
                             </td>
                             <td class="table_phone"><a href="#">@</a> <a href="#"><i class="fas fa-phone"></i></a></td>
-                        </tr>
+                        </tr> -->
                         {% for user in users %}
                         <tr role="row" class="odd">
                             <td>
@@ -90,17 +90,25 @@
                             <td>{{ user.area.activityArea }}</td>
                             <td>
                                 <div class="commerciale_enterprise_td">
-                                    48
+                                    {% if user.getCompanies()|length > 0 %}
+                                        {{ user.getCompanies()|length }}
+                                    {% else %}
+                                        0
+                                    {% endif %}
                                 </div>
                             </td>
                             <td>
                                 <div class="enterprise_contact_td">
-                                    56
+                                    {% if user.getCompanies()|length <= 0 %}
+                                        {{ user.getCompanies()|length }}
+                                    {% else %}
+                                        0
+                                    {% endif %}
                                 </div>
                             </td>
                             <td>
                                 <div class="commerciale_score_td">
-                                    60
+                                    0
                                 </div>
                             </td>
                             <td class="table_phone"><a href="mailto:{{ user.getUserEmail() }}">@</a> <a href="#"><i class="fas fa-phone"></i></a></td>
