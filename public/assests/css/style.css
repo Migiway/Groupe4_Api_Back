@@ -1029,7 +1029,7 @@ div.dataTables_paginate {
 }
 
 /*edition de la couleur dans le body donc en commentaire */
- .logo-name {
+.logo-name {
     display: flex;
 }
 .company_img img{
@@ -1067,4 +1067,19 @@ div.dataTables_paginate {
 }
 .tab-parametre td a {
     color: #9999A1; 
-} */
+} 
+
+.img-fluid.border-img {
+    border-radius: 25px !important;
+}
+
+.login_button {
+    background-color: #CF1740;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    transition: 1s ease-in;
+}
