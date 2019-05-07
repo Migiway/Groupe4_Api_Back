@@ -7,9 +7,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ContactRepository")
+ * @Vich\Uploadable
  */
 class Contact
 {
@@ -125,7 +127,6 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(mimeTypes={"image/jpeg"})
      */
     private $contact_photo;
 
@@ -158,6 +159,25 @@ class Contact
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Participate")
      */
     private $participation_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterContactMetier")
+     */
+    private $metier_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterContactPouvoir")
+     */
+    private $pouvoir_id;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="contact_photo", fileNameProperty="contact_photo")
+     */
+    protected $contactFile;
+
+
 
     public function getId(): ?int
     {
@@ -474,10 +494,53 @@ class Contact
 
         return $this;
     }
+    public function getMetierId(): ?ParameterContactMetier
+    {
+        return $this->metier_id;
+    }
+
+    public function setMetierId(?ParameterContactMetier $metier_id): self
+    {
+        $this->metier_id = $metier_id;
+
+        return $this;
+    }
+
+    public function getPouvoirId(): ?ParameterContactPouvoir
+    {
+        return $this->pouvoir_id;
+    }
+
+    public function setPouvoirId(?ParameterContactPouvoir $pouvoir_id): self
+    {
+        $this->pouvoir_id = $pouvoir_id;
+
+        return $this;
+    }
 
     public function __construct()
     {
         $this->contact_dateCreation = new \DateTime;
         $this->contact_misAJour = new \DateTime;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getContactFile()
+    {
+        return $this->contactFile;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return Contact
+     */
+    public function setContactFile(File $file = null)
+    {
+        $this->contactFile = $file;
+
+        return $this;
     }
 }

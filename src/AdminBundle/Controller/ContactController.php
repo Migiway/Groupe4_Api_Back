@@ -135,4 +135,23 @@ class ContactController extends AbstractController
         return md5(uniqid());
     }
 
+    /**
+     * @Route("/delete-select", name="delete_select")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delete_select(Request $request)
+    {
+        $idContact = $_POST['contacts'];
+        $arr = explode(',', $idContact);
+        $totalId    = count($arr);
+        for ($i=0; $i < $totalId ; $i++) {
+            $uncontact = $this->getDoctrine()->getRepository(Contact::class)->findBy(['id' => $arr[$i]]);
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($uncontact[0]);
+            $em->flush();
+        }
+        return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
+    }
+
 }

@@ -9,6 +9,8 @@ namespace App\AdminBundle\Form;
 
 
 use App\AdminBundle\Entity\Contact;
+use App\AdminBundle\Entity\ParameterContactMetier;
+use App\AdminBundle\Entity\ParameterContactPouvoir;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -46,11 +48,11 @@ class ContactType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Date de naissance',
             ])
-            ->add('job_id', EntityType::class, [
-                'class' => Job::class,
+            ->add('metier_id', EntityType::class, [
+                'class' => ParameterContactMetier::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->orderBy('u.job_libelle', 'ASC');
+                        ->orderBy('u.libelle', 'ASC');
                 },
                 "label" => "Métier"
             ])
@@ -68,11 +70,13 @@ class ContactType extends AbstractType
                 "label" => "Entreprise"
             ])
             ->add('contact_metier', TextType::class, array('label' => 'Nom du poste'))
-            ->add('contact_niv_decision', ChoiceType::class, [
-                'choices'  => [
-                    'one' => 0,
-                    'Two' => 1,
-                ], 'label' => 'Pouvoir décisionnel'
+            ->add('pouvoir_id', EntityType::class, [
+                'class' => ParameterContactPouvoir::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.libelle', 'ASC');
+                },
+                "label" => "pouvoir décisionnel"
             ])
             ->add('user_id', EntityType::class, [
                 'class' => User::class,
@@ -85,7 +89,7 @@ class ContactType extends AbstractType
             ->add('contact_tel_fixe', TextType::class, array('label' => 'Tel. Fixe direct'))
             ->add('contact_tel_standard', TextType::class, array('label' => 'Tel. du standard'))
             ->add('contact_commentaire', TextareaType::class, array('label' => 'Remarques'))
-            ->add('contact_photo', FileType::class)
+            ->add('contactFile', FileType::class)
             ->add('contact_statut', CheckboxType::class, [
                 'label' => false,
                 'label_attr' => array(

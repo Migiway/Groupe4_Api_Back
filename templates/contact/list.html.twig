@@ -33,8 +33,8 @@
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
                                             <div class="custom-control custom-checkbox ">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck" checked>
-                                                <label class="custom-control-label" for="customCheck"></label>
+                                                <input type="checkbox" class="custom-control-input" id="check-all">
+                                                <label class="custom-control-label" for="check-all"></label>
                                             </div>
                                         </th>
                                         <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Prénom</th>
@@ -52,8 +52,8 @@
                                     <tr role="row" class="odd">
                                         <td>
                                             <div class="custom-control custom-checkbox ml8">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                                <label class="custom-control-label" for="customCheck1"></label>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck{{ contact.id }}" value="{{ contact.id }}" name="contact-check[]">
+                                                <label class="custom-control-label" for="customCheck{{ contact.id }}"></label>
                                             </div>
                                         </td>
                                         <td> <a href="/admin/contact/edit/{{ contact.id }}"><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">{{ contact.contactPrenom }}</a></td>
@@ -118,7 +118,10 @@
 
                                         <div class="listline">
                                             <ul id="menu">
-                                                <li><a href="#"><i class="fas fa-trash"></i></a></li>
+                                                <form id="form-delete-contact" name="delete-company" method="post" action="/admin/contact/delete-select">
+                                                    <input id="contacts" type="hidden" name="contacts">
+                                                </form>
+                                                <li><a id="delete-select-contact" href="#"><i class="fas fa-trash"></i></a></li>
                                                 <li><a href="#"><i class="fas fa-download"></i></a></li>
                                                 <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
 
