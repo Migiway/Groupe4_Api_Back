@@ -356,6 +356,20 @@
                 } else {
                 }
             });
+            $('#delete-select-contact').click(function() {
+                var contact = [];
+                $( "#myTable tbody .custom-checkbox input" ).each(function( index ) {
+                    if ($(this).prop('checked') == true ) {
+                        contact.push($(this).val());
+                    }
+                });
+                if (contact.length > 0) {
+                    $('#contacts').val(contact);
+                    $( "#form-delete-contact" ).submit();
+                }
+                else {
+                }
+            });
         });
     </script>
 {% endblock %}
