@@ -1,4 +1,4 @@
-<div class="block-charte col-md-12 hide">
+<!-- <div class="block-charte col-md-12 hide">
   <div class="col-md-12">
     <div class="row ">
       <div class="col-md-12">
@@ -8,4 +8,92 @@
       </div>
     </div>
   </div>
+</div> -->
+<div class="block-charte col-md-12 hide">
+  {{ form_start(formParameterCharte) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row form_client">
+                <div class="col-md-6">
+                    <div class="row ">
+                        <div class="col-md-5 form_text">
+                            <p>Couleur primaire</p>
+                        </div>
+                        <div class="col-md-7 input_select_main input_border_left">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterCharte.colors_code) }}
+                                {{ form_errors(formParameterCharte.colors_code) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3 from_single_input">
+                        <div class="col-md-5 form_text">
+                            <p>Couleur de survol</p>
+                        </div>
+                        <div class="col-md-7 form-group code_client input_border_left">
+                            {{ form_widget(formParameterCharte.colors_survol) }}
+                            {{ form_errors(formParameterCharte.colors_survol) }}
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Champs obligatoires</p>
+                        </div>
+                        <div class="col-md-7 prenom_input form-group input_border_left">
+                            {{ form_widget(formParameterCharte.colors_champ_obligatoire) }}
+                            {{ form_errors(formParameterCharte.colors_champ_obligatoire) }}
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Couleur Tags entreprises</p>
+                        </div>
+                        <div class="col-md-7 input_select_main input_border_left">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterCharte.colors_tag_entreprise) }}
+                                {{ form_errors(formParameterCharte.colors_tag_entreprise) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Couleur Tags contacts</p>
+                        </div>
+                        <div class="col-md-7 input_select_main input_border_left">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterCharte.colors_tag_contact) }}
+                                {{ form_errors(formParameterCharte.colors_tag_contact) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-5 form_text">
+                            <p>Couleur Tags scores</p>
+                        </div>
+                        <div class="col-md-7  input_select_main input_border_left">
+                            <div class="form-group matier_select">
+                                {{ form_widget(formParameterCharte.colors_tag_score) }}
+                                {{ form_errors(formParameterCharte.colors_tag_score) }}
+                            </div>
+                        </div>
+                    </div>                    
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 pt-5">
+        <div class="row py-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3 pr-0"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+                <div class="enregisterbutton">
+                    {{ form_widget(formParameterCharte.submit) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(formParameterCharte) }}
 </div>
+
