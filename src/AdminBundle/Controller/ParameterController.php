@@ -76,6 +76,20 @@ class ParameterController extends AbstractController
             return $this->redirectToRoute('identite_index');
         }
 
+        //Paramètre partie charte graphique
+        $parameterCharte = $this->getDoctrine()->getRepository(Colors::class)->find("1");
+
+        $formParameterCharte = $this->createForm(ColorType::class, $parameterCharte);
+
+        $formParameterCharte->handleRequest($request);
+
+        if ($formParameterCharte->isSubmitted() && $formParameterCharte->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($parameterCharte);
+            $em->flush();
+            return $this->redirectToRoute('identite_index');
+        }
+
         //Paramètre partie opération
         $parameterOperation = $this->getDoctrine()->getRepository(ParameterOperation::class)->find("1");
 
@@ -114,6 +128,7 @@ class ParameterController extends AbstractController
         $arr = array(
             'formParameterIdentite'     => $formParameterIdentite->createView(),
             'formParameterOperation'    => $formParameterOperation->createView(),
+            'formParameterCharte'       => $formParameterCharte->createView(),
             'companyCA'                 => $companyCA,
             'companyEffectifs'          => $companyEffectifs,
             'companySecteur'            => $companySecteur,
