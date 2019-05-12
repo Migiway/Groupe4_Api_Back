@@ -10,6 +10,7 @@ namespace App\AdminBundle\Controller;
 use App\AdminBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\Contact;
+use App\AdminBundle\Entity\Postes;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -28,6 +29,7 @@ class ContactController extends AbstractController
      */
     public function new(Request $request){
         $contact = new Contact();
+
 
         $form = $this->createForm(ContactType::class, $contact);
 
@@ -48,9 +50,13 @@ class ContactController extends AbstractController
 
             $contact->setContactPhoto($fileName);*/
 
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
+
+
+
             return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
         }
 
@@ -63,6 +69,7 @@ class ContactController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit (Request $request, contact $contact){
+        $postes = new Postes();
 
 
         $contact_form = $this->getDoctrine()
@@ -78,15 +85,34 @@ class ContactController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact_form);
             $em->flush();
+            $id = $contact->getId();
+
+            $postes->setContactId($id);
+            $postes->setCompanyId($contact_form->getCompanyId());
+            $postes->setUserId($contact_form->getUserId());
+            $postes->setMetierId($contact_form->getMetierId());
+            $postes->setPouvoirId($contact_form->getPouvoirId());
+            $postes->setPostesMetier($contact_form->getContactMetier());
+            $postes->setPostesCommentaire($contact_form->getContactCommentaire());
+            $postes->setPostesTelFixe($contact_form->getContactTelFixe());
+            $postes->setPostesTelStandard($contact_form->getContactTelStandard());
+            $em->persist($postes);
+            $em->flush();
 
         }
         $personne = $this->getDoctrine()
             ->getRepository(Contact::class)
             ->find($contact);
 
+        $id = $contact->getId();
 
+        $postes = $this->getDoctrine()
+            ->getRepository(Postes::class)
+            ->findBy(
+                ['contact_id' => $id]
+            );
 
-        return $this->render('contact/edit.html.twig', array('form' => $form->createView(), 'personne' => $personne));
+        return $this->render('contact/edit.html.twig', array('form' => $form->createView(), 'personne' => $personne, 'postes' => $postes ));
     }
 
     /**

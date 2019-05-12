@@ -45,7 +45,7 @@
                             <nav class="nav">
                                 <a class="nav-link active identite" href="#">Identité</a>
                                 <a class="nav-link note" href="#">Notes</a>
-                                <a class="nav-link" href="#">Postes</a>
+                                <a class="nav-link poste" href="#">Postes</a>
                                 <a class="nav-link " href="#">Historique</a>
                             </nav>
                         </div>
@@ -542,6 +542,56 @@
               </div>
        </div>
 </div>
+                        <div class="block-poste hide">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <!-- col1-->
+                                    <div class="col-md-12">
+                                        <div class="block-contact col-md-12">
+                                            <div class="col-md-12">
+                                                <div class="row ">
+                                                    <div class="col-md-12">
+                                                        <div class="hero-callout">
+                                                            <div id="example_wrapper" class="dataTables_wrapper">
+                                                                <table id="company-contact" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" role="grid" aria-describedby="example_info">
+                                                                    <thead>
+                                                                    <tr role="row">
+                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 190px;" aria-label="Position: activate to sort column ascending">Nom du poste</th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Pouvoir décisionnel</th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Start date: activate to sort column ascending">Responsable N+1</th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Téléphone Fixe</th>
+                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Téléphone standard</th>
+                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Remarques</th>
+                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Option</th>
+
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {% for poste in postes %}
+
+                                                                        <tr role="row" class="odd">
+                                                                            <td> {{ poste.postesMetier }}</a></td>
+                                                                            <td>{{ poste.pouvoirId }}</td>
+                                                                            <td>{{ poste.userId }}</td>
+                                                                            <td>{{ poste.postesTelFixe }}</td>
+                                                                            <td>{{ poste.postesTelStandard }}</td>
+                                                                            <td>{{ poste.postesCommentaire }}</td>
+                                                                            <td style="text-align: center"><a href="/admin/poste/delete/{{ poste.id }}"><i style="color: red; margin-right: 10px" class="fas fa-trash-alt"></i></a> <a href=""><i style="color: green" class="fas fa-edit"></i></a></td>
+                                                                        </tr>
+                                                                    {% endfor %}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            </div>
+
+                        </div>
                     
                     </div>
                 </div>
@@ -556,14 +606,23 @@
         $('.note').click(function() {
            $('.block-identite').addClass('hide');
            $('.block-note').removeClass('hide');
+           $('.block-poste').addClass('hide');
            $('.contact_formnav nav a').removeClass('active')
            $('.note').addClass('active')
         });
         $('.identite').click(function() {
-           $('.block-identite').removeClass('hide');
-           $('.block-note').addClass('hide');
-           $('.contact_formnav nav a').removeClass('active')
-           $('.identite').addClass('active')
+            $('.block-identite').removeClass('hide');
+            $('.block-note').addClass('hide');
+            $('.block-poste').addClass('hide');
+            $('.contact_formnav nav a').removeClass('active')
+            $('.identite').addClass('active')
+        });
+        $('.poste').click(function() {
+            $('.block-identite').addClass('hide');
+            $('.block-note').addClass('hide');
+            $('.block-poste').removeClass('hide');
+            $('.contact_formnav nav a').removeClass('active');
+            $('.poste').addClass('active');
         });
     });
     </script> 
