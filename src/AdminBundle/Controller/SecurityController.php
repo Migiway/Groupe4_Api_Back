@@ -17,6 +17,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils, ObjectManager $manager): Response
     {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl('dashboard'));
+        }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -42,7 +45,7 @@ class SecurityController extends AbstractController
     public function forgotPasswordAction(Request $request, \Swift_Mailer $mailer)
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirect($this->generateUrl('contact_list'));
+            return $this->redirect($this->generateUrl('dashboard'));
         }
 
         $dbm = $this->getDoctrine()->getManager();
@@ -95,7 +98,7 @@ class SecurityController extends AbstractController
     public function resetPasswordAction(Request $request, $id, $key)
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirect($this->generateUrl('contact_list'));
+            return $this->redirect($this->generateUrl('dashboard'));
         }
 
         $user = $this->getDoctrine()->getRepository('AdminBundle:User')->find($id);
