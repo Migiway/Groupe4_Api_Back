@@ -557,6 +557,7 @@
                                                                     <thead>
                                                                     <tr role="row">
                                                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 190px;" aria-label="Position: activate to sort column ascending">Nom du poste</th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 190px;" aria-label="Position: activate to sort column ascending">Entreprise</th>
                                                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Pouvoir décisionnel</th>
                                                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Start date: activate to sort column ascending">Responsable N+1</th>
                                                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Téléphone Fixe</th>
@@ -571,12 +572,13 @@
 
                                                                         <tr role="row" class="odd">
                                                                             <td> {{ poste.postesMetier }}</a></td>
+                                                                            <td> {{ poste.companyId }}</a></td>
                                                                             <td>{{ poste.pouvoirId }}</td>
                                                                             <td>{{ poste.userId }}</td>
                                                                             <td>{{ poste.postesTelFixe }}</td>
                                                                             <td>{{ poste.postesTelStandard }}</td>
                                                                             <td>{{ poste.postesCommentaire }}</td>
-                                                                            <td style="text-align: center"><a href="/admin/poste/delete/{{ poste.id }}"><i style="color: red; margin-right: 10px" class="fas fa-trash-alt"></i></a> <a href=""><i style="color: green" class="fas fa-edit"></i></a></td>
+                                                                            <td style="text-align: center"><a href="/admin/contact/delete/postes/{{ poste.id }}"><i style="color: red; margin-right: 10px" class="fas fa-trash-alt"></i></a> <a href=""><i style="color: green" class="fas fa-edit"></i></a></td>
                                                                         </tr>
                                                                     {% endfor %}
                                                                     </tbody>

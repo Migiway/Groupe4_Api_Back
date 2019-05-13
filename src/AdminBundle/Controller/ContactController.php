@@ -130,6 +130,21 @@ class ContactController extends AbstractController
         return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
 
     }
+    /**
+     * @Route("/delete/postes/{postes}")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delete_postes(Request $request, Postes $postes)
+    {
+        $unPostes = $this->getDoctrine()->getRepository(Postes::class)->find($postes);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($unPostes);
+        $em->flush();
+
+        return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
+
+    }
 
     /**
      * @Route("/list", name="contact_list")
