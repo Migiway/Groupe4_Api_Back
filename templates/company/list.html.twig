@@ -94,7 +94,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    {% if company.getContacts()|length <= 0 %}
+                                    {% if company.getContacts()|length > 0 %}
                                         {{ company.getContacts()|length }}
                                     {% else %}
                                         0

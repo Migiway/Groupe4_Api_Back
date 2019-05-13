@@ -180,7 +180,7 @@ class Contact
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Company", inversedBy="contacts")
      */
-    private $contacts;
+    //private $company;
 
     public function getId(): ?int
     {
@@ -547,7 +547,7 @@ class Contact
         return $this;
     }
 
-    public function getContacts(): ?Company
+    /*public function getContacts(): ?Company
     {
         return $this->contacts;
     }
@@ -557,5 +557,5 @@ class Contact
         $this->contacts = $contacts;
 
         return $this;
-    }
+    }*/
 }
