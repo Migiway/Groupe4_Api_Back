@@ -142,6 +142,7 @@ class Company
         $this->companyCreationDate = new \DateTime;
         $this->companyCreatedAt = new \DateTime;
         $this->companyUpdatedAt = new \DateTime;
+        $this->contacts = new ArrayCollection();
     }
 
     /**
@@ -191,6 +192,19 @@ class Company
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imgCompany;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Contact", mappedBy="nb_contact")
+     */
+    private $contacts;
+
+    /**
+     * @return Collection|Company[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
 
     /**
      * @var File

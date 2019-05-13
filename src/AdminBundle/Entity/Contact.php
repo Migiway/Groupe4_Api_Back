@@ -177,7 +177,10 @@ class Contact
      */
     protected $contactFile;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Company", inversedBy="contacts")
+     */
+    private $contacts;
 
     public function getId(): ?int
     {
@@ -540,6 +543,18 @@ class Contact
     public function setContactFile(File $file = null)
     {
         $this->contactFile = $file;
+
+        return $this;
+    }
+
+    public function getContacts(): ?Company
+    {
+        return $this->contacts;
+    }
+
+    public function setContacts(?Company $contacts): self
+    {
+        $this->contacts = $contacts;
 
         return $this;
     }
