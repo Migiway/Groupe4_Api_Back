@@ -136,15 +136,6 @@ class Company
      */
     private $note;
 
-    public function __construct()
-    {
-        $this->parameters = new ArrayCollection();
-        $this->companyCreationDate = new \DateTime;
-        $this->companyCreatedAt = new \DateTime;
-        $this->companyUpdatedAt = new \DateTime;
-        $this->contacts = new ArrayCollection();
-    }
-
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Country", inversedBy="company")
      */
@@ -194,9 +185,18 @@ class Company
     private $imgCompany;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Contact", mappedBy="nb_contact")
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Contact", mappedBy="company_id")
      */
     private $contacts;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+        $this->companyCreationDate = new \DateTime;
+        $this->companyCreatedAt = new \DateTime;
+        $this->companyUpdatedAt = new \DateTime;
+        $this->contacts = new ArrayCollection();
+    }
 
     /**
      * @return Collection|Company[]

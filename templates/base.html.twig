@@ -20,11 +20,10 @@
         <!-- bootstrap.css -->
         <link rel="icon" type="image/png" href="{{ asset("assests/img/favicon.png") }}"/>
         <!-- <link rel="stylesheet" href="css/bootstrap.min.css">  -->
+        <link rel="stylesheet" href="{{ asset("assests/css/style.css") }}" type="text/css">
         <link rel="stylesheet" href="{{ asset("assests/css/media.css") }}" type="text/css">
         {% if app.request.attributes.get('_route') == 'dashboard' %}
         <link rel="stylesheet" href="{{ asset("assests/css/dashboard.css") }}">
-        {% else %}
-        <link rel="stylesheet" href="{{ asset("assests/css/style.css") }}" type="text/css">
         {% endif %}
         {#<link rel="stylesheet" href="{{ asset("assests/css/bootstrap.min.css") }}" type="text/css">#}
 
@@ -367,7 +366,6 @@
             });
         });
     </script>
-    
 {% endblock %}
 </body>
 </html>
