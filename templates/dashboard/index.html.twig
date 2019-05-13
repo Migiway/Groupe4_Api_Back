@@ -1,145 +1,231 @@
-{% extends 'base.html.twig' %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--    font-->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto:300,400,500,700" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!--    datatables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <!-- bootstrap.css -->
+    
+  
+   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css">  -->
+    <link rel="stylesheet" href="{{ asset("assests/css/dashboard.css") }}">
+    <!--   <link rel="stylesheet" href="css/contact.css">-->
+    <link rel="stylesheet" href="{{ asset("assests/css/media.css") }}>
+    <link rel="stylesheet" href="{{ asset("assests/css/loading-bar.css") }}">
+    <title>Dashboard</title>
+</head>
 
-{% block body %}
-<div class="col-md-8">
-    <div class="row">
-        <div class="col-md-12 p-0">
-            <div class="contacts1_text">
-                <h3 class="contact1h3">Tableau de bord</h3>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row py-2 score ">
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single">
-                        <div class="icon_per m-2">
-                            <span class="icon_per_span1" ><i class="fas fa-user-friends"></i></span>
-                            <span class="icon_per_span2" >+12%</span>
+<body>
+    <section class="contact1_section1">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3  p-0">
+                    <div class="contact1_logo ">
+                        <img class="img-fluid w-50" src="img/logo.png" alt="">
+                        <i class="fas fa-angle-left"></i>
+                    </div>
+                </div>
+                <div class="col-md-9 border_right">
+                    <div class="row">
+                        <div class="col-md-3 p-0">
+                            <div class="input-container contact1_input_container">
+                                <i class="fas fa-search icon"></i>
+                                <input class="input-field contact1_input_field" type="text" placeholder="Rechercher..." name="email">
+                            </div>
                         </div>
-                        <h1 class="text-center">32</h1>
-                        <p class="text-center" >Nouveaux contacts</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single">
-                        <div class="icon_per m-2">
-                            <span class="icon_per_span1" ><i class="fas fa-building"></i></span>
-                            <span class="icon_per_span2" >+5%</span>
-                        </div>
-                        <h1 class="text-center">18</h1>
-                        <p class="text-center" >Nouvelles entreprises</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single">
-                        <div class="icon_per m-2">
-                            <span class="icon_per_span1" ><i class="fas fa-envelope"></i></span>
-                            <span class="icon_per_span2" >+12%</span>
-                        </div>
-                        <h1 class="text-center">25</h1>
-                        <p class="text-center" >Nouveaux emails</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single">
-                        <div class="icon_per m-2">
-                            <span class="icon_per_span1" ><i class="fas fa-star"></i></span>
-                            <span class="icon_per_span3" >-6%</span>
-                        </div>
-                        <h1 class="text-center">9</h1>
-                        <p class="text-center" >Opérations actives</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row py-3 score">
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single2">
-                        <div class="text-center  single2_toatl  pt-2"><span>TOTAL</span> <span class="icon_per_span4"><i class="fas fa-plus-circle"></i></span></div>
-                        <h1 class="text-center">4583</h1>
-                        <p class="text-center" >Nouveaux contacts</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single2">
-                        <div class="text-center single2_toatl  pt-2"><span>TOTAL</span> <span class="icon_per_span4"><i class="fas fa-plus-circle"></i></span></div>
-                        <h1 class="text-center">32</h1>
-                        <p class="text-center" >Nouveaux contacts</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single2">
-                        <div class="text-center single2_toatl  pt-2"><span>TOTAL</span> </div>
-                        <h1 class="text-center">32</h1>
-                        <p class="text-center" >Nouveaux contacts</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="dashboard_score_single2">
-                        <div class="text-center  single2_toatl pt-2"><span>TOTAL</span> <span class="icon_per_span4"><i class="fas fa-plus-circle"></i></span></div>
-                        <h1 class="text-center">32</h1>
-                        <p class="text-center" >Nouveaux contacts</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="col-md-7">
 
-</div>
-<!--        end-->
-<div class="col-md-4">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="dashboard_rowonenav py-4">
-                <nav class="nav">
-                    <a class="nav-link aone active" href="#">Aujourd'hui</a>
-                    <a class="nav-link atwo" href="#">Semaine</a>
-                    <a class="nav-link atwo" href="#">Mois</a>
-                    <a class="nav-link athree" href="#">Année</a>
-                </nav>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="contact1_logo2">
+                                <img class="img-fluid" src="img/bohdan.png" alt=""><a href="#"><i class="fas fa-angle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="dashboard_circle_chart">
-                <p>Performance des opérations</p>
-                <div id="chartContainer1" style="height: 342px; width: 100%;"></div>
 
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+    </section>
+
+    <div class="contact1_section2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 p-0">
+                   <nav class="navbar navbar-expand-md navbar-light">
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action ">
+                            <i class="fas fa-chart-line"></i> Tableau de bord
+                        </a>
+                        <a href="contact3.html" class="list-group-item list-group-item-action "><i class="fas fa-user-friends"></i> Contacts</a>
+                        <a href="enterprise3.html" class="list-group-item list-group-item-action active"><i class="fas fa-th"></i> Entreprises</a>
+                        <a href="Equipe_commerciale3.html" class="list-group-item list-group-item-action"><i class="fas fa-user"></i> Équipe commerciale</a>
+
+                        <a href="#" class="list-group-item list-group-item-action "><i class="fas fa-star"></i> Opérations</a>
+                        <a href="#" class="list-group-item list-group-item-action "> <i class="fas fa-cog"></i> Paramètres</a>
+                    </div>
+    
+  </div>
+</nav>
+                </div>
+<!--right side -->
+               
+                <div class="col-md-9 left_border contact1_background_col9">
+                   <div class="row">
+                       <div class="col-md-8">
+                     <div class="row">
+                        <div class="col-md-12 p-0">
+                            <div class="contacts1_text">
+                                <h3 class="contact1h3">Tableau de bord</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                      <div class="row py-2 score ">
+                          <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single">
+                                  <div class="icon_per m-2">
+                                      <span class="icon_per_span1" ><i class="fas fa-user-friends"></i></span>
+                                      <span class="icon_per_span2" >+12%</span>
+                                  </div>
+                                  <h1 class="text-center">32</h1>
+                                  <p class="text-center" >Nouveaux contacts</p>
+                              </div>
+                          </div>
+                            <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single">
+                                  <div class="icon_per m-2">
+                                      <span class="icon_per_span1" ><i class="fas fa-building"></i></span>
+                                      <span class="icon_per_span2" >+5%</span>
+                                  </div>
+                                  <h1 class="text-center">18</h1>
+                                  <p class="text-center" >Nouvelles entreprises</p>
+                              </div>
+                          </div>
+                            <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single">
+                                  <div class="icon_per m-2">
+                                      <span class="icon_per_span1" ><i class="fas fa-envelope"></i></span>
+                                      <span class="icon_per_span2" >+12%</span>
+                                  </div>
+                                  <h1 class="text-center">25</h1>
+                                  <p class="text-center" >Nouveaux emails</p>
+                              </div>
+                          </div>
+                            <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single">
+                                  <div class="icon_per m-2">
+                                      <span class="icon_per_span1" ><i class="fas fa-star"></i></span>
+                                      <span class="icon_per_span3" >-6%</span>
+                                  </div>
+                                  <h1 class="text-center">9</h1>
+                                  <p class="text-center" >Opérations actives</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row py-3 score">
+                           <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single2">
+                                  <div class="text-center  single2_toatl  pt-2"><span>TOTAL</span> <span class="icon_per_span4"><i class="fas fa-plus-circle"></i></span></div>
+                                  <h1 class="text-center">4583</h1>
+                                  <p class="text-center" >Nouveaux contacts</p>
+                              </div>
+                          </div>
+                           <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single2">
+                                 <div class="text-center single2_toatl  pt-2"><span>TOTAL</span> <span class="icon_per_span4"><i class="fas fa-plus-circle"></i></span></div>
+                                  <h1 class="text-center">32</h1>
+                                  <p class="text-center" >Nouveaux contacts</p>
+                              </div>
+                          </div>
+                           <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single2">
+                                 <div class="text-center single2_toatl  pt-2"><span>TOTAL</span> </div>
+                                  <h1 class="text-center">32</h1>
+                                  <p class="text-center" >Nouveaux contacts</p>
+                              </div>
+                          </div>
+                           <div class="col-lg-3 col-md-6">
+                              <div class="dashboard_score_single2">
+                                  <div class="text-center  single2_toatl pt-2"><span>TOTAL</span> <span class="icon_per_span4"><i class="fas fa-plus-circle"></i></span></div>
+                                  <h1 class="text-center">32</h1>
+                                  <p class="text-center" >Nouveaux contacts</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    </div>
+
+                       </div>
+             <!--        end-->
+                    <div class="col-md-4">
+                      <div class="row">
+                         <div class="col-md-12">
+                            <div class="dashboard_rowonenav py-4">
+                                <nav class="nav">
+  <a class="nav-link aone active" href="#">Aujourd'hui</a>
+  <a class="nav-link atwo" href="#">Semaine</a>
+  <a class="nav-link atwo" href="#">Mois</a>
+  <a class="nav-link athree" href="#">Année</a>
+</nav>
+                            </div>
+                        </div>
+                          <div class="col-md-12">
+                         <div class="dashboard_circle_chart">
+                               <p>Performance des opérations</p>
+                            <div id="chartContainer1" style="height: 342px; width: 100%;"></div>
+
+                          </div>
+                         </div>
+                      </div>
+                  </div>
+                   </div>
 <!--               end-->
 
 <div class="row border py-4">
     <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-12">
-                <p>Suivi des indicateurs de performance</p>
-            </div>
-            <div class="col-md-12">
-                <div class="row chart2">
-                    <div class="col-md-3">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action ">
-                                Opérations
-                            </a>
-                            <a href="" class="list-group-item list-group-item-action active">Nouveaux contacts</a>
-                            <a href="" class="list-group-item list-group-item-action "> Contacts mis à jour</a>
-                            <a href="" class="list-group-item list-group-item-action"> Contacts perdus</a>
+       <div class="row">
+           <div class="col-md-12">
+               <p>Suivi des indicateurs de performance</p>
+           </div>
+          <div class="col-md-12">
+              <div class="row chart2">
+                  <div class="col-md-3">
+                       <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action ">
+                           Opérations
+                        </a>
+                        <a href="" class="list-group-item list-group-item-action active">Nouveaux contacts</a>
+                        <a href="" class="list-group-item list-group-item-action "> Contacts mis à jour</a>
+                        <a href="" class="list-group-item list-group-item-action"> Contacts perdus</a>
 
-                            <a href="#" class="list-group-item list-group-item-action ">Nouvelles entreprises
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action "> Nouveaux emails</a>
-                        </div>
+                        <a href="#" class="list-group-item list-group-item-action ">Nouvelles entreprises
+</a>
+                        <a href="#" class="list-group-item list-group-item-action "> Nouveaux emails</a>
                     </div>
-                    <div class="col-md-9">
-                        <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                  </div>
+                  <div class="col-md-9">
+                       <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+                  </div>
+              </div>
+          </div>
+       </div>
     </div>
 </div>
 
@@ -148,129 +234,129 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-head">
-                        <div class="left">Performance par départements </div>
-                        <div class="right">
-                            <i class="zmdi zmdi-chevron-down"></i>
-                            <i class="zmdi zmdi-refresh-sync"></i>
-                            <i class="zmdi zmdi-close-circle-o"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="vmap" style="width: 100%; height: 300px;"></div>
-                    </div>
+                 <div class="card">
+                <div class="card-head">
+                  <div class="left">Performance par départements </div>
+                  <div class="right">
+                    <i class="zmdi zmdi-chevron-down"></i>
+                    <i class="zmdi zmdi-refresh-sync"></i>
+                    <i class="zmdi zmdi-close-circle-o"></i>
+                  </div>
                 </div>
+                <div class="card-body">
+                  <div id="vmap" style="width: 100%; height: 300px;"></div>
+                </div>
+              </div>
             </div>
-
-            <!--            table-->
+            
+<!--            table-->
             <div class="col-md-6">
                 <div class="dashboard2table">
-                    <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3" style="width: 100%;" role="grid" aria-describedby="example_info">
-                        <thead>
+                     <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3" style="width: 100%;" role="grid" aria-describedby="example_info">
+                                        <thead>
+                                           
+                                            <tr role="row">
+                                               
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nom</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Position: activate to sort column ascending">Score</th>
+                                                <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Age: activate to sort column ascending">Gagnés</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Mis à jour</th>
+                                               
+                                                <th class="sorting commerciale_score_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Perdus</th>
+                                               
 
-                        <tr role="row">
-
-                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nom</th>
-                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Position: activate to sort column ascending">Score</th>
-                            <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Age: activate to sort column ascending">Gagnés</th>
-                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Mis à jour</th>
-
-                            <th class="sorting commerciale_score_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Perdus</th>
-
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr role="row" class="odd">
-
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
-                            <td>
-                                <div class="commerciale_score_td">
-                                    60
-                                </div>
-                            </td>
-                            <td>6</td>
-                            <td>24</td>
-                            <td>6</td>
-                        </tr>
-                        <tr role="row" class="odd">
-
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
-                            <td>
-                                <div class="commerciale_score_td">
-                                    60
-                                </div>
-                            </td>
-                            <td>6</td>
-                            <td>24</td>
-                            <td>6</td>
-                        </tr>
-                        <tr role="row" class="odd">
-
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
-                            <td>
-                                <div class="commerciale_score_td">
-                                    60
-                                </div>
-                            </td>
-                            <td>6</td>
-                            <td>24</td>
-                            <td>6</td>
-                        </tr>
-                        <tr role="row" class="odd">
-
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
-                            <td>
-                                <div class="commerciale_score_td">
-                                    60
-                                </div>
-                            </td>
-                            <td>6</td>
-                            <td>24</td>
-                            <td>6</td>
-                        </tr>
-                        <tr role="row" class="odd">
-
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
-                            <td>
-                                <div class="commerciale_score_td">
-                                    60
-                                </div>
-                            </td>
-                            <td>6</td>
-                            <td>24</td>
-                            <td>6</td>
-                        </tr>
-                        <tr role="row" class="odd">
-
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
-                            <td>
-                                <div class="commerciale_score_td">
-                                    60
-                                </div>
-                            </td>
-                            <td>6</td>
-                            <td>24</td>
-                            <td>6</td>
-                        </tr>
-                        <tr role="row" class="odd">
-
-                            <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
-                            <td>
-                                <div class="commerciale_score_td">
-                                    60
-                                </div>
-                            </td>
-                            <td>6</td>
-                            <td>24</td>
-                            <td>6</td>
-                        </tr>
-
-                        </tbody>
-                    </table>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr role="row" class="odd">
+                                               
+                                                <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                                                <td>
+                                                      <div class="commerciale_score_td">
+                                                       60
+                                                    </div>
+                                                    </td>
+                                                <td>6</td>
+                                                <td>24</td>
+                                                <td>6</td>
+                                            </tr>
+                                                <tr role="row" class="odd">
+                                               
+                                                <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                                                <td>
+                                                      <div class="commerciale_score_td">
+                                                       60
+                                                    </div>
+                                                    </td>
+                                                <td>6</td>
+                                                <td>24</td>
+                                                <td>6</td>
+                                            </tr>
+                                                <tr role="row" class="odd">
+                                               
+                                                <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                                                <td>
+                                                      <div class="commerciale_score_td">
+                                                       60
+                                                    </div>
+                                                    </td>
+                                                <td>6</td>
+                                                <td>24</td>
+                                                <td>6</td>
+                                            </tr>
+                                                <tr role="row" class="odd">
+                                               
+                                                <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                                                <td>
+                                                      <div class="commerciale_score_td">
+                                                       60
+                                                    </div>
+                                                    </td>
+                                                <td>6</td>
+                                                <td>24</td>
+                                                <td>6</td>
+                                            </tr>
+                                                <tr role="row" class="odd">
+                                               
+                                                <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                                                <td>
+                                                      <div class="commerciale_score_td">
+                                                       60
+                                                    </div>
+                                                    </td>
+                                                <td>6</td>
+                                                <td>24</td>
+                                                <td>6</td>
+                                            </tr>
+                                                <tr role="row" class="odd">
+                                               
+                                                <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                                                <td>
+                                                      <div class="commerciale_score_td">
+                                                       60
+                                                    </div>
+                                                    </td>
+                                                <td>6</td>
+                                                <td>24</td>
+                                                <td>6</td>
+                                            </tr>
+                                                <tr role="row" class="odd">
+                                               
+                                                <td> <img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">Christophe</td>
+                                                <td>
+                                                      <div class="commerciale_score_td">
+                                                       60
+                                                    </div>
+                                                    </td>
+                                                <td>6</td>
+                                                <td>24</td>
+                                                <td>6</td>
+                                            </tr>
+                                            
+                     </tbody>
+                </table>
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -278,236 +364,235 @@
 
 <!--end-->
 <!--               half circle pogreessbar-->
-<div class="row py-5 border pogress_bar text-center">
+               <div class="row py-5 border pogress_bar text-center">
+                
+                 <div class="col-md-2">
+                   
+                    <div class="pogress_common" style="width: 150px;height: 80px;" data-preset="fan" class="ldBar label-center" data-value="35" id="myItem2"></div> <br>
+                <p>Indice de qualité CRM</p>
+                 </div>
+                 
+                 
+                 <div class="col-md-2">
+                    <p>  3 ans et +</p>
+                   <div class="pogress_common"  id="myItem1" data-preset="rainbow"></div>
+                   <br>
+                    <p>1687 contacts</p>
+                 </div>
+                 
+                 <div class="col-md-2">
+                    <p> 2 ans</p>
+                   <div class="pogress_common" id="myItem3" data-preset="rainbow"></div>
+                   <br>
+                   <p>968 contacts</p>
+                 </div>
+                 
+                 <div class="col-md-2">
+                 <p>6 mois</p>
+ <div class="pogress_common" id="myItem4" data-preset="rainbow"></div>
+               <br>
+                <p>368 contacts</p>
+                 </div>
+                 <div class="col-md-2">
+                      <p>3 mois</p>
+                  <div class="pogress_common" id="myItem5" data-preset="rainbow"></div>
+                  <br>
+                  <p>168 contacts</p>
+                 </div>
+                   <div class="col-md-2">
+                      <p> 1 an</p>
+                    <div class="pogress_common" id="myItem6" data-preset="rainbow"></div>
+                    <br>
+                    <p>64 contacts</p>
+                 </div>
+               </div>
 
-    <div class="col-md-2">
-
-        <div class="pogress_common" style="width: 150px;height: 80px;" data-preset="fan" class="ldBar label-center" data-value="35" id="myItem2"></div> <br>
-        <p>Indice de qualité CRM</p>
+               
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <div class="col-md-2">
-        <p>  3 ans et +</p>
-        <div class="pogress_common"  id="myItem1" data-preset="rainbow"></div>
-        <br>
-        <p>1687 contacts</p>
-    </div>
-
-    <div class="col-md-2">
-        <p> 2 ans</p>
-        <div class="pogress_common" id="myItem3" data-preset="rainbow"></div>
-        <br>
-        <p>968 contacts</p>
-    </div>
-
-    <div class="col-md-2">
-        <p>6 mois</p>
-        <div class="pogress_common" id="myItem4" data-preset="rainbow"></div>
-        <br>
-        <p>368 contacts</p>
-    </div>
-    <div class="col-md-2">
-        <p>3 mois</p>
-        <div class="pogress_common" id="myItem5" data-preset="rainbow"></div>
-        <br>
-        <p>168 contacts</p>
-    </div>
-    <div class="col-md-2">
-        <p> 1 an</p>
-        <div class="pogress_common" id="myItem6" data-preset="rainbow"></div>
-        <br>
-        <p>64 contacts</p>
-    </div>
-</div>
-
-
-</div>
-</div>
-</div>
-</div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<!--  data_tables -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <!--  data_tables -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 <!--   map-->
 <!--  tgather-->
-<script src="asset/tgather/tether.js"></script>
-<script src="asset/maps/jquery.vmap.js"></script>
+  <script src="asset/tgather/tether.js"></script>
+  <script src="asset/maps/jquery.vmap.js"></script>
 <!--  <script src="asset/maps/jquery.vmap.min.js"></script>-->
-<script src="asset/maps/maps/jquery.vmap.world.js"></script>
+  <script src="asset/maps/maps/jquery.vmap.world.js"></script>
 <!--  <script src="asset/maps/maps/jquery.vmap.usa.js" ></script>-->
-<script src="asset/js/map.js"></script>
+  <script src="asset/js/map.js"></script>
 <!--  <script src="asset/js/app.js"></script>-->
 
-<script src="asset/loading-bar/loading-bar.js" ></script>
-
-
-
-
+   <script src="asset/loading-bar/loading-bar.js" ></script>
+   
+   
+   
+   
 <!--   pogress -->
-
-
-
-<script>
-    $(document).ready(function() {
-        $('#myTable').DataTable();
-    });
-</script>
-
-<!--    circle chart-->
-
-
-
-
-<script>
-    window.onload = function () {
-
-        var chart1 = new CanvasJS.Chart("chartContainer1", {
-            theme: "dark",
-            exportFileName: "Doughnut Chart",
-            exportEnabled: true,
-            animationEnabled: true,
-            title:{
-                text: ""
-
-            },
-            legend:{
-                cursor: "pointer",
-                itemclick: explodePie
-            },
-            data: [{
-                type: "doughnut",
-                innerRadius: 90,
-                showInLegend: true,
-                toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
-                indexLabel: "{name} - #percent%",
-                dataPoints: [
-                    { y: 450, name: "Ouvert" },
-                    { y: 120, name: "Non ouvert" },
-                    { y: 300, name: "Non délivré" },
-                    { y: 800, name: "Ajout/mise à jour des données" },
-
-                ]
-            }]
+  
+   
+   
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
         });
+    </script>
+    
+    <!--    circle chart-->
+   
+  
+           
+                   
+ <script>
+window.onload = function () {
 
+var chart1 = new CanvasJS.Chart("chartContainer1", {
+    theme: "dark",
+    exportFileName: "Doughnut Chart",
+    exportEnabled: true,
+    animationEnabled: true,
+    title:{
+        text: ""
+       
+    },
+    legend:{
+        cursor: "pointer",
+        itemclick: explodePie
+    },
+    data: [{
+        type: "doughnut",
+        innerRadius: 90,
+        showInLegend: true,
+        toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+        indexLabel: "{name} - #percent%",
+        dataPoints: [
+            { y: 450, name: "Ouvert" },
+            { y: 120, name: "Non ouvert" },
+            { y: 300, name: "Non délivré" },
+            { y: 800, name: "Ajout/mise à jour des données" },
+            
+        ]
+    }]
+});
+    
+    
+    
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+    animationEnabled: true,
+    title: {
+        text: "Hourly Average CPU Utilization"
+    },
+    axisX: {
+        title: "Time"
+    },
+    axisY: {
+        title: "Percentage",
+        suffix: "%"
+    },
+    data: [{
+        type: "line",
+        name: "CPU Utilization",
+        connectNullData: true,
+        //nullDataLineDashType: "solid",
+        xValueType: "dateTime",
+        xValueFormatString: "DD MMM hh:mm TT",
+        yValueFormatString: "#,##0.##\"%\"",
+        dataPoints: [
+            { x: 1501048673000, y: 35.939 },
+            { x: 1501052273000, y: 40.896 },
+            { x: 1501055873000, y: 56.625 },
+            { x: 1501059473000, y: 26.003 },
+            { x: 1501063073000, y: 20.376 },
+            { x: 1501066673000, y: 19.774 },
+            { x: 1501070273000, y: 23.508 },
+            { x: 1501073873000, y: 18.577 },
+            { x: 1501077473000, y: 15.918 },
+            { x: 1501081073000, y: null }, // Null Data
+            { x: 1501084673000, y: 10.314 },
+            { x: 1501088273000, y: 10.574 },
+            { x: 1501091873000, y: 14.422 },
+            { x: 1501095473000, y: 18.576 },
+            { x: 1501099073000, y: 22.342 },
+            { x: 1501102673000, y: 22.836 },
+            { x: 1501106273000, y: 23.220 },
+            { x: 1501109873000, y: 23.594 },
+            { x: 1501113473000, y: 24.596 },
+            { x: 1501117073000, y: 31.947 },
+            { x: 1501120673000, y: 31.142 }
+        ]
+    }]
+});
+    
+    
+    
+    
+    
+    
+    
+    
+chart1.render();
+chart2.render();
 
-
-        var chart2 = new CanvasJS.Chart("chartContainer2", {
-            animationEnabled: true,
-            title: {
-                text: "Hourly Average CPU Utilization"
-            },
-            axisX: {
-                title: "Time"
-            },
-            axisY: {
-                title: "Percentage",
-                suffix: "%"
-            },
-            data: [{
-                type: "line",
-                name: "CPU Utilization",
-                connectNullData: true,
-                //nullDataLineDashType: "solid",
-                xValueType: "dateTime",
-                xValueFormatString: "DD MMM hh:mm TT",
-                yValueFormatString: "#,##0.##\"%\"",
-                dataPoints: [
-                    { x: 1501048673000, y: 35.939 },
-                    { x: 1501052273000, y: 40.896 },
-                    { x: 1501055873000, y: 56.625 },
-                    { x: 1501059473000, y: 26.003 },
-                    { x: 1501063073000, y: 20.376 },
-                    { x: 1501066673000, y: 19.774 },
-                    { x: 1501070273000, y: 23.508 },
-                    { x: 1501073873000, y: 18.577 },
-                    { x: 1501077473000, y: 15.918 },
-                    { x: 1501081073000, y: null }, // Null Data
-                    { x: 1501084673000, y: 10.314 },
-                    { x: 1501088273000, y: 10.574 },
-                    { x: 1501091873000, y: 14.422 },
-                    { x: 1501095473000, y: 18.576 },
-                    { x: 1501099073000, y: 22.342 },
-                    { x: 1501102673000, y: 22.836 },
-                    { x: 1501106273000, y: 23.220 },
-                    { x: 1501109873000, y: 23.594 },
-                    { x: 1501113473000, y: 24.596 },
-                    { x: 1501117073000, y: 31.947 },
-                    { x: 1501120673000, y: 31.142 }
-                ]
-            }]
-        });
-
-
-
-
-
-
-
-
-        chart1.render();
-        chart2.render();
-
-        function explodePie (e) {
-            if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-                e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-            } else {
-                e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-            }
-            e.chart.render();
-        }
-
+function explodePie (e) {
+    if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+        e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+    } else {
+        e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
     }
+    e.chart.render();
+}
+
+}
 </script>
-
-<script>
-
-
-    var bar1 = new ldBar("#myItem1");
-
-    var bar2 = document.getElementById('myItem1').ldBar;
-    bar1.set(60);
-
-
-    var bar1 = new ldBar("#myItem2");
-
-    var bar2 = document.getElementById('myItem2').ldBar;
-    bar1.set(60);
-
-    var bar1 = new ldBar("#myItem3");
-
-    var bar2 = document.getElementById('myItem3').ldBar;
-    bar1.set(60);
-
-    var bar1 = new ldBar("#myItem4");
-
-    var bar2 = document.getElementById('myItem4').ldBar;
-    bar1.set(60);
-
-    var bar1 = new ldBar("#myItem5");
-
-    var bar2 = document.getElementById('myItem5').ldBar;
-    bar1.set(60);
-
-    var bar1 = new ldBar("#myItem6");
-
-    var bar2 = document.getElementById('myItem6').ldBar;
-    bar1.set(60);
-</script>
-
+  
+  <script>
+      
+    
+     var bar1 = new ldBar("#myItem1");
+      
+  var bar2 = document.getElementById('myItem1').ldBar;
+  bar1.set(60);
+      
+      
+       var bar1 = new ldBar("#myItem2");
+      
+  var bar2 = document.getElementById('myItem2').ldBar;
+  bar1.set(60);
+      
+      var bar1 = new ldBar("#myItem3");
+      
+  var bar2 = document.getElementById('myItem3').ldBar;
+  bar1.set(60);
+      
+        var bar1 = new ldBar("#myItem4");
+      
+  var bar2 = document.getElementById('myItem4').ldBar;
+  bar1.set(60);
+      
+        var bar1 = new ldBar("#myItem5");
+      
+  var bar2 = document.getElementById('myItem5').ldBar;
+  bar1.set(60);
+      
+           var bar1 = new ldBar("#myItem6");
+      
+  var bar2 = document.getElementById('myItem6').ldBar;
+  bar1.set(60);
+    </script>  
+        
 
 <!-- pogressbar -->
-
-
-<!-- offline script  -->
-<!--     <script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/app.js"></script>  -->
+ 
+   
+    <!-- offline script  -->
+    <!--     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>  -->
 </body></html>
-{% endblock %}
