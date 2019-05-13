@@ -93,7 +93,13 @@
                                         {{ company.companyStatus }}
                                     </div>
                                 </td>
-                                <td>2</td>
+                                <td>
+                                    {% if company.getContacts()|length <= 0 %}
+                                        {{ company.getContacts()|length }}
+                                    {% else %}
+                                        0
+                                    {% endif %}
+                                </td>
                                 <td class="table_phone"><a href="#">@</a> <a href="#"><i class="fas fa-phone"></i></a>
                                 </td>
                             </tr>
