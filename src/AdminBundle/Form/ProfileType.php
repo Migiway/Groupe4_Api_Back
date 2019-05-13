@@ -28,13 +28,6 @@ class ProfileType extends AbstractType
         $builder
             ->add('user_firstName', null, array('label' => 'First Name'))
             ->add('user_lastName', null, array('label' => 'Last Name'))
-//            ->add('plainPassword', FT\RepeatedType::class, array(
-//                'label' => 'Mot de passe : ',
-//                'type' => FT\PasswordType::class,
-//                'invalid_message' => 'Les mots de passe sont différent.',
-//                'first_options'  => array('label' => 'Nouveau Mot de passe'),
-//                'second_options' => array('label' => 'Confirmez le Nouveau Mot de passe'),
-//            ))
             ->add('user_code', NumberType::class, array('label' => 'Code'))
             /*->add(
                 'user_gender',

@@ -4,9 +4,12 @@ namespace App\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ParameterRepository")
+ * @Vich\Uploadable
  */
 class Parameter
 {
@@ -22,11 +25,6 @@ class Parameter
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $param_nomAppli;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $param_logo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -57,6 +55,12 @@ class Parameter
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $param_tel;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $param_logo;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -142,6 +146,55 @@ class Parameter
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Company", inversedBy="parameters")
      */
     private $param_company;
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imgParameter;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="parameter_img", fileNameProperty="imgParameter")
+     */
+    protected $parameterFile;
+
+    public function getImgParameter()
+    {
+        return $this->imgParameter;
+    }
+
+    public function setImgParameter($imgParameter)
+    {
+        $this->imgParameter = $imgParameter;
+
+        return $this;
+
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return User
+     */
+    public function setParameterFile(File $file = null)
+    {
+        $this->parameterFile = $file;
+        if ($file) {
+            $this->user_updateAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getParameterFile()
+    {
+        return $this->parameterFile;
+    }
 
     public function getId(): ?int
     {
