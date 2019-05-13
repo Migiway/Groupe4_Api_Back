@@ -30,23 +30,15 @@
 </head>
 <body>
 
-{#{{ render(controller(#}
-{#'AdminBundle:Parameter:colorpart'#}
-{#)) }}#}
 
-{#{{ render(controller('AdminBundle:Parameter:colorpart')) }}#}
-
-
-{#{% include 'bodycolor/colorpart.html.twig' %}#}
 {% include 'layout/header.html.twig' %}
 {% include 'layout/leftbar.html.twig' %}
 
-{#<p>{{ col }}</p>#}
 
 {% set mycol = render(controller(
     'App\\AdminBundle\\Controller\\ParameterController::colorpart'
     )) %}
-{#{{ mycol }}#}
+
 
 <style>
     .list-group a:hover {
@@ -356,18 +348,17 @@
                 } else {
                 }
             });
-            $('#delete-select-contact').click(function() {
+            $('#delete-select-contact').click(function () {
                 var contact = [];
-                $( "#myTable tbody .custom-checkbox input" ).each(function( index ) {
-                    if ($(this).prop('checked') == true ) {
+                $("#myTable tbody .custom-checkbox input").each(function (index) {
+                    if ($(this).prop('checked') == true) {
                         contact.push($(this).val());
                     }
                 });
                 if (contact.length > 0) {
                     $('#contacts').val(contact);
-                    $( "#form-delete-contact" ).submit();
-                }
-                else {
+                    $("#form-delete-contact").submit();
+                } else {
                 }
             });
         });

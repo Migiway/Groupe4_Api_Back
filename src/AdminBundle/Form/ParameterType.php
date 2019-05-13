@@ -1,4 +1,5 @@
 <?php
+
 namespace App\AdminBundle\Form;
 
 use App\AdminBundle\Entity\Parameter;
@@ -17,11 +18,13 @@ use Symfony\Component\Form\AbstractType;
 class ParameterType extends AbstractType
 {
 
-	 public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-         $builder
+        $builder
             ->add('param_nomAppli', TextType::class, array('label' => 'Nom de l\'application : ', 'required' => false))
-            ->add('param_logo', FileType::class, array('label' => 'Logo : ', 'required' => false))
+            ->add('parameterFile', FileType::class, array(
+                'label' => 'Image',
+                'required' => false))
             ->add('param_adr', TextType::class, array('label' => 'Adresse : ', 'required' => false))
             ->add('param_compl', TextType::class, array('label' => 'Compl : ', 'required' => false))
             ->add('param_ville', TextType::class, array('label' => 'Ville : ', 'required' => false))
