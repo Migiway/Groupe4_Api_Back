@@ -177,11 +177,6 @@ class Contact
      */
     protected $contactFile;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Company", inversedBy="contacts")
-     */
-    //private $company;
-
     public function getId(): ?int
     {
         return $this->id;

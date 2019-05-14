@@ -35,12 +35,10 @@ class OperationType extends AbstractType
             ])
             ->add('operation_code', TextType::class, array('label' => 'Code opération :'))
             ->add('operation_name', TextType::class, array('label' => 'Nom :'))
-            // ->add('operation_prenom', TextType::class, array('label' => 'Prenom :'))
             ->add('operation_object', TextType::class, array('label' => 'Objet du mail :'))
             ->add('operation_relance', IntegerType::class, array('label' => 'Nb relance auto :'))
-            ->add('operation_envoi_date', DateType::class, array('label' => 'Date d envoi:'))
-            ->add('operation_date_cloture', DateType::class, array('label' => 'Date cloture:'))
-//          ->add('operation_author_id', TextType::class, array('label' => 'Auteur:'))
+            ->add('operation_envoi_date', DateType::class, ['widget' => 'single_text','label' => 'Date d\'envoi'])
+            ->add('operation_date_cloture', DateType::class, ['widget' => 'single_text','label' => 'Date de cloture'])
             ->add('operation_note', TextareaType::class, array('label' => 'Note:'))
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn btn-primary'],
