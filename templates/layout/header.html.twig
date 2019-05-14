@@ -21,7 +21,7 @@
                     <div class="col-md-2">
                         <div class="contact1_logo2 dropdown">
                             {% if app.user.imgUrl != null %}
-                                <img  class="img-fluid border-img" src="../../uploads/user-img/{{app.user.imgUrl}}" alt="your image" />
+                                <img  class="img-fluid border-img" src="{{ asset('uploads/user-img/') }}{{app.user.imgUrl}}" alt="your image" />
                             {% else %}
                                 <img  class="img-fluid border-img" src="{{ asset("img/circle.png") }}" alt="your image" />
                             {% endif %}
