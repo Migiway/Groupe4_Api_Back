@@ -177,8 +177,6 @@ class Contact
      */
     protected $contactFile;
 
-
-
     public function getId(): ?int
     {
         return $this->id;
