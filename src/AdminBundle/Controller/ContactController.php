@@ -7,6 +7,7 @@
  */
 namespace App\AdminBundle\Controller;
 
+use App\AdminBundle\Entity\Company;
 use App\AdminBundle\Form\ContactType;
 use App\AdminBundle\Form\NoteType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +19,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use League\Csv\Reader;
+use League\Csv\Statement;
 
 /**
  * @Route("/contact")
@@ -175,6 +179,83 @@ class ContactController extends AbstractController
      */
     public function list(Request $request)
     {
+
+        // IMPORT CSV
+        $formcsv = $this->createFormBuilder()
+            ->add('contact_import', FileType::class, ['label' => false])
+            ->getForm();
+
+        $formcsv->handleRequest($request);
+
+        if ($formcsv->isSubmitted() && $formcsv->isValid()) {
+            $task = $formcsv->getData();
+            if (!is_null($task)) {
+                $uploaddir = '../public/assests/csv/';
+                $uploadfile = $uploaddir . basename($_FILES['form']['name']["contact_import"]);
+                move_uploaded_file($_FILES['form']['tmp_name']["contact_import"], $uploadfile);
+
+                $name_file = $_FILES['form']['name']["contact_import"];
+                $csv = Reader::createFromPath('../public/assests/csv/'.$name_file.'', 'r');
+                $csv->setHeaderOffset(0); //set the CSV header offset
+
+                $stmt = (new Statement())
+                    ->offset(0)
+                    ->limit(100);
+                $records = $stmt->process($csv);
+                foreach ($records as $record) {
+
+                    $contact = new Contact();
+
+                    $contact->setContactNom($record['Last Name']);
+                    $contact->setContactPrenom($record['First Name']);
+                    $contact->setContactEmail($record['Email Address']);
+                    $contact->setContactMetier($record['Position']);
+                    $num1 = rand(0, 99999);
+                    $contact->setContactCodeClient($num1);
+                    $contact->setContactGenre(true);
+
+                    $companies = $this->getDoctrine()
+                        ->getRepository(Company::class)
+                        ->findBy(
+                            ['companyName' => $record['Company']]
+                        );
+
+                    if (is_null($companies) || empty($companies)) {
+                        $company = new Company();
+                        $num2 = rand(0, 99999);
+                        $company->setCompanyCode($num2);
+                        $company->setCompanyName($record['Company']);
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($company);
+                        $em->flush();
+                        $contact->setCompanyId($company);
+                    } else {
+                        foreach ($companies as $company) {
+                            $contact->setCompanyId($company);
+                        }
+                    }
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($contact);
+                    $em->flush();
+                    /*dump($contact);
+                    dump($record);*/
+                }
+
+
+            }
+
+        }
+
+        // FIN IMPORT CSV
+
+
+        $i = 1;
+        if ( $i == 0) {
+
+
+        }
+
         $contacts = $this->getDoctrine()
             ->getRepository(Contact::class)
             ->findAll();
@@ -184,7 +265,7 @@ class ContactController extends AbstractController
             ->countall();
 
         return $this->render('contact/list.html.twig', array(
-            'contacts' => $contacts, 'nb_contact' => $count
+            'contacts' => $contacts, 'nb_contact' => $count, 'form' => $formcsv->createView(),
         ));
     }
 
