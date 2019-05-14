@@ -1083,3 +1083,10 @@ div.dataTables_paginate {
     opacity: 0.9;
     transition: 1s ease-in;
 }
+
+.align-item {
+    display: flex;
+}
+.align-item .contact4checkboxSapn {
+    margin-top: 3px;
+}

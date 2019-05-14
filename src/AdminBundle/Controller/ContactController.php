@@ -8,9 +8,11 @@
 namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\ContactType;
+use App\AdminBundle\Form\NoteType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\Contact;
 use App\AdminBundle\Entity\Postes;
+use App\AdminBundle\Entity\Note;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -112,7 +114,27 @@ class ContactController extends AbstractController
                 ['contact_id' => $id]
             );
 
-        return $this->render('contact/edit.html.twig', array('form' => $form->createView(), 'personne' => $personne, 'postes' => $postes ));
+        //Formulaire note
+        $note = new Note();
+
+        $formNote = $this->createForm(NoteType::class, $note);
+
+        $formNote->handleRequest($request);
+
+        if ($formNote->isSubmitted() && $formNote->isValid()) {
+            $note->setRelType('contact');
+            $note->setRelId($id);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($note);
+            $em->flush();
+        }
+
+        //liste note
+        $noteListe = $this->getDoctrine()->getRepository(Note::class)->findBy(['rel_id' => $id,'rel_type' => 'contact']);
+
+        $totalNote = count($noteListe);
+
+        return $this->render('contact/edit.html.twig', array('form' => $form->createView(),'formNote' => $formNote->createView(), 'personne' => $personne, 'postes' => $postes,'noteListe' => $noteListe,'totalNote' => $totalNote ));
     }
 
     /**

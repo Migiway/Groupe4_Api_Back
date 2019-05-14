@@ -1,4 +1,4 @@
-<div class="block-note hide">
+<div class="col-md-12 block-note hide">
    <div class="col-md-12">
           <div class="row">
                  <!-- col1-->
@@ -6,91 +6,23 @@
                         <div class="row py-2 contact4col1_border mr-0">
                                <div class="col-md-12">
                                       <div class="contact4col1c1">
-                                             <span class="contact4col1c1span1">12 </span>
+                                             <span class="contact4col1c1span1">{{totalNote}} </span>
                                              <span class="contact4col1c1span2">notes</span>
                                              <span class="contact4col1c1span2 float-right">Par date de création</span>
                                       </div>
                                </div>
                                <div class="col-md-12">
                                       <div class="contact_overflow_scroll">
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">DEVIS</span> | TRÈS IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                                    <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
-                                             <div class="contact4comment">
-                                                    <p class="commenttitle p-0 m-0">10/03/2019 - <span class="contact4col1c1span2">- INFORMATION </span> | IMPORTANT </p>
-                                                    <p class="commentcontent m-0">Ceci est le nom d'une note qui peut faire
-                                                    trois lignes maximum et après on coupe
-                                                    avec trois petits points...</p>
-                                             </div>
+                                        {% for note in noteListe %}
+                                             <div class="contact4comment" onclick="init_note('{{ note.id }}')">
+                                                    <p class="commenttitle p-0 m-0">{{ note.dateCreation |date('d-m-Y') }} - <span class="contact4col1c1span2">{{ note.categorieNote }}</span> | {{ note.prioriteNote }} </p>
+                                                    <p class="commentcontent m-0">
+                                                    {% autoescape %}
+                                                        {{ note.description|raw }}
+                                                    {% endautoescape %}
+                                                    </p>
+                                             </div>                                        
+                                        {% endfor %}                                             
                                       </div>
                                </div>
                         </div>
@@ -105,39 +37,41 @@
                         </div>
                         <div class="row form_client">
                                <div class="col-md-12">
+                                {{ form_start(formNote) }}
                                              <div class="row pt-3">
-                                                    <div class="col-md-12  prenom_input form-group "><input class="input_size_big form-control" type="text" placeholder="Nom Devis la note"></div>
+                                                    <div class="col-md-12  prenom_input form-group ">
+                                                      {{ form_widget(formNote.title) }}
+                                                      {{ form_errors(formNote.title) }}
+                                                    </div>
                                              </div>
                                              <div class="row pt-3">
                                                     <div class="col-md-3">
                                                            <div class="form-group contact4date_client">
                                                            <p>Date de création</p>
-                                                           <input id="today" class=" form-control" type="date" placeholder="">
+                                                           {{ form_widget(formNote.dateCreation) }}
+                                                           {{ form_errors(formNote.dateCreation) }}
                                                            </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                            <div class="form-group contact4date_client">
-                                                                  <p>Date d'échéance </p>
-                                                                  <input id="today" class=" form-control" type="date" placeholder="">
+                                                                <p>Date d'échéance </p>
+                                                                {{ form_widget(formNote.dateEcheance) }}
+                                                                {{ form_errors(formNote.dateEcheance) }}
                                                            </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                            <br>
-                                                           <div class="contact4_custom_control custom-checkbox">
-                                                                  <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                                                  <label class="custom-control-label" for="customCheck1"></label> <span class="contact4checkboxSapn">Rappel par email:</span>
+                                                           <div class="contact4_custom_control custom-checkbox align-item">
+                                                                  {{ form_widget(formNote.rappel_email) }}
+                                                                  {{ form_errors(formNote.rappel_email) }}
+                                                                  <span class="contact4checkboxSapn">Rappel par email:</span>
                                                            </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                            <div class="form-group avant_select">
                                                                   <p>Echéance</p>
-                                                                  <select class="custom-select" required>
-                                                                         <option value="">1h avant</option>
-                                                                         <option value="1">One</option>
-                                                                         <option value="2">Two</option>
-                                                                         <option value="3">Three</option>
-                                                                  </select>
-                                                                  <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                                  {{ form_widget(formNote.echeance_note) }}
+                                                                  {{ form_errors(formNote.echeance_note) }}
                                                            </div>
                                                     </div>
                                              </div>
@@ -145,47 +79,33 @@
                                                     <div class="col-md-4">
                                                            <div class="form-group avant_select">
                                                                   <p>Affecté à </p>
-                                                                         <select class="custom-select" required>
-                                                                                <option value="">Olivier SALESSE</option>
-                                                                                <option value="1">One</option>
-                                                                                <option value="2">Two</option>
-                                                                                <option value="3">Three</option>
-                                                                         </select>
-                                                                  <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                                  {{ form_widget(formNote.user) }}
+                                                                  {{ form_errors(formNote.user) }}
                                                            </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                            <div class="form-group avant_select">
                                                                   <p>Catégorie</p>
-                                                                  <select class="custom-select" required>
-                                                                         <option value="">Devis</option>
-                                                                         <option value="1">One</option>
-                                                                         <option value="2">Two</option>
-                                                                         <option value="3">Three</option>
-                                                                  </select>
-                                                                  <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                                  {{ form_widget(formNote.categorie_note) }}
+                                                                  {{ form_errors(formNote.categorie_note) }}
                                                            </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                            <div class="form-group avant_select">
                                                                   <p>Priorité</p>
-                                                                  <select class="custom-select" required>
-                                                                         <option value="">Important</option>
-                                                                         <option value="1">One</option>
-                                                                         <option value="2">Two</option>
-                                                                         <option value="3">Three</option>
-                                                                  </select>
-                                                                  <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                                                  {{ form_widget(formNote.priorite_note) }}
+                                                                  {{ form_errors(formNote.priorite_note) }}
                                                            </div>
                                                     </div>
                                              </div>
                                              <div class="row py-5">
                                                     <div class="col-md-12">
-                                                           <textarea class="textarea">Your Message Will Be Here</textarea>
+                                                           {{ form_widget(formNote.description) }}
+                                                           {{ form_errors(formNote.description) }}
                                                            <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
                                                            <script>
                                                            tinymce.init({
-                                                           selector: '.textarea'
+                                                           selector: '#note_description'
                                                            });
                                                            </script>
                                                     </div>
@@ -203,8 +123,8 @@
                                                                                 </div>
                                                                                 <div class="col-lg-6 col-md-4">
                                                                                        <div class="enregisterbutton">
-                                                                                              <button type="button" class="btn btn-primary">ENREGISTRER</button>
-                                                                                       </div>
+                                                                                          {{ form_widget(formNote.save) }}
+                                                                                      </div>
                                                                                 </div>
                                                                                 <div class="col-md-1"></div>
                                                                          </div>
@@ -217,6 +137,7 @@
                                                            </div>
                                                     </div>
                                              </div>
+                                    {{ form_end(formNote) }}
                                </div>
                         </div>
                  </div>

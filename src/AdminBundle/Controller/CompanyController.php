@@ -3,9 +3,11 @@
 namespace App\AdminBundle\Controller;
 
 use App\AdminBundle\Form\CompanyType;
+use App\AdminBundle\Form\NoteType;
 use App\AdminBundle\Entity\Company;
 use App\AdminBundle\Entity\ParameterCompanyStatut;
 use App\AdminBundle\Entity\Contact;
+use App\AdminBundle\Entity\Note;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -76,11 +78,34 @@ class CompanyController extends AbstractController
         //le nombre de contact de lié à l'entreprise
         $totalContact = count($companyContacts);
 
+        //Formulaire note
+        $note = new Note();
+
+        $formNote = $this->createForm(NoteType::class, $note);
+
+        $formNote->handleRequest($request);
+
+        if ($formNote->isSubmitted() && $formNote->isValid()) {
+            $note->setRelType('company');
+            $note->setRelId($id);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($note);
+            $em->flush();
+        }
+
+        //liste note
+        $noteListe = $this->getDoctrine()->getRepository(Note::class)->findBy(['rel_id'    => $id,'rel_type'  => 'company']);
+
+        $totalNote = count($noteListe);
+
         return $this->render('company/edit.html.twig', array(
-            'form' => $form->createView(),
-            'entreprise' => $entreprise,
-            'contacts' => $companyContacts,
-            'totalContact' => $totalContact
+            'form'          => $form->createView(),
+            'formNote'      => $formNote->createView(),
+            'entreprise'    => $entreprise,
+            'contacts'      => $companyContacts,
+            'totalContact'  => $totalContact,
+            'noteListe'     => $noteListe,
+            'totalNote'     => $totalNote
         ));
     }
 

@@ -158,7 +158,7 @@ class Company
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="company")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User")
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $user_id;
