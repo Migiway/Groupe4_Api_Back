@@ -22,6 +22,13 @@ vich_uploader:
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
+        contact_img:
+            uri_prefix:         /uploads/contact-img
+            upload_destination: '%kernel.root_dir%/../public/uploads/contact-img'
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
     #mappings:
     #    products:
     #        uri_prefix: /images/products

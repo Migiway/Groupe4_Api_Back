@@ -6,8 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ContactRepository")
@@ -61,6 +63,11 @@ class Contact
     private $contact_misAJour;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imgContact;
+
+    /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $contact_statut = 1;
@@ -111,8 +118,8 @@ class Contact
     private $contact_verifie;
 
     /**
-    * @ORM\Column(type="string", length=255, nullable=true)
-    */
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $contact_adresseLinkedin;
 
     /**
@@ -124,11 +131,6 @@ class Contact
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $contact_adresseTwitter;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $contact_photo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -173,9 +175,45 @@ class Contact
     /**
      * @var File
      *
-     * @Vich\UploadableField(mapping="contact_photo", fileNameProperty="contact_photo")
+     * @Vich\UploadableField(mapping="contact_img", fileNameProperty="imgContact")
      */
     protected $contactFile;
+
+
+    public function getImgContact()
+    {
+        return $this->imgContact;
+    }
+
+    public function setImgContact($imgContact)
+    {
+        $this->imgContact = $imgContact;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getContactFile()
+    {
+        return $this->contactFile;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return Contact
+     */
+    public function setContactFile(File $file = null)
+    {
+        $this->contactFile = $file;
+        if ($file) {
+            $this->user_updateAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -325,6 +363,7 @@ class Contact
 
         return $this;
     }
+
     public function getContactTelStandard(): ?string
     {
         return $this->contact_telStandard;
@@ -384,10 +423,11 @@ class Contact
 
         return $this;
     }
+
     public function getContactAdresseFacebook(): ?string
-{
-    return $this->contact_adresseFacebook;
-}
+    {
+        return $this->contact_adresseFacebook;
+    }
 
     public function setContactAdresseFacebook(?string $contact_adresseFacebook): self
     {
@@ -404,18 +444,6 @@ class Contact
     public function setContactAdresseTwitter(?string $contact_adresseTwitter): self
     {
         $this->contact_adresseTwitter = $contact_adresseTwitter;
-
-        return $this;
-    }
-
-    public function getContactPhoto(): ?string
-    {
-        return $this->contact_photo;
-    }
-
-    public function setContactPhoto(?string $contact_photo): self
-    {
-        $this->contact_photo = $contact_photo;
 
         return $this;
     }
@@ -492,6 +520,7 @@ class Contact
 
         return $this;
     }
+
     public function getMetierId(): ?ParameterContactMetier
     {
         return $this->metier_id;
@@ -522,26 +551,6 @@ class Contact
         $this->contact_misAJour = new \DateTime;
     }
 
-    /**
-     * @return File|null
-     */
-    public function getContactFile()
-    {
-        return $this->contactFile;
-    }
-
-    /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return Contact
-     */
-    public function setContactFile(File $file = null)
-    {
-        $this->contactFile = $file;
-
-        return $this;
-    }
-
     /*public function getContacts(): ?Company
     {
         return $this->contacts;
@@ -553,4 +562,5 @@ class Contact
 
         return $this;
     }*/
+
 }

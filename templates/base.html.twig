@@ -12,19 +12,14 @@
               integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
               crossorigin="anonymous">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-              integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <!--    datatables-->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
         <!-- bootstrap.css -->
-        <link rel="icon" type="image/png" href="{{ asset("assests/img/favicon.png") }}"/>
+        <link rel="icon" type="image/png" href="{{ asset("assests/img/favicon.png") }}" />
         <!-- <link rel="stylesheet" href="css/bootstrap.min.css">  -->
         <link rel="stylesheet" href="{{ asset("assests/css/style.css") }}" type="text/css">
         <link rel="stylesheet" href="{{ asset("assests/css/media.css") }}" type="text/css">
-        {% if app.request.attributes.get('_route') == 'dashboard' %}
-        <link rel="stylesheet" href="{{ asset("assests/css/dashboard.css") }}">
-        {% endif %}
         {#<link rel="stylesheet" href="{{ asset("assests/css/bootstrap.min.css") }}" type="text/css">#}
 
     {% endblock %}
@@ -33,31 +28,41 @@
 </head>
 <body>
 
+{#{{ render(controller(#}
+{#'AdminBundle:Parameter:colorpart'#}
+{#)) }}#}
 
+{#{{ render(controller('AdminBundle:Parameter:colorpart')) }}#}
+
+
+{#{% include 'bodycolor/colorpart.html.twig' %}#}
 {% include 'layout/header.html.twig' %}
 {% include 'layout/leftbar.html.twig' %}
 
+{#<p>{{ col }}</p>#}
 
 {% set mycol = render(controller(
     'App\\AdminBundle\\Controller\\ParameterController::colorpart'
     )) %}
-
+{% set leftcol = render(controller(
+    'App\\AdminBundle\\Controller\\ParameterController::bg'
+    )) %}
+{#{{ mycol }}#}
 
 <style>
-    .list-group a:hover {
-        border-left: 5px solid{{ mycol }};
+    .list-group a:hover{
+        border-left: 5px solid {{ mycol }};
         color: {{ mycol }};
     }
-
     .list-group-item.active {
         z-index: 2;
         color: #9e9898;
         background-color: transparent;
         border-color: transparent;
-        border-left: 5px solid{{ mycol }};
+        border-left: 5px solid {{ mycol }};
     }
 
-    .pagibutton button {
+    .pagibutton button{
         float: right;
         margin-right: 25px;
         background-color: {{ mycol }};
@@ -67,7 +72,6 @@
         padding: 13px 25px;
         border-color: {{ mycol }};
     }
-
     .login_button {
         background-color: {{ mycol }};
         color: white;
@@ -78,8 +82,7 @@
         opacity: 0.9;
         transition: 1s ease-in;
     }
-
-    .enterprise_contact_td {
+    .enterprise_contact_td{
         width: 40px;
         background: {{ mycol }};
         color: white;
@@ -87,36 +90,26 @@
         text-align: center;
         margin: 0 auto;
         border-radius: 12px;
-        padding: 1px 0px;
+        padding: 1px 0;
     }
-
     .contact_formnav nav a:hover {
-        border-bottom: 3px solid{{ mycol }};
-
-        color: #CF1742;
+        border-bottom: 3px solid {{ mycol }};
+        color: {{ mycol }};
     }
-
     .contact_formnav nav .active {
-        border-bottom: 3px solid{{ mycol }};
-
+        border-bottom: 3px solid #9e9898;
+        color:#9e9898;
+    }
+    .contact_userimg_button a:hover{
         color: {{ mycol }};
     }
-
-    .contact_userimg_button a:hover {
+    .contact_userimg_button a i{}
+    .contact_userimg_button a i:hover{
         color: {{ mycol }};
     }
-
-    .contact_userimg_button a i {
+    .input_border_left{
+        border-left: 4px solid {{ leftcol }};
     }
-
-    .contact_userimg_button a i:hover {
-        color: {{ mycol }};
-    }
-
-    .input_border_left {
-        border-left: 4px solid{{ mycol }};
-    }
-
     .enregisterbutton button {
         /*    float: right;*/
         /*    margin-right: 25px;*/
@@ -127,17 +120,14 @@
         padding: 13px 25px;
         border: 2px solid white;
     }
-
     .enregisterbutton button:hover {
         background-color: white;
         color: {{ mycol }};
-        border: 2px solid{{ mycol }};
+        border: 2px solid {{ mycol }};
     }
-
     .annulerbutton {
         text-align: right;
     }
-
     .annulerbutton button {
         /*    float: right;*/
         /*    margin-right: 25px;*/
@@ -147,19 +137,16 @@
         transition: 1s ease-in;
         padding: 13px 50px;
         color: {{ mycol }};
-        border: 2px solid{{ mycol }};
+        border: 2px solid {{ mycol }};
     }
-
     .annulerbutton button:hover {
         background-color: {{ mycol }};
         border: 2px solid white;
 
     }
-
-    .demandbutton {
+    .demandbutton{
         text-align: right;
     }
-
     .demandbutton button {
         /*    float: right;*/
         /*    margin-right: 25px;*/
@@ -169,9 +156,8 @@
         transition: 1s ease-in;
         padding: 13px 15px;
         color: {{ mycol }};
-        border: 2px solid{{ mycol }};
+        border: 2px solid {{ mycol }};
     }
-
     .demandbutton button:hover {
         background-color: {{ mycol }};
         border: 2px solid white;
@@ -179,10 +165,9 @@
     }
 
 
-    .supprimebutton {
+    .supprimebutton{
         text-align: right;
     }
-
     .supprimebutton button {
         /*    float: right;*/
         /*    margin-right: 25px;*/
@@ -192,24 +177,22 @@
         transition: 1s ease-in;
         padding: 13px 45px;
         color: {{ mycol }};
-        border: 2px solid{{ mycol }};
+        border: 2px solid {{ mycol }};
     }
-
     .supprimebutton button:hover {
         background-color: {{ mycol }};
         border: 2px solid white;
 
     }
-
     .retourbutton button:hover {
         background-color: white;
         /*    border: 2px solid white;*/
         color: {{ mycol }};
-        border: 2px solid{{ mycol }};
+        border: 2px solid {{ mycol }};
         padding: 13px 35px;
     }
 
-    .enterprise3_form_a {
+    .enterprise3_form_a{
         /*       width: 40px;*/
         background: {{ mycol }};
         color: white;
@@ -220,7 +203,7 @@
         padding: 1px 10px;
     }
 
-    .contact4col1c1span1 {
+    .contact4col1c1span1{
         color: {{ mycol }};
         font-size: 16px;
         font-weight: 500;
@@ -235,15 +218,13 @@
         transition: 1s ease-in;
         padding: 13px 15px;
         color: {{ mycol }};
-        border: 2px solid{{ mycol }};
+        border: 2px solid {{ mycol }};
     }
-
     .annulerbutton3 button:hover {
         background-color: {{ mycol }};
         border: 2px solid white;
 
     }
-
     @media (min-width: 992px) and (max-width: 1199.98px) {
         .annulerbutton3 button {
             /*    float: right;*/
@@ -254,42 +235,36 @@
             transition: 1s ease-in;
             padding: 13px 15px;
             color: {{ mycol }};
-            border: 2px solid{{ mycol }};
+            border: 2px solid {{ mycol }};
         }
-
         .annulerbutton3 button:hover {
             background-color: {{ mycol }};
             border: 2px solid white;
 
         }
     }
-
-    .contact1span {
+    .contact1span{
         font-size: 16px;
         color: {{ mycol }};
     }
-
-    .custom-control-input:checked ~ .custom-control-label::before {
+    .custom-control-input:checked~.custom-control-label::before {
         color: #fff;
         border: none;
         /* border-color: #007bff; */
         background-color: {{ mycol }};
     }
 
-    ul#menu {
+    ul#menu{
         margin-top: 7px;
     }
-
     ul#menu li {
-        display: inline;
+        display:inline;
     }
-
-    ul#menu li a {
+    ul#menu li a{
         color: #9E9898;
         padding: 0px 15px;
     }
-
-    ul#menu li a:hover {
+    ul#menu li a:hover{
         color: {{ mycol }};
     }
 </style>
@@ -331,37 +306,26 @@
                 "dom": '<"top"if>rt<"bottom"lp><"clear">'
             });
 
-            $('#check-all').change(function () {
+            $('#check-all').change(function() {
                 if ($(this).is(':checked')) {
                     $('#myTable tbody .custom-checkbox input').prop('checked', true);
-                } else {
+                }
+                else {
                     $('#myTable tbody .custom-checkbox input').prop('checked', false);
                 }
             });
-            $('#delete-select-company').click(function () {
+            $('#delete-select-company').click(function() {
                 var company = [];
-                $("#myTable tbody .custom-checkbox input").each(function (index) {
-                    if ($(this).prop('checked') == true) {
+                $( "#myTable tbody .custom-checkbox input" ).each(function( index ) {
+                    if ($(this).prop('checked') == true ) {
                         company.push($(this).val());
                     }
                 });
                 if (company.length > 0) {
                     $('#companys').val(company);
-                    $("#form-delete-company").submit();
-                } else {
+                    $( "#form-delete-company" ).submit();
                 }
-            });
-            $('#delete-select-contact').click(function () {
-                var contact = [];
-                $("#myTable tbody .custom-checkbox input").each(function (index) {
-                    if ($(this).prop('checked') == true) {
-                        contact.push($(this).val());
-                    }
-                });
-                if (contact.length > 0) {
-                    $('#contacts').val(contact);
-                    $("#form-delete-contact").submit();
-                } else {
+                else {
                 }
             });
         });
