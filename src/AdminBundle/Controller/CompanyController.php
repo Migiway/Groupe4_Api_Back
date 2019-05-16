@@ -18,6 +18,10 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Serializer\SerializerInterface;
+use League\Csv\Reader;
+use League\Csv\Statement;
+use League\Csv\Writer;
+use League\Csv\CannotInsertRecord;
 
 /**
  * @Route("/company")
@@ -159,5 +163,39 @@ class CompanyController extends AbstractController
             $em->flush();
         }
         return $this->redirectToRoute('company_list', array('message' => 'all clear'));
+    }
+    /**
+     * @Route("/export", name="export_company")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function export_company(Request $request)
+    {
+
+        $companyscsv = $this->getDoctrine()
+            ->getRepository(Company::class)
+            ->findAll();
+
+
+        $stack = array();
+
+
+        foreach ($companyscsv as $com) {
+
+            $comp = [$com->getCompanyName()];
+            array_push($stack, $comp);
+
+        }
+
+        $writer = Writer::createFromFileObject(new \SplTempFileObject());
+        $writer->insertAll($stack);
+        $writer->output('company.csv');
+        //important
+        dump($stack);
+        //important
+
+        return $this->redirectToRoute('company_list', array('message' => 'all clear'));
+
+
     }
 }

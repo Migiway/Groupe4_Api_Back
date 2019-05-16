@@ -22,6 +22,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use League\Csv\Writer;
+use League\Csv\CannotInsertRecord;
 
 /**
  * @Route("/contact")
@@ -250,11 +252,7 @@ class ContactController extends AbstractController
         // FIN IMPORT CSV
 
 
-        $i = 1;
-        if ( $i == 0) {
 
-
-        }
 
         $contacts = $this->getDoctrine()
             ->getRepository(Contact::class)
@@ -298,4 +296,40 @@ class ContactController extends AbstractController
         return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
     }
 
+    /**
+     * @Route("/export", name="export_contact")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function export_contact(Request $request)
+    {
+
+        $contactscsv = $this->getDoctrine()
+            ->getRepository(Contact::class)
+            ->findAll();
+
+
+        $stack = array();
+
+
+        foreach ($contactscsv as $con) {
+
+            $test = [$con->getContactNom(), $con->getContactPrenom(), $con->getContactEmail(), $con->getCompanyId(), $con->getContactMetier()];
+            array_push($stack, $test);
+
+        }
+
+        $writer = Writer::createFromFileObject(new \SplTempFileObject());
+        $writer->insertAll($stack);
+        $writer->output('contact.csv');
+        //important
+
+        //important
+
+        return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
+
+
+    }
+
 }
+
