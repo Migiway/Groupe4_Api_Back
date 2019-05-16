@@ -59,6 +59,11 @@ class UserType extends AbstractType
                 'choice_label' => 'libelle',
                 "label" => "Zone affectée : "
             ])
+            ->add('responsable', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'userLastName',
+                "label" => "Responsable n+1 : "
+            ])
             ->add('user_function', TextType::class, array('label' => 'Fonction : '))
             ->add('role', EntityType::class, [
                 'class' => Role::class,
