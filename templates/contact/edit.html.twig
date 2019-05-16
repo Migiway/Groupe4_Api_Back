@@ -2,379 +2,458 @@
 
 {% block body %}
     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    <div class="col-md-12 left_border contact1_background_col9">
-        <div class="row">
-            <div class="col-md-4 p-0">
-                <div class="contacts1_text">
-                    <h3 class="contact1h3">Contacts</h3>
-                </div>
-            </div>
-            <div class="col-md-5"></div>
-            <div class="col-md-3">
-                <div class="contact3_input_container3">
-                    <input class="contact-input-field3" type="text" placeholder="Rechercher..." name="email">
-                    <i class="fas fa-search "></i>
-                </div>
+<div class="col-md-12 left_border contact1_background_col9">
+    <div class="row">
+        <div class="col-md-4 p-0">
+            <div class="contacts1_text">
+                <h3 class="contact1h3">Contacts</h3>
             </div>
         </div>
-        <div class="contact_form ">
-            <div class="row justify-content-center ml-0 mr-0 mb-5">
-                <div class="col-md-12 border">
-                    <div class="row rounded ">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h3 class="contact2_saisieh3 pt-4 ml-5">M. {{ personne.contactNom }} {{ personne.contactPrenom }},<span class="contact3span">  {{ personne.contactMetier }}, 31 ans</span> </h3>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row form_right_active_text">
-                                        <div class="col-md-2 d-sm-none "> </div>
-                                        <div class="col-md-2 ajour_right mt-3">   <span> à jour </span></div>
-                                        <div class="col-md-5 p-0 mt-3"> <span>Dernière mise à jour le  {{ personne.contactMisAJour|date('Y-m-d') }}</span></div>
-                                        <div class="col-md-3 mt-3"><div class="custom-control custom-switch">
-                                                {{ form_widget(form.contact_statut) }}
-                                            </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-3">
+            <div class="contact3_input_container3">
+                <input class="contact-input-field3" type="text" placeholder="Rechercher..." name="email">
+                <i class="fas fa-search "></i>
+            </div>
+        </div>
+    </div>
+    <div class="contact_form ">
+        <div class="row justify-content-center ml-0 mr-0 mb-5">
+            <div class="col-md-12 border">
+                <div class="row rounded ">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="contact2_saisieh3 pt-4 ml-5">
+                                    M. {{ personne.contactNom }} {{ personne.contactPrenom }},<span
+                                            class="contact3span">  {{ personne.contactMetier }}, 31 ans</span></h3>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row form_right_active_text">
+                                    <div class="col-md-2 d-sm-none "></div>
+                                    <div class="col-md-2 ajour_right mt-3"><span> à jour </span></div>
+                                    <div class="col-md-5 p-0 mt-3">
+                                        <span>Dernière mise à jour le  {{ personne.contactMisAJour|date('Y-m-d') }}</span>
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <div class="custom-control custom-switch">
+                                            {{ form_widget(form.contact_statut) }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 pt-4 pb-5">
-                        <div class="contact_formnav">
-                            <nav class="nav">
-                                <a class="nav-link active identite" href="#">Identité</a>
-                                <a class="nav-link note" href="#">Notes</a>
-                                <a class="nav-link poste" href="#">Postes</a>
-                                <a class="nav-link " href="#">Historique</a>
-                            </nav>
-                        </div>
+                </div>
+                <div class="col-md-12 pt-4 pb-5">
+                    <div class="contact_formnav">
+                        <nav class="nav">
+                            <a class="nav-link active identite" href="#">Identité</a>
+                            <a class="nav-link note" href="#">Notes</a>
+                            <a class="nav-link poste" href="#">Postes</a>
+                            <a class="nav-link " href="#">Historique</a>
+                        </nav>
                     </div>
-                    <div>
-                     <div class="col-md-12 block-identite">
+                </div>
+                <div>
+                    <div class="col-md-12 block-identite">
                         <div class="row">
                             <div class="col-md-2">
                                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                        <div class="contact_userimg">
-                                            <img  id="blah" src="{{ asset("img/circle.png") }}" alt="your image" />
-                                        </div>
-                                        <div class="userimg_label2">
-                                            {{ form_widget(form.contactFile) }}
-                                            {{ form_errors(form.contactFile) }}
-                                            <!--<input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
-                                            <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label> -->
-                                        </div>
+                                <div class="contact_userimg">
+                                    {% if personne.imgContact != null %}
+                                        <img id="blah" src="../../../uploads/contact-img/{{ personne.imgContact }}"
+                                             alt="your image"/>
+                                    {% else %}
+                                        <img id="blah" src="{{ asset("img/circle.png") }}" alt="your image"/>
+                                    {% endif %}
+                                </div>
+                                <div class="userimg_label2">
+                                    {{ form_widget(form.contactFile) }}
+                                    {{ form_errors(form.contactFile) }}
+                                    <!--<input type="file" name="file-1[]" id="imgInp" class="uploadFile custom-file-input inputfile inputfile-1 " data-multiple-caption="{count} files selected" multiple="">
+                                    <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label> -->
+                                </div>
                                 <script>
 
-                                function readURL(input) {
+                                    function readURL(input) {
 
-                                if (input.files && input.files[0]) {
-                                var reader = new FileReader();
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
 
-                                reader.onload = function(e) {
-                                $('#blah').attr('src', e.target.result);
-                                }
+                                            reader.onload = function (e) {
+                                                $('#blah').attr('src', e.target.result);
+                                            }
 
-                                reader.readAsDataURL(input.files[0]);
-                                }
-                                }
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
 
-                                $("#imgInp").change(function() {
-                                readURL(this);
-                                });
-                                </script>             
+                                    $("#imgInp").change(function () {
+                                        readURL(this);
+                                    });
+                                </script>
                             </div>
                             <div class="col-md-10">
-                                    <div class="row form_client">
-                                        <div class="col-md-6">
-                                            <div class="row  from_single_input">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Code client</p>
-                                                </div>
-                                                <div class="col-md-7 input_border_left form-group code_client">
-                                                    {{ form_widget(form.contact_codeClient) }}
-                                                    {{ form_errors(form.contact_codeClient) }}
-                                                </div>
+                                <div class="row form_client">
+                                    <div class="col-md-6">
+                                        <div class="row  from_single_input">
+                                            <div class="col-md-5 form_text">
+                                                <p>Code client</p>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Genre</p>
-                                                </div>
-                                                <div class="col-md-7 input_select_main input_border_left">
-                                                    <div class="form-group genre_select">
-                                                        {{ form_widget(form.contact_genre) }}
-                                                        {{ form_errors(form.contact_genre) }}
-                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                            <div class="col-md-7 input_border_left form-group code_client">
+                                                {{ form_widget(form.contact_codeClient) }}
+                                                {{ form_errors(form.contact_codeClient) }}
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Genre</p>
+                                            </div>
+                                            <div class="col-md-7 input_select_main input_border_left">
+                                                <div class="form-group genre_select">
+                                                    {{ form_widget(form.contact_genre) }}
+                                                    {{ form_errors(form.contact_genre) }}
+                                                    <div class="invalid-feedback">Example invalid custom select
+                                                        feedback
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Prénom</p>
-                                                </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                    {{ form_widget(form.contact_prenom) }}
-                                                    {{ form_errors(form.contact_prenom) }}
-                                                </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Prénom</p>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Nom</p>
-                                                </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                    {{ form_widget(form.contact_nom) }}
-                                                    {{ form_errors(form.contact_nom) }}
-                                                </div>
+                                            <div class="col-md-7 input_border_left prenom_input form-group ">
+                                                {{ form_widget(form.contact_prenom) }}
+                                                {{ form_errors(form.contact_prenom) }}
                                             </div>
-                                            <div class="row pt-3 from_single_input">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Date de naissance</p>
-                                                </div>
-                                                <div class="col-md-7  form-group code_client">
-                                                    {{ form_widget(form.contact_date_naissance) }}
-                                                    {{ form_errors(form.contact_date_naissance) }}
-                                                </div>
-                                                <script>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Nom</p>
+                                            </div>
+                                            <div class="col-md-7 input_border_left prenom_input form-group ">
+                                                {{ form_widget(form.contact_nom) }}
+                                                {{ form_errors(form.contact_nom) }}
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3 from_single_input">
+                                            <div class="col-md-5 form_text">
+                                                <p>Date de naissance</p>
+                                            </div>
+                                            <div class="col-md-7  form-group code_client">
+                                                {{ form_widget(form.contact_date_naissance) }}
+                                                {{ form_errors(form.contact_date_naissance) }}
+                                            </div>
+                                            <script>
                                                 let today = new Date().toISOString().substr(0, 10);
                                                 document.querySelector("#today").value = today;
 
                                                 // or...
 
                                                 document.querySelector("#today").valueAsDate = new Date();</script>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Métier</p>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Métier</p>
-                                                </div>
-                                                <div class="col-md-7 input_select_main ">
-                                                    <div class="form-group matier_select">
-                                                        {{ form_widget(form.metier_id) }}
-                                                        {{ form_errors(form.metier_id) }}
-                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                            <div class="col-md-7 input_select_main ">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.metier_id) }}
+                                                    {{ form_errors(form.metier_id) }}
+                                                    <div class="invalid-feedback">Example invalid custom select
+                                                        feedback
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row pt-3 ">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Tél. mobile</p>
-                                                </div>
-                                                <div class="col-md-7  phone_input input-group ">
-                                                    {{ form_widget(form.contact_tel_mobile) }}
-                                                    {{ form_errors(form.contact_tel_mobile) }}
-                                                    <span class="input-group-addon phone_input_position"><i class="fas fa-mobile"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="row pt-3 ">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Profil Linkedin</p>
-                                                </div>
-                                                <div class="col-md-7  phone_input input-group ">
-                                                    {{ form_widget(form.contact_adresse_linkedin) }}
-                                                    {{ form_errors(form.contact_adresse_linkedin) }}
-                                                    <span class="input-group-addon phone_input_position"><i class="fab fa-linkedin"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="row pt-3 ">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Profil Facebook</p>
-                                                </div>
-                                                <div class="col-md-7  phone_input input-group ">
-                                                    {{ form_widget(form.contact_adresse_facebook) }}
-                                                    {{ form_errors(form.contact_adresse_facebook) }}
-                                                    <span class="input-group-addon phone_input_position"><i class="fab fa-facebook-square"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="row pt-3 ">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Profil Twitter</p>
-                                                </div>
-                                                <div class="col-md-7 phone_input input-group ">
-                                                    {{ form_widget(form.contact_adresse_twitter) }}
-                                                    {{ form_errors(form.contact_adresse_twitter) }}
-                                                    <span class="input-group-addon phone_input_position"><i class="fab fa-twitter-square"></i></span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 ">
-                                            <div class="row  ">
-                                                <div class="col-md-5 form_text">
-                                                    <p>E-mail</p>
-                                                </div>
-                                                <div class="col-md-7 phone_input input-group ">
-                                                    {{ form_widget(form.contact_email) }}
-                                                    {{ form_errors(form.contact_email) }}
-                                                    <span class="input-group-addon contact_checkbox_position">
+                                        <div class="row pt-3 ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Tél. mobile</p>
+                                            </div>
+                                            <div class="col-md-7  phone_input input-group ">
+                                                {{ form_widget(form.contact_tel_mobile) }}
+                                                {{ form_errors(form.contact_tel_mobile) }}
+                                                <span class="input-group-addon phone_input_position"><i
+                                                            class="fas fa-mobile"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3 ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Profil Linkedin</p>
+                                            </div>
+                                            <div class="col-md-7  phone_input input-group ">
+                                                {{ form_widget(form.contact_adresse_linkedin) }}
+                                                {{ form_errors(form.contact_adresse_linkedin) }}
+                                                <span class="input-group-addon phone_input_position"><i
+                                                            class="fab fa-linkedin"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3 ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Profil Facebook</p>
+                                            </div>
+                                            <div class="col-md-7  phone_input input-group ">
+                                                {{ form_widget(form.contact_adresse_facebook) }}
+                                                {{ form_errors(form.contact_adresse_facebook) }}
+                                                <span class="input-group-addon phone_input_position"><i
+                                                            class="fab fa-facebook-square"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3 ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Profil Twitter</p>
+                                            </div>
+                                            <div class="col-md-7 phone_input input-group ">
+                                                {{ form_widget(form.contact_adresse_twitter) }}
+                                                {{ form_errors(form.contact_adresse_twitter) }}
+                                                <span class="input-group-addon phone_input_position"><i
+                                                            class="fab fa-twitter-square"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="row  ">
+                                            <div class="col-md-5 form_text">
+                                                <p>E-mail</p>
+                                            </div>
+                                            <div class="col-md-7 phone_input input-group ">
+                                                {{ form_widget(form.contact_email) }}
+                                                {{ form_errors(form.contact_email) }}
+                                                <span class="input-group-addon contact_checkbox_position">
                                                         <div class="custom-control custom-checkbox ">
-                                                            <input type="checkbox" class="custom-control-input" id="customCheck" checked>
-                                                            <label class="custom-control-label" for="customCheck"></label>
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                   id="customCheck" checked>
+                                                            <label class="custom-control-label"
+                                                                   for="customCheck"></label>
                                                         </div>
                                                     </span>
-                                                </div>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Entreprise</p>
-                                                </div>
-                                                <div class="col-md-7 input_select_main ">
-                                                    <div class="form-group matier_select">
-                                                        {{ form_widget(form.company_id) }}
-                                                        {{ form_errors(form.company_id) }}
-                                                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Entreprise</p>
+                                            </div>
+                                            <div class="col-md-7 input_select_main ">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.company_id) }}
+                                                    {{ form_errors(form.company_id) }}
+                                                    <div class="invalid-feedback">Example invalid custom select
+                                                        feedback
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Nom du poste</p>
-                                                </div>
-                                                <div class="col-md-7  prenom_input form-group ">
-                                                    {{ form_widget(form.contact_metier) }}
-                                                    {{ form_errors(form.contact_metier) }}
-                                                </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Nom du poste</p>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Pouvoir décisionnel</p>
-                                                </div>
-                                                <div class="col-md-7 input_select_main ">
-                                                    <div class="form-group matier_select">
-                                                        {{ form_widget(form.pouvoir_id) }}
-                                                        {{ form_errors(form.pouvoir_id) }}
-                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                            <div class="col-md-7  prenom_input form-group ">
+                                                {{ form_widget(form.contact_metier) }}
+                                                {{ form_errors(form.contact_metier) }}
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Pouvoir décisionnel</p>
+                                            </div>
+                                            <div class="col-md-7 input_select_main ">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.pouvoir_id) }}
+                                                    {{ form_errors(form.pouvoir_id) }}
+                                                    <div class="invalid-feedback">Example invalid custom select
+                                                        feedback
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Responsable N+1</p>
-                                                </div>
-                                                <div class="col-md-7 input_select_main ">
-                                                    <div class="form-group matier_select">
-                                                        {{ form_widget(form.user_id) }}
-                                                        {{ form_errors(form.user_id) }}
-                                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Responsable N+1</p>
+                                            </div>
+                                            <div class="col-md-7 input_select_main ">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.user_id) }}
+                                                    {{ form_errors(form.user_id) }}
+                                                    <div class="invalid-feedback">Example invalid custom select
+                                                        feedback
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row pt-3 ">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Tél. fixe direct</p>
-                                                </div>
-                                                <div class="col-md-7  phone_input input-group ">
-                                                    {{ form_widget(form.contact_tel_fixe) }}
-                                                    {{ form_errors(form.contact_tel_fixe) }}
-                                                    <span class="input-group-addon phone_input_position2"><i class="fas fa-phone"></i></span>
-                                                </div>
+                                        </div>
+                                        <div class="row pt-3 ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Tél. fixe direct</p>
                                             </div>
-                                            <div class="row pt-3 ">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Tél. du standard</p>
-                                                </div>
-                                                <div class="col-md-7  phone_input input-group ">
-                                                    {{ form_widget(form.contact_tel_standard) }}
-                                                    {{ form_errors(form.contact_tel_standard) }}
-                                                    <span class="input-group-addon phone_input_position2"><i class="fas fa-phone"></i></span>
-                                                </div>
+                                            <div class="col-md-7  phone_input input-group ">
+                                                {{ form_widget(form.contact_tel_fixe) }}
+                                                {{ form_errors(form.contact_tel_fixe) }}
+                                                <span class="input-group-addon phone_input_position2"><i
+                                                            class="fas fa-phone"></i></span>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Remarques</p>
-                                                </div>
-                                                <div class="col-md-7 contact_form_textarea  form-group ">
-                                                    {{ form_widget(form.contact_commentaire) }}
-                                                    {{ form_errors(form.contact_commentaire) }}
+                                        </div>
+                                        <div class="row pt-3 ">
+                                            <div class="col-md-5 form_text">
+                                                <p>Tél. du standard</p>
+                                            </div>
+                                            <div class="col-md-7  phone_input input-group ">
+                                                {{ form_widget(form.contact_tel_standard) }}
+                                                {{ form_errors(form.contact_tel_standard) }}
+                                                <span class="input-group-addon phone_input_position2"><i
+                                                            class="fas fa-phone"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Remarques</p>
+                                            </div>
+                                            <div class="col-md-7 contact_form_textarea  form-group ">
+                                                {{ form_widget(form.contact_commentaire) }}
+                                                {{ form_errors(form.contact_commentaire) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pt-5">
+                            <div class="row py-4">
+                                <div class="col-md-3">
+                                    <div class="retourbutton">
+                                        <a href="/admin/contact/list">
+                                            <button type="button" class="btn btn-primary"><i
+                                                        class="fas fa-arrow-left"></i> RETOUR
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-3 pr-0">
+                                    <div class="supprimebutton">
+                                        <a href="/admin/contact/delete/{{ personne.id }}">
+                                            <button type="button" class="btn btn-primary">SUPPRIMER</button>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="demandbutton">
+                                        <button type="button" class="btn btn-primary">DEMANDE DE MISE À JOUR</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="enregisterbutton">
+                                        {{ form_widget(form.save) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ include('company/_note.html.twig') }}
+
+                    <div class="block-poste col-md-12 hide">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <!-- col1-->
+                                <div class="col-md-12">
+                                    <div class="block-contact col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <div class="hero-callout">
+                                                        <div id="example_wrapper" class="dataTables_wrapper">
+                                                            <table id="company-contact"
+                                                                   class="display nowrap dataTable dtr-inline collapsed table table-bordered "
+                                                                   style="width: 100%;" role="grid"
+                                                                   aria-describedby="example_info">
+                                                                <thead>
+                                                                <tr role="row">
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 190px;"
+                                                                        aria-label="Position: activate to sort column ascending">
+                                                                        Nom du poste
+                                                                    </th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 190px;"
+                                                                        aria-label="Position: activate to sort column ascending">
+                                                                        Entreprise
+                                                                    </th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 80px;"
+                                                                        aria-label="Office: activate to sort column ascending">
+                                                                        Pouvoir décisionnel
+                                                                    </th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 80px;"
+                                                                        aria-label="Start date: activate to sort column ascending">
+                                                                        Responsable N+1
+                                                                    </th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 100px;"
+                                                                        aria-label="Start date: activate to sort column ascending">
+                                                                        Téléphone Fixe
+                                                                    </th>
+                                                                    <th class="sorting_asc" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 120px;" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending">
+                                                                        Téléphone standard
+                                                                    </th>
+                                                                    <th class="sorting_asc" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 120px;" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending">
+                                                                        Remarques
+                                                                    </th>
+                                                                    <th class="sorting_asc" tabindex="0"
+                                                                        aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 120px;" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending">
+                                                                        Option
+                                                                    </th>
+
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                {% for poste in postes %}
+
+                                                                    <tr role="row" class="odd">
+                                                                        <td> {{ poste.postesMetier }}</a></td>
+                                                                        <td> {{ poste.companyId }}</a></td>
+                                                                        <td>{{ poste.pouvoirId }}</td>
+                                                                        <td>{{ poste.userId }}</td>
+                                                                        <td>{{ poste.postesTelFixe }}</td>
+                                                                        <td>{{ poste.postesTelStandard }}</td>
+                                                                        <td>{{ poste.postesCommentaire }}</td>
+                                                                        <td style="text-align: center"><a
+                                                                                    href="/admin/contact/delete/postes/{{ poste.id }}"><i
+                                                                                        style="color: red; margin-right: 10px"
+                                                                                        class="fas fa-trash-alt"></i></a>
+                                                                            <a href=""><i style="color: green"
+                                                                                          class="fas fa-edit"></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 pt-5">
-                        <div class="row py-4"> 
-                            <div class="col-md-3">
-                                <div class="retourbutton">
-                                    <a href="/admin/contact/list">
-                                    <button  type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i> RETOUR </button>
-                                    </a>
-                                </div>
-                            </div>      
-                            <div class="col-md-1"></div>
-                            <div class="col-md-3 pr-0">
-                                <div class="supprimebutton">
-                                    <a href="/admin/contact/delete/{{ personne.id }}">
-                                        <button  type="button" class="btn btn-primary">SUPPRIMER</button>
-                                    </a>
-
-                                </div>
-                            </div>      
-                            <div class="col-md-3">
-                                <div class="demandbutton">
-                                    <button  type="button" class="btn btn-primary">DEMANDE DE MISE À JOUR</button>
-                                </div>
-                            </div>      
-                            <div class="col-md-2">
-                                <div class="enregisterbutton">
-                                    {{ form_widget(form.save) }}
-                                </div>
-                            </div>      
-                        </div>
-                    </div>
-                    </div>
-                    {{ include('company/_note.html.twig') }}
-                    
-                        <div class="block-poste col-md-12 hide">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <!-- col1-->
-                                    <div class="col-md-12">
-                                        <div class="block-contact col-md-12">
-                                            <div class="col-md-12">
-                                                <div class="row ">
-                                                    <div class="col-md-12">
-                                                        <div class="hero-callout">
-                                                            <div id="example_wrapper" class="dataTables_wrapper">
-                                                                <table id="company-contact" class="display nowrap dataTable dtr-inline collapsed table table-bordered " style="width: 100%;" role="grid" aria-describedby="example_info">
-                                                                    <thead>
-                                                                    <tr role="row">
-                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 190px;" aria-label="Position: activate to sort column ascending">Nom du poste</th>
-                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 190px;" aria-label="Position: activate to sort column ascending">Entreprise</th>
-                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Pouvoir décisionnel</th>
-                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Start date: activate to sort column ascending">Responsable N+1</th>
-                                                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Téléphone Fixe</th>
-                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Téléphone standard</th>
-                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Remarques</th>
-                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Option</th>
-
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    {% for poste in postes %}
-
-                                                                        <tr role="row" class="odd">
-                                                                            <td> {{ poste.postesMetier }}</a></td>
-                                                                            <td> {{ poste.companyId }}</a></td>
-                                                                            <td>{{ poste.pouvoirId }}</td>
-                                                                            <td>{{ poste.userId }}</td>
-                                                                            <td>{{ poste.postesTelFixe }}</td>
-                                                                            <td>{{ poste.postesTelStandard }}</td>
-                                                                            <td>{{ poste.postesCommentaire }}</td>
-                                                                            <td style="text-align: center"><a href="/admin/contact/delete/postes/{{ poste.id }}"><i style="color: red; margin-right: 10px" class="fas fa-trash-alt"></i></a> <a href=""><i style="color: green" class="fas fa-edit"></i></a></td>
-                                                                        </tr>
-                                                                    {% endfor %}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                 </div>
                             </div>
 
                         </div>
-                    
+
                     </div>
                 </div>
             </div>
@@ -382,33 +461,32 @@
     </div>
 
 
-
     <script>
-    $(function() {
-        $('.note').click(function() {
-           $('.block-identite').addClass('hide');
-           $('.block-note').removeClass('hide');
-           $('.block-poste').addClass('hide');
-           $('.contact_formnav nav a').removeClass('active')
-           $('.note').addClass('active')
+        $(function () {
+            $('.note').click(function () {
+                $('.block-identite').addClass('hide');
+                $('.block-note').removeClass('hide');
+                $('.block-poste').addClass('hide');
+                $('.contact_formnav nav a').removeClass('active')
+                $('.note').addClass('active')
+            });
+            $('.identite').click(function () {
+                $('.block-identite').removeClass('hide');
+                $('.block-note').addClass('hide');
+                $('.block-poste').addClass('hide');
+                $('.contact_formnav nav a').removeClass('active')
+                $('.identite').addClass('active')
+            });
+            $('.poste').click(function () {
+                $('.block-identite').addClass('hide');
+                $('.block-note').addClass('hide');
+                $('.block-poste').removeClass('hide');
+                $('.contact_formnav nav a').removeClass('active');
+                $('.poste').addClass('active');
+            });
         });
-        $('.identite').click(function() {
-            $('.block-identite').removeClass('hide');
-            $('.block-note').addClass('hide');
-            $('.block-poste').addClass('hide');
-            $('.contact_formnav nav a').removeClass('active')
-            $('.identite').addClass('active')
-        });
-        $('.poste').click(function() {
-            $('.block-identite').addClass('hide');
-            $('.block-note').addClass('hide');
-            $('.block-poste').removeClass('hide');
-            $('.contact_formnav nav a').removeClass('active');
-            $('.poste').addClass('active');
-        });
-    });
-    </script> 
+    </script>
 
-  {{ form_end(form) }}
+    {{ form_end(form) }}
 
-{% endblock %}
+    {% endblock %}

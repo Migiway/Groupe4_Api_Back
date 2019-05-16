@@ -89,7 +89,9 @@ class ContactType extends AbstractType
             ->add('contact_tel_fixe', TextType::class, array('label' => 'Tel. Fixe direct'))
             ->add('contact_tel_standard', TextType::class, array('label' => 'Tel. du standard'))
             ->add('contact_commentaire', TextareaType::class, array('label' => 'Remarques'))
-            ->add('contactFile', FileType::class)
+            ->add('contactFile', FileType::class, array(
+                'label' => 'Image',
+                'required' => false))
             ->add('contact_statut', CheckboxType::class, [
                 'label' => false,
                 'label_attr' => array(
