@@ -84,6 +84,8 @@ class UserController extends AbstractController
                 'users' => $users, 'nb_users' => $nbUsers
             ));
         }
+
+        return $this->render('team/new.html.twig', array('form' => $form->createView()));
     }
 
 
