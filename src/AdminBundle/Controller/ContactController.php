@@ -323,7 +323,7 @@ class ContactController extends AbstractController
         $writer->insertAll($stack);
         $writer->output('contact.csv');
         //important
-
+        dump($stack);
         //important
 
         return $this->redirectToRoute('contact_list', array('message' => 'all clear'));
