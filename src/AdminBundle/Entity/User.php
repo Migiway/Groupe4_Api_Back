@@ -152,6 +152,16 @@ class User implements UserInterface, \Serializable
     private $departement;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\User", mappedBy="responsable")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="users")
+     */
+    private $responsable;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="operation_author")
      */
     private $author;
@@ -195,6 +205,7 @@ class User implements UserInterface, \Serializable
         $this->operations = new ArrayCollection();
         $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->users = new ArrayCollection();
         $this->author = new ArrayCollection();
         $this->user_createdAt = new \DateTime;
         $this->user_updateAt = new \DateTime;
@@ -732,5 +743,31 @@ class User implements UserInterface, \Serializable
     public function setDepartement(ParameterTeamDepartement $departement)
     {
         return $this->departement = $departement;
+    }
+
+    public function getResponsable()
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(User $user)
+    {
+        return $this->responsable = $user;
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user)
+    {
+        if (!$this->users->contains($user))
+        {
+            $this->users[] = $user;
+            $user->setResponsable($this);
+        }
+
+        return $this;
     }
 }
