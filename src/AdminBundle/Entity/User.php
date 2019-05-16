@@ -147,9 +147,9 @@ class User implements UserInterface, \Serializable
     private $role;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterTeamDepartement", inversedBy="users")
      */
-    private $area;
+    private $departement;
 
     /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="operation_author")
@@ -421,6 +421,8 @@ class User implements UserInterface, \Serializable
             $this->operations[] = $operation;
             $operation->setUserId($this);
         }
+
+        return $this;
     }
 
     /**
@@ -534,18 +536,6 @@ class User implements UserInterface, \Serializable
     public function setRole(?Role $role): self
     {
         $this->role = $role;
-
-        return $this;
-    }
-
-    public function getArea(): ?ActivityArea
-    {
-        return $this->area;
-    }
-
-    public function setArea(?ActivityArea $area): self
-    {
-        $this->area = $area;
 
         return $this;
     }
@@ -732,5 +722,15 @@ class User implements UserInterface, \Serializable
             $this->user_email,
             $this->id
             ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public function getDepartement()
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(ParameterTeamDepartement $departement)
+    {
+        return $this->departement = $departement;
     }
 }
