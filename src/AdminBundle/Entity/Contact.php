@@ -153,6 +153,11 @@ class Contact
     private $company_id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User")
+     */
+    private $commercial;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\Job")
      */
     private $job_id;
@@ -562,5 +567,15 @@ class Contact
 
         return $this;
     }*/
+
+    public function getCommercial()
+    {
+        return $this->commercial;
+    }
+
+    public function setCommercial(User $user)
+    {
+        return $this->commercial = $user;
+    }
 
 }

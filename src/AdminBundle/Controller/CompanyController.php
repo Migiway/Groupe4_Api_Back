@@ -147,7 +147,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/delete-select", name="delete_select")
+     * @Route("/delete-select", name="delete-select")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

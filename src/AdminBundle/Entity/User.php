@@ -132,6 +132,11 @@ class User implements UserInterface, \Serializable
     private $operations;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Contact", mappedBy="user_id")
+     */
+    private $contacts;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_user")
      */
     private $parameters;
@@ -205,6 +210,7 @@ class User implements UserInterface, \Serializable
         $this->operations = new ArrayCollection();
         $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->author = new ArrayCollection();
         $this->user_createdAt = new \DateTime;
@@ -446,9 +452,17 @@ class User implements UserInterface, \Serializable
 
     public function addCompany(Company $company): self
     {
-        if (!$this->companies->contains($company)) {
+        if (is_null($this->companies))
+        {
             $this->companies[] = $company;
             $company->setUserId($this);
+        }
+        else
+        {
+            if (!$this->companies->contains($company)) {
+                $this->companies[] = $company;
+                $company->setUserId($this);
+            }
         }
 
         return $this;
@@ -767,6 +781,30 @@ class User implements UserInterface, \Serializable
             $this->users[] = $user;
             $user->setResponsable($this);
         }
+
+        return $this;
+    }
+
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (is_null($this->contacts))
+        {
+            $this->contacts[] = $contact;
+            $contact->setCommercial($this);
+        }
+        else
+        {
+            if (!$this->contacts->contains($contact))
+            $this->contacts[] = $contact;
+            $contact->setCommercial($this);
+        }
+        /*$this->contacts->add($contact);
+        $contact->setCommercial($this);*/
 
         return $this;
     }
