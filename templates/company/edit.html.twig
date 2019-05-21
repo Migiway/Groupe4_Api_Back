@@ -121,7 +121,7 @@
                                                     <div class="col-md-5 form_text">
                                                         <p>Activité (NAF)</p>
                                                     </div>
-                                                    <div class="col-md-7 input_border_left input_select_main ">
+                                                    <div class="col-md-7 input_select_main ">
                                                         <div class="form-group matier_select">
                                                             {{ form_widget(form.secteur_activite_id) }}
                                                             {{ form_errors(form.secteur_activite_id) }}
@@ -270,7 +270,7 @@
                                 <div class="col-md-12 pt-5">
                                     <div class="row py-4">
                                         <div class="col-md-3">
-                                            <div class="retourbutton">
+                                            <div class="retourbutton hide">
                                                 <a href="/admin/company/list">
                                                     <button type="button" class="btn btn-primary"><i
                                                                 class="fas fa-arrow-left"></i> RETOUR
@@ -280,14 +280,14 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-md-3 pr-0">
-                                            <div class="supprimebutton">
+                                            <div class="supprimebutton hide">
                                                 <a href="/admin/company/delete/{{ entreprise.id }}">
                                                     <button type="button" class="btn btn-primary">SUPPRIMER</button>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <div class="demandbutton">
+                                            <div class="demandbutton hide">
                                                 <button type="button" class="btn btn-primary">DEMANDE DE MISE À JOUR
                                                 </button>
                                             </div>

@@ -230,7 +230,7 @@ class Contact
         return $this->contact_codeClient;
     }
 
-    public function setContactCodeClient(int $contact_codeClient): self
+    public function setContactCodeClient(?int $contact_codeClient): self
     {
         $this->contact_codeClient = $contact_codeClient;
 
@@ -254,7 +254,7 @@ class Contact
         return $this->contact_prenom;
     }
 
-    public function setContactPrenom(string $contact_prenom): self
+    public function setContactPrenom(?string $contact_prenom): self
     {
         $this->contact_prenom = $contact_prenom;
 
@@ -266,7 +266,7 @@ class Contact
         return $this->contact_nom;
     }
 
-    public function setContactNom(string $contact_nom): self
+    public function setContactNom(?string $contact_nom): self
     {
         $this->contact_nom = $contact_nom;
 
@@ -278,7 +278,7 @@ class Contact
         return $this->contact_dateCreation;
     }
 
-    public function setContactDateCreation(\DateTimeInterface $contact_dateCreation): self
+    public function setContactDateCreation(?\DateTimeInterface $contact_dateCreation): self
     {
         $this->contact_dateCreation = $contact_dateCreation;
 
@@ -290,7 +290,7 @@ class Contact
         return $this->contact_misAJour;
     }
 
-    public function setContactMisAJour(\DateTimeInterface $contact_misAJour): self
+    public function setContactMisAJour(?\DateTimeInterface $contact_misAJour): self
     {
         $this->contact_misAJour = $contact_misAJour;
 

@@ -91,7 +91,7 @@
                                             <div class="col-md-5 form_text">
                                                 <p>Activité (NAF)</p>
                                             </div>
-                                            <div class="col-md-7 input_border_left input_select_main ">
+                                            <div class="col-md-7 input_select_main ">
                                                 <div class="form-group matier_select">
                                                     {{ form_widget(form.secteur_activite_id) }}
                                                     {{ form_errors(form.secteur_activite_id) }}
@@ -233,15 +233,15 @@
                     <div class="col-md-12 pt-5">
                         <div class="row py-4">
                             <div class="col-md-3">
-                                <div class="retourbutton">
+                                <div class="retourbutton hide">
                                     <a href="/admin/company/list"><button  type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i> RETOUR </button></a>
                                 </div>
                             </div>
                             <div class="col-md-1"> </div>
                             <div class="col-md-3"> </div>
                             <div class="col-md-3">
-                                <div class="annulerbutton">
-                                    <a href="/admin/company/list"><button  type="button" class="btn btn-primary">ANNULER</button></a>
+                                <div class="annulerbutton" id="annuler">
+                                    <a href="#annuler"><button  type="button" class="btn btn-primary">ANNULER</button></a>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -257,5 +257,16 @@
     </div>
     {{ form_end(form) }}
 </div>
-
+<script>
+    $(function () {
+        $('.annulerbutton').click(function () {
+            $('form[name="company"] input').val('');
+            $( 'form[name="company"] select' ).each(function() {
+                $('form[name="company"] select > option').attr('selected','selected');
+                $( 'form[name="company"] select > option' ).removeAttr('selected');
+            });
+            $('form[name="company"] textarea').val('');
+        });
+    });
+</script>
 {% endblock %}
