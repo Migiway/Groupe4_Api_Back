@@ -106,7 +106,7 @@ class ContactController extends AbstractController
             $postes->setPostesTelStandard($contact_form->getContactTelStandard());
             $em->persist($postes);
             $em->flush();
-
+            return $this->redirectToRoute('contact_list');
         }
         $personne = $this->getDoctrine()
             ->getRepository(Contact::class)
