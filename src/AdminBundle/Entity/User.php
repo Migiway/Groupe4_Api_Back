@@ -823,4 +823,5 @@ class User implements UserInterface, \Serializable
     {
         return null;
     }
+
 }

@@ -143,6 +143,7 @@ class Company
 
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanyStatut", inversedBy="company")
+     * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $companyStatus;
 
@@ -165,7 +166,6 @@ class Company
 
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanySecteur", inversedBy="company")
-     * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $secteur_activite_id;
 
@@ -240,7 +240,7 @@ class Company
         return $this->companyName;
     }
 
-    public function setCompanyName(string $companyName): self
+    public function setCompanyName(?string $companyName): self
     {
         $this->companyName = $companyName;
 

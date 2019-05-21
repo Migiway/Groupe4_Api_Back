@@ -71,14 +71,12 @@ class CompanyController extends AbstractController
             return $this->redirectToRoute('company_list');
         }
 
-        //les infos de l'entreprise
-        $entreprise = $this->getDoctrine()->getRepository(Company::class)->find($company);
         //la liste des contacts lié à l'entreprise
         $companyContacts = $this->getDoctrine()->getRepository(Contact::class)->findBy(
-                [
-                    'company_id' => $id
-                ]
-            );
+            [
+                'company_id' => $id
+            ]
+        );
         //le nombre de contact de lié à l'entreprise
         $totalContact = count($companyContacts);
 
@@ -105,7 +103,7 @@ class CompanyController extends AbstractController
         return $this->render('company/edit.html.twig', array(
             'form'          => $form->createView(),
             'formNote'      => $formNote->createView(),
-            'entreprise'    => $entreprise,
+            'entreprise'    => $company,
             'contacts'      => $companyContacts,
             'totalContact'  => $totalContact,
             'noteListe'     => $noteListe,
@@ -147,7 +145,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/delete-select", name="delete_select")
+     * @Route("/delete-select", name="delete-select")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
