@@ -60,9 +60,9 @@ class UserController extends AbstractController
                 ->getRepository(User::class)
                 ->countall();
 
-            return $this->render('team/list.html.twig', array(
+            /*return $this->render('team/list.html.twig', array(
                 'users' => $users, 'nb_users' => $nbUsers
-            ));
+            ));*/
         }
         return $this->render('team/new.html.twig', array('form' => $form->createView(), 'contacts' => $contacts, 'companys' => $company));
     }
