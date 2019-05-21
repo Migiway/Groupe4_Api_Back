@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -53,7 +54,10 @@ class UserType extends AbstractType
             ->add('user_facebook', TextType::class, array('label' => 'Profile Facebook : '))
             ->add('user_twitter', TextType::class, array('label' => 'Profile Twitter : '))
             ->add('user_email', TextType::class, array('label' => 'Email : '))
-            ->add('user_password', TextType::class, array('label' => 'Mot de passe : '))
+            ->add('user_plain_password', PasswordType::class, array(
+                'label' => 'Mot de passe : ',
+                'mapped' => false,
+                ))
             ->add('departement', EntityType::class, [
                 'class' => ParameterTeamDepartement::class,
                 'choice_label' => 'libelle',

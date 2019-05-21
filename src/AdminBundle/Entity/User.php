@@ -78,6 +78,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\NotBlank
      */
     private $user_dob;
 
@@ -130,6 +131,11 @@ class User implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="user_id")
      */
     private $operations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Contact", mappedBy="user_id")
+     */
+    private $contacts;
 
     /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_user")
@@ -205,6 +211,7 @@ class User implements UserInterface, \Serializable
         $this->operations = new ArrayCollection();
         $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->author = new ArrayCollection();
         $this->user_createdAt = new \DateTime;
@@ -227,7 +234,7 @@ class User implements UserInterface, \Serializable
         return $this->user_firstName . ' ' . $this->user_lastName;
     }
 
-    public function setUserLastName(string $user_lastName): self
+    public function setUserLastName(?string $user_lastName): self
     {
         $this->user_lastName = $user_lastName;
 
@@ -239,7 +246,7 @@ class User implements UserInterface, \Serializable
         return $this->user_firstName;
     }
 
-    public function setUserFirstName(string $user_firstName): self
+    public function setUserFirstName(?string $user_firstName): self
     {
         $this->user_firstName = $user_firstName;
 
@@ -263,7 +270,7 @@ class User implements UserInterface, \Serializable
         return $this->user_email;
     }
 
-    public function setUserEmail(string $user_email): self
+    public function setUserEmail(?string $user_email): self
     {
         $this->user_email = $user_email;
 
@@ -275,7 +282,7 @@ class User implements UserInterface, \Serializable
         return $this->user_code;
     }
 
-    public function setUserCode(int $user_code): self
+    public function setUserCode(?int $user_code): self
     {
         $this->user_code = $user_code;
 
@@ -335,7 +342,7 @@ class User implements UserInterface, \Serializable
         return $this->user_dob;
     }
 
-    public function setUserDob(\DateTimeInterface $user_dob): self
+    public function setUserDob(?\DateTimeInterface $user_dob): self
     {
         $this->user_dob = $user_dob;
 
@@ -446,9 +453,17 @@ class User implements UserInterface, \Serializable
 
     public function addCompany(Company $company): self
     {
-        if (!$this->companies->contains($company)) {
+        if (is_null($this->companies))
+        {
             $this->companies[] = $company;
             $company->setUserId($this);
+        }
+        else
+        {
+            if (!$this->companies->contains($company)) {
+                $this->companies[] = $company;
+                $company->setUserId($this);
+            }
         }
 
         return $this;
@@ -769,5 +784,43 @@ class User implements UserInterface, \Serializable
         }
 
         return $this;
+    }
+
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (is_null($this->contacts))
+        {
+            $this->contacts[] = $contact;
+            $contact->setCommercial($this);
+        }
+        else
+        {
+            if (!$this->contacts->contains($contact))
+            $this->contacts[] = $contact;
+            $contact->setCommercial($this);
+        }
+        /*$this->contacts->add($contact);
+        $contact->setCommercial($this);*/
+
+        return $this;
+    }
+
+    public function setUserPlainPassword(?string $password) :self
+    {
+        if (!is_null($password))
+        {
+            $this->setUserPassword($password);
+        }
+        return $this;
+    }
+
+    public function getUserPlainPassword()
+    {
+        return null;
     }
 }

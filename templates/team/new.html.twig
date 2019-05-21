@@ -20,17 +20,16 @@
         <div class="contact_form ">
             <div class="row justify-content-center ml-0 mr-0 mb-5">
                 <div class="col-md-12 ">
-                    <div class="row rounded border">
+                    <div class="row rounded border" id="idducul1">
                         <div class="col-md-12">
                             <h3 class="contact2_saisieh3 pt-4 ml-5">Saisie d'un nouveau collaborateur</h3>
                         </div>
                         <div class="col-md-12 pt-4 pb-5">
                             <div class="contact_formnav">
                                 <nav class="nav">
-                                    <a class="nav-link active" href="#">Identité</a>
-                                    <a class="nav-link" href="#">Entreprises</a>
-                                    <a class="nav-link" href="#">Contacts</a>
-                                    <a class="nav-link " href="#">Historique</a>
+                                    <a class="nav-link active" href="#" id="identite" onclick="changeIdentiteClass();return false;">Identité</a>
+                                    <a class="nav-link" href="#" id="entreprise" onclick="changeEntrepriseClass();return false;">Entreprises</a>
+                                    <a class="nav-link" href="#" id="contact" onclick="changeContactClass();return false;">Contacts</a>
                                 </nav>
                             </div>
                         </div>
@@ -38,16 +37,16 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                        <div class="contact_userimg">
-                                            <img id="blah" src="{{ asset("img/circle.png") }}" alt="your image"/>
-                                        </div>
-                                        <div class="userimg_label2">
-                                            <input type="file" name="file-1[]" id="imgInp"
-                                                   class="uploadFile custom-file-input inputfile inputfile-1 "
-                                                   data-multiple-caption="{count} files selected" multiple="">
-                                            <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
-                                        </div>
-                                        <!-- <input class="uploadFile" type='file' id="imgInp" placeholder="Photo" /> -->
+                                    <div class="contact_userimg">
+                                        <img id="blah" src="{{ asset("img/circle.png") }}" alt="your image"/>
+                                    </div>
+                                    <div class="userimg_label2">
+                                        <input type="file" name="file-1[]" id="imgInp"
+                                               class="uploadFile custom-file-input inputfile inputfile-1 "
+                                               data-multiple-caption="{count} files selected" multiple="">
+                                        <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>
+                                    </div>
+                                    <!-- <input class="uploadFile" type='file' id="imgInp" placeholder="Photo" /> -->
                                     <script>
 
                                         function readURL(input) {
@@ -69,234 +68,234 @@
                                     </script>
                                 </div>
                                 <div class="col-md-10">
-                                        <div class="row form_client">
-                                            <div class="col-md-6">
-                                                <div class="row  from_single_input">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Code collaborateur</p>
-                                                    </div>
-                                                    <div class="col-md-7 input_border_left form-group code_client">
-                                                        {{ form_widget(form.user_code) }}
-                                                        {{ form_errors(form.user_code) }}
-                                                    </div>
+                                    <div class="row form_client">
+                                        <div class="col-md-6">
+                                            <div class="row  from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Code collaborateur</p>
                                                 </div>
-                                                <div class="row pt-3">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Genre</p>
-                                                    </div>
-                                                    <div class="col-md-7 input_select_main input_border_left">
-                                                        <div class="form-group genre_select">
-                                                            {{ form_widget(form.user_gender) }}
-                                                            {{ form_errors(form.user_gender) }}
-                                                            <div class="invalid-feedback">Example invalid custom select
-                                                                feedback
-                                                            </div>
+                                                <div class="col-md-7 input_border_left form-group code_client">
+                                                    {{ form_widget(form.user_code) }}
+                                                    {{ form_errors(form.user_code) }}
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Genre</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main input_border_left">
+                                                    <div class="form-group genre_select">
+                                                        {{ form_widget(form.user_gender) }}
+                                                        {{ form_errors(form.user_gender) }}
+                                                        <div class="invalid-feedback">Example invalid custom select
+                                                            feedback
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row pt-3">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Prénom</p>
-                                                    </div>
-                                                    <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                        {{ form_widget(form.user_firstName) }}
-                                                        {{ form_errors(form.user_firstName) }}
-                                                    </div>
-                                                </div>
-                                                <div class="row pt-3">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Nom</p>
-                                                    </div>
-                                                    <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                        {{ form_widget(form.user_lastName) }}
-                                                        {{ form_errors(form.user_lastName) }}
-                                                    </div>
-                                                </div>
-                                                <div class="row pt-3 from_single_input">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Date de naissance</p>
-                                                    </div>
-                                                    <div class="col-md-7  form-group code_client">
-                                                        {{ form_widget(form.user_dob) }}
-                                                        {{ form_errors(form.user_dob) }}
-                                                    </div>
-                                                </div>
-                                                <div class="row pt-3 from_single_input">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Date d'arrivé/départ</p>
-                                                    </div>
-                                                    <div class="col-md-7  form-group code_client">
-                                                        {{ form_widget(form.user_arrival_date) }}
-                                                        {{ form_errors(form.user_arrival_date) }}
-                                                    </div>
-
-
-                                                    <script>
-                                                        let today = new Date().toISOString().substr(0, 10);
-                                                        document.querySelector("#today").value = today;
-
-                                                        // or...
-
-                                                        document.querySelector("#today").valueAsDate = new Date();</script>
-                                                </div>
-                                                <div class="row pt-3 from_single_input">
-                                                    <div class="col-md-5 form_text">
-                                                        <p></p>
-                                                    </div>
-
-                                                    <div class="col-md-7  form-group code_client">
-                                                        {{ form_widget(form.user_quit_date) }}
-                                                        {{ form_errors(form.user_quit_date) }}
-                                                    </div>
-
-                                                    <script>
-                                                        let today = new Date().toISOString().substr(0, 10);
-                                                        document.querySelector("#today").value = today;
-
-                                                        // or...
-
-                                                        document.querySelector("#today").valueAsDate = new Date();</script>
-                                                </div>
-                                                <div class="row pt-3 ">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Tél. mobile</p>
-                                                    </div>
-                                                    <div class="col-md-7  phone_input input-group ">
-                                                        {{ form_widget(form.user_phone) }}
-                                                        {{ form_errors(form.user_phone) }}
-                                                        <span class="input-group-addon phone_input_position"><i
-                                                                    class="fas fa-mobile"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row pt-3 ">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Profil Linkedin</p>
-                                                    </div>
-                                                    <div class="col-md-7  phone_input input-group ">
-                                                        {{ form_widget(form.user_lkd) }}
-                                                        {{ form_errors(form.user_lkd) }}
-                                                        <span class="input-group-addon phone_input_position"><i
-                                                                    class="fab fa-linkedin"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row pt-3 ">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Profil Facebook</p>
-                                                    </div>
-                                                    <div class="col-md-7  phone_input input-group ">
-                                                        {{ form_widget(form.user_facebook) }}
-                                                        {{ form_errors(form.user_facebook) }}
-                                                        <span class="input-group-addon phone_input_position"><i
-                                                                    class="fab fa-facebook-square"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row pt-3 ">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Profil Twitter</p>
-                                                    </div>
-                                                    <div class="col-md-7 phone_input input-group ">
-                                                        {{ form_widget(form.user_twitter) }}
-                                                        {{ form_errors(form.user_twitter) }}
-                                                        <span class="input-group-addon phone_input_position"><i
-                                                                    class="fab fa-twitter-square"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 ">
-                                                <div class="row  ">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>E-mail</p>
-                                                    </div>
-                                                    <div class="col-md-7 phone_input input-group ">
-                                                        {{ form_widget(form.user_email) }}
-                                                        {{ form_errors(form.user_email) }}
-                                                    </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Prénom</p>
                                                 </div>
-                                                <div class="row pt-3 ">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Mot de passe</p>
-                                                    </div>
-                                                    <div class="col-md-7  phone_input input-group ">
-                                                        {{ form_widget(form.user_password) }}
-                                                        {{ form_errors(form.user_password) }}
-                                                        <span class="input-group-addon phone_input_position2"><i
-                                                                    class="fas fa-lock "></i></span>
-                                                    </div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group ">
+                                                    {{ form_widget(form.user_firstName) }}
+                                                    {{ form_errors(form.user_firstName) }}
                                                 </div>
-                                                <div class="row pt-5">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Zone affectée</p>
-                                                    </div>
-                                                    <div class="col-md-7 input_select_main ">
-                                                        <div class="form-group matier_select">
-                                                            {{ form_widget(form.departement) }}
-                                                            {{ form_errors(form.departement) }}
-                                                            <div class="invalid-feedback">Example invalid custom select
-                                                                feedback
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Nom</p>
                                                 </div>
-                                                <div class="row pt-3">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Fonction/poste</p>
-                                                    </div>
-                                                    <div class="col-md-7  prenom_input form-group ">
-                                                        {{ form_widget(form.user_function) }}
-                                                        {{ form_errors(form.user_function) }}
-                                                    </div>
+                                                <div class="col-md-7 input_border_left prenom_input form-group ">
+                                                    {{ form_widget(form.user_lastName) }}
+                                                    {{ form_errors(form.user_lastName) }}
                                                 </div>
-                                                <div class="row pt-3">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Profil/droits</p>
-                                                    </div>
-                                                    <div class="col-md-7 input_select_main ">
-                                                        <div class="form-group matier_select">
-                                                            {{ form_widget(form.role) }}
-                                                            {{ form_errors(form.role) }}
-                                                            <div class="invalid-feedback">Example invalid custom select
-                                                                feedback
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div class="row pt-3 from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Date de naissance</p>
                                                 </div>
-                                                <div class="row pt-3">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Responsable N+1</p>
-                                                    </div>
-                                                    <div class="col-md-7 input_select_main ">
-                                                        <div class="form-group matier_select">
-                                                            {{ form_widget(form.responsable) }}
-                                                            {{ form_errors(form.responsable) }}
-                                                            <div class="invalid-feedback">Example invalid custom select
-                                                                feedback
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-7  form-group code_client">
+                                                    {{ form_widget(form.user_dob) }}
+                                                    {{ form_errors(form.user_dob) }}
                                                 </div>
-                                                <div class="row pt-3 ">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Tél. fixe direct</p>
-                                                    </div>
-                                                    <div class="col-md-7  phone_input input-group ">
-                                                        {{ form_widget(form.user_fixe) }}
-                                                        {{ form_errors(form.user_fixe) }}
-                                                        <span class="input-group-addon phone_input_position2"><i
-                                                                    class="fas fa-phone"></i></span>
-                                                    </div>
+                                            </div>
+                                            <div class="row pt-3 from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Date d'arrivé</p>
                                                 </div>
-                                                <div class="row pt-3">
-                                                    <div class="col-md-5 form_text">
-                                                        <p>Remarques</p>
-                                                    </div>
-                                                    <div class="col-md-7 contact_form_textarea  form-group ">
-                                                        <!--                         <input class="input_size_big form-control" type="text" placeholder=""></div>-->
-                                                        {{ form_widget(form.user_annotation) }}
-                                                        {{ form_errors(form.user_annotation) }}
-                                                    </div>
+                                                <div class="col-md-7  form-group code_client">
+                                                    {{ form_widget(form.user_arrival_date) }}
+                                                    {{ form_errors(form.user_arrival_date) }}
+                                                </div>
+
+
+                                                <script>
+                                                    let today = new Date().toISOString().substr(0, 10);
+                                                    document.querySelector("#today").value = today;
+
+                                                    // or...
+
+                                                    document.querySelector("#today").valueAsDate = new Date();</script>
+                                            </div>
+                                            <div class="row pt-3 from_single_input">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Date de départ</p>
+                                                </div>
+
+                                                <div class="col-md-7  form-group code_client">
+                                                    {{ form_widget(form.user_quit_date) }}
+                                                    {{ form_errors(form.user_quit_date) }}
+                                                </div>
+
+                                                <script>
+                                                    let today = new Date().toISOString().substr(0, 10);
+                                                    document.querySelector("#today").value = today;
+
+                                                    // or...
+
+                                                    document.querySelector("#today").valueAsDate = new Date();</script>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Tél. mobile</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    {{ form_widget(form.user_phone) }}
+                                                    {{ form_errors(form.user_phone) }}
+                                                    <span class="input-group-addon phone_input_position"><i
+                                                                class="fas fa-mobile"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil Linkedin</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    {{ form_widget(form.user_lkd) }}
+                                                    {{ form_errors(form.user_lkd) }}
+                                                    <span class="input-group-addon phone_input_position"><i
+                                                                class="fab fa-linkedin"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil Facebook</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    {{ form_widget(form.user_facebook) }}
+                                                    {{ form_errors(form.user_facebook) }}
+                                                    <span class="input-group-addon phone_input_position"><i
+                                                                class="fab fa-facebook-square"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil Twitter</p>
+                                                </div>
+                                                <div class="col-md-7 phone_input input-group ">
+                                                    {{ form_widget(form.user_twitter) }}
+                                                    {{ form_errors(form.user_twitter) }}
+                                                    <span class="input-group-addon phone_input_position"><i
+                                                                class="fab fa-twitter-square"></i></span>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6 ">
+                                            <div class="row  ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>E-mail</p>
+                                                </div>
+                                                <div class="col-md-7 phone_input input-group ">
+                                                    {{ form_widget(form.user_email) }}
+                                                    {{ form_errors(form.user_email) }}
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Mot de passe</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    {{ form_widget(form.user_plain_password) }}
+                                                    {{ form_errors(form.user_plain_password) }}
+                                                    <span class="input-group-addon phone_input_position2"><i
+                                                                class="fas fa-lock "></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-5">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Zone affectée</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        {{ form_widget(form.departement) }}
+                                                        {{ form_errors(form.departement) }}
+                                                        <div class="invalid-feedback">Example invalid custom select
+                                                            feedback
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Fonction/poste</p>
+                                                </div>
+                                                <div class="col-md-7  prenom_input form-group ">
+                                                    {{ form_widget(form.user_function) }}
+                                                    {{ form_errors(form.user_function) }}
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Profil/droits</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        {{ form_widget(form.role) }}
+                                                        {{ form_errors(form.role) }}
+                                                        <div class="invalid-feedback">Example invalid custom select
+                                                            feedback
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Responsable N+1</p>
+                                                </div>
+                                                <div class="col-md-7 input_select_main ">
+                                                    <div class="form-group matier_select">
+                                                        {{ form_widget(form.responsable) }}
+                                                        {{ form_errors(form.responsable) }}
+                                                        <div class="invalid-feedback">Example invalid custom select
+                                                            feedback
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3 ">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Tél. fixe direct</p>
+                                                </div>
+                                                <div class="col-md-7  phone_input input-group ">
+                                                    {{ form_widget(form.user_fixe) }}
+                                                    {{ form_errors(form.user_fixe) }}
+                                                    <span class="input-group-addon phone_input_position2"><i
+                                                                class="fas fa-phone"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="row pt-3">
+                                                <div class="col-md-5 form_text">
+                                                    <p>Remarques</p>
+                                                </div>
+                                                <div class="col-md-7 contact_form_textarea  form-group ">
+                                                    <!--                         <input class="input_size_big form-control" type="text" placeholder=""></div>-->
+                                                    {{ form_widget(form.user_annotation) }}
+                                                    {{ form_errors(form.user_annotation) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -328,10 +327,214 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row rounded border classdesesmorts" id="idducul2">
+                        <div class="col-md-12">
+                            <h3 class="contact2_saisieh3 pt-4 ml-5">Saisie d'un nouveau collaborateur</h3>
+                        </div>
+                        <div class="col-md-12 pt-4 pb-5">
+                            <div class="contact_formnav">
+                                <nav class="nav">
+                                    <a class="nav-link active" href="#" id="identite" onclick="changeIdentiteClass();return false;">Identité</a>
+                                    <a class="nav-link" href="#" id="entreprise" onclick="changeEntrepriseClass();return false;">Entreprises</a>
+                                    <a class="nav-link" href="#" id="contact" onclick="changeContactClass();return false;">Contacts</a>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-12">
+                                <!--       data tables-->
+
+                                <div class="hero-callout">
+                                    <div id="example_wrapper" class="dataTables_wrapper">
+
+                                        <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3"
+                                               style="width: 100%;" role="grid" aria-describedby="example_info">
+                                            <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                    style="width: 20px;" aria-sort="ascending"
+                                                    aria-label="Name: activate to sort column descending">
+                                                    <div class="custom-control custom-checkbox ">
+                                                        <input type="checkbox" class="custom-control-input" id="check-all">
+                                                        <label class="custom-control-label" for="check-all"></label>
+                                                    </div>
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                    style="width: 190px;" aria-label="Position: activate to sort column ascending">Nom
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                    style="width: 80px;" aria-label="Office: activate to sort column ascending">Activité
+                                                </th>
+
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                    style="width: 80px;" aria-label="Start date: activate to sort column ascending">CP
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                    style="width: 100px;" aria-label="Start date: activate to sort column ascending">Ville
+                                                </th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                    style="width: 120px;" aria-sort="ascending"
+                                                    aria-label="Name: activate to sort column descending">Responsable de compte
+                                                </th>
+                                                <th class="sorting enterprise_status_th" tabindex="0" aria-controls="example" rowspan="1"
+                                                    colspan="1" style="width: 80px;"
+                                                    aria-label="Start date: activate to sort column ascending">Statut
+                                                </th>
+                                                <th class="dt-body-right sorting enterprise_contact_th" tabindex="0" aria-controls="example"
+                                                    rowspan="1" colspan="1" style="width: 100px;"
+                                                    aria-label="Age: activate to sort column ascending">Contacts
+                                                </th>
+                                                <th class="sorting phone_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                    style="width: 50px;" aria-label="Start date: activate to sort column ascending"><i
+                                                            class="fas fa-ellipsis-h"></i></th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for company in companys %}
+                                                <tr role="row" class="odd">
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox ml8">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                   id="company-check-{{ company.id }}" value="{{ company.id }}"
+                                                                   name="company-check[]">
+                                                            <label class="custom-control-label"
+                                                                   for="company-check-{{ company.id }}"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="logo-name">
+                                                            <div class="company_img">
+                                                                {% if company.imgCompany != null %}
+                                                                    <img src="../../../uploads/company-img/{{company.imgCompany}}" alt="Logo {{ company.companyName }}"/>
+                                                                {% else %}
+                                                                    <img src="{{ asset("img/circle.png") }}" alt="Logo {{ company.companyName }}"/>
+                                                                {% endif %}
+                                                            </div>
+                                                            <a href="/admin/company/edit/{{ company.id }}">{{ company.companyName }}</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ company.SecteurActiviteId }}</td>
+                                                    <td>{{ company.companyPostcode }}</td>
+                                                    <td>{{ company.companyCity }}</td>
+                                                    <td>{{ company.UserId }}</td>
+                                                    <td>
+                                                        <div class=" enterprise_table_status">
+                                                            {{ company.companyStatus }}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        {% if company.getContacts()|length > 0 %}
+                                                            {{ company.getContacts()|length }}
+                                                        {% else %}
+                                                            0
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="table_phone"><a href="#">@</a> <a href="#"><i class="fas fa-phone"></i></a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <!-- tables-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row rounded border classdesesmorts" id="idducul3">
+                        <div class="col-md-12">
+                            <h3 class="contact2_saisieh3 pt-4 ml-5">Saisie d'un nouveau collaborateur</h3>
+                        </div>
+                        <div class="col-md-12 pt-4 pb-5">
+                            <div class="contact_formnav">
+                                <nav class="nav">
+                                    <a class="nav-link active" href="#" id="identite" onclick="changeIdentiteClass();return false;">Identité</a>
+                                    <a class="nav-link" href="#" id="entreprise" onclick="changeEntrepriseClass();return false;">Entreprises</a>
+                                    <a class="nav-link" href="#" id="contact" onclick="changeContactClass();return false;">Contacts</a>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-12">
+                                <!--       data tables-->
+
+
+
+                                <div class="hero-callout">
+                                    <div id="example_wrapper" class="dataTables_wrapper">
+
+                                        <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3" style="width: 100%;" role="grid" aria-describedby="example_info">
+                                            <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                                    <div class="custom-control custom-checkbox ">
+                                                        <input type="checkbox" class="custom-control-input" id="check-all">
+                                                        <label class="custom-control-label" for="check-all"></label>
+                                                    </div>
+                                                </th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Prénom</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Position: activate to sort column ascending">Nom</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Office: activate to sort column ascending">Entreprise</th>
+                                                <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Age: activate to sort column ascending">Fonction</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Email</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for contact in contacts %}
+                                                <tr role="row" class="odd">
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox ml8">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck{{ contact.id }}" value="{{ contact.id }}" name="contact-check[]">
+                                                            <label class="custom-control-label" for="customCheck{{ contact.id }}"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td> <a href="/admin/contact/edit/{{ contact.id }}"><img class="img-fluid tableinsideimg" src="img/bohdan.png" alt="">{{ contact.contactPrenom }}</a></td>
+                                                    <td>{{ contact.contactNom }}</td>
+                                                    <td>{{ contact.CompanyId }}</td>
+                                                    <td>{{ contact.contactMetier }}</td>
+                                                    <td>{{ contact.contactEmail }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     {{ form_end(form) }}
+    <script type="text/javascript">
+        function changeIdentiteClass() {
+            var elem = document.getElementById("idducul1");
+            elem.classList.remove("classdesesmorts");
+            var elem2 = document.getElementById("idducul2");
+            elem2.classList.add("classdesesmorts");
+            var elem3 = document.getElementById("idducul3");
+            elem3.classList.add("classdesesmorts");
+        }
 
+        function changeEntrepriseClass() {
+            var elem = document.getElementById("idducul1");
+            elem.classList.add("classdesesmorts");
+            var elem2 = document.getElementById("idducul2");
+            elem2.classList.remove("classdesesmorts");
+            var elem3 = document.getElementById("idducul3");
+            elem3.classList.add("classdesesmorts");
+        }
+
+        function changeContactClass() {
+            var elem = document.getElementById("idducul1");
+            elem.classList.add("classdesesmorts");
+            var elem2 = document.getElementById("idducul2");
+            elem2.classList.add("classdesesmorts");
+            var elem3 = document.getElementById("idducul3");
+            elem3.classList.remove("classdesesmorts");
+        }
+    </script>
 {% endblock %}
