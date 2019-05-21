@@ -237,6 +237,7 @@
             {% if onglet_password %}
                 $( ".password" ).trigger( "click" );
             {% endif %}
+            $('#profile_user_code').attr('readonly', true);
         });
     </script>
 {% endblock %}
