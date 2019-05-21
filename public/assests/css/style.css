@@ -399,6 +399,7 @@ body {
     border-radius: 12px;
 }
 
+
 .enterprise_status_th {
     text-align: center;
 }
@@ -472,6 +473,30 @@ body {
 
 .border_right {
     border-left: 1px solid gray;
+}
+
+/*................*/
+/*operation*/
+.operation_table_status {
+    text-align: center;
+    background: #00B900;
+    color: white;
+    padding: 2px 0px;
+    width: 100px;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+
+/*................*/
+/*operation*/
+.operation_table_status2 {
+    text-align: center;
+    background: red;
+    color: white;
+    padding: 2px 0px;
+    width: 100px;
+    margin: 0 auto;
+    border-radius: 12px;
 }
 
 .operations_mises_td {
@@ -1633,19 +1658,3 @@ div.dataTables_paginate {
         flex: 0 0 50%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

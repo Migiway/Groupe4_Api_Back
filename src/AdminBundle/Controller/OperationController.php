@@ -55,7 +55,7 @@ class OperationController extends AbstractController
             $obj = new Operation();
         }
 
-        $form = $this->createForm(\App\AdminBundle\Form\OperationType::class, $obj);
+        $form = $this->createForm(OperationType::class, $obj);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

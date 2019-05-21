@@ -31,13 +31,16 @@
                                 <div class="col-md-6">
                                     <div class="row form_right_active_text">
                                         <div class="col-md-3"></div>
-                                        <div class="col-md-2 text-right mt-3"><span> à jour </span></div>
-                                        <div class="col-md-4 p-0 mt-3"><span>Dernière mise à jour le  12/12/2018</span>
+                                        <div class="col-md-2 text-right mt-3 hide"><span> à jour </span></div>
+                                        <div class="col-md-4 p-0 mt-3"><span>Créée le {{ form_row.operationCree|date('d-m-Y') }}</span>
                                         </div>
                                         <div class="col-md-3 mt-3">
                                             <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitches">
-                                                <label class="custom-control-label" for="customSwitches"></label>
+                                                {#                                                <input type="checkbox" class="custom-control-input" id="customSwitches">#}
+                                                {{ form_widget(form.operation_statut) }}
+                                                {{ form_errors(form.operation_statut) }}
+
+                                                {#                                                <label class="custom-control-label" for="customSwitches"></label>#}
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +55,7 @@
                                             <nav class="nav">
                                                 <a class="nav-link active" href="#">Informations</a>
                                                 <a class="nav-link" href="#">Paramétrage</a>
-                                                <a class="nav-link" href="#">Contacts ciblés 
+                                                <a class="nav-link" href="#">Contacts ciblés
                                                     <span class="enterprise3_form_a"> 3 </span>
                                                 </a>
                                                 <a class="nav-link " href="#">Résultats</a>
@@ -60,14 +63,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="enterprise_table_status">CLIENT</div>
-                                </div>
+                                {#                                <div class="col-md-2">#}
+                                {#                                    <div class="enterprise_table_status">CLIENT</div>#}
+                                {#                                </div>#}
                             </div>
-                        </div>                        
+                        </div>
                         <div class="col-md-12 mb-5">
-                            <div class="row">                                
-                                <div class="col-md-12">                                    
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="row form_client">
                                         <div class="col-md-6">
                                             <div class="row pt-3 from_single_input">
@@ -87,12 +90,12 @@
                                                     {{ form_widget(form.operation_name) }}
                                                     {{ form_errors(form.operation_name) }}
                                                 </div>
-                                            </div>                                                
+                                            </div>
                                             <div class="row pt-3">
                                                 <div class="col-md-5 form_text">
                                                     <p>Objet du e-mail</p>
                                                 </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group ">
+                                                <div class="col-md-7  form-group code_client">
                                                     {{ form_widget(form.operation_object) }}
                                                     {{ form_errors(form.operation_object) }}
                                                 </div>
@@ -101,7 +104,7 @@
                                                 <div class="col-md-5 form_text">
                                                     <p>Nb de relances auto</p>
                                                 </div>
-                                                <div class="col-md-7 input_select_main ">
+                                                <div class="col-md-7  form-group code_client">
                                                     <div class="form-group genre_select">
                                                         {{ form_widget(form.operation_relance) }}
                                                         {{ form_errors(form.operation_relance) }}
@@ -163,7 +166,7 @@
                         <div class="col-md-12 pt-5 pt200">
                             <div class="row py-4">
                                 <div class="col-md-3">
-                                    <div class="retourbutton">
+                                    <div class="retourbutton hide">
                                         <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
                                             RETOUR
                                         </button>
@@ -182,7 +185,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
