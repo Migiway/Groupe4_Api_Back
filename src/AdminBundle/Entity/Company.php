@@ -197,7 +197,6 @@ class Company
         $this->companyCreatedAt = new \DateTime;
         $this->companyUpdatedAt = new \DateTime;
         $this->contacts = new ArrayCollection();
-        $this->companyStatus = new ArrayCollection();
     }
 
     /**
@@ -206,14 +205,6 @@ class Company
     public function getContacts(): Collection
     {
         return $this->contacts;
-    }
-
-    /**
-     * @return Collection|Company[]
-     */
-    public function getStatusCompany(): Collection
-    {
-        return $this->companyStatus;
     }
 
     /**
