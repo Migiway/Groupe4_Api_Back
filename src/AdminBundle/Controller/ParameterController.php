@@ -171,6 +171,15 @@ class ParameterController extends AbstractController
         return $this->render('bodycolor/addcolor.html.twig',
             ['Color' => $col]);
     }
+    /**
+     * @Route("/bg", name="bg")
+     */
+    public function bg()
+    {
+        $newcolor = $this->getDoctrine()->getRepository(Colors::class)->find(1);
+        return $this->render('bodycolor/bg.html.twig',
+            ['New' => $newcolor]);
+    }
 
     /**
      * @Route ("/new-company-CA")

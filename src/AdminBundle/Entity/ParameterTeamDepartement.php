@@ -19,11 +19,16 @@ class ParameterTeamDepartement
      */
     private $id;
 
-     /**
+    /**
      * @ORM\Column(type="string", length=255, name="libelle")
      * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $libelle;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\User", mappedBy="departement")
+     */
+    private $users;
 
     public function getId(): ?int
     {
@@ -43,6 +48,27 @@ class ParameterTeamDepartement
     public function setLibelle(?string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user)
+    {
+        if (!$this->users->contains($user))
+        {
+            $this->users[] = $user;
+            $user->setDepartement($this);
+        }
 
         return $this;
     }

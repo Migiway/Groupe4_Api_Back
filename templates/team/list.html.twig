@@ -39,7 +39,7 @@
                             <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Prénom</th>
                             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Position: activate to sort column ascending">Nom</th>
                             <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Age: activate to sort column ascending">Fonction</th>
-                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Zoneaffectée</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Zone affectée</th>
                             <th class="sorting commerciale_enterprise_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Office: activate to sort column ascending">Entreprise</th>
                             <th class="sorting commerciale_contact_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Contacts</th>
                             <th class="sorting commerciale_score_th" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 100px;" aria-label="Start date: activate to sort column ascending">Score</th>
@@ -87,7 +87,7 @@
                             <td><a href="/admin/user/edit/{{ user.id }}">{{ user.userFirstName }}</a></td>
                             <td>{{ user.userLastName }}</td>
                             <td>{{ user.role.libelle }}</td>
-                            <td>{{ user.area.activityArea }}</td>
+                            <td>{{ user.departement.libelle }}</td>
                             <td>
                                 <div class="commerciale_enterprise_td">
                                     {% if user.getCompanies()|length > 0 %}
@@ -99,8 +99,8 @@
                             </td>
                             <td>
                                 <div class="enterprise_contact_td">
-                                    {% if user.getCompanies()|length <= 0 %}
-                                        {{ user.getCompanies()|length }}
+                                    {% if user.getContasts()|length <= 0 %}
+                                        {{ user.getContacts()|length }}
                                     {% else %}
                                         0
                                     {% endif %}

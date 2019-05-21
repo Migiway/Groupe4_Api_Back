@@ -3,6 +3,7 @@
 namespace App\AdminBundle\Form;
 
 use App\AdminBundle\Entity\ActivityArea;
+use App\AdminBundle\Entity\ParameterTeamDepartement;
 use App\AdminBundle\Entity\Role;
 use App\AdminBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
@@ -53,10 +54,15 @@ class UserType extends AbstractType
             ->add('user_twitter', TextType::class, array('label' => 'Profile Twitter : '))
             ->add('user_email', TextType::class, array('label' => 'Email : '))
             ->add('user_password', TextType::class, array('label' => 'Mot de passe : '))
-            ->add('area', EntityType::class, [
-                'class' => ActivityArea::class,
-                'choice_label' => 'activity_area',
+            ->add('departement', EntityType::class, [
+                'class' => ParameterTeamDepartement::class,
+                'choice_label' => 'libelle',
                 "label" => "Zone affectée : "
+            ])
+            ->add('responsable', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'userLastName',
+                "label" => "Responsable n+1 : "
             ])
             ->add('user_function', TextType::class, array('label' => 'Fonction : '))
             ->add('role', EntityType::class, [

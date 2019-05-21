@@ -132,6 +132,11 @@ class User implements UserInterface, \Serializable
     private $operations;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Contact", mappedBy="user_id")
+     */
+    private $contacts;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Parameter", mappedBy="param_user")
      */
     private $parameters;
@@ -147,9 +152,19 @@ class User implements UserInterface, \Serializable
     private $role;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ActivityArea", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterTeamDepartement", inversedBy="users")
      */
-    private $area;
+    private $departement;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\User", mappedBy="responsable")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="users")
+     */
+    private $responsable;
 
     /**
      * @ORM\OneToMany(targetEntity="App\AdminBundle\Entity\Operation", mappedBy="operation_author")
@@ -195,6 +210,8 @@ class User implements UserInterface, \Serializable
         $this->operations = new ArrayCollection();
         $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
+        $this->users = new ArrayCollection();
         $this->author = new ArrayCollection();
         $this->user_createdAt = new \DateTime;
         $this->user_updateAt = new \DateTime;
@@ -421,6 +438,8 @@ class User implements UserInterface, \Serializable
             $this->operations[] = $operation;
             $operation->setUserId($this);
         }
+
+        return $this;
     }
 
     /**
@@ -433,9 +452,17 @@ class User implements UserInterface, \Serializable
 
     public function addCompany(Company $company): self
     {
-        if (!$this->companies->contains($company)) {
+        if (is_null($this->companies))
+        {
             $this->companies[] = $company;
             $company->setUserId($this);
+        }
+        else
+        {
+            if (!$this->companies->contains($company)) {
+                $this->companies[] = $company;
+                $company->setUserId($this);
+            }
         }
 
         return $this;
@@ -534,18 +561,6 @@ class User implements UserInterface, \Serializable
     public function setRole(?Role $role): self
     {
         $this->role = $role;
-
-        return $this;
-    }
-
-    public function getArea(): ?ActivityArea
-    {
-        return $this->area;
-    }
-
-    public function setArea(?ActivityArea $area): self
-    {
-        $this->area = $area;
 
         return $this;
     }
@@ -732,5 +747,65 @@ class User implements UserInterface, \Serializable
             $this->user_email,
             $this->id
             ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public function getDepartement()
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(ParameterTeamDepartement $departement)
+    {
+        return $this->departement = $departement;
+    }
+
+    public function getResponsable()
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(User $user)
+    {
+        return $this->responsable = $user;
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user)
+    {
+        if (!$this->users->contains($user))
+        {
+            $this->users[] = $user;
+            $user->setResponsable($this);
+        }
+
+        return $this;
+    }
+
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (is_null($this->contacts))
+        {
+            $this->contacts[] = $contact;
+            $contact->setCommercial($this);
+        }
+        else
+        {
+            if (!$this->contacts->contains($contact))
+            $this->contacts[] = $contact;
+            $contact->setCommercial($this);
+        }
+        /*$this->contacts->add($contact);
+        $contact->setCommercial($this);*/
+
+        return $this;
     }
 }

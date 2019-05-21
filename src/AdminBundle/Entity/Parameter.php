@@ -170,7 +170,6 @@ class Parameter
         $this->imgParameter = $imgParameter;
 
         return $this;
-
     }
 
     /**
