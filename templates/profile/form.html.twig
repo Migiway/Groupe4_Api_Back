@@ -30,16 +30,26 @@
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                                     <div class="contact_userimg">
                                         {% if app.user.imgUrl != null %}
-                                            <img  class="img-fluid" src="../../uploads/user-img/{{app.user.imgUrl}}" alt="your image" />
+                                            <img class="img-fluid" src="../../uploads/user-img/{{ app.user.imgUrl }}"
+                                                 alt="your image"/>
                                         {% else %}
-                                            <img  class="img-fluid" src="{{ asset("img/circle.png") }}" alt="your image" />
+                                            <img class="img-fluid" src="{{ asset("img/circle.png") }}"
+                                                 alt="your image"/>
                                         {% endif %}
                                     </div>
                                     <div class="userimg_label2">
                                         {{ form_widget(form.userFile) }}
                                         {{ form_errors(form.userFile) }}
                                     </div>
+{#                                    <div class="userimg_label2">#}
+{#                                        <input type="file" name="file-1[]" id="imgInp"#}
+{#                                               class="uploadFile custom-file-input inputfile inputfile-1 "#}
+{#                                               data-multiple-caption="{count} files selected" multiple="">#}
+{#                                        <label class="userimg_label" for="imgInp"><i class="fas fa-sync"></i> <span>Photo</span></label>#}
+{#                                    </div>#}
                                 </div>
+
+
                                 <div class="col-md-10">
                                     <div class="row form_client">
                                         <div class="col-md-6">
@@ -83,17 +93,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Statut</p>
-                                                </div>
-                                                <div class="col-md-7 input_border_left input_select_main ">
-                                                    <div class="form-group matier_select">
-                                                        {{ form_widget(form.user_status) }}
-                                                        {{ form_errors(form.user_status) }}
-                                                    </div>
-                                                </div>
-                                            </div>
+{#                                            <div class="row pt-3">#}
+{#                                                <div class="col-md-5 form_text">#}
+{#                                                    <p>Statut</p>#}
+{#                                                </div>#}
+{#                                                <div class="col-md-7 input_border_left input_select_main ">#}
+{#                                                    <div class="form-group matier_select">#}
+{#                                                        {{ form_widget(form.user_status) }}#}
+{#                                                        {{ form_errors(form.user_status) }}#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
                                         </div>
                                         <div class="col-md-6 ">
                                             <div class="row hide ">
@@ -140,9 +150,10 @@
                         <div class="col-md-12 pt-5">
                             <div class="row py-4">
                                 <div class="col-md-3">
-                                    <div class="retourbutton">
-                                        <a href="/admin/company/list">
-                                            <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
+                                    <div class="retourbutton hide">
+                                        <a href="/admin/dashboard">
+                                            <button type="button" class="btn btn-primary"><i
+                                                        class="fas fa-arrow-left"></i>
                                                 RETOUR
                                             </button>
                                         </a>
@@ -152,7 +163,7 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-3">
                                     <div class="annulerbutton">
-                                        <a href="/admin/company/list">
+                                        <a href="/admin/dashboard">
                                             <button type="button" class="btn btn-primary">ANNULER</button>
                                         </a>
                                     </div>
@@ -192,7 +203,8 @@
                                 <div class="col-md-3">
                                     <div class="retourbutton">
                                         <a href="#">
-                                            <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
+                                            <button type="button" class="btn btn-primary"><i
+                                                        class="fas fa-arrow-left"></i>
                                                 RETOUR
                                             </button>
                                         </a>
@@ -220,7 +232,7 @@
             </div>
         </div>
     </div>
-     <script>
+    <script>
         $(function () {
             $('.identite').click(function () {
                 $('.block-identite').removeClass('hide');
@@ -235,7 +247,7 @@
                 $('.password').addClass('active')
             });
             {% if onglet_password %}
-                $( ".password" ).trigger( "click" );
+            $(".password").trigger("click");
             {% endif %}
             $('#profile_user_code').attr('readonly', true);
         });

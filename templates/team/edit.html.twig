@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4 p-0">
                 <div class="contacts1_text">
-                    <h3 class="contact1h3">Équipe commerciale</h3>
+                <h3 class="contact1h3">Équipe commerciale</h3>
                 </div>
             </div>
             <div class="col-md-5"></div>
@@ -30,13 +30,24 @@
                                 <div class="col-md-6">
                                     <div class="row form_right_active_text">
                                         <div class="col-md-3"></div>
-                                        <div class="col-md-2 text-right mt-3"><span> à jour </span></div>
-                                        <div class="col-md-4 p-0 mt-3"><span>Dernière mise à jour le {{ user.user_update_at }}</span>
+                                        <div class="col-md-2 text-right mt-3"><span> </span></div>
+                                        <div class="col-md-2 p-0 mt-3" style="margin-left: 2rem"><span>Statut :
+                                            {% if user.userStatus ==1 %}
+                                                Activé
+                                            {% else %}
+                                                Désactivé
+                                            {% endif %}
+                                            </span>
                                         </div>
                                         <div class="col-md-3 mt-3">
                                             <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitches">
-                                                <label class="custom-control-label" for="customSwitches"></label>
+                                                {% if user.userStatus == 1 %}
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitches" checked>
+                                                    <label class="custom-control-label" for="customSwitches"></label>
+                                                {% else %}
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitches" >
+                                                    <label class="custom-control-label" for="customSwitches"></label>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +152,7 @@
                                             </div>
                                             <div class="row pt-3 from_single_input">
                                                 <div class="col-md-5 form_text">
-                                                    <p>Date d'arrivé/départ</p>
+                                                    <p>Date d'arrivé</p>
                                                 </div>
                                                 <div class="col-md-7  form-group code_client">
                                                     {{ form_widget(form.user_arrival_date) }}
@@ -159,7 +170,7 @@
                                             </div>
                                             <div class="row pt-3 from_single_input">
                                                 <div class="col-md-5 form_text">
-                                                    <p></p>
+                                                    <p>Date de départ</p>
                                                 </div>
 
                                                 <div class="col-md-7  form-group code_client">
@@ -235,8 +246,8 @@
                                                     <p>Mot de passe</p>
                                                 </div>
                                                 <div class="col-md-7  phone_input input-group ">
-                                                    {{ form_widget(form.user_password) }}
-                                                    {{ form_errors(form.user_password) }}
+                                                    {{ form_widget(form.user_plain_password) }}
+                                                    {{ form_errors(form.user_plain_password) }}
                                                     <span class="input-group-addon phone_input_position2"><i
                                                                 class="fas fa-lock "></i></span>
                                                 </div>
@@ -332,12 +343,12 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-3 pr-0">
                                     <div class="supprimebutton">
-                                        <button type="button" class="btn btn-primary">SUPPRIMER</button>
+                                        <button type="button" class="btn btn-primary hide">SUPPRIMER</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="demandbutton">
-                                        <button type="button" class="btn btn-primary">DEMANDE DE MISE À JOUR</button>
+                                        <button type="button" class="btn btn-primary hide">DEMANDE DE MISE À JOUR</button>
                                     </div>
                                 </div>
                                 <div class="col-md-2">

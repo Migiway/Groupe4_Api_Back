@@ -63,7 +63,7 @@ class SecurityController extends AbstractController
             if (!$user) {
                 $this->get('session')->getFlashBag()->add(
                     'ALERT_ERROR',
-                    'Aucun email associé'
+                    'Email non existant'
                 );
 
                 return $this->redirectToRoute('app_forgot_password');

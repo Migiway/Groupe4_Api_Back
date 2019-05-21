@@ -78,6 +78,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\NotBlank
      */
     private $user_dob;
 
@@ -233,7 +234,7 @@ class User implements UserInterface, \Serializable
         return $this->user_firstName . ' ' . $this->user_lastName;
     }
 
-    public function setUserLastName(string $user_lastName): self
+    public function setUserLastName(?string $user_lastName): self
     {
         $this->user_lastName = $user_lastName;
 
@@ -245,7 +246,7 @@ class User implements UserInterface, \Serializable
         return $this->user_firstName;
     }
 
-    public function setUserFirstName(string $user_firstName): self
+    public function setUserFirstName(?string $user_firstName): self
     {
         $this->user_firstName = $user_firstName;
 
@@ -269,7 +270,7 @@ class User implements UserInterface, \Serializable
         return $this->user_email;
     }
 
-    public function setUserEmail(string $user_email): self
+    public function setUserEmail(?string $user_email): self
     {
         $this->user_email = $user_email;
 
@@ -281,7 +282,7 @@ class User implements UserInterface, \Serializable
         return $this->user_code;
     }
 
-    public function setUserCode(int $user_code): self
+    public function setUserCode(?int $user_code): self
     {
         $this->user_code = $user_code;
 
@@ -341,7 +342,7 @@ class User implements UserInterface, \Serializable
         return $this->user_dob;
     }
 
-    public function setUserDob(\DateTimeInterface $user_dob): self
+    public function setUserDob(?\DateTimeInterface $user_dob): self
     {
         $this->user_dob = $user_dob;
 
@@ -808,4 +809,19 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+    public function setUserPlainPassword(?string $password) :self
+    {
+        if (!is_null($password))
+        {
+            $this->setUserPassword($password);
+        }
+        return $this;
+    }
+
+    public function getUserPlainPassword()
+    {
+        return null;
+    }
+
 }
