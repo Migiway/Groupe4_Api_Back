@@ -166,7 +166,7 @@
             <!--            table-->
             <div class="col-md-6">
                 <div class="dashboard2table">
-                    <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3" style="width: 100%;" role="grid" aria-describedby="example_info">
+                    <table id="dashboard-table" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3" style="width: 100%;" role="grid" aria-describedby="example_info">
                         <thead>
 
                         <tr role="row">
@@ -333,18 +333,34 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <!--  data_tables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
+    <script src="{{ asset("assests/js/jquery-3.3.1.min.js") }}"></script>
 <!--   map-->
 <!--  tgather-->
-<script src="asset/tgather/tether.js"></script>
-<script src="asset/maps/jquery.vmap.js"></script>
+<!-- <script src="assets/tgather/tether.js"></script>
+<script src="assets/maps/jquery.vmap.js"></script> -->
 <!--  <script src="asset/maps/jquery.vmap.min.js"></script>-->
-<script src="asset/maps/maps/jquery.vmap.world.js"></script>
+<!-- <script src="assets/maps/maps/jquery.vmap.france.js"></script> -->
 <!--  <script src="asset/maps/maps/jquery.vmap.usa.js" ></script>-->
-<script src="asset/js/map.js"></script>
-<!--  <script src="asset/js/app.js"></script>-->
+    <!-- <script src="assets/js/map.js"></script> -->
+    <!--  <script src="asset/js/app.js"></script>-->
+    <script src="{{ asset("assests/js/tether.js") }}"></script>
+    <script src="{{ asset("assests/js/jquery.vmap.js") }}"></script>
+    <script src="{{ asset("assests/js/jquery.vmap.france.js") }}"></script>
+    <script src="{{ asset("assests/js/map.js") }}"></script>
+    <script src="{{ asset("assests/js/loading-bar.js") }}"></script>
+    <script>
+        jQuery('#vmap').vectorMap({
+            map: 'france_fr',
+            backgroundColor: null,
+            color: '#7E80E7',
+            hoverOpacity: 0.7,
+            selectedColor: '#666666',
+            enableZoom: true,
+            showTooltip: true,
+            // values: sample_data,
 
-<script src="asset/loading-bar/loading-bar.js" ></script>
+        });
+    </script>
 
 
 
@@ -355,7 +371,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#dashboard-table').DataTable();
     });
 </script>
 
