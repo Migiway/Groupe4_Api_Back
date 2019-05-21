@@ -166,7 +166,6 @@ class Company
 
     /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\ParameterCompanySecteur", inversedBy="company")
-     * @Assert\NotBlank(message = "Ce champ doit être remplit")
      */
     private $secteur_activite_id;
 
