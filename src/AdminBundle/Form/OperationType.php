@@ -33,13 +33,30 @@ class OperationType extends AbstractType
                 },
                 "label" => "Auteur"
             ])
-            ->add('operation_code', TextType::class, array('label' => 'Code opération :'))
-            ->add('operation_name', TextType::class, array('label' => 'Nom :'))
-            ->add('operation_object', TextType::class, array('label' => 'Objet du mail :'))
-            ->add('operation_relance', IntegerType::class, array('label' => 'Nb relance auto :'))
-            ->add('operation_envoi_date', DateType::class, ['widget' => 'single_text','label' => 'Date d\'envoi'])
-            ->add('operation_date_cloture', DateType::class, ['widget' => 'single_text','label' => 'Date de cloture'])
-            ->add('operation_note', TextareaType::class, array('label' => 'Note:'))
+            ->add('operation_code', TextType::class, array('label' => 'Code opération :',
+                'required' => false))
+            ->add('operation_name', TextType::class, array('label' => 'Nom :',
+                'required' => false))
+            ->add('operation_object', TextType::class, array('label' => 'Objet du mail :',
+                'required' => false))
+            ->add('operation_relance', IntegerType::class, array('label' => 'Nb relance auto :',
+                'required' => false))
+            ->add('operation_envoi_date', DateType::class, ['widget' => 'single_text', 'label' => 'Date d\'envoi',
+                'required' => false])
+            ->add('operation_date_cloture', DateType::class, ['widget' => 'single_text', 'label' => 'Date de cloture',
+                'required' => false])
+            ->add('operation_note', TextareaType::class, array('label' => 'Note:',
+                'required' => false))
+            ->add('operation_statut', CheckboxType::class, [
+                'label' => false,
+                'label_attr' => array(
+                    'class' => 'custom-control-label'
+                ),
+                'attr' => array(
+                    'class' => 'custom-control-input'
+                ),
+                'required' => false
+            ])
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn btn-primary'],
                 'label' => 'Enregistrer'));

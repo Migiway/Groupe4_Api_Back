@@ -40,7 +40,6 @@ class Operation
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      */
     private $operation_object;
 
@@ -121,6 +120,11 @@ class Operation
     private $operation_offresCommerciales;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $operation_statut;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="author")
      */
     private $user_id;
@@ -156,6 +160,11 @@ class Operation
     private $parameters;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $operation_cree;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\AdminBundle\Entity\User", inversedBy="author")
      */
     private $operation_author;
@@ -165,6 +174,7 @@ class Operation
         $this->participates = new ArrayCollection();
         $this->parameters = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->operation_cree = new \DateTime;
     }
 
     public function getId(): ?int
@@ -189,7 +199,7 @@ class Operation
         return $this->operation_object;
     }
 
-    public function setOperationObject(string $operation_object): self
+    public function setOperationObject(?string $operation_object): self
     {
         $this->operation_object = $operation_object;
 
@@ -199,6 +209,18 @@ class Operation
     public function getOperationCode(): ?string
     {
         return $this->operation_code;
+    }
+
+    public function getOperationCree(): ?\DateTimeInterface
+    {
+        return $this->operation_cree;
+    }
+
+    public function setOperationCree(?\DateTimeInterface $operation_cree): self
+    {
+        $this->operation_cree = $operation_cree;
+
+        return $this;
     }
 
     public function setOperationCode(string $operation_code): self
@@ -225,7 +247,7 @@ class Operation
         return $this->operation_envoiDate;
     }
 
-    public function setOperationEnvoiDate(\DateTimeInterface $operation_envoiDate): self
+    public function setOperationEnvoiDate(?\DateTimeInterface $operation_envoiDate): self
     {
         $this->operation_envoiDate = $operation_envoiDate;
 
@@ -432,6 +454,18 @@ class Operation
     public function setOperationOffresCommerciales(?bool $operation_offresCommerciales): self
     {
         $this->operation_offresCommerciales = $operation_offresCommerciales;
+
+        return $this;
+    }
+
+    public function getOperationStatut(): ?bool
+    {
+        return $this->operation_statut;
+    }
+
+    public function setOperationStatut(?bool $operation_statut): self
+    {
+        $this->operation_statut = $operation_statut;
 
         return $this;
     }

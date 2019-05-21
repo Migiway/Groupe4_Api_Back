@@ -43,100 +43,100 @@
                     <div class="col-md-12 mb-5">
                         <div class="row">
                             <div class="col-md-12">
-                                    <div class="row form_client">
-                                        <div class="col-md-6">
-                                            <div class="row pt-3 from_single_input">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Code entreprise</p>
-                                                </div>
-                                                <div class="col-md-7 input_border_left form-group code_client">
-                                                    {{ form_widget(form.operation_code) }}
-                                                    {{ form_errors(form.operation_code) }}
-                                                </div>
+                                <div class="row form_client">
+                                    <div class="col-md-6">
+                                        <div class="row pt-3 from_single_input">
+                                            <div class="col-md-5 form_text">
+                                                <p>Code entreprise</p>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Nom de l'opération </p>
-                                                </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                    {{ form_widget(form.operation_name) }}
-                                                    {{ form_errors(form.operation_name) }}
-                                                </div>
-                                            </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Objet du e-mail</p>
-                                                </div>
-                                                <div class="col-md-7 input_border_left prenom_input form-group ">
-                                                    {{ form_widget(form.operation_object) }}
-                                                    {{ form_errors(form.operation_object) }}
-                                                </div>
-                                            </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Nb de relances auto</p>
-                                                </div>
-                                                <div class="col-md-7 input_select_main input_border_left">
-                                                    {{ form_widget(form.operation_relance) }}
-                                                    {{ form_errors(form.operation_relance) }}
-                                                </div>
-                                            </div>
-                                            <div class="row pt-3 from_single_input">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Date d'envoi</p>
-                                                </div>
-                                                <div class="col-md-7  form-group code_client">
-                                                    {{ form_widget(form.operation_envoi_date) }}
-                                                    {{ form_errors(form.operation_envoi_date) }}
-                                                </div>
-                                                <script>
-                                                    let today = new Date().toISOString().substr(0, 10);
-                                                    document.querySelector("#today").value = today;
-
-                                                    // or...
-
-                                                    document.querySelector("#today").valueAsDate = new Date();</script>
-                                            </div>
-                                            <div class="row pt-3 from_single_input">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Date de clotûre</p>
-                                                </div>
-                                                <div class="col-md-7  form-group code_client">
-                                                    {{ form_widget(form.operation_date_cloture) }}
-                                                    {{ form_errors(form.operation_date_cloture) }}
-                                                </div>
+                                            <div class="col-md-7 input_border_left form-group code_client">
+                                                {{ form_widget(form.operation_code) }}
+                                                {{ form_errors(form.operation_code) }}
                                             </div>
                                         </div>
-                                        <div class="col-md-6 ">
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Auteur</p>
-                                                </div>
-                                                <div class="col-md-7  input_select_main ">
-                                                    <div class="form-group matier_select">
-                                                        {{ form_widget(form.user_id) }}
-                                                        {{ form_errors(form.user_id) }}
-                                                    </div>
-                                                </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Nom de l'opération </p>
                                             </div>
-                                            <div class="row pt-3">
-                                                <div class="col-md-5 form_text">
-                                                    <p>Remarques</p>
-                                                </div>
-                                                <div class="col-md-7 contact_form_textarea  form-group ">
-                                                    {{ form_widget(form.operation_note) }}
-                                                    {{ form_errors(form.operation_note) }}
-                                                </div>
+                                            <div class="col-md-7 input_border_left prenom_input form-group ">
+                                                {{ form_widget(form.operation_name) }}
+                                                {{ form_errors(form.operation_name) }}
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Objet du e-mail</p>
+                                            </div>
+                                            <div class="col-md-7  form-group code_client">
+                                                {{ form_widget(form.operation_object) }}
+                                                {{ form_errors(form.operation_object) }}
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Nb de relances auto</p>
+                                            </div>
+                                            <div class="col-md-7  form-group code_client">
+                                                {{ form_widget(form.operation_relance) }}
+                                                {{ form_errors(form.operation_relance) }}
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3 from_single_input">
+                                            <div class="col-md-5 form_text">
+                                                <p>Date d'envoi</p>
+                                            </div>
+                                            <div class="col-md-7  form-group code_client">
+                                                {{ form_widget(form.operation_envoi_date) }}
+                                                {{ form_errors(form.operation_envoi_date) }}
+                                            </div>
+                                            <script>
+                                                let today = new Date().toISOString().substr(0, 10);
+                                                document.querySelector("#today").value = today;
+
+                                                // or...
+
+                                                document.querySelector("#today").valueAsDate = new Date();</script>
+                                        </div>
+                                        <div class="row pt-3 from_single_input">
+                                            <div class="col-md-5 form_text">
+                                                <p>Date de clotûre</p>
+                                            </div>
+                                            <div class="col-md-7  form-group code_client">
+                                                {{ form_widget(form.operation_date_cloture) }}
+                                                {{ form_errors(form.operation_date_cloture) }}
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 ">
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Auteur</p>
+                                            </div>
+                                            <div class="col-md-7  input_select_main ">
+                                                <div class="form-group matier_select">
+                                                    {{ form_widget(form.user_id) }}
+                                                    {{ form_errors(form.user_id) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-md-5 form_text">
+                                                <p>Remarques</p>
+                                            </div>
+                                            <div class="col-md-7 contact_form_textarea  form-group ">
+                                                {{ form_widget(form.operation_note) }}
+                                                {{ form_errors(form.operation_note) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 pt-5 pt200">
                         <div class="row py-4">
                             <div class="col-md-3">
-                                <div class="retourbutton">
+                                <div class="retourbutton hide">
                                     <button type="button" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
                                         RETOUR
                                     </button>
@@ -144,9 +144,14 @@
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-3"></div>
+
                             <div class="col-md-3">
                                 <div class="annulerbutton">
-                                    <button type="button" class="btn btn-primary">ANNULER</button>
+                                    <a href="/admin/operation/">
+                                        <button type="button" class="btn btn-primary"><i
+                                                    class="fas fa-arrow-left"></i> ANNULER
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-2">
