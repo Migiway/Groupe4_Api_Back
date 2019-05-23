@@ -274,7 +274,7 @@ class OperationController extends AbstractController
         foreach ($emails as $email) {
             $list[]['Email'] = $email;
         }
-var_dump($list);
+
         $emailTemplate = $this->getDoctrine()->getRepository('AdminBundle:EmailTemplate')
             ->findOneBy(array('operation' => $request->get('operationId')));
 
