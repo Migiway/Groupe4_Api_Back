@@ -67,7 +67,7 @@ class User implements UserInterface, \Serializable
     private $user_createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $user_updateAt;
 
@@ -453,13 +453,10 @@ class User implements UserInterface, \Serializable
 
     public function addCompany(Company $company): self
     {
-        if (is_null($this->companies))
-        {
+        if (is_null($this->companies)) {
             $this->companies[] = $company;
             $company->setUserId($this);
-        }
-        else
-        {
+        } else {
             if (!$this->companies->contains($company)) {
                 $this->companies[] = $company;
                 $company->setUserId($this);
@@ -777,8 +774,7 @@ class User implements UserInterface, \Serializable
 
     public function addUser(User $user)
     {
-        if (!$this->users->contains($user))
-        {
+        if (!$this->users->contains($user)) {
             $this->users[] = $user;
             $user->setResponsable($this);
         }
@@ -793,15 +789,12 @@ class User implements UserInterface, \Serializable
 
     public function addContact(Contact $contact): self
     {
-        if (is_null($this->contacts))
-        {
+        if (is_null($this->contacts)) {
             $this->contacts[] = $contact;
             $contact->setCommercial($this);
-        }
-        else
-        {
+        } else {
             if (!$this->contacts->contains($contact))
-            $this->contacts[] = $contact;
+                $this->contacts[] = $contact;
             $contact->setCommercial($this);
         }
         /*$this->contacts->add($contact);
@@ -810,10 +803,9 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function setUserPlainPassword(?string $password) :self
+    public function setUserPlainPassword(?string $password): self
     {
-        if (!is_null($password))
-        {
+        if (!is_null($password)) {
             $this->setUserPassword($password);
         }
         return $this;

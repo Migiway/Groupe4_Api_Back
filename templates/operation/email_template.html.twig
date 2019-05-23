@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-12 left_border contact1_background_col9">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <div class="contacts1_text">
+                    <h3 class="contact1h3">Email Template</h3>
+                </div>
+            </div>
+        </div>
+
+        {% include 'operation/navbar.html.twig' %}
+        
+        {{ form_start(form) }}
+        <div class="contact_form ">
+            <div class="row justify-content-center ml-0 mr-0 mb-5">
+                <div class="col-md-12 ">
+                    <div class="row rounded border">
+                        <div class="col-md-12 pt-4 pb-2"></div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row ">
+                                        <div class="col-md-3 form_text">
+                                            <p>Email Subject</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.emailSubject) }}
+                                                {{ form_errors(form.emailSubject) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3 from_single_input">
+                                        <div class="col-md-3 form_text">
+                                            <p>Upload Image</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.emailImage) }}
+                                                {{ form_errors(form.emailImage) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3 from_single_input">
+                                        <div class="col-md-3 form_text">
+                                            <p>Email Body</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.emailBody) }}
+                                                {{ form_errors(form.emailBody) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3 from_single_input">
+                                        <div class="col-md-3 form_text">
+                                            <p>Button Text</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.emailBtnText) }}
+                                                {{ form_errors(form.emailBtnText) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row ">
+                                        <div class="col-md-3 form_text">
+                                            <p>Page Title</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.pageTitle) }}
+                                                {{ form_errors(form.pageTitle) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3 from_single_input">
+                                        <div class="col-md-3 form_text">
+                                            <p>Upload Image</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.pageImage) }}
+                                                {{ form_errors(form.pageImage) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3 from_single_input">
+                                        <div class="col-md-3 form_text">
+                                            <p>Intro Title</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.pageIntroTitle) }}
+                                                {{ form_errors(form.pageIntroTitle) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3 from_single_input">
+                                        <div class="col-md-3 form_text">
+                                            <p>Intro Text</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.pageIntroText) }}
+                                                {{ form_errors(form.pageIntroText) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3 from_single_input">
+                                        <div class="col-md-3 form_text">
+                                            <p>Button Text</p>
+                                        </div>
+                                        <div class="col-md-7 input_select_main input_border_left">
+                                            <div class="form-group matier_select">
+                                                {{ form_widget(form.pageBtnTxt) }}
+                                                {{ form_errors(form.pageBtnTxt) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 pt-5">
+                            <div class="row py-4">
+                                <div class="col-md-7"></div>
+                                <div class="col-md-5">
+                                    <div class="enregisterbutton">
+                                        {{ form_widget(form.save) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (window.File && window.FileList && window.FileReader) {
+                $("#email_template_emailImage,#email_template_pageImage").on("change", function (e) {
+
+                    const fileObj = $(this);
+                    const imgPlace = fileObj.siblings('label');
+                    const file = e.target.files[0];
+                    const name = file.name;
+
+                    imgPlace.siblings(".pip").remove();
+
+                    const fileReader = new FileReader();
+                    fileReader.onload = (function () {
+                        imgPlace.html(name);
+                        const file = fileReader.result;
+
+                        $("<span class=\"pip\" style='margin-top: 15px;display: block'>" +
+                            "<img class=\"imageThumb\" style='width: 100%;height: 100px' src=\"" + file + "\"/>" +
+                            "<br/><span class=\"remove\">Remove image</span>" +
+                            "</span>").insertAfter(imgPlace);
+
+                        $(".remove").click(function () {
+                            $(this).parent().siblings("input").val('').siblings('label').html('');
+                            $(this).parent(".pip").remove();
+                        });
+                    });
+                    fileReader.readAsDataURL(file);
+
+                });
+            } else {
+                alert("Votre navigateur ne supporte pas l'API")
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -55,4 +55,14 @@ class ContactRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getEmailBySearch($field, $value)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.contact_email as email')
+            ->andWhere("c.$field = :val")
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 }
