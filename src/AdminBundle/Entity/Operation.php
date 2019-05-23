@@ -39,7 +39,7 @@ class Operation
     private $operation_code;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $operation_object;
 

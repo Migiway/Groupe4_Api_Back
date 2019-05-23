@@ -1,0 +1,190 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .cross {
+            color: white;
+            background: grey;
+            padding: 0px 5px 0px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .plus {
+            color: white;
+            background: red;
+            padding: 0px 5px 0px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="col-md-12 left_border contact1_background_col9">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <div class="contacts1_text">
+                    <h3 class="contact1h3">Send Email</h3>
+                </div>
+            </div>
+        </div>
+
+        {% for msg in app.session.flashbag.get('email_sent_true') %}
+            <div class="alert alert-success">{{ msg|raw }}</div>
+        {% endfor %}
+        {% for msg in app.session.flashbag.get('email_sent_false') %}
+            <div class="alert alert-danger">{{ msg|raw }}</div>
+        {% endfor %}
+
+        {% include 'operation/navbar.html.twig' %}
+
+        <div class="contact_form ">
+            <div class="row justify-content-center ml-0 mr-0 mb-5">
+                <div class="col-md-12 ">
+                    <div class="row rounded border">
+                        <div class="col-md-12 pt-4 pb-2"></div>
+                        <div class="col-md-12">
+                            <div class="row" id="mainFilter" style="margin-bottom: 15px">
+                                <div class="col-md-3 input_select_main ">
+                                    <div class="form-group matier_select">
+                                        <select id="filterType" class="form-control filterType">
+                                            <option value="contact">Contact</option>
+                                            <option value="company">Company</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 input_select_main">
+                                    <div class="form-group matier_select">
+                                        <select id="filterFields" class="form-control filterFields">
+                                            {{ contactsOptions|raw }}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 input_select_main ">
+                                    <input type="text" id="filterValue" class="form-control filterValue">
+                                </div>
+                                <div class="col-md-1 actionBtn" style="margin-top: 7px;">
+                                    <a href="javascript:void(0)" id="addFilter" class="plus">+</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p style="margin-top: 25px;font-weight: bold" id="resultText"></p>
+                        </div>
+
+                        <div class="col-md-12 pt-5">
+                            <div class="row py-4">
+                                <div class="col-md-7"></div>
+                                <div class="col-md-5">
+                                    <div class="enregisterbutton">
+                                        <button type="button" id="sendEmail" class="btn btn-primary btn">Envoyer le mail
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="{{ path('sendEmailList') }}" id="sendEmailForm" method="post" style="display: none">
+            <input type="hidden" name="emails" id="emails">
+            <input type="hidden" name="operationId" value="{{ operationId }}">
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            const contactsOptions = "{{ contactsOptions|raw }}";
+            const companyOptions = "{{ companyOptions|raw }}";
+            $('body').on('change', '.filterType', function () {
+                if ($(this).val() == 'contact') {
+                    $(this).closest('.row').find('.filterFields').html(contactsOptions);
+                } else {
+                    $(this).closest('.row').find('.filterFields').html(companyOptions);
+                }
+            });
+
+            $('#addFilter').click(function () {
+                const value = $.trim($('#filterValue').val());
+                if (value) {
+                    const filterType = $('#filterType');
+                    const filterFields = $('#filterFields');
+
+                    // const html = '<div class="filteredRow" style="margin-top: 15px;"> <div class="row"> <div class="col-md-3 input_select_main "> <div class="form-group"> <input type="text" value="' + filterType.find('option:selected').text() + '" class="form-control" disabled> </div> </div> <div class="col-md-4 input_select_main"> <div class="form-group"> <input type="text" value="' + filterFields.find('option:selected').text() + '" class="form-control" disabled> </div> </div> <div class="col-md-4 input_select_main "> <input type="text" value="' + value + '" class="form-control" disabled> </div> <div class="col-md-1" style="margin-top: 7px;"> <a href="javascript:void(0)" class="removeFilter cross">x</a> </div> </div> </div>';
+                    // $('#resultText').before(html);
+
+                    $.post('{{ path('getEmailList') }}', {
+                        filterType: filterType.val(),
+                        filterFields: filterFields.val(),
+                        filterValue: value,
+                    }, function (response) {
+                        if (response != 'no') {
+                            const $original = $('#mainFilter');
+                            const $cloned = $original.clone();
+
+                            const $originalSelects = $original.find('select');
+                            $cloned.find('select').each(function (index, item) {
+                                //set new select to value of old select
+                                $(item).val($originalSelects.eq(index).val()).attr('disabled', 'disabled');
+                            });
+
+                            $cloned.find('.filterValue').attr('disabled', 'disabled');
+                            $cloned.find('.actionBtn').html('<a href="javascript:void(0)" class="removeFilter cross">x</a>');
+
+                            const arr = [];
+                            const data = $.parseJSON(response);
+                            $.each(data, function (i, item) {
+                                arr.push(item.email);
+                            });
+
+                            $cloned.insertAfter('#resultText').append("<input class='emailList' type='hidden' value='" + arr + "'>");
+                            showRecipientText();
+                        } else {
+                            alert('Pas de mail trouvé avec ce filtre');
+                        }
+                    });
+                } else {
+                    alert('Entrez une valeur dans le champs');
+                }
+            });
+            $('body').on('click', '.removeFilter', function () {
+                $(this).closest('.row').remove();
+                showRecipientText();
+            });
+
+            function unique(array) {
+                return array.filter(function (el, index, arr) {
+                    return index === arr.indexOf(el);
+                });
+            }
+
+            $('#sendEmail').click(function () {
+                const emails = unique(getTotalRecipient());
+                if (emails.length > 0) {
+                    $('#emails').val(emails);
+                    $('#sendEmailForm').submit();
+                }
+            });
+
+            function getTotalRecipient() {
+                let emailArray = [];
+                $('.emailList').each(function () {
+                    const array = $(this).val().split(",");
+                    $.each(array, function (i) {
+                        emailArray.push(array[i]);
+                    });
+                });
+
+                return emailArray;
+            }
+
+            function showRecipientText() {
+                const total = getTotalRecipient().length;
+                const uniqueEmail = unique(getTotalRecipient()).length;
+                $('#resultText').html(`<span style="color: red">${uniqueEmail}</span> recipient contact after remove duplicate <span style="color: red"> ${(total - uniqueEmail)}</span>`);
+            }
+        });
+    </script>
+
+{% endblock %}

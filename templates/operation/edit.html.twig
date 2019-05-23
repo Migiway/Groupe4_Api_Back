@@ -32,7 +32,8 @@
                                     <div class="row form_right_active_text">
                                         <div class="col-md-3"></div>
                                         <div class="col-md-2 text-right mt-3 hide"><span> à jour </span></div>
-                                        <div class="col-md-4 p-0 mt-3"><span>Créée le {{ form_row.operationCree|date('d-m-Y') }}</span>
+                                        <div class="col-md-4 p-0 mt-3">
+                                            <span>Créée le {{ form_row.operationCree|date('d-m-Y') }}</span>
                                         </div>
                                         <div class="col-md-3 mt-3">
                                             <div class="custom-control custom-switch">
@@ -47,27 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 pt-4 pb-5">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <div class="contact_formnav">
-                                        <div class="contact_formnav">
-                                            <nav class="nav">
-                                                <a class="nav-link active" href="#">Informations</a>
-                                                <a class="nav-link" href="#">Paramétrage</a>
-                                                <a class="nav-link" href="#">Contacts ciblés
-                                                    <span class="enterprise3_form_a"> 3 </span>
-                                                </a>
-                                                <a class="nav-link " href="#">Résultats</a>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
-                                {#                                <div class="col-md-2">#}
-                                {#                                    <div class="enterprise_table_status">CLIENT</div>#}
-                                {#                                </div>#}
-                            </div>
-                        </div>
+                        {% include 'operation/navbar.html.twig' %}
                         <div class="col-md-12 mb-5">
                             <div class="row">
                                 <div class="col-md-12">

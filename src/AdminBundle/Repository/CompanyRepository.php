@@ -47,4 +47,14 @@ class CompanyRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getEmailBySearch($field, $value)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.companyEmail as email')
+            ->andWhere("c.$field = :val")
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 }
