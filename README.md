@@ -35,3 +35,10 @@ php bin/console d:s:u --force
 ```bash
 php bin/console s:r
 ```
+
+
+## Accès à l'application
+
+Pour avoir accès à l'application rendez vous sur ce lien dans votre navigateur : [http://localhost:8000/admin/login](http://localhost:8000/admin/login)
+
+Connectez vous pour avoir accès aux fonctionnalités de l'application
