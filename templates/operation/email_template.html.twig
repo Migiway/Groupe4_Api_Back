@@ -6,16 +6,37 @@
         <div class="row">
             <div class="col-md-12 p-0">
                 <div class="contacts1_text">
-                    <h3 class="contact1h3">Email Template</h3>
+                    <h3 class="contact1h3">Opérations</h3>
                 </div>
             </div>
         </div>
 
-        {% include 'operation/navbar.html.twig' %}
+        
         
         {{ form_start(form) }}
         <div class="contact_form ">
             <div class="row justify-content-center ml-0 mr-0 mb-5">
+                <div class="col-md-12 pt-4 pb-5">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="contact_formnav">
+                                <div class="contact_formnav">
+                                    <nav class="nav">
+                                        <a class="nav-link" href="{{ path('app_admin_operation_edit', {'id': operationId}) }}">Informations</a>
+                                        <a class="nav-link active" href="{{ path('emailTemplateAndPage', {id:operationId}) }}">Paramétrage</a>
+                                        <a class="nav-link" href="{{ path('sendEmailView', {id:operationId}) }}">Contacts ciblés
+                                            {#                                                    <span class="enterprise3_form_a"> 3 </span>#}
+                                        </a>
+                                        <a class="nav-link " href="#">Résultats</a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="enterprise_table_status">CLIENT</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12 ">
                     <div class="row rounded border">
                         <div class="col-md-12 pt-4 pb-2"></div>
@@ -24,7 +45,7 @@
                                 <div class="col-md-6">
                                     <div class="row ">
                                         <div class="col-md-3 form_text">
-                                            <p>Email Subject</p>
+                                            <p>Objet du e-mail</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -35,7 +56,7 @@
                                     </div>
                                     <div class="row pt-3 from_single_input">
                                         <div class="col-md-3 form_text">
-                                            <p>Upload Image</p>
+                                            <p>Visuel du email</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -46,7 +67,7 @@
                                     </div>
                                     <div class="row pt-3 from_single_input">
                                         <div class="col-md-3 form_text">
-                                            <p>Email Body</p>
+                                            <p>texte du email</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -57,7 +78,7 @@
                                     </div>
                                     <div class="row pt-3 from_single_input">
                                         <div class="col-md-3 form_text">
-                                            <p>Button Text</p>
+                                            <p>Libellé du bouton</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -70,7 +91,7 @@
                                 <div class="col-md-6">
                                     <div class="row ">
                                         <div class="col-md-3 form_text">
-                                            <p>Page Title</p>
+                                            <p>Titre de la page</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -81,7 +102,7 @@
                                     </div>
                                     <div class="row pt-3 from_single_input">
                                         <div class="col-md-3 form_text">
-                                            <p>Upload Image</p>
+                                            <p>Visuel de la page</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -92,7 +113,7 @@
                                     </div>
                                     <div class="row pt-3 from_single_input">
                                         <div class="col-md-3 form_text">
-                                            <p>Intro Title</p>
+                                            <p>Titre d'introduction</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -103,7 +124,7 @@
                                     </div>
                                     <div class="row pt-3 from_single_input">
                                         <div class="col-md-3 form_text">
-                                            <p>Intro Text</p>
+                                            <p>Texte d'introduction</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">
@@ -114,7 +135,7 @@
                                     </div>
                                     <div class="row pt-3 from_single_input">
                                         <div class="col-md-3 form_text">
-                                            <p>Button Text</p>
+                                            <p>Libellé du bouton</p>
                                         </div>
                                         <div class="col-md-7 input_select_main input_border_left">
                                             <div class="form-group matier_select">

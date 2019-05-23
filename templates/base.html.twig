@@ -52,6 +52,7 @@
 {% set leftcol = render(controller(
     'App\\AdminBundle\\Controller\\ParameterController::bg'
     )) %}
+    {#<p>{{ mycol }}</p>#}
 {#{{ mycol }}#}
 
 <style>
@@ -67,7 +68,9 @@
         border-color: transparent;
         border-left: 5px solid{{ mycol }};
     }
-
+    .active {
+        color: {{ mycol }} !important;
+    }
     .pagibutton button {
         float: right;
         margin-right: 25px;
@@ -107,8 +110,8 @@
     }
 
     .contact_formnav nav .active {
-        border-bottom: 3px solid #9e9898;
-        color: #9e9898;
+        border-bottom: 3px solid {{ mycol }};
+        color: {{ mycol }};
     }
 
     .contact_userimg_button a:hover {
@@ -301,6 +304,7 @@
     ul#menu li a:hover {
         color: {{ mycol }};
     }
+
 </style>
 
 {% block body %}{% endblock %}
