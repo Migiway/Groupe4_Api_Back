@@ -7,7 +7,7 @@
                         <a class="nav-link active" href="#">Informations</a>
                         <a class="nav-link" href="{{ path('emailTemplateAndPage', {id:operationId}) }}">Paramétrage</a>
                         <a class="nav-link" href="{{ path('sendEmailView', {id:operationId}) }}">Contacts ciblés
-                            {#                                                    <span class="enterprise3_form_a"> 3 </span>#}
+                            <span class="enterprise3_form_a"> {{ totalEmails }} </span>
                         </a>
                         <a class="nav-link " href="#">Résultats</a>
                     </nav>

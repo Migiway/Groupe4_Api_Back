@@ -169,6 +169,27 @@ class Operation
      */
     private $operation_author;
 
+    /**
+     * @return mixed
+     */
+    public function getSendEmailDetail()
+    {
+        return $this->sendEmailDetail;
+    }
+
+    /**
+     * @param mixed $sendEmailDetail
+     */
+    public function setSendEmailDetail($sendEmailDetail): void
+    {
+        $this->sendEmailDetail = $sendEmailDetail;
+    }
+
+    /**
+     * @ORM\Column(type="json_array" , nullable=true)
+     */
+    private $sendEmailDetail;
+
     public function __construct()
     {
         $this->participates = new ArrayCollection();

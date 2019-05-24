@@ -38,7 +38,7 @@ class OperationController extends AbstractController
         $operations = $this->getDoctrine()
             ->getRepository(Operation::class)
             ->findAll();
-
+//var_dump($operations);die;
         $totalOperations = count($operations);
 
         return $this->render('operation/list.html.twig', array(
@@ -110,6 +110,7 @@ class OperationController extends AbstractController
      */
     public function edit(Request $request, Operation $operation)
     {
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(OperationType::class, $operation);
 
         $form->handleRequest($request);
@@ -117,15 +118,26 @@ class OperationController extends AbstractController
             $obj = $form->getData();
             $obj->setOperationAuthor($this->getUser());
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($operation, $obj);
             $em->flush();
             return $this->redirectToRoute('app_admin_operation_list');
         }
 
+        $operation = $em->getRepository('AdminBundle:Operation')->find($request->get('id'));
         return $this->render('operation/edit.html.twig', array(
             'form' => $form->createView(),
-            'operationId' => $request->get('id')));
+            'operationId' => $request->get('id'),
+            'totalEmails' => $this->getTotalSendEmailCount($request->get('id'))));
+    }
+
+    function getTotalSendEmailCount($operationId)
+    {
+        $operation = $this->getDoctrine()->getRepository('AdminBundle:Operation')->find($operationId);
+        $emailDetail = $operation->getSendEmailDetail();
+        if ($emailDetail) {
+            return $emailDetail['totalEmails'];
+        }
+        return 0;
     }
 
     /**
@@ -173,19 +185,24 @@ class OperationController extends AbstractController
             $emailTemplate = new EmailTemplate();
         }
 
+        $operation = $em->getRepository('AdminBundle:Operation')->find($operationId);
+        $emailTemplate->setOperation($operation);
+
         $form = $this->createForm(EmailTemplateType::class, $emailTemplate);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $operation = $em->getRepository('AdminBundle:Operation')->find($operationId);
-            $emailTemplate->setOperation($operation);
             $em->persist($emailTemplate);
             $em->flush();
-            return $this->redirectToRoute('app_admin_operation_edit', array('operationId' => $operationId));
+            return $this->redirectToRoute('app_admin_operation_edit', array('id' => $operationId));
         }
 
-        return $this->render('operation/email_template.html.twig', array('form' => $form->createView(), 'operationId' => $operationId));
+        return $this->render('operation/email_template.html.twig', array(
+            'form' => $form->createView(),
+            'operationId' => $operationId,
+            'totalEmails' => $this->getTotalSendEmailCount($operationId)
+        ));
     }
 
     /**
@@ -229,10 +246,14 @@ class OperationController extends AbstractController
             $companyOptions .= "<option value='{$key}'>{$val}</option>";
         }
 
+        $operation = $this->getDoctrine()->getRepository('AdminBundle:Operation')->find($operationId);
+
         return $this->render('operation/send_email.html.twig', array(
             'contactsOptions' => $contactsOptions,
             'companyOptions' => $companyOptions,
-            'operationId' => $operationId
+            'operationId' => $operationId,
+            'totalEmails' => $this->getTotalSendEmailCount($operationId),
+            'emailsList' => $operation->getSendEmailDetail()
         ));
     }
 
@@ -275,7 +296,8 @@ class OperationController extends AbstractController
             $list[]['Email'] = $email;
         }
 
-        $emailTemplate = $this->getDoctrine()->getRepository('AdminBundle:EmailTemplate')
+        $em = $this->getDoctrine()->getManager();
+        $emailTemplate = $em->getRepository('AdminBundle:EmailTemplate')
             ->findOneBy(array('operation' => $request->get('operationId')));
 
         $mj = new Client('861f8e838d2e797517139391da55b6ca', 'fc2464fecdb0be10a03033d47390897e', true, ['version' => 'v3.1']);
@@ -295,8 +317,19 @@ class OperationController extends AbstractController
             ]
         ];
         $response = $mj->post(Resources::$Email, ['body' => $body]);
-        var_dump($response);die;
+
         if ($response->getStatus() == 200) {
+            $emailDataArray = array(
+                'totalEmails' => count($emails),
+                'totalContactEmails' => $request->get('contactEmails'),
+                'totalCompanyEmails' => $request->get('companyEmails'),
+                'emailsList' => $request->get('emailsHtml')
+            );
+
+            $operation = $em->getRepository('AdminBundle:Operation')->find($request->get('operationId'));
+            $operation->setSendEmailDetail($emailDataArray);
+            $em->flush();
+
             $msg = 'Email bien envoyé';
             $session = 'email_sent_true';
         } else {
