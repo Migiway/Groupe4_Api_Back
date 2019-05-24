@@ -35,27 +35,7 @@
             <div class="alert alert-danger">{{ msg|raw }}</div>
         {% endfor %}
 
-        <div class="col-md-12 pt-4 pb-5">
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="contact_formnav">
-                        <div class="contact_formnav">
-                            <nav class="nav">
-                                <a class="nav-link" href="{{ path('app_admin_operation_edit', {'id': operationId}) }}">Informations</a>
-                                <a class="nav-link" href="{{ path('emailTemplateAndPage', {id:operationId}) }}">Paramétrage</a>
-                                <a class="nav-link active" href="{{ path('sendEmailView', {id:operationId}) }}">Contacts ciblés
-                                    {#                                                    <span class="enterprise3_form_a"> 3 </span>#}
-                                </a>
-                                <a class="nav-link " href="#">Résultats</a>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="enterprise_table_status">CLIENT</div>
-                </div>
-            </div>
-        </div>
+        {% include 'operation/navbar.html.twig' %}
 
         <div class="contact_form ">
             <div class="row justify-content-center ml-0 mr-0 mb-5">
@@ -87,8 +67,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <p style="margin-top: 25px;font-weight: bold" id="resultText"></p>
+                        <div class="col-md-12" id="filterResulBox">
+                            {% if emailsList %}
+                                {{ emailsList.emailsList|raw }}
+                            {% else %}
+                                <p style="margin-top: 25px;font-weight: bold" id="resultText"></p>
+                            {% endif %}
                         </div>
 
                         <div class="col-md-12 pt-5">
@@ -108,6 +92,9 @@
         </div>
         <form action="{{ path('sendEmailList') }}" id="sendEmailForm" method="post" style="display: none">
             <input type="hidden" name="emails" id="emails">
+            <input type="hidden" name="contactEmails" id="contactEmails">
+            <input type="hidden" name="companyEmails" id="companyEmails">
+            <input type="hidden" name="emailsHtml" id="emailsHtml">
             <input type="hidden" name="operationId" value="{{ operationId }}">
         </form>
     </div>
@@ -158,7 +145,7 @@
                                 arr.push(item.email);
                             });
 
-                            $cloned.insertAfter('#resultText').append("<input class='emailList' type='hidden' value='" + arr + "'>");
+                            $cloned.insertAfter('#resultText').append("<input class='emailList " + filterType.val() + "' type='hidden' value='" + arr + "'>");
                             showRecipientText();
                         } else {
                             alert('Pas de mail trouvé avec ce filtre');
@@ -182,6 +169,21 @@
             $('#sendEmail').click(function () {
                 const emails = unique(getTotalRecipient());
                 if (emails.length > 0) {
+                    const contactEmails = getUniqueRecipientByType('contact');
+                    const companyEmails = getUniqueRecipientByType('company');
+                    let contactCount = 0;
+                    let companyCount = 0;
+
+                    if (contactEmails.length > 0) {
+                        contactCount = contactEmails.length;
+                    }
+                    if (companyEmails.length > 0) {
+                        companyCount = companyEmails.length;
+                    }
+
+                    $('#contactEmails').val(contactCount);
+                    $('#companyEmails').val(companyCount);
+                    $('#emailsHtml').val($('#filterResulBox').html());
                     $('#emails').val(emails);
                     $('#sendEmailForm').submit();
                 }
@@ -199,10 +201,22 @@
                 return emailArray;
             }
 
+            function getUniqueRecipientByType(type) {
+                let emailArray = [];
+                $('.' + type).each(function () {
+                    const array = $(this).val().split(",");
+                    $.each(array, function (i) {
+                        emailArray.push(array[i]);
+                    });
+                });
+
+                return unique(emailArray);
+            }
+
             function showRecipientText() {
                 const total = getTotalRecipient().length;
                 const uniqueEmail = unique(getTotalRecipient()).length;
-                $('#resultText').html(`<span style="color: red">${uniqueEmail}</span> recipient contact after remove duplicate <span style="color: red"> ${(total - uniqueEmail)}</span>`);
+                $('#resultText').html(`<span style="color: red">${uniqueEmail}</span> contacts destinaitres apres dedoublonnages<span style="color: red"> ${(total - uniqueEmail)}</span>`);
             }
         });
     </script>

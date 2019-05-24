@@ -77,10 +77,22 @@
                                     </a></td>
                                 <td>{{ row.operationCree|date('d/m/Y') }}</td>
                                 <td>
-                                    <div class="commerciale_enterprise_td"> 12</div>
+                                    <div class="commerciale_enterprise_td">
+                                        {% if row.sendEmailDetail %}
+                                            {{ row.sendEmailDetail.totalContactEmails }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                    </div>
                                 </td>
                                 <td>
-                                    <div class="enterprise_contact_td">52</div>
+                                    <div class="enterprise_contact_td">
+                                        {% if row.sendEmailDetail %}
+                                            {{ row.sendEmailDetail.totalCompanyEmails }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                    </div>
                                 </td>
                                 <td>{{ row.operationAuthor }}</td>
                                 <td>{% if row.operationStatut == 1 %}
