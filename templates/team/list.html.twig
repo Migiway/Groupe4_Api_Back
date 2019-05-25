@@ -204,9 +204,11 @@
                 </div>
                 <div class="col-md-4 div-btn-add">
                     <div class="pagibutton">
+                        {% if app.user.role.id == 2 or app.user.role.id == 3 or app.user.role.id == 6 %}
                         <a href="/admin/user/new">
                             <button type="button" class="btn btn-primary">AJOUTER</button>
                         </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

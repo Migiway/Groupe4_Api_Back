@@ -275,12 +275,17 @@
                                                     {{ form_errors(form.user_function) }}
                                                 </div>
                                             </div>
-                                            <div class="row pt-3">
+                                            <div class="row pt-3
+                                            {% if app.user.role.id == 4 or app.user.role.id == 5 or app.user.role.id == 6 %}
+                                                    hide
+                                                    {% endif %}
+                                                    ">
                                                 <div class="col-md-5 form_text">
                                                     <p>Profil/droits</p>
                                                 </div>
                                                 <div class="col-md-7 input_select_main ">
-                                                    <div class="form-group matier_select">
+                                                    <div class="form-group matier_select input_border_left">
+
                                                         {{ form_widget(form.role) }}
                                                         {{ form_errors(form.role) }}
                                                         <div class="invalid-feedback">Example invalid custom select
