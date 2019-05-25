@@ -12,7 +12,9 @@
                     <a href="/admin/user/team" class="list-group-item list-group-item-action {% if (app.request.attributes.get('_route') == 'app_admin_user_list') or (app.request.attributes.get('_route') == 'user_new') or (app.request.attributes.get('_route') == 'app_admin_user_edit') %}active{% endif %}"><i class="fas fa-user"></i> Équipe commerciale</a>
 
                     <a href="/admin/operation/" class="list-group-item list-group-item-action {% if (app.request.attributes.get('_route') == 'app_admin_operation_new') or (app.request.attributes.get('_route') == 'app_admin_operation_list') or (app.request.attributes.get('_route') == 'app_admin_operation_edit') %}active{% endif %} "><i class="fas fa-star"></i> Opérations</a>
-                    <a href="/admin/parameter/" class="list-group-item list-group-item-action {% if app.request.attributes.get('_route') == 'identite_index' %}active{% endif %} "> <i class="fas fa-cog"></i> Paramètres</a>
+                    {% if app.user.role.id == 2 or app.user.role.id == 3  %}
+                        <a href="/admin/parameter/" class="list-group-item list-group-item-action {% if app.request.attributes.get('_route') == 'identite_index' %}active{% endif %} "> <i class="fas fa-cog"></i> Paramètres</a>
+                    {% endif %}
                 </div>
 
             </div>

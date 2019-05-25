@@ -58,6 +58,11 @@ class ParameterController extends AbstractController
     {
         $user = $this->getUser();
 
+        if ($user->getRole()->getCode() != 2 || $user->getRole()->getCode() != 3)
+        {
+            return $this->render('dashboard/index.html.twig');
+        }
+
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }

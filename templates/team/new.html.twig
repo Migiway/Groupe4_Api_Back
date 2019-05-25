@@ -111,6 +111,7 @@
                                                     {{ form_errors(form.user_lastName) }}
                                                 </div>
                                             </div>
+                                            {% if app.user.role.id == 2 or app.user.role.id == 3 or app.user.role.id == 6 %}
                                             <div class="row pt-3 from_single_input">
                                                 <div class="col-md-5 form_text">
                                                     <p>Date de naissance</p>
@@ -120,6 +121,7 @@
                                                     {{ form_errors(form.user_dob) }}
                                                 </div>
                                             </div>
+                                            {% endif %}
                                             <div class="row pt-3 from_single_input">
                                                 <div class="col-md-5 form_text">
                                                     <p>Date d'arrivé</p>
@@ -236,6 +238,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            {% if app.user.role.id == 2 or app.user.role.id == 3 or app.user.role.id == 6 %}
                                             <div class="row pt-3">
                                                 <div class="col-md-5 form_text">
                                                     <p>Fonction/poste</p>
@@ -245,12 +248,13 @@
                                                     {{ form_errors(form.user_function) }}
                                                 </div>
                                             </div>
+                                            {% endif %}
                                             <div class="row pt-3">
                                                 <div class="col-md-5 form_text">
                                                     <p>Profil/droits</p>
                                                 </div>
                                                 <div class="col-md-7 input_select_main ">
-                                                    <div class="form-group matier_select">
+                                                    <div class="form-group matier_select input_border_left">
                                                         {{ form_widget(form.role) }}
                                                         {{ form_errors(form.role) }}
                                                         <div class="invalid-feedback">Example invalid custom select
