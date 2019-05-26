@@ -10,12 +10,6 @@
                 </div>
             </div>
             <div class="col-md-5"></div>
-            <div class="col-md-3">
-                <div class="contact3_input_container3">
-                    <input class="contact-input-field3" type="text" placeholder="Rechercher..." name="email">
-                    <i class="fas fa-search "></i>
-                </div>
-            </div>
         </div>
         {{ form_start(form) }}
         <div class="contact_form ">
@@ -25,7 +19,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3 class="contact2_saisieh3 pt-4 ml-5">{{ operation.OperationName }}, <span class="contact3span"> 568 destinataires</span></h3>
+                                    <h3 class="contact2_saisieh3 pt-4 ml-5">{{ operation.OperationName }}, <span class="contact3span">{{ totalEmails }} destinataires</span></h3>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row form_right_active_text">
@@ -36,11 +30,8 @@
                                         </div>
                                         <div class="col-md-3 mt-3">
                                             <div class="custom-control custom-switch">
-                                                {#                                                <input type="checkbox" class="custom-control-input" id="customSwitches">#}
                                                 {{ form_widget(form.operation_statut) }}
                                                 {{ form_errors(form.operation_statut) }}
-
-                                                {#                                                <label class="custom-control-label" for="customSwitches"></label>#}
                                             </div>
                                         </div>
                                     </div>

@@ -38,7 +38,6 @@ class OperationController extends AbstractController
         $operations = $this->getDoctrine()
             ->getRepository(Operation::class)
             ->findAll();
-//var_dump($operations);die;
         $totalOperations = count($operations);
 
         return $this->render('operation/list.html.twig', array(
@@ -80,29 +79,6 @@ class OperationController extends AbstractController
         return $this->render('operation/new.html.twig', $arr);
     }
 
-//    /**
-//     * @Route("/edit/{id}", name="app_admin_operation_edit")
-//     * @param Request $request
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function edit(Request $request, Operation $operation)
-//    {
-//        $form = $this->createForm(OperationType::class, $operation);
-//
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $obj = $form->getData();
-//            $obj->setOperationAuthor($this->getUser());
-//
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($operation, $obj);
-//            $em->flush();
-//            return $this->redirectToRoute('app_admin_operation_list');
-//        }
-//
-//        return $this->render('operation/edit.html.twig', array('form' => $form->createView()));
-//    }
-
     /**
      * @Route("/edit/{id}", name="app_admin_operation_edit")
      * @param Request $request
@@ -127,6 +103,7 @@ class OperationController extends AbstractController
 /*        dump($operation);die;
 */        return $this->render('operation/edit.html.twig', array(
             'form' => $form->createView(),
+
             'operationId' => $request->get('id'),
             'operation'    => $operation,
             'totalEmails' => $this->getTotalSendEmailCount($request->get('id'))));
@@ -238,7 +215,7 @@ class OperationController extends AbstractController
         $companyFields = [
             'companyCode' => 'Code',
             'companyCity' => 'City',
-            'companySiret' => 'Siret',
+            'companyStatus' => 'Statut',
             'companyCodeNaf' => 'Code Naf',
             'companySource' => 'Source',
             'companyPostcode' => 'Code postal',

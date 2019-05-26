@@ -11,8 +11,7 @@
             </div>
         </div>
 
-        
-        
+
         {{ form_start(form) }}
         <div class="contact_form ">
             <div class="row justify-content-center ml-0 mr-0 mb-5">
@@ -22,18 +21,18 @@
                             <div class="contact_formnav">
                                 <div class="contact_formnav">
                                     <nav class="nav">
-                                        <a class="nav-link" href="{{ path('app_admin_operation_edit', {'id': operationId}) }}">Informations</a>
-                                        <a class="nav-link active" href="{{ path('emailTemplateAndPage', {id:operationId}) }}">Paramétrage</a>
-                                        <a class="nav-link" href="{{ path('sendEmailView', {id:operationId}) }}">Contacts ciblés
-                                            {#                                                    <span class="enterprise3_form_a"> 3 </span>#}
+                                        <a class="nav-link"
+                                           href="{{ path('app_admin_operation_edit', {'id': operationId}) }}">Informations</a>
+                                        <a class="nav-link active"
+                                           href="{{ path('emailTemplateAndPage', {id:operationId}) }}">Paramétrage</a>
+                                        <a class="nav-link" href="{{ path('sendEmailView', {id:operationId}) }}">Contacts
+                                            ciblés
+                                            <span class="enterprise3_form_a"> {{ totalEmails }} </span>
                                         </a>
                                         <a class="nav-link " href="#">Résultats</a>
                                     </nav>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="enterprise_table_status">CLIENT</div>
                         </div>
                     </div>
                 </div>
