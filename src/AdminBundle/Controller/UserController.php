@@ -223,13 +223,32 @@ class UserController extends AbstractController
      */
     public function list(Request $request)
     {
+        $user = $this->getUser();
+
+        /*if ($user->getRole()->getCode() == 4)
+        {
+            $user2 = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->find($user->getId());
+        }*/
         $users = $this->getDoctrine()
             ->getRepository(User::class)
             ->findAll();
 
+        /*if (isset($user2))
+        {
+            array_unshift($users, $user2);
+        }*/
+
         $nbUsers = $this->getDoctrine()
             ->getRepository(User::class)
             ->countall();
+
+
+        if ($user->getRole()->getCode() == 5)
+        {
+            $users = $user->getUsers();
+        }
 
         return $this->render('team/list.html.twig', array(
             'users' => $users, 'nb_users' => $nbUsers
