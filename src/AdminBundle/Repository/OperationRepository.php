@@ -47,6 +47,18 @@ class OperationRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function operation($time)
+    {
+        date_default_timezone_set('Europe/Paris');
+        $dateNow = date("Y-m-d H:i");
+        $dateBefore = date("Y-m-d 00:00", strtotime($time));
+        return $this->createQueryBuilder("operation")
+            ->select("COUNT(operation.operation_cree) as nb")
+            ->where("operation.operation_cree BETWEEN :date_debut AND :date_fin")
+            ->setParameter('date_debut', $dateBefore)
+            ->setParameter('date_fin', $dateNow)
+            ->getQuery();
+    }
 
     public function getList()
     {

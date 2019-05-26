@@ -8,6 +8,8 @@
 namespace App\ApiBundle\Controller;
 
 use App\AdminBundle\Form\ContactType;
+use App\AdminBundle\Repository\ContactRepository;
+use PhpParser\Node\Scalar\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\Contact;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,71 +23,6 @@ use Symfony\Component\HttpFoundation\Response;
 */
 class ContactController extends AbstractController
 {
-    /**
-     * @Route("/new", name="contact_new", methods={"GET","POST"})
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function new(Request $request){
-        $contact = new Contact();
-
-        $form = $this->createForm(ContactType::class, $contact);
-        $form->add('submit', SubmitType::class, [
-            'label' => 'Enregistrer',
-        ]);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-            return $this->render('contact/success.html.twig', array('message' => 'all clear'));
-        }
-
-        return $this->render('contact/new.html.twig', array('form' => $form->createView()));
-    }
-
-    /**
-     * @Route ("/edit/{contact}", name="contact_edit", methods={"PUT"})
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function edit (Request $request, Contact $contact){
-
-        $form = $this->createForm(ContactType::class, $contact);
-
-        $form->add('submit', SubmitType::class, [
-            'label' => 'Modifier',
-            'attr' => ['class' => 'btn btn-default pull-right'],
-        ]);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-            return $this->render('contact/success.html.twig', array('message' => 'all clear'));
-        }
-
-        return $this->render('contact/new.html.twig', array('form' => $form->createView()));
-    }
-
-    /**
-    * @Route("/list", name="contact_list_api", methods={"GET"})
-    */
-    public function list (Request $request){
-
-    }
-
-    /**
-    * @Route("/delete/{contact}", name="contact_delete", methods={"DELETE"})
-    */
-    public function delete(Request $request)
-    {
-
-    }
 
     /**
     * @Route("/contactActif", name="contactActif", methods={"GET"})
@@ -101,4 +38,75 @@ class ContactController extends AbstractController
       $contactsActif = $serializer->serialize($contactsActif, 'json');
       return new Response($contactsActif);
     }
+
+
+    /**
+     * @Route("/newContacts/{time}", name="newContacts", methods={"GET"})
+     */
+    public function newContacts($time)
+    {
+        $period = "";
+        switch($time){
+            case "day":
+                $period = "-1 days";
+                break;
+            case "week":
+                $period = "-1 week";
+                break;
+            case "month":
+                $period = "-1 month";
+                break;
+            case "year":
+                $period = "-1 year";
+                break;
+        }
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $newcontact = $repository->newContact($period);
+        $result = $newcontact->execute();
+
+        $serializer = $this->container->get('serializer');
+        $newcontact = $serializer->serialize($result, 'json');
+        return new Response($newcontact);
+
+    }
+
+    /**
+     * @Route("/indiceCrm/{time}", name="indiceCrm", methods={"GET"})
+     */
+    public function indiceCrm($time)
+    {
+        $period = "";
+        switch($time){
+            case "3month":
+                $period = "-3 month";
+                break;
+            case "6month":
+                $period = "-6 month";
+                break;
+            case "1year":
+                $period = "-1 year";
+                break;
+            case "2year":
+                $period = "-2 year";
+                break;
+            case "3year":
+                $period = "-3 year";
+                break;
+        }
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $newcontact = $repository->indice($period);
+        $result = $newcontact->execute();
+
+
+        $contact = $this->getDoctrine()->getRepository(Contact::class)->findAll();
+        $totalContact = count($contact);
+
+        $total = ($totalContact / $result[0]['nb'])*100;
+
+        $serializer = $this->container->get('serializer');
+        $contactpourcent = $serializer->serialize($total, 'json');
+        return new Response($contactpourcent);
+    }
+
 }
+
