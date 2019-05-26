@@ -27,6 +27,31 @@ class ContactRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function newContact($time)
+    {
+        date_default_timezone_set('Europe/Paris');
+        $dateNow = date("Y-m-d H:i");
+        $dateBefore = date("Y-m-d 00:00", strtotime($time));
+        return $this->createQueryBuilder("contact")
+            ->select("COUNT(contact.contact_dateCreation) as nb")
+            ->where("contact.contact_dateCreation BETWEEN :date_debut AND :date_fin")
+            ->setParameter('date_debut', $dateBefore)
+            ->setParameter('date_fin', $dateNow)
+            ->getQuery();
+    }
+    public function indice($time)
+    {
+        $dateNow = date("Y-m-d H:i");
+        $dateBefore = date("Y-m-d 00:00", strtotime($time));
+        return $this->createQueryBuilder("contact")
+            ->select("COUNT(contact.contact_dateCreation) as nb")
+            ->where("contact.contact_dateCreation BETWEEN :date_debut AND :date_fin")
+            ->setParameter('date_debut', $dateBefore)
+            ->setParameter('date_fin', $dateNow)
+            ->getQuery();
+    }
+
+
     // /**
     //  * @return Contact[] Returns an array of Contact objects
     //  */

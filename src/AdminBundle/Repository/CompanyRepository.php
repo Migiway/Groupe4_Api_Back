@@ -47,6 +47,18 @@ class CompanyRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function newCompany($time)
+    {
+        date_default_timezone_set('Europe/Paris');
+        $dateNow = date("Y-m-d H:i");
+        $dateBefore = date("Y-m-d 00:00", strtotime($time));
+        return $this->createQueryBuilder("company")
+            ->select("COUNT(company.companyCreationDate) as nb")
+            ->where("company.companyCreationDate BETWEEN :date_debut AND :date_fin")
+            ->setParameter('date_debut', $dateBefore)
+            ->setParameter('date_fin', $dateNow)
+            ->getQuery();
+    }
 
     public function getEmailBySearch($field, $value)
     {

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
 * @Route("/operation")
@@ -20,74 +21,60 @@ use Symfony\Component\Serializer\SerializerInterface;
 */
 class OperationController extends AbstractController
 {
-  /**
-  * @Route("/new", name="operation_new", methods={"GET","POST"})
-  * @param Request $request
-  * @return \Symfony\Component\HttpFoundation\Response
-  */
-  public function new(Request $request){
-    $operation = new Operation();
-    $form = $this->createForm(OperationType::class, $operation);
-    $form->add('submit', SubmitType::class, [
-      'label' => 'Ajouter',
-      'attr' => ['class' => 'btn btn-default pull-right'],
-    ]);
-
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid())
-    {
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($operation);
-      $em->flush();
-      return $this->redirectToRoute('operation_list');
-    }
-
-    /*if($request->isMethod('POST')){
-            $this->newPost($request);
-    }*/
-
-    return $this->render('operation/new.html.twig', array(
-        'form' => $form->createView(),
-    ));
-
-  }
-
     /**
-    * @Route("/edit/{operation}", name="operation_edit", methods={"PUT"})
-    * @param Request $request
-    */
-    public function edit(Request $request, Operation $operation){
-      $form = $this->createForm(OperationType::class, $operation);
-      $form->add('submit', SubmitType::class, [
-        'label' => 'Modifier',
-        'attr' => ['class' => 'btn btn-default pull-right'],
-      ]);
-
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid())
-      {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($operation);
-        $em->flush();
-        return $this->redirectToRoute('operation_list');
-      }
-
-      return $this->render('operation/new.html.twig', array('form' => $form->createView()));
-    }
-
-    /**
-    * @Route("/delete/{operation}", name="operation_edit", methods={"DELETE"})
-    * @param Request $request
-    */
-    public function delete(Request $request){
-    }
-
-    /**
-     * @Route("/list_api", name="operation_list_api", methods={"GET"})
-     * @param Request $request
+     * @Route("/operationAll", name="operationAll", methods={"GET"})
      */
-    public function list(Request $request){
+    public function operationAll()
+    {
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $operation = $repository->findAll();
+        $operation = count($operation);
+        $serializer = $this->container->get('serializer');
+        $operation = $serializer->serialize($operation, 'json');
+        return new Response($operation);
+    }
+
+    /**
+     * @Route("/emailsAll", name="emailsAll", methods={"GET"})
+     */
+    public function emailsAll()
+    {
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $operation = $repository->findAll();
+        $operation = count($operation);
+        $serializer = $this->container->get('serializer');
+        $operation = $serializer->serialize($operation, 'json');
+        return new Response($operation);
+    }
+
+    /**
+     * @Route("/Operation/{time}", name="Operation", methods={"GET"})
+     */
+    public function operation($time)
+    {
+        $period = "";
+        switch($time){
+            case "day":
+                $period = "-1 days";
+                break;
+            case "week":
+                $period = "-1 week";
+                break;
+            case "month":
+                $period = "-1 month";
+                break;
+            case "year":
+                $period = "-1 year";
+                break;
+        }
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $newcontact = $repository->operation($period);
+        $result = $newcontact->execute();
+
+        $serializer = $this->container->get('serializer');
+        $newcontact = $serializer->serialize($result, 'json');
+        return new Response($newcontact);
+
     }
 
 }

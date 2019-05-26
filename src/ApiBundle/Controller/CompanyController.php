@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
 * @Route("/company")
@@ -23,7 +24,7 @@ class CompanyController extends AbstractController
   /**
   * @Route("/new", name="company_new", methods={"GET","POST"})
   * @param Request $request
-  */
+
   public function newApi(Request $request, SerializerInterface $serializer)
   {
       $company = new Company();
@@ -49,29 +50,51 @@ class CompanyController extends AbstractController
       //
       //   return $this->redirectToRoute('company_list');
       // }
-  }
+  }*/
 
-  /**
-  * @Route("/edit/{company}", name="company_edit", methods={"PUT"})
-  * @param Request $request
-  */
-  public function editApi(){
+    /**
+     * @Route("/companyActif", name="companyActif", methods={"GET"})
+     */
+    public function companyActif()
+    {
+        $repository = $this->getDoctrine()->getRepository(Company::class);
+        $companyActif = $repository->findBy(
+            ['companyStatus' => 1]
+        );
+        $companyActif = count($companyActif);
+        $serializer = $this->container->get('serializer');
+        $companyActif = $serializer->serialize($companyActif, 'json');
+        return new Response($companyActif);
+    }
 
-  }
+    /**
+     * @Route("/newCompany/{time}", name="newCompany", methods={"GET"})
+     */
+    public function newCompany($time)
+    {
+        $period = "";
+        switch($time){
+            case "day":
+                $period = "-1 days";
+                break;
+            case "week":
+                $period = "-1 week";
+                break;
+            case "month":
+                $period = "-1 month";
+                break;
+            case "year":
+                $period = "-1 year";
+                break;
+        }
+        $repository = $this->getDoctrine()->getRepository(Company::class);
+        $newcontact = $repository->newCompany($period);
+        $result = $newcontact->execute();
 
-   /**
-   * @Route("/list", name="company_list_api", methods={"GET"})
-   */
-   public function list (Request $request){
+        $serializer = $this->container->get('serializer');
+        $newcontact = $serializer->serialize($result, 'json');
+        return new Response($newcontact);
 
-   }
-
-  /**
-  * @Route("/delete/{company}", name="company_delete", methods={"DELETE"})
-  * @param Request $request
-  */
-  public function deleteApi(){
-
-  }
+    }
 
 }
