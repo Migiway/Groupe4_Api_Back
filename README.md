@@ -42,3 +42,6 @@ php bin/console s:r
 Pour avoir accès à l'application rendez vous sur ce lien dans votre navigateur : [http://localhost:8000/admin/login](http://localhost:8000/admin/login)
 
 Connectez vous pour avoir accès aux fonctionnalités de l'application
+
+## Accès à l'api 
+pour avoir accès à l'api rendez vous sur ce lien dans votre navigateur : [http://localhost:8000/api/doc]
