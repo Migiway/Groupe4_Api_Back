@@ -20,7 +20,7 @@
         <div class="contact_form ">
             <div class="row justify-content-center ml-0 mr-0 mb-5">
                 <div class="col-md-12 ">
-                    <div class="row rounded border" id="idducul1">
+                    <div class="row rounded border block-identite">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
@@ -57,9 +57,9 @@
                         <div class="col-md-12 pt-4 pb-5">
                             <div class="contact_formnav">
                                 <nav class="nav">
-                                    <a class="nav-link active" href="#" id="identite" onclick="changeIdentiteClass();return false;">Identité</a>
-                                    <a class="nav-link" href="#" id="entreprise" onclick="changeEntrepriseClass();return false;">Entreprises</a>
-                                    <a class="nav-link" href="#" id="contact" onclick="changeContactClass();return false;">Contacts</a>
+                                    <a class="nav-link identite active" href="#">Identité</a>
+                                    <a class="nav-link entreprise" href="#">Entreprises</a>
+                                    <a class="nav-link contact" href="#">Contacts</a>
                                 </nav>
                             </div>
                         </div>
@@ -364,16 +364,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row rounded border classdesesmorts" id="idducul2">
+                    <div class="row rounded border hide block-entreprise" >
                         <div class="col-md-12">
-                            <h3 class="contact2_saisieh3 pt-4 ml-5">Saisie d'un nouveau collaborateur</h3>
+                            <h3 class="contact2_saisieh3 pt-4 ml-5">{{ user.userFirstName }}<span class="contact3span"> {{ user.userLastName }}</span></h3>
                         </div>
                         <div class="col-md-12 pt-4 pb-5">
                             <div class="contact_formnav">
                                 <nav class="nav">
-                                    <a class="nav-link active" href="#" id="identite" onclick="changeIdentiteClass();return false;">Identité</a>
-                                    <a class="nav-link" href="#" id="entreprise" onclick="changeEntrepriseClass();return false;">Entreprises</a>
-                                    <a class="nav-link" href="#" id="contact" onclick="changeContactClass();return false;">Contacts</a>
+                                    <a class="nav-link active identite" href="#" >Identité</a>
+                                    <a class="nav-link entreprise" href="#" >Entreprises</a>
+                                    <a class="nav-link contact" href="#" >Contacts</a>
                                 </nav>
                             </div>
                         </div>
@@ -384,7 +384,7 @@
                                 <div class="hero-callout">
                                     <div id="example_wrapper" class="dataTables_wrapper">
 
-                                        <table id="myTable" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3"
+                                        <table id="team-contact" class="display nowrap dataTable dtr-inline collapsed table table-bordered my-3"
                                                style="width: 100%;" role="grid" aria-describedby="example_info">
                                             <thead>
                                             <tr role="row">
@@ -480,16 +480,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row rounded border classdesesmorts" id="idducul3">
+                    <div class="row rounded border hide block-contact" >
                         <div class="col-md-12">
-                            <h3 class="contact2_saisieh3 pt-4 ml-5">Saisie d'un nouveau collaborateur</h3>
+                            <h3 class="contact2_saisieh3 pt-4 ml-5">{{ user.userFirstName }}<span class="contact3span"> {{ user.userLastName }}</span></h3>
                         </div>
                         <div class="col-md-12 pt-4 pb-5">
                             <div class="contact_formnav">
                                 <nav class="nav">
-                                    <a class="nav-link active" href="#" id="identite" onclick="changeIdentiteClass();return false;">Identité</a>
-                                    <a class="nav-link" href="#" id="entreprise" onclick="changeEntrepriseClass();return false;">Entreprises</a>
-                                    <a class="nav-link" href="#" id="contact" onclick="changeContactClass();return false;">Contacts</a>
+                                    <a class="nav-link active identite" href="#">Identité</a>
+                                    <a class="nav-link entreprise" href="#">Entreprises</a>
+                                    <a class="nav-link contact" href="#">Contacts</a>
                                 </nav>
                             </div>
                         </div>
@@ -548,35 +548,49 @@
         </div>
     </div>
     {{ form_end(form) }}
-    <script type="text/javascript">
-        function changeIdentiteClass() {
-            var elem = document.getElementById("idducul1");
-            elem.classList.remove("classdesesmorts");
-            var elem2 = document.getElementById("idducul2");
-            elem2.classList.add("classdesesmorts");
-            var elem3 = document.getElementById("idducul3");
-            elem3.classList.add("classdesesmorts");
-        }
-
-        function changeEntrepriseClass() {
-            var elem = document.getElementById("idducul1");
-            elem.classList.add("classdesesmorts");
-            var elem2 = document.getElementById("idducul2");
-            elem2.classList.remove("classdesesmorts");
-            var elem3 = document.getElementById("idducul3");
-            elem3.classList.add("classdesesmorts");
-        }
-
-        function changeContactClass() {
-            var elem = document.getElementById("idducul1");
-            elem.classList.add("classdesesmorts");
-            var elem2 = document.getElementById("idducul2");
-            elem2.classList.add("classdesesmorts");
-            var elem3 = document.getElementById("idducul3");
-            elem3.classList.remove("classdesesmorts");
-        }
+    <script type="text/javascript">        
         $(function () {
             $('#user_user_code').attr('readonly', true);
+
+             $('#team-contact').DataTable({
+                "lengthMenu": [[10, 25, 50, -1],
+                    ["10", "25", "50", "Tous"]],
+                "language": {
+                    "paginate": {
+                        "previous": '<i class="fa fa-arrow-left"></i>',
+                        "next": '<i class="fa fa-arrow-right"></i>'
+                    },
+                    searchPlaceholder: "Rechercher",
+                    search: "",
+                    "sSearch": '<a class="btn searchBtn" id="searchBtn"><i class="fa fa-search"></i></a>',
+                    sLengthMenu: "_MENU_",
+                    infoEmpty: "Aucunes données trouvées",
+                    "info": "",
+                },
+                "dom": '<"top"if>rt<"bottom"lp><"clear">'
+            });
+
+             $('.entreprise').click(function () {
+                $('.block-identite').addClass('hide');
+                $('.block-entreprise').removeClass('hide');
+                $('.block-contact').addClass('hide');
+                $('.contact_formnav nav a').removeClass('active')
+                $('.entreprise').addClass('active')
+            });
+            $('.identite').click(function () {
+                $('.block-identite').removeClass('hide');
+                $('.block-entreprise').addClass('hide');
+                $('.block-contact').addClass('hide');
+                $('.contact_formnav nav a').removeClass('active')
+                $('.identite').addClass('active')
+            });
+            $('.contact').click(function () {
+                $('.block-contact').removeClass('hide');
+                $('.block-entreprise').addClass('hide');
+                $('.block-identite').addClass('hide');
+                $('.contact_formnav nav a').removeClass('active')
+                $('.contact').addClass('active')
+            });
         });
     </script>
 {% endblock %}

@@ -485,6 +485,24 @@
                 $('.poste').addClass('active');
             });
             $('#contact_contact_codeClient').attr('readonly', true);
+
+             $('#company-contact').DataTable({
+                "lengthMenu": [[10, 25, 50, -1],
+                    ["10", "25", "50", "Tous"]],
+                "language": {
+                    "paginate": {
+                        "previous": '<i class="fa fa-arrow-left"></i>',
+                        "next": '<i class="fa fa-arrow-right"></i>'
+                    },
+                    searchPlaceholder: "Rechercher",
+                    search: "",
+                    "sSearch": '<a class="btn searchBtn" id="searchBtn"><i class="fa fa-search"></i></a>',
+                    sLengthMenu: "_MENU_",
+                    infoEmpty: "Aucunes données trouvées",
+                    "info": "",
+                },
+                "dom": '<"top"if>rt<"bottom"lp><"clear">'
+            });
         });
     </script>
 

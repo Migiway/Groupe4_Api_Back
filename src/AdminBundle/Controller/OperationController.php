@@ -181,6 +181,7 @@ class OperationController extends AbstractController
         return $this->render('operation/email_template.html.twig', array(
             'form' => $form->createView(),
             'operationId' => $operationId,
+            'operation' => $operation,
             'totalEmails' => $this->getTotalSendEmailCount($operationId)
         ));
     }
@@ -233,6 +234,7 @@ class OperationController extends AbstractController
             'contactsOptions' => $contactsOptions,
             'companyOptions' => $companyOptions,
             'operationId' => $operationId,
+            'operation' => $operation,
             'totalEmails' => $this->getTotalSendEmailCount($operationId),
             'emailsList' => $operation->getSendEmailDetail()
         ));
