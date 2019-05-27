@@ -193,7 +193,9 @@ class ContactController extends AbstractController
             $task = $formcsv->getData();
             if (!is_null($task)) {
                 $uploaddir = '../public/assests/csv/';
-                $uploadfile = $uploaddir . basename($_FILES['form']['name']["contact_import"]);
+                $path = $this->get('kernel')->getProjectDir() . '/public/';
+                $path .= "assests/csv/";
+                $uploadfile = $path . basename($_FILES['form']['name']["contact_import"]);
                 move_uploaded_file($_FILES['form']['tmp_name']["contact_import"], $uploadfile);
 
                 $name_file = $_FILES['form']['name']["contact_import"];
