@@ -322,7 +322,8 @@ class OperationController extends AbstractController
 
         $this->get('session')->getFlashBag()->add($session, $msg);
 
-        return $this->redirectToRoute('sendEmailView');
+        return $this->redirectToRoute('sendEmailView', array('id' => $request->get('operationId')));
+
     }
 
 }
