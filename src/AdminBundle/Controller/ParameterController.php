@@ -58,97 +58,104 @@ class ParameterController extends AbstractController
     {
         $user = $this->getUser();
 
-        if ($user->getRole()->getCode() != 2 || $user->getRole()->getCode() != 3)
+        /*if ($user->getRole()->getCode() != 2 || $user->getRole()->getCode() != 3)
         {
             return $this->render('dashboard/index.html.twig');
+        }*/
+
+        if ($user->getRole()->getCode() == 2 || $user->getRole()->getCode() == 3)
+        {
+            if (!$user) {
+                return $this->redirectToRoute('app_login');
+            }
+
+            //Paramètre partie idendité
+            $parameterIdentite = $this->getDoctrine()->getRepository(Parameter::class)->find("1");
+
+            $formParameterIdentite = $this->createForm(ParameterType::class, $parameterIdentite);
+
+            $formParameterIdentite->handleRequest($request);
+
+            if ($formParameterIdentite->isSubmitted() && $formParameterIdentite->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($parameterIdentite);
+                $em->flush();
+                return $this->redirectToRoute('identite_index');
+            }
+
+            //Paramètre partie charte graphique
+            $parameterCharte = $this->getDoctrine()->getRepository(Colors::class)->find("1");
+
+            $formParameterCharte = $this->createForm(ColorType::class, $parameterCharte);
+
+            $formParameterCharte->handleRequest($request);
+
+            if ($formParameterCharte->isSubmitted() && $formParameterCharte->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($parameterCharte);
+                $em->flush();
+                return $this->redirectToRoute('identite_index');
+            }
+
+            //Paramètre partie opération
+            $parameterOperation = $this->getDoctrine()->getRepository(ParameterOperation::class)->find("1");
+
+            $formParameterOperation = $this->createForm(ParameterOperationType::class, $parameterOperation);
+
+            $formParameterOperation->handleRequest($request);
+
+            if ($formParameterOperation->isSubmitted() && $formParameterOperation->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($parameterOperation);
+                $em->flush();
+                return $this->redirectToRoute('identite_index');
+            }
+
+            //Paramètre partie note
+            $noteEcheance           = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->findBy(array(), array('libelle' => 'ASC'));
+            $noteCategorie          = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->findBy(array(), array('libelle' => 'ASC'));
+            $notePriorite           = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->findBy(array(), array('libelle' => 'ASC'));
+
+            //Paramètre partie contact
+            $contactPouvoir         = $this->getDoctrine()->getRepository(ParameterContactPouvoir::class)->findBy(array(), array('libelle' => 'ASC'));
+            $contactMetier          = $this->getDoctrine()->getRepository(ParameterContactMetier::class)->findBy(array(), array('libelle' => 'ASC'));
+
+            //Paramètre partie team commerciale
+            $teamZone               = $this->getDoctrine()->getRepository(ParameterTeamZone::class)->findBy(array(), array('libelle' => 'ASC'));
+            $teamDepartement        = $this->getDoctrine()->getRepository(ParameterTeamDepartement::class)->findBy(array(), array('libelle' => 'ASC'));
+
+            //Paramètre partie entreprise /company
+            $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findBy(array(), array('libelle' => 'ASC'));
+            $companyEffectifs       = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->findBy(array(), array('libelle' => 'ASC'));
+            $companySecteur         = $this->getDoctrine()->getRepository(ParameterCompanySecteur::class)->findBy(array(), array('libelle' => 'ASC'));
+            $companyStatutJuridique = $this->getDoctrine()->getRepository(ParameterCompanyStatutJuridique::class)->findBy(array(), array('libelle' => 'ASC'));
+            $companyStatut          = $this->getDoctrine()->getRepository(ParameterCompanyStatut::class)->findBy(array(), array('libelle' => 'ASC'));
+
+            //Fin Paramètre partie entreprise /company
+            $arr = array(
+                'formParameterIdentite'     => $formParameterIdentite->createView(),
+                'formParameterOperation'    => $formParameterOperation->createView(),
+                'formParameterCharte'       => $formParameterCharte->createView(),
+                'companyCA'                 => $companyCA,
+                'companyEffectifs'          => $companyEffectifs,
+                'companySecteur'            => $companySecteur,
+                'companyStatutJuridique'    => $companyStatutJuridique,
+                'companyStatut'             => $companyStatut,
+                'noteEcheance'              => $noteEcheance,
+                'noteCategorie'             => $noteCategorie,
+                'notePriorite'              => $notePriorite,
+                'contactPouvoir'            => $contactPouvoir,
+                'contactMetier'             => $contactMetier,
+                'teamZone'                  => $teamZone,
+                'teamDepartement'           => $teamDepartement,
+            );
+            return $this->render('parameter/form.html.twig', $arr);
         }
+        else
+        {
+            return $this->render('dashboard/index.html.twig');
 
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
         }
-
-        //Paramètre partie idendité
-        $parameterIdentite = $this->getDoctrine()->getRepository(Parameter::class)->find("1");
-
-        $formParameterIdentite = $this->createForm(ParameterType::class, $parameterIdentite);
-
-        $formParameterIdentite->handleRequest($request);
-
-        if ($formParameterIdentite->isSubmitted() && $formParameterIdentite->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($parameterIdentite);
-            $em->flush();
-            return $this->redirectToRoute('identite_index');
-        }
-
-        //Paramètre partie charte graphique
-        $parameterCharte = $this->getDoctrine()->getRepository(Colors::class)->find("1");
-
-        $formParameterCharte = $this->createForm(ColorType::class, $parameterCharte);
-
-        $formParameterCharte->handleRequest($request);
-
-        if ($formParameterCharte->isSubmitted() && $formParameterCharte->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($parameterCharte);
-            $em->flush();
-            return $this->redirectToRoute('identite_index');
-        }
-
-        //Paramètre partie opération
-        $parameterOperation = $this->getDoctrine()->getRepository(ParameterOperation::class)->find("1");
-
-        $formParameterOperation = $this->createForm(ParameterOperationType::class, $parameterOperation);
-
-        $formParameterOperation->handleRequest($request);
-
-        if ($formParameterOperation->isSubmitted() && $formParameterOperation->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($parameterOperation);
-            $em->flush();
-            return $this->redirectToRoute('identite_index');
-        }
-
-        //Paramètre partie note
-        $noteEcheance           = $this->getDoctrine()->getRepository(ParameterNoteEcheance::class)->findBy(array(), array('libelle' => 'ASC'));
-        $noteCategorie          = $this->getDoctrine()->getRepository(ParameterNoteCategorie::class)->findBy(array(), array('libelle' => 'ASC'));
-        $notePriorite           = $this->getDoctrine()->getRepository(ParameterNotePriorite::class)->findBy(array(), array('libelle' => 'ASC'));
-
-        //Paramètre partie contact
-        $contactPouvoir         = $this->getDoctrine()->getRepository(ParameterContactPouvoir::class)->findBy(array(), array('libelle' => 'ASC'));
-        $contactMetier          = $this->getDoctrine()->getRepository(ParameterContactMetier::class)->findBy(array(), array('libelle' => 'ASC'));
-
-        //Paramètre partie team commerciale
-        $teamZone               = $this->getDoctrine()->getRepository(ParameterTeamZone::class)->findBy(array(), array('libelle' => 'ASC'));
-        $teamDepartement        = $this->getDoctrine()->getRepository(ParameterTeamDepartement::class)->findBy(array(), array('libelle' => 'ASC'));
-
-        //Paramètre partie entreprise /company
-        $companyCA              = $this->getDoctrine()->getRepository(ParameterCompanyCA::class)->findBy(array(), array('libelle' => 'ASC'));
-        $companyEffectifs       = $this->getDoctrine()->getRepository(ParameterCompanyEffectifs::class)->findBy(array(), array('libelle' => 'ASC'));
-        $companySecteur         = $this->getDoctrine()->getRepository(ParameterCompanySecteur::class)->findBy(array(), array('libelle' => 'ASC'));
-        $companyStatutJuridique = $this->getDoctrine()->getRepository(ParameterCompanyStatutJuridique::class)->findBy(array(), array('libelle' => 'ASC'));
-        $companyStatut          = $this->getDoctrine()->getRepository(ParameterCompanyStatut::class)->findBy(array(), array('libelle' => 'ASC'));
-
-        //Fin Paramètre partie entreprise /company
-        $arr = array(
-            'formParameterIdentite'     => $formParameterIdentite->createView(),
-            'formParameterOperation'    => $formParameterOperation->createView(),
-            'formParameterCharte'       => $formParameterCharte->createView(),
-            'companyCA'                 => $companyCA,
-            'companyEffectifs'          => $companyEffectifs,
-            'companySecteur'            => $companySecteur,
-            'companyStatutJuridique'    => $companyStatutJuridique,
-            'companyStatut'             => $companyStatut,
-            'noteEcheance'              => $noteEcheance,
-            'noteCategorie'             => $noteCategorie,
-            'notePriorite'              => $notePriorite,
-            'contactPouvoir'            => $contactPouvoir,
-            'contactMetier'             => $contactMetier,
-            'teamZone'                  => $teamZone,
-            'teamDepartement'           => $teamDepartement,
-        );
-        return $this->render('parameter/form.html.twig', $arr);
-        
     }
 
     /**
