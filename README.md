@@ -6,14 +6,14 @@ Projet Smart_Leads du Groupe 4. Les membres sont MARTIN Thomas, AZI Sofiane, MIN
 
 # Pré-Requis
 
-- Wamp pour lancer le serveur.
-- Un SGBD
+- Mysql
+- PHP 7.2.*
 - L'édition du fichier .env afin que l'application se connecte à votre SGBD
 
 
 ## Installation 
 
--  Télécharger le projet sur github ou clonez le dans votre invité de commande:
+-  Télécharger le projet sur github ou clonez le dans votre invite de commande:
 ```bash
 git@github.com:Migiway/Groupe4_Api_Back.git
 ```
@@ -28,9 +28,16 @@ composer install
 ```
 -   Installer la base de données avec la commande :
 ```bash
+php bin/console database:create
+```
+-   Créer les tables dans la base avec la commande suivante :
+```bash
 php bin/console d:s:u --force
 ```
 - Importer la base de données avec le fichier SQL a la racine du projet
+```bash
+smart_leads_dump.sql
+```
 -  Lancer le serveur avec la commande : 
 ```bash
 php bin/console s:r
@@ -41,7 +48,11 @@ php bin/console s:r
 
 Pour avoir accès à l'application rendez vous sur ce lien dans votre navigateur : [http://localhost:8000/admin/login](http://localhost:8000/admin/login)
 
-Connectez vous pour avoir accès aux fonctionnalités de l'application
+Connectez vous pour avoir accès aux fonctionnalités de l'application avec le compte suivant :
+```bash
+email   : smart.leads@smartleads.fr
+mdp     : smartleads
+```
 
 ## Accès à l'api 
 Pour avoir accès à l'api rendez vous sur ce lien depuis votre navigateur : http://localhost:8000/api/doc
