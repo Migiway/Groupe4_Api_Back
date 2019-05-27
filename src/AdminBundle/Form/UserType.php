@@ -56,7 +56,7 @@ class UserType extends AbstractType
             ->add('user_email', TextType::class, array('label' => 'Email : '))
             ->add('user_plain_password', PasswordType::class, array(
                 'label' => 'Mot de passe : ',
-                'mapped' => false,
+                'mapped' => true,
                 ))
             ->add('departement', EntityType::class, [
                 'class' => ParameterTeamDepartement::class,
