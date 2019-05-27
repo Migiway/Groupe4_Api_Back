@@ -100,12 +100,13 @@ class OperationController extends AbstractController
         }
 
         $operation = $em->getRepository('AdminBundle:Operation')->find($request->get('id'));
-/*        dump($operation);die;
-*/        return $this->render('operation/edit.html.twig', array(
+        /*        dump($operation);die;
+        */
+        return $this->render('operation/edit.html.twig', array(
             'form' => $form->createView(),
 
             'operationId' => $request->get('id'),
-            'operation'    => $operation,
+            'operation' => $operation,
             'totalEmails' => $this->getTotalSendEmailCount($request->get('id'))));
     }
 
@@ -200,11 +201,11 @@ class OperationController extends AbstractController
 
         $contactsOptions = '';
         $contactFields = [
-            'contact_codeClient' => 'Client Code',
+            'contact_codeClient' => 'Code',
             'contact_genre' => 'Genre',
+            'contact_statut' => 'Status',
             'contact_nivDecision' => 'Niv Decision',
             'contact_metier' => 'Metier',
-            'contact_opeSource' => 'opeSource',
         ];
 
         foreach ($contactFields as $key => $val) {
@@ -214,11 +215,12 @@ class OperationController extends AbstractController
         $companyOptions = '';
         $companyFields = [
             'companyCode' => 'Code',
+            '$companyCategory' => 'Categorie',
             'companyCity' => 'City',
-            'companyStatus' => 'Statut',
-            'companyCodeNaf' => 'Code Naf',
-            'companySource' => 'Source',
             'companyPostcode' => 'Code postal',
+            'companyStatus' => 'Status',
+            'companySource' => 'Source',
+
         ];
 
         foreach ($companyFields as $key => $val) {
