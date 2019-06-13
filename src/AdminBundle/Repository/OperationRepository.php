@@ -57,7 +57,8 @@ class OperationRepository extends ServiceEntityRepository
             ->where("operation.operation_cree BETWEEN :date_debut AND :date_fin")
             ->setParameter('date_debut', $dateBefore)
             ->setParameter('date_fin', $dateNow)
-            ->getQuery();
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     public function getList()

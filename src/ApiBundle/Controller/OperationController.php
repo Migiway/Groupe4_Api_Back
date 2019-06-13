@@ -4,6 +4,7 @@ namespace App\ApiBundle\Controller;
 use App\AdminBundle\Form\OperationType;
 use App\AdminBundle\Entity\Operation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -29,9 +30,7 @@ class OperationController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Operation::class);
         $operation = $repository->findAll();
         $operation = count($operation);
-        $serializer = $this->container->get('serializer');
-        $operation = $serializer->serialize($operation, 'json');
-        return new Response($operation);
+        return new JsonResponse(['operations' => $operation]);
     }
 
     /**
@@ -39,13 +38,31 @@ class OperationController extends AbstractController
      */
     public function emailsAll()
     {
-        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        /*$repository = $this->getDoctrine()->getRepository(Operation::class);
         $operation = $repository->findAll();
         $operation = count($operation);
         $serializer = $this->container->get('serializer');
-        $operation = $serializer->serialize($operation, 'json');
-        return new Response($operation);
+        $operation = $serializer->serialize($operation, 'json');*/
+        $newEmails = 32;
+
+        return new JsonResponse(['newEmails' => $newEmails]);
     }
+
+    /**
+     * @Route("/emails", name="emails", methods={"GET"})
+     */
+    public function emails()
+    {
+        /*$repository = $this->getDoctrine()->getRepository(Operation::class);
+        $operation = $repository->findAll();
+        $operation = count($operation);
+        $serializer = $this->container->get('serializer');
+        $operation = $serializer->serialize($operation, 'json');*/
+        $newEmails = 1254;
+
+        return new JsonResponse(['emails' => $newEmails]);
+    }
+
 
     /**
      * @Route("/Operation/{time}", name="Operation", methods={"GET"})
@@ -69,11 +86,8 @@ class OperationController extends AbstractController
         }
         $repository = $this->getDoctrine()->getRepository(Operation::class);
         $newcontact = $repository->operation($period);
-        $result = $newcontact->execute();
-
-        $serializer = $this->container->get('serializer');
-        $newcontact = $serializer->serialize($result, 'json');
-        return new Response($newcontact);
+        $newcontact = intval($newcontact['nb']);
+        return new JsonResponse(['newOp' => $newcontact]);
 
     }
 
