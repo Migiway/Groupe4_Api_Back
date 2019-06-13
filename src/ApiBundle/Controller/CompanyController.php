@@ -5,6 +5,7 @@ namespace App\ApiBundle\Controller;
 use App\AdminBundle\Form\CompanyType;
 use App\AdminBundle\Entity\Company;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -62,9 +63,7 @@ class CompanyController extends AbstractController
             ['companyStatus' => 1]
         );
         $companyActif = count($companyActif);
-        $serializer = $this->container->get('serializer');
-        $companyActif = $serializer->serialize($companyActif, 'json');
-        return new Response($companyActif);
+        return new JsonResponse(['companyActif' => $companyActif]);
     }
 
     /**
@@ -89,11 +88,9 @@ class CompanyController extends AbstractController
         }
         $repository = $this->getDoctrine()->getRepository(Company::class);
         $newcontact = $repository->newCompany($period);
-        $result = $newcontact->execute();
+        $newcompany = intval($newcontact['nb']);
 
-        $serializer = $this->container->get('serializer');
-        $newcontact = $serializer->serialize($result, 'json');
-        return new Response($newcontact);
+        return new JsonResponse(['newCompany' => $newcompany]);
 
     }
 

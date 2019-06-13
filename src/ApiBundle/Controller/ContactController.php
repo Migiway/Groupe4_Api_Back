@@ -12,6 +12,7 @@ use App\AdminBundle\Repository\ContactRepository;
 use PhpParser\Node\Scalar\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\Contact;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -34,9 +35,7 @@ class ContactController extends AbstractController
           ['contact_statut' => 1]
       );
       $contactsActif = count($contactsActif);
-      $serializer = $this->container->get('serializer');
-      $contactsActif = $serializer->serialize($contactsActif, 'json');
-      return new Response($contactsActif);
+      return new JsonResponse(['contactActif' => $contactsActif]);
     }
 
 
@@ -62,11 +61,13 @@ class ContactController extends AbstractController
         }
         $repository = $this->getDoctrine()->getRepository(Contact::class);
         $newcontact = $repository->newContact($period);
-        $result = $newcontact->execute();
 
-        $serializer = $this->container->get('serializer');
-        $newcontact = $serializer->serialize($result, 'json');
-        return new Response($newcontact);
+        $result = $newcontact['nb'];
+        $result = intval($result);
+
+        /*$serializer = $this->container->get('serializer');
+        $newcontact = $serializer->serialize($result, 'json');*/
+        return new JsonResponse(['result' => $result]);
 
     }
 
@@ -103,9 +104,9 @@ class ContactController extends AbstractController
 
         $total = ($totalContact / $result[0]['nb'])*100;
 
-        $serializer = $this->container->get('serializer');
-        $contactpourcent = $serializer->serialize($total, 'json');
-        return new Response($contactpourcent);
+        /*$serializer = $this->container->get('serializer');
+        $contactpourcent = $serializer->serialize($total, 'json');*/
+        return new Response(['total' => $total]);
     }
 
 }

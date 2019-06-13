@@ -37,7 +37,8 @@ class ContactRepository extends ServiceEntityRepository
             ->where("contact.contact_dateCreation BETWEEN :date_debut AND :date_fin")
             ->setParameter('date_debut', $dateBefore)
             ->setParameter('date_fin', $dateNow)
-            ->getQuery();
+            ->getQuery()
+            ->getOneOrNullResult();
     }
     public function indice($time)
     {

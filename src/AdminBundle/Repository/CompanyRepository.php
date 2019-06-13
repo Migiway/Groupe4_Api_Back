@@ -57,7 +57,8 @@ class CompanyRepository extends ServiceEntityRepository
             ->where("company.companyCreationDate BETWEEN :date_debut AND :date_fin")
             ->setParameter('date_debut', $dateBefore)
             ->setParameter('date_fin', $dateNow)
-            ->getQuery();
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     public function getEmailBySearch($field, $value)
