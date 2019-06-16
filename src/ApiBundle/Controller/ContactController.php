@@ -62,12 +62,23 @@ class ContactController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Contact::class);
         $newcontact = $repository->newContact($period);
 
+        $period = "-3 year";
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $pourcentage = $repository->newContact($period);
+
         $result = $newcontact['nb'];
         $result = intval($result);
 
+        $result2 = $pourcentage['nb'];
+        $result2 = intval($result2);
+
+        $PourcentCont = ($result/$result2)*100;
+
+        $PourcentCont = intval($PourcentCont);
+
         /*$serializer = $this->container->get('serializer');
         $newcontact = $serializer->serialize($result, 'json');*/
-        return new JsonResponse(['result' => $result]);
+        return new JsonResponse(['result' => $result, 'pourcent' => $PourcentCont]);
 
     }
 
@@ -106,7 +117,7 @@ class ContactController extends AbstractController
 
         /*$serializer = $this->container->get('serializer');
         $contactpourcent = $serializer->serialize($total, 'json');*/
-        return new Response(['total' => $total]);
+        return new JsonResponse(['pourcentage' => $total, 'total' => $totalContact]);
     }
 
 }

@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;	
 use Symfony\Component\HttpFoundation\Reponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 /**
@@ -73,17 +74,26 @@ class UserController extends AbstractController
 //    }
 
     /**
-     * @Route("/delete", name="user_delete", methods={"DELETE"})
+     * @Route("/usersAll", name="usersAll", methods={"GET"})
      */
-    public function deleteApi(Request $request)	
+    public function usersAll()
     {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $result = $repository->findAll();
 
-    }
-    /**
-     * @Route("/list", name="typeSite_list", methods={"GET"})
-     */
-    public function list (Request $request){
+        $test = array();
 
+        foreach ($result as $res) {
+
+            $data = array(
+                "nom" => $res->getUserLastName(),
+                "prenom" => $res->getUserFirstName(),
+                "img_url" => $res->getImgUrl(),
+            );
+            array_push($test, $data);
+        }
+
+        return new JsonResponse(['users' => $test]);
     }
 
 
