@@ -45,7 +45,7 @@ class OperationController extends AbstractController
         $operation = $serializer->serialize($operation, 'json');*/
         $newEmails = 32;
 
-        return new JsonResponse(['newEmails' => $newEmails]);
+        return new JsonResponse(['newEmails' => $newEmails, 'pourcent' => 2]);
     }
 
     /**
@@ -86,8 +86,22 @@ class OperationController extends AbstractController
         }
         $repository = $this->getDoctrine()->getRepository(Operation::class);
         $newcontact = $repository->operation($period);
+
+
         $newcontact = intval($newcontact['nb']);
-        return new JsonResponse(['newOp' => $newcontact]);
+
+        $period = "-3 year";
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $pourcentage = $repository->operation($period);
+
+        $result2 = $pourcentage['nb'];
+        $result2 = intval($result2);
+
+        $PourcentCont = ($newcontact/$result2)*100;
+
+        $PourcentCont = intval($PourcentCont);
+
+        return new JsonResponse(['newOp' => $newcontact, 'pourcent' => $PourcentCont]);
 
     }
 
