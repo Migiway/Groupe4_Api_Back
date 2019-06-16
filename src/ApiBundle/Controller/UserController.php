@@ -1,9 +1,11 @@
 <?php
 namespace App\ApiBundle\Controller;
 
+use App\AdminBundle\Entity\ParameterTeamDepartement;
 use App\AdminBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\AdminBundle\Entity\User;
+use App\AdminBundle\Entity\Contact;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -84,16 +86,53 @@ class UserController extends AbstractController
         $test = array();
 
         foreach ($result as $res) {
+            $repository = $this->getDoctrine()->getRepository(Contact::class);
+            $contactBy = $repository->findBy(['user_id' => $res->getId()]);
+
+            $contactBy = count($contactBy);
+
 
             $data = array(
                 "nom" => $res->getUserLastName(),
                 "prenom" => $res->getUserFirstName(),
                 "img_url" => $res->getImgUrl(),
+                'contacts' => $contactBy,
             );
             array_push($test, $data);
         }
 
         return new JsonResponse(['users' => $test]);
+    }
+
+    /**
+     * @Route("/region", name="region", methods={"GET"})
+     */
+    public function region()
+    {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $result = $repository->findAll();
+
+        $test = array();
+
+
+        foreach ($result as $res) {
+
+                $repository = $this->getDoctrine()->getRepository(ParameterTeamDepartement::class);
+                $reg = $repository->findBy(['id' => $res->getDepartement()->getId()]);
+
+                foreach ($reg as $re) {
+
+                    $data = array(
+                        "region" => $re->getLibelle(),
+
+                    );
+                    array_push($test, $data);
+            }
+
+
+        }
+
+        return new JsonResponse(['region' => $test]);
     }
 
 

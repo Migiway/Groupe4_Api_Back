@@ -88,9 +88,22 @@ class CompanyController extends AbstractController
         }
         $repository = $this->getDoctrine()->getRepository(Company::class);
         $newcontact = $repository->newCompany($period);
+
+        $period = "-3 year";
+        $repository = $this->getDoctrine()->getRepository(Company::class);
+        $pourcentage = $repository->newCompany($period);
+
+
         $newcompany = intval($newcontact['nb']);
 
-        return new JsonResponse(['newCompany' => $newcompany]);
+        $result2 = $pourcentage['nb'];
+        $result2 = intval($result2);
+
+        $PourcentCont = ($newcompany/$result2)*100;
+
+        $PourcentCont = intval($PourcentCont);
+
+        return new JsonResponse(['newCompany' => $newcompany, 'pourcent' => $PourcentCont]);
 
     }
 
