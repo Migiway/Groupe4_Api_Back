@@ -105,4 +105,57 @@ class OperationController extends AbstractController
 
     }
 
+    /**
+     * @Route("/chartOpe", name="chartOpe", methods={"GET"})
+     */
+    public function chartOpe()
+    {
+        $period = "-1 month";
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $newcontact = $repository->operation($period);
+
+        $result1 = $newcontact['nb'];
+        $result1 = intval($result1);
+
+        $period = "-2 month";
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $newcontact = $repository->operation($period);
+
+        $result2 = $newcontact['nb'];
+        $result2 = intval($result2);
+
+        $period = "-3 month";
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $newcontact = $repository->operation($period);
+
+        $result3 = $newcontact['nb'];
+        $result3 = intval($result3);
+
+        $period = "-4 month";
+        $repository = $this->getDoctrine()->getRepository(Operation::class);
+        $newcontact = $repository->operation($period);
+
+        $result4 = $newcontact['nb'];
+        $result4 = intval($result4);
+
+
+
+
+        /*$serializer = $this->container->get('serializer');
+        $contactpourcent = $serializer->serialize($total, 'json');*/
+        return new JsonResponse(['month1' => $result1, 'month2' => $result2, 'month3' => $result3, 'month4' => $result4]);
+    }
+
+    /**
+     * @Route("/chartMail", name="chartMail", methods={"GET"})
+     */
+    public function chartMail()
+    {
+
+        /*$serializer = $this->container->get('serializer');
+        $contactpourcent = $serializer->serialize($total, 'json');*/
+        return new JsonResponse(['month1' => 35, 'month2' => 137, 'month3' => 26, 'month4' => 251]);
+    }
+
+
 }

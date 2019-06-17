@@ -120,5 +120,57 @@ class ContactController extends AbstractController
         return new JsonResponse(['pourcentage' => $total, 'total' => $totalContact]);
     }
 
+    /**
+     * @Route("/chart", name="chart", methods={"GET"})
+     */
+    public function chart()
+    {
+        $period = "-1 month";
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $newcontact = $repository->newContact($period);
+
+        $result1 = $newcontact['nb'];
+        $result1 = intval($result1);
+
+        $period = "-2 month";
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $newcontact = $repository->newContact($period);
+
+        $result2 = $newcontact['nb'];
+        $result2 = intval($result2);
+
+        $period = "-3 month";
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $newcontact = $repository->newContact($period);
+
+        $result3 = $newcontact['nb'];
+        $result3 = intval($result3);
+
+        $period = "-4 month";
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $newcontact = $repository->newContact($period);
+
+        $result4 = $newcontact['nb'];
+        $result4 = intval($result4);
+
+
+
+
+        /*$serializer = $this->container->get('serializer');
+        $contactpourcent = $serializer->serialize($total, 'json');*/
+        return new JsonResponse(['month1' => $result1, 'month2' => $result2, 'month3' => $result3, 'month4' => $result4]);
+    }
+
+    /**
+     * @Route("/chartMaj", name="chartMaj", methods={"GET"})
+     */
+    public function chartMaj()
+    {
+
+        /*$serializer = $this->container->get('serializer');
+        $contactpourcent = $serializer->serialize($total, 'json');*/
+        return new JsonResponse(['month1' => 0, 'month2' => 2, 'month3' => 10, 'month4' => 8]);
+    }
+
 }
 
