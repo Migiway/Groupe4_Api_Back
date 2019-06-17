@@ -107,4 +107,45 @@ class CompanyController extends AbstractController
 
     }
 
+    /**
+     * @Route("/chartComp", name="chartComp", methods={"GET"})
+     */
+    public function chartComp()
+    {
+        $period = "-1 month";
+        $repository = $this->getDoctrine()->getRepository(Company::class);
+        $newcontact = $repository->newCompany($period);
+
+        $result1 = $newcontact['nb'];
+        $result1 = intval($result1);
+
+        $period = "-2 month";
+        $repository = $this->getDoctrine()->getRepository(Company::class);
+        $newcontact = $repository->newCompany($period);
+
+        $result2 = $newcontact['nb'];
+        $result2 = intval($result2);
+
+        $period = "-3 month";
+        $repository = $this->getDoctrine()->getRepository(Company::class);
+        $newcontact = $repository->newCompany($period);
+
+        $result3 = $newcontact['nb'];
+        $result3 = intval($result3);
+
+        $period = "-4 month";
+        $repository = $this->getDoctrine()->getRepository(Company::class);
+        $newcontact = $repository->newCompany($period);
+
+        $result4 = $newcontact['nb'];
+        $result4 = intval($result4);
+
+
+
+
+        /*$serializer = $this->container->get('serializer');
+        $contactpourcent = $serializer->serialize($total, 'json');*/
+        return new JsonResponse(['month1' => $result1, 'month2' => $result2, 'month3' => $result3, 'month4' => $result4]);
+    }
+
 }
