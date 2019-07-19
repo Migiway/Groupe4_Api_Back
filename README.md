@@ -28,7 +28,7 @@ composer install
 ```
 -   Installer la base de données avec la commande :
 ```bash
-php bin/console database:create
+php bin/console doctrine:database:create
 ```
 -   Créer les tables dans la base avec la commande suivante :
 ```bash
